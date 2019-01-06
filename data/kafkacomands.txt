@@ -1,0 +1,280 @@
+
+bin/connect-standalone.sh config/connect-standalone.properties config/block-source.properties
+
+bin/connect-standalone.sh config/connect-standalone.properties config/mainnet-block-source.properties
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9093 --topic staging.aion.transaction --from-beginning
+	
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic dbhistory.aion
+
+#delete a topic
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic staging.aion.block
+
+# start stop kafka/zookeeper
+sudo systemctl start kafka
+sudo systemctl stop kafka
+
+# list kafka topics
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+#
+sudo nano config/connect-standalone.properties
+	bin/kafka-configs.sh --zookeeper localhost:2181 --entity-type topics --entity-name dbhistory_aionv4 --alter --add-config retention.bytes=-1
+
+# launch spark and bokeh server simultaneously
+/usr/local/spark/spark-2.3.2-bin-hadoop2.7/bin/spark-submit --driver-memory 3g --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.2 main.py
+
+#--------------------------------------------------------------
+KAFKA CONNECT SOURCE  WORKING STANDALONE CONFIG 12/14/2018
+#--------------------------------------------------------------
+name=mainnet-block-source
+connector.class=io.debezium.connector.mysql.MySqlConnector
+tasks.max=1
+
+topic.prefix=source-aion-
+mode=incrementing
+increment.column.name=block_timestamp
+database.server.id=1
+database.server.name=mainnetserver
+database.whitelist=aionv4
+table.whitelist=aionv4.block
+database.hostname=40.113.226.240
+database.port=3306
+database.user=kafka
+database.password=1233tka061
+database.history.kafka.bootstrap.servers=localhost:9092
+database.history.kafka.topic=aion.block
+include.schema.changes=false
+delete.topic.enable=true
+#snapshot.mode=SCHEMA_ONLY_RECOVERY
+# -------------------------------------------------------------
+
+# view last block loaded that kafka pulled from database
+bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9093 --topic staging.aion.block
+
+#--------------------------------------------------------------
+DISTRIUBUTED WORKER SETUP
+#--------------------------------------------------------------
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+# make topics for distributed worker setup
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic aion-analytics-configs --replication-factor 1 --partitions 1 --config cleanup.policy=compact
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic aion-analytics-offsets --replication-factor 1 --partitions 25 --config cleanup.policy=compact
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic aion-analytics-status --replication-factor 1 --partitions 5 --config cleanup.policy=compact
+
+# list distributed connectors
+curl -H "Accept:application/json" localhost:8083/connectors/
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+*******************************************************************
+# register a connector
+
+curl -i -X POST -H "Content-Type:application/json" http://localhost:8083/connectors/ --data
+'{  "name": "staging-source-block",
+  "config" : {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",
+    "group.id": "aion-analytics",
+    "mode":"timestamp",
+    "timestamp.column.name":"block_timestamp",
+    "config.storage.topic":"aion-analytics-configs",
+    "offset.storage.topic":"aion-analytics-offsets",
+    "status.storage.topic":"aion-analytics-status",
+    "poll.interval.ms":"100",
+    "database.server.id":"1",
+    "database.server.name": "staging",
+    "database.whitelist": "aion",
+    "table.whitelist": "aion.block",
+    "database.hostname": "40.113.226.240",
+    "database.port":"3306",
+    "database.user": "kafka",
+    "database.password": "1233tka061",
+    "database.history.kafka.bootstrap.servers": "localhost:9093",
+    "database.history.kafka.topic": "dbhistory.aion.block",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.UnwrapFromEnvelope",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "auto.offset.reset":"earliest"
+  }
+}'
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+******************************************************************
+    aion-analytics-distributed.properties  (connect distributed worker config)
+# start the aion-analytic distributed worker
+bin/connect-distributed.sh config/aion-analytics-distributed.properties
+*******************************************************************
+
+
+bootstrap.servers=PLAINTEXT://:9093
+group.id=aion-analytics
+
+key.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter=org.apache.kafka.connect.json.JsonConverter
+key.converter.schemas.enable=true
+value.converter.schemas.enable=true
+
+internal.key.converter=org.apache.kafka.connect.json.JsonConverter
+internal.value.converter=org.apache.kafka.connect.json.JsonConverter
+internal.key.converter.schemas.enable=false
+internal.value.converter.schemas.enable=false
+
+offset.storage.topic=aion-analytics-offsets
+offset.storage.replication.factor=1
+offset.storage.partitions=25
+
+config.storage.topic=aion-analytics-configs
+config.storage.replication.factor=1
+
+status.storage.topic=aion-analytics-status
+status.storage.replication.factor=1
+#status.storage.partitions=5
+
+offset.flush.interval.ms=10000
+
+plugin.path=/usr/local/share/kafka/plugins/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+*******************************************************************
+  distributed broker config;  server1.properties
+*******************************************************************
+broker.id=1
+listeners=PLAINTEXT://:9093
+advertised.host=localhost
+advertised.listeners=PLAINTEXT://localhost:9093
+num.network.threads=3
+num.io.threads=8
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+log.dirs=/opt/kafka/logs1
+num.partitions=1
+num.recovery.threads.per.data.dir=1
+
+offsets.topic.replication.factor=1
+transaction.state.log.replication.factor=1
+transaction.state.log.min.isr=1
+log.retention.hours=-1
+log.retention.bytes=-1
+log.segment.bytes=1073741824
+log.retention.check.interval.ms=300000
+
+zookeeper.connect=localhost:2181
+zookeeper.connection.timeout.ms=6000
+
+group.initial.rebalance.delay.ms=3
+delete.topic.enable = true
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+# check connector tasks
+curl -i -X GET -H "Accept:application/json" localhost:8083/connectors/staging-source-
+
+# deleting a connector
+curl -X DELETE localhost:8083/connectors/staging-source-block
+curl -X DELETE localhost:8083/connectors/staging-source-transaction
+
+
+# stop connect worker
+
+# restart connector
+curl -X POST http://localhost:8083/connectors/staging-source-transaction/restart
+
+
+#list active connections
+curl -X GET http://localhost:8083/connectors
+
+# restart a connector
+curl -X POST localhost:8083/connectors/staging-block-source/restart
+
+# pausing a connector
+curl -X PUT localhost:8083/connectors/connectorName/pause
+
+# delete a connector
+curl -X DELETE localhost:8083/connectors/staging-source-block
+curl -X DELETE localhost:8083/connectors/staging-source-transaction
+
+
+# resuming a connector
+curl -X PUT localhost:8083/connectors/staging-block-source/resume
+
+# get status of a connector
+curl -s localhost:8083/connectors/staging-source-block/status | jq .
+
+# get connector configuration
+curl localhost:8083/connectors/connectorName | jq
+
+# get tasks for a connector
+curl -s localhost:8083/connectors/connectorName/tasks | jq .
+
+# restarting a task
+curl -X POST localhost:8083/connectors/connectorName/tasks/0/restart
+
+
+# zookeeper offset delete
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --reset_offsets staging.aion.block
+
+# list consumer groups
+bin/kafka-consumer-groups.sh --list --zookeeper localhost:2181
+
+# get information about offsets of consumer groups
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --describe --group aion_analytics
+
+# reset offsets
+bin/kafka-consumer-groups.sh --zookeeper localhost:2181 --reset-offsets --topic staging-aion-block --to-earliest --group aion-analytics
+
+# delete offsets
+bin/kafka-consumer-groups.sh --zookeeper localhost:2181 --delete --topic staging.aion.block
+bin/kafka-consumer-groups.sh --zookeeper localhost:2181 --delete --topic staging.aion.transaction
+
+________________________________________
+
+SPARK OFFSETS
+________________________________________
+# get the zookeeper spark offsets
+bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9093 -topic staging.aion.block --time -1
+bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9093 -topic staging.aion.transaction --time -1
+
+# RESET offsets manually
+1) Shut down the worker (aion-analytics-distributed.properties)
+2) open shell:
+bin/zookeeper-shell.sh localhost:2181
+3) preview the result:
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --group aion-analytics --topic staging.aion.block --reset-offsets --to-earliest
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --group aion-analytics --topic staging.aion.transaction --reset-offsets --to-earliest
+4) execute:
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --group aion-analytics --topic staging.aion.block --reset-offsets --to-earliest --execute
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9093 --group aion-analytics --topic staging.aion.transaction --reset-offsets --to-earliest --execute
+
+
+# DELETE TOPICS
+5)
+rmr /consumers/staging.aion.block
+rmr /consumers/staging.aion.transaction
+
+
+START ENTIRE PROCESS
+________________________________________
+
+1) START SERVER:
+sudo bin/kafka-server-start.sh config/server1.properties
+
+2) START A WORKER
+sudo bin/connect-distributed.sh config/aion-analytics-distributed.properties
+
+3) Load connector
+curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" http://localhost:8083/connectors/ --data @config/staging-source-block.json
+curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" http://localhost:8083/connectors/ --data @config/staging-source-transaction.json
+
+
+4) Run the bokeh app using spark-submit
+/usr/local/spark/spark-2.3.2-bin-hadoop2.7/bin/spark-submit --driver-memory 3g --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.2 main.py
