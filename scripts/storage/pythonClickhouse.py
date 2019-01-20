@@ -71,14 +71,14 @@ class PythonClickhouse:
                toDate(block_timestamp) <= toDate('{}') ORDER BY block_timestamp""" \
             .format(self.db,table, startdate, enddate)
 
-        logger.warning('query:%s', qry)
+        #logger.warning('query:%s', qry)
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
         start_date = self.ts_to_date(start_date)
         end_date = self.ts_to_date(end_date)
-        logger.warning('load data start_date:%s', start_date)
-        logger.warning('load_data  to_date:%s', end_date)
+        #logger.warning('load data start_date:%s', start_date)
+        #logger.warning('load_data  to_date:%s', end_date)
 
         if start_date > end_date:
             logger.warning("END DATE IS GREATER THAN START DATE")
@@ -99,7 +99,7 @@ class PythonClickhouse:
                     #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
                     #logger.warning("columns renamed:%s", df.columns.tolist())
             df = dd.dataframe.from_pandas(df, npartitions=15)
-            #logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
+            # logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
             logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",len(df))
             return df
 
@@ -198,7 +198,7 @@ class PythonClickhouse:
                                 """.format(db, table, col, start_range, col, end_range)
             #logger.warning("DELETE QRY:%s",qry)
             self.client.execute(qry)
-            logger.warning("SUCCESSFUL DELETE OVER RANGE %s:%s",start_range,end_range)
+            #logger.warning("SUCCESSFUL DELETE OVER RANGE %s:%s",start_range,end_range)
         except Exception:
             logger.error("Delete_data", exc_info=True)
 
@@ -208,8 +208,8 @@ class PythonClickhouse:
     def insert_df(self,df,cols,table='block_tx_warehouse'):
         try:
             df = df[cols]  # arrange order of columns for
-            logger.warning("columns in df to insert:%s",df.columns.tolist())
-            logger.warning("df to insert:%s",df.head())
+            #logger.warning("columns in df to insert:%s",df.columns.tolist())
+            #logger.warning("df to insert:%s",df.head())
 
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
             logger.warning("DF UPSERTED:%s", affected_rows)

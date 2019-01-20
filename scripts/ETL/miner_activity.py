@@ -41,9 +41,9 @@ class MinerActivity(Checkpoint):
         self.meta = self.table_dict
         # manage messages
         self.batch_counter = 0 # number of days before save
-        self.batch_counter_threshold = 5
+        self.batch_counter_threshold = 1
         self.batch_messages = []
-        self.is_up_to_date_window = self.churn_window
+        self.is_up_to_date_window = self.churn_window+1
         self.cols = columns[table]
         self.initial_date = '2018-05-01 00:00:00'
         self.checkpoint_column = 'block_timestamp'
@@ -54,20 +54,22 @@ class MinerActivity(Checkpoint):
             return datetime.striptime(x,self.DATEFORMAT)
         return x
 
-    def get_daily_miners(self,df,thisdate,col):
-        try:
-            logger.warning('thisdate(56):%s',thisdate)
-            df = df[df['block_timestamp'] == thisdate]
-            logger.warning('timestamp col line(61):%s',df.head(10))
-            df = df.compute()
-            lst = df[col].unique()
-            #logger.warning('daily %s lst:%s(line 59)',col,lst)
-            return lst
-        except Exception:
-            logger.error('get daily miners',exc_info=True)
-
     def cast_date(self,x):
-        x = pd.to_datetime(str(x))
+        logger.warning('date before cast: %s', type(x))
+        '''
+        if x:
+            x = pd.to_datetime(x.strip('"'))
+        else:
+            pd.NaT
+        '''
+        x = x.strip('"')
+        logger.warning('date after strip: %s', type(x))
+
+        x = datetime.strptime(x,self.DATEFORMAT)
+        #x = datetime.fromtimestamp(int(x) / 10 ** 9)
+        #logger.warning('date after cast: %s', type(x))
+
+        #x = date(x.year,x.month,x.day)
         #x = x.strftime(self.DATEFORMAT)
         return x
 
@@ -99,31 +101,21 @@ class MinerActivity(Checkpoint):
     """
     def manage_sliding_df(self,this_date):
         try:
-            state = 'in_progress'
-            if self.df is None:
-                state = 'initial'
-                self.df = self.load_df(this_date,state)
-                self.df = self.df.map_partitions(self.cast_cols)
-            else:
-                #self.df['block_timestamp'] = self.df['block_timestamp'].\
-                    #apply(lambda x:self.cast_date(x))
-
-                last_date = this_date - timedelta(days=self.churn_window)
-                # filter, load and concat
-                self.df = self.df[self.df.block_timestamp > last_date]
-                df = self.load_df(this_date,state='in_progress')
-                self.df = concat_dfs(df,self.df)
-                logger.warning('line 116, after concat:%s',self.df)
+            state = 'initial'
+            self.df = self.load_df(this_date, state=state)
+            if len(self.df) > 0:
+                min,max = dd.compute(self.df['block_timestamp'].min(), self.df['block_timestamp'].max())
+                logger.warning('AFTER LOAD, current df range %s:%s',min,max)
 
         except Exception:
             logger.error('', exc_info=True)
 
     def zero_out_datetime(self,x):
-        x = x.replace(hour=00,minute=00,second=00)
-        #x = x.date()
-        #x = date(x.year, x.month,x.day)
+        logger.warning('line 129,x=%s',x)
         if isinstance(x,str):
-            logger.warning("date zeroed out (120):%s", x)
+            x = datetime.strptime(x,self.DATEFORMAT)
+        x = datetime(year=x.year,month=x.month,day=x.day,hour=0,minute=0,second=0)
+
         return x
 
     def load_df(self,this_date,state='initial',table='block_tx_warehouse'):
@@ -140,13 +132,17 @@ class MinerActivity(Checkpoint):
             else:
                 start_date = this_date
                 end_date = this_date + timedelta(days=1)
-            logger.warning('BEFORE LOAD DATA -%s:%s',start_date, end_date)
+
+            start_date = datetime.combine(start_date, datetime.min.time())
+            end_date = datetime.combine(end_date, datetime.min.time())
+            #logger.warning('BEFORE LOAD DATA %s:%s',start_date, end_date)
 
             df = self.cl.load_data(table=table,cols=cols,
                                 start_date=start_date, end_date=end_date)
+            #logger.warning('line 157, load:%s',df['block_timestamp'])
             # convert to datetime to date
-            df['block_timestamp'] = df['block_timestamp'].map(self.zero_out_datetime)
-            #df['block_timestamp'] = df['block_timestamp'].map(self.cast_date)
+            # df['block_timestamp'] = df['block_timestamp'].map(self.zero_out_datetime)
+            # df['block_timestamp'] = df['block_timestamp'].map(self.cast_date)
 
             return df
         except Exception:
@@ -154,7 +150,7 @@ class MinerActivity(Checkpoint):
 
     def update_checkpoint_dict(self, offset):
         try:
-            logger.warning("INSIDE UPDATE CHECKPOINT DICT")
+            #logger.warning("INSIDE UPDATE CHECKPOINT DICT")
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
             # update checkpoint
@@ -204,49 +200,76 @@ class MinerActivity(Checkpoint):
             - take 7 day window forward, grab from/to_addr and make comprehensive list
             - record churned
     """
+    def get_daily_miners(self,df,this_date,col):
+        try:
+            lst = []
+            if len(df) > 0 :
+                if isinstance(this_date,str):
+                    this_date = datetime.strptime(this_date,self.DATEFORMAT)
+                next_date = this_date + timedelta(days=1)
+                logger.warning('daily filter range=%s:%s',this_date,next_date)
+                df = df[(df['block_timestamp'] >= this_date) &
+                        (df['block_timestamp'] < next_date)]
+
+                logger.warning('length of df for %s:%s',this_date,len(df))
+                df = df.compute()
+                lst = df[col].unique()
+            return lst
+        except Exception:
+            logger.error('get daily miners',exc_info=True)
 
     def get_new_retained(self,df,this_date_lst,this_date,tier_col='from_addr'):
         try:
             # make bakwards window to find new miners
+            if isinstance(this_date,str):
+                this_date = datetime.strptime(this_date,self.DATEFORMAT)
             start_date = this_date - timedelta(days=self.churn_window)
-            end_date = this_date - timedelta(days=1)
-            df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp <= end_date)]
-            """
-                - make compound list of all miners for that period
-                - new: didn't appear
-            """
-            df1 = df1.compute()
-            active_lst = df1[tier_col].unique().tolist()
+            end_date = this_date
+            logger.warning('ASSESSMENT OF ACTIVE RANGE:')
+            logger.warning('this_date:%s',this_date)
+            logger.warning('period start_date:%s',start_date)
+            logger.warning('period end_date:%s',end_date)
+            active_lst=[]
+            if len(df) > 0:
+                df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp < end_date)]
+                """
+                    - make compound list of all miners for that period
+                    - new: didn't appear
+                """
+                df1 = df1.compute()
+                active_lst = df1[tier_col].unique().tolist()
             #logger.warning("tier_col(192):%s", tier_col)
-            logger.warning("active list(192):%s", len(active_lst))
-            logger.warning("this date list(line 193):%s",len(this_date_lst))
+            logger.warning("backward active over window:%s", len(active_lst))
+            logger.warning("this_date only list:%s",len(this_date_lst))
 
-            new_lst = list(set(this_date_lst).difference(active_lst))
-            retained_lst = list(set(this_date_lst).intersection(active_lst))
-            logger.warning("new lst (197):%s",len(new_lst))
-            logger.warning("retained lst(198):%s",len(retained_lst))
-
+            new_lst = list(set(active_lst).difference(this_date_lst))
+            retained_lst = list(set(active_lst).intersection(this_date_lst))
+            logger.warning("%s new lst (226):%s",tier_col,len(new_lst))
+            logger.warning("%s retained lst(227):%s",tier_col,len(retained_lst))
 
             return new_lst, retained_lst
         except Exception:
             logger.error('',exc_info=True)
 
+
     def get_churned(self,df,this_date_lst,this_date,tier_col='from_addr'):
         try:
             # make bakwards window to find new miners
             start_date = this_date + timedelta(days=1)
-            end_date = this_date + timedelta(days=self.churn_window)
-            df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp <= end_date)]
-            """
-                - make compound list of all miners for that period
-                - new: didn't appear
-            """
-            df1 = df1.compute()
-            active_lst = df1[tier_col].unique().tolist()
-            logger.warning('active list (line 272):%s',len(active_lst))
-            churned_lst = list(set(this_date_lst).difference(active_lst))
+            end_date = this_date + timedelta(days=self.churn_window+1)
+            churned_lst = []
+            if len(df) >0:
+                df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp <= end_date)]
+                """
+                    - make compound list of all miners for that period
+                    - new: didn't appear
+                """
+                if len(df1) > 0:
+                    df1 = df1.compute()
+                    active_lst = df1[tier_col].unique().tolist()
+                    logger.warning('forward active list (line 272):%s',len(active_lst))
+                    churned_lst = list(set(this_date_lst).difference(active_lst))
             logger.warning('churned list (line 272):%s',len(churned_lst))
-
             return churned_lst
         except Exception:
             logger.error('',exc_info=True)
@@ -270,16 +293,17 @@ class MinerActivity(Checkpoint):
         except Exception:
             logger.error("Create self.table in clickhosue",exc_info=True)
 
+    @coroutine
     def save_messages(self,this_date):
         try:
-            logger.warning("INSIDE SAVED MESSAGES, Last OFFSET:%s",this_date)
+            #logger.warning("INSIDE SAVED MESSAGES, Last OFFSET:%s",this_date)
             # convert to pandas, then dask
             df = pd.DataFrame([x for x in self.batch_messages], columns=self.cols)
             #
             df = dd.from_pandas(df,npartitions=1)
             df = df.reset_index()
             df = df.drop('index',axis=1)
-            logger.warning('line 269, df before upsert called:%s',df['block_timestamp'].head())
+            # logger.warning('df before upsert called:%s',df['block_timestamp'].head())
             self.cl.upsert_df(df,cols=self.cols,table=self.table)
 
             #self.cl.insert(self.table,self.cols,messages=self.batch_messages)
@@ -287,7 +311,7 @@ class MinerActivity(Checkpoint):
             self.batch_messages = []
             self.batch_counter = 0
             self.save_checkpoint()
-            logger.warning("messages inserted and offset saved, Last OFFSET:%s",this_date)
+            #logger.warning("messages inserted and offset saved, Last OFFSET:%s",this_date)
         except Exception:
             logger.error("Create self.table in clickhosue", exc_info=True)
 
@@ -317,45 +341,50 @@ class MinerActivity(Checkpoint):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
 
             # LOAD THE DATE
-            this_date = pd.Timestamp(date(offset.year, offset.month, offset.day))
-            this_date = this_date + timedelta(days=1)
-            logger.warning("OFFSET:%s",offset)
+
+            this_date = offset + timedelta(days=1)
+            # logger.warning("OFFSET INCREASED:%s",offset)
             self.manage_sliding_df(this_date)
-            tier_info = self.prepare_tiers(self.df, this_date)
-            a = tier_info["1"]
-            b = tier_info["2"]
-            # message for daily save
-            block_size, block_time, difficulty, nrg_limit, approx_nrg_reward,num_transactions, \
-                block_nrg_consumed, transaction_nrg_consumed,nrg_price, approx_value = \
-                dd.compute(self.df.block_size.mean(),self.df.block_time.mean(),self.df.difficulty.mean(),
-                           self.df.nrg_limit.mean(), self.df.approx_nrg_reward.mean(), self.df.num_transactions.mean(),
-                           self.df.block_nrg_consumed.mean(), self.df.transaction_nrg_consumed.mean(),
-                           self.df.nrg_price.mean(),
-                           self.df.approx_value.mean())
-            message = (this_date,
-                       a['new_str'],a['churned_str'],a['retained_str'],a['active_str'],
-                       len(a['new_lst']),len(a['churned_lst']), len(a['retained_lst']),len(a['active_lst']),
-                       b['new_str'], b['churned_str'], b['retained_str'], b['active_str'],
-                       len(b['new_lst']), len(b['churned_lst']), len(b['retained_lst']), len(b['active_lst']),
-                       round(block_size),round(block_time),round(difficulty),round(nrg_limit),
-                       round(approx_nrg_reward),round(num_transactions),
-                       round(block_nrg_consumed),round(transaction_nrg_consumed),round(nrg_price),round(approx_value),
-                       int(this_date.year), int(this_date.month), int(this_date.day), this_date.strftime('%a'))
-            #logger.warning('date:message-%s:%s',this_date,message)
+            if len(self.df) > 0:
+                tier_info = self.prepare_tiers(self.df, this_date)
+                a = tier_info["1"]
+                b = tier_info["2"]
+                # message for daily save
+                block_size, block_time, difficulty, nrg_limit, approx_nrg_reward,num_transactions, \
+                    block_nrg_consumed, transaction_nrg_consumed,nrg_price, approx_value = \
+                    dd.compute(self.df.block_size.mean(),self.df.block_time.mean(),self.df.difficulty.mean(),
+                               self.df.nrg_limit.mean(), self.df.approx_nrg_reward.mean(), self.df.num_transactions.mean(),
+                               self.df.block_nrg_consumed.mean(), self.df.transaction_nrg_consumed.mean(),
+                               self.df.nrg_price.mean(),
+                               self.df.approx_value.mean())
+                message = (this_date,
+                           a['new_str'],a['churned_str'],a['retained_str'],a['active_str'],
+                           len(a['new_lst']),len(a['churned_lst']), len(a['retained_lst']),len(a['active_lst']),
+                           b['new_str'], b['churned_str'], b['retained_str'], b['active_str'],
+                           len(b['new_lst']), len(b['churned_lst']), len(b['retained_lst']), len(b['active_lst']),
+                           round(block_size),round(block_time),round(difficulty),round(nrg_limit),
+                           round(approx_nrg_reward),round(num_transactions),
+                           round(block_nrg_consumed),round(transaction_nrg_consumed),round(nrg_price),round(approx_value),
+                           int(this_date.year), int(this_date.month), int(this_date.day), this_date.strftime('%a'))
+                #logger.warning('date:message-%s:%s',this_date,message)
 
-            self.batch_counter += 1
-            self.update_checkpoint_dict(this_date)
-            self.batch_messages.append(message)
-            if self.batch_counter < self.batch_counter_threshold:
                 self.batch_counter += 1
-                # send the messages immmediately if it is up to date
-                if this_date >= datetime.now() - timedelta(days=self.churn_window+1) and \
-                    this_date <= datetime.now() - timedelta(days=self.churn_window):
-                        self.save_messages(this_date)
+                self.update_checkpoint_dict(this_date)
+                self.batch_messages.append(message)
+                if self.batch_counter < self.batch_counter_threshold:
+                    self.batch_counter += 1
+                    # send the messages immmediately if it is up to date
+                    if this_date >= datetime.now() - timedelta(days=self.churn_window+1) and \
+                        this_date <= datetime.now() - timedelta(days=self.churn_window):
+                            self.save_messages(this_date)
 
-            else:
-                logger.warning("batch counter(line 332):%s",self.batch_counter)
-                self.save_messages(this_date)
+                else:
+                    #logger.warning("batch counter(line 332):%s",self.batch_counter)
+                    self.save_messages(this_date)
+            else: # self.df is empty
+
+                self.update_checkpoint_dict(this_date)
+
 
         except Exception:
             logger.error("update",exc_info=True)
@@ -369,14 +398,15 @@ class MinerActivity(Checkpoint):
                 self.checkpoint_dict['offset'] = self.initial_date
             if isinstance(offset, str):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
+
             construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
-            #logger.warning("max_val in is_up_to_date:%s",construct_max_val)
             if isinstance(construct_max_val,str):
                 construct_max_val = datetime.strptime(construct_max_val,self.DATEFORMAT)
+                construct_max_val = construct_max_val.date()
             if offset >= construct_max_val - timedelta(days=self.is_up_to_date_window):
                 logger.warning("CHECKPOINT:UP TO DATE")
                 return True
-            logger.warning("CHECKPOINT:NOT UP TO DATE")
+            #logger.warning("CHECKPOINT:NOT UP TO DATE")
 
             return False
         except Exception:
@@ -390,6 +420,6 @@ class MinerActivity(Checkpoint):
         while True:
             self.update()
             if self.is_up_to_date(construct_table='block_tx_warehouse'):
-                 yield gen.sleep(86400)
+                 yield gen.sleep(86400) #sleep one day
             else:
-                yield gen.sleep(30)
+                yield gen.sleep(1)

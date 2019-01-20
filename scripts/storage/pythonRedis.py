@@ -86,7 +86,7 @@ class PythonRedis:
             elif type == 'checkpoint':
                 self.conn.hmset(key_params,item)
                 self.conn.expire(key_params,EXPIRATION_SECONDS*50)
-                logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
+                #logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
 
         except Exception:
             logger.error('save to redis',exc_info=True)

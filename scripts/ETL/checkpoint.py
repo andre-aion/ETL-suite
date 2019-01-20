@@ -32,7 +32,7 @@ class Checkpoint:
     def save_checkpoint(self):
         try:
             self.redis.save(self.checkpoint_dict, self.key_params, "", "", type='checkpoint')
-            logger.warning('CHECKPOINT SAVED TO REDIS:%s', self.key_params)
+            # logger.warning('CHECKPOINT SAVED TO REDIS:%s', self.key_params)
         except Exception:
             logger.error("Construct table query", exc_info=True)
 

@@ -1,0 +1,122 @@
+2019-01-20 09:44:30,242 - [logs/pythonClickhouse.log:16]=> logs/pythonClickhouse.log
+2019-01-20 09:44:30,766 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-02 00:00:00
+2019-01-20 09:44:30,767 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-17 00:00:00
+2019-01-20 09:44:30,767 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-02 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-17 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:30,928 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:44:35,975 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-10 00:00:00
+2019-01-20 09:44:35,975 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-11 00:00:00
+2019-01-20 09:44:35,976 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-10 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-11 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:36,121 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:44:41,149 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-11 00:00:00
+2019-01-20 09:44:41,150 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-12 00:00:00
+2019-01-20 09:44:41,150 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-11 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-12 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:41,288 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:44:46,311 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-12 00:00:00
+2019-01-20 09:44:46,312 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-13 00:00:00
+2019-01-20 09:44:46,312 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-12 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-13 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:46,433 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:44:51,461 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-13 00:00:00
+2019-01-20 09:44:51,461 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-14 00:00:00
+2019-01-20 09:44:51,462 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-13 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-14 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:51,598 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:44:56,623 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-14 00:00:00
+2019-01-20 09:44:56,623 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-15 00:00:00
+2019-01-20 09:44:56,624 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-14 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-15 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:44:56,746 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:01,770 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-15 00:00:00
+2019-01-20 09:45:01,770 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-16 00:00:00
+2019-01-20 09:45:01,771 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-15 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:01,911 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:06,935 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-16 00:00:00
+2019-01-20 09:45:06,935 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-17 00:00:00
+2019-01-20 09:45:06,935 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-16 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-17 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:07,031 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:12,057 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-17 00:00:00
+2019-01-20 09:45:12,057 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-18 00:00:00
+2019-01-20 09:45:12,057 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-17 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-18 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:12,171 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:17,197 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-18 00:00:00
+2019-01-20 09:45:17,198 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-19 00:00:00
+2019-01-20 09:45:17,198 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-18 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-19 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:17,321 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:22,344 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-19 00:00:00
+2019-01-20 09:45:22,344 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-20 00:00:00
+2019-01-20 09:45:22,345 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-19 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-20 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:22,465 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:27,493 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-20 00:00:00
+2019-01-20 09:45:27,493 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-21 00:00:00
+2019-01-20 09:45:27,494 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-20 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-21 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:27,745 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:9976
+2019-01-20 09:45:52,471 - [logs/pythonClickhouse.log:16]=> logs/pythonClickhouse.log
+2019-01-20 09:45:53,178 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-02 00:00:00
+2019-01-20 09:45:53,178 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-17 00:00:00
+2019-01-20 09:45:53,179 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-02 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-17 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:53,336 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:45:58,384 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-10 00:00:00
+2019-01-20 09:45:58,384 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-11 00:00:00
+2019-01-20 09:45:58,385 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-10 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-11 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:45:58,508 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:03,536 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-11 00:00:00
+2019-01-20 09:46:03,536 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-12 00:00:00
+2019-01-20 09:46:03,537 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-11 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-12 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:03,672 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:08,698 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-12 00:00:00
+2019-01-20 09:46:08,698 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-13 00:00:00
+2019-01-20 09:46:08,699 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-12 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-13 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:08,830 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:13,858 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-13 00:00:00
+2019-01-20 09:46:13,859 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-14 00:00:00
+2019-01-20 09:46:13,860 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-13 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-14 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:13,999 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:19,022 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-14 00:00:00
+2019-01-20 09:46:19,022 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-15 00:00:00
+2019-01-20 09:46:19,023 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-14 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-15 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:19,146 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:24,171 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-15 00:00:00
+2019-01-20 09:46:24,171 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-16 00:00:00
+2019-01-20 09:46:24,172 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-15 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:24,295 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:29,322 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-16 00:00:00
+2019-01-20 09:46:29,322 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-17 00:00:00
+2019-01-20 09:46:29,323 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-16 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-17 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:29,446 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:34,472 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-17 00:00:00
+2019-01-20 09:46:34,473 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-18 00:00:00
+2019-01-20 09:46:34,473 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-17 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-18 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:34,608 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:39,632 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-18 00:00:00
+2019-01-20 09:46:39,633 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-19 00:00:00
+2019-01-20 09:46:39,633 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-18 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-19 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:39,753 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:44,777 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-19 00:00:00
+2019-01-20 09:46:44,777 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-20 00:00:00
+2019-01-20 09:46:44,778 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-19 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-20 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:44,897 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:0
+2019-01-20 09:46:49,926 - [logs/pythonClickhouse.log:80]=> load data start_date:2018-05-20 00:00:00
+2019-01-20 09:46:49,926 - [logs/pythonClickhouse.log:81]=> load_data  to_date:2018-05-21 00:00:00
+2019-01-20 09:46:49,927 - [logs/pythonClickhouse.log:74]=> query:SELECT block_timestamp,difficulty,block_nrg_consumed,nrg_limit,num_transactions,block_size,block_time,approx_nrg_reward,from_addr,to_addr,approx_value,transaction_nrg_consumed,nrg_price FROM aion.block_tx_warehouse WHERE toDate(block_timestamp) >= toDate('2018-05-20 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-21 00:00:00') ORDER BY block_timestamp
+2019-01-20 09:46:50,177 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:9976
