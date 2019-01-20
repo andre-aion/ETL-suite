@@ -139,7 +139,7 @@ class MinerActivity(Checkpoint):
                 end_date = this_date + timedelta(days=self.churn_window+1)
             else:
                 start_date = this_date
-                end_date = this_date + timedelta(day=1)
+                end_date = this_date + timedelta(days=1)
             logger.warning('BEFORE LOAD DATA -%s:%s',start_date, end_date)
 
             df = self.cl.load_data(table=table,cols=cols,

@@ -2,55 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.corrupted.20190107-022741.reason.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.corrupted.20190107-022741.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/25557775-5259-4a7f-970c-094cf8d180f9.corrupted.20190107-022741.reason.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/df_construct_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/checkpoint.logs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/miner_activity.logs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/poolminer.logs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/warehouse.logs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ETL/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ETL/warehouse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/storage/pythonRedis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25557775-5259-4a7f-970c-094cf8d180f9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25557775-5259-4a7f-970c-094cf8d180f9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d3fa1b6-1bdd-457f-a64c-763552c9668a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25557775-5259-4a7f-970c-094cf8d180f9.corrupted.20190107-022741.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mysql_clickhouse_streamer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysql_clickhouse_streamer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql-clickhouse.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql-clickhouse.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/ETL_luigi.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/ETL_luigi.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/Table.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/Table.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/hashrate.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/hashrate.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/kafka_spark_cass_clickhouse.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/kafka_spark_cass_clickhouse.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/main.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/myutils.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/myutils.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/pythonClickhouse.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/pythonClickhouse.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/pythonRedis.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/pythonRedis.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/streamingDataframe.logs" beforeDir="false" afterPath="$PROJECT_DIR$/logs/streamingDataframe.logs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/streaming/ETL_luigi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/streaming/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/streaming/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/streaming/kafka_spark_cass_clickhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/streaming/kafka_spark_cass_clickhouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/tablemanager/Table.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/tablemanager/Table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/clickhouse_table.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/myutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/myutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/poolminer.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/poolminer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/pythonRedis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +58,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="logs" value="8" />
-          <entry key="py" value="10519" />
+          <entry key="py" value="10520" />
           <entry key="sql" value="83" />
           <entry key="txt" value="9" />
         </counts>
@@ -114,14 +66,14 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="10519" />
+          <entry key="Python" value="10520" />
           <entry key="Scratch" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="logs" value="2" />
-          <entry key="miner_activity" value="5" />
+          <entry key="miner_activity" value="6" />
           <entry key="py" value="82" />
           <entry key="sql" value="3" />
           <entry key="transaction_delete" value="1" />
@@ -129,7 +81,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="6" />
+          <entry key="Database Element" value="7" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="82" />
           <entry key="Scratch" value="3" />
@@ -142,12 +94,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/ETL/miner_activity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="142" column="26" selection-start-line="142" selection-start-column="12" selection-end-line="142" selection-end-column="26" />
+            <state relative-caret-position="385">
+              <caret line="146" column="41" lean-forward="true" selection-start-line="146" selection-start-column="41" selection-end-line="146" selection-end-column="41" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
-                <marker date="1547949839143" expanded="true" signature="1657:1767" ph="..." />
+                <marker date="1547950127266" expanded="true" signature="1657:1767" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/miner_activity">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -409,7 +370,7 @@
       <window_info anchor="right" id="SciView" order="3" weight="0.32999444" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.29077253" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.29077253" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="7" side_tool="true" weight="0.3155259" />
     </layout>
     <layout-to-restore>
@@ -538,6 +499,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-225">
           <caret line="250" column="56" lean-forward="true" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -650,13 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/miner_activity">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/utils/myutils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -689,13 +646,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/miner_activity">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/miner_activity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="142" column="26" selection-start-line="142" selection-start-column="12" selection-end-line="142" selection-end-column="26" />
+        <state relative-caret-position="385">
+          <caret line="146" column="41" lean-forward="true" selection-start-line="146" selection-start-column="41" selection-end-line="146" selection-end-column="41" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
-            <marker date="1547949839143" expanded="true" signature="1657:1767" ph="..." />
+            <marker date="1547950127266" expanded="true" signature="1657:1767" ph="..." />
           </folding>
         </state>
       </provider>
