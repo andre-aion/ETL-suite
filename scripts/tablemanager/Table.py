@@ -2,12 +2,11 @@ from bokeh.layouts import gridplot
 from bokeh.models import Div, Panel
 
 from scripts.storage.pythonClickhouse import PythonClickhouse
-from config import table_dict_all as table_dict
+from config.df_construct_config import table_dict
 from scripts.utils.mylogger import mylogger
 from scripts.utils.myutils import tab_error_flag
 
-pc = PythonClickhouse()
-pc.create_database('aion')
+pc = PythonClickhouse('aion')
 logger = mylogger(__file__)
 
 def Table(table,table_alias,action):

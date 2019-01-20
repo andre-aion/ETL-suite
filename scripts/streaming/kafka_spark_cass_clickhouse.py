@@ -8,7 +8,7 @@ if module_path not in sys.path:
 from scripts.storage.pythonClickhouse import PythonClickhouse
 from scripts.utils import myutils
 from scripts.streaming.streamingDataframe import StreamingDataframe
-from config import columns, dedup_cols,columns_ch, table_dict
+from config.df_construct_config import columns, dedup_cols,columns_ch, table_dict
 from tornado.gen import coroutine
 from concurrent.futures import ThreadPoolExecutor
 
@@ -30,8 +30,7 @@ ZK_CHECKPOINT_PATH = 'consumers/'
 
 
 class KafkaConnectPyspark:
-    pch = PythonClickhouse()
-    pch.create_database('aion')
+    pch = PythonClickhouse('aion')
     cols = columns
     cols_ch = columns_ch
 

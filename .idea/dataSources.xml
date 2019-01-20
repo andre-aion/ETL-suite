@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="clichouse.aion@localhost" uuid="0f1c6e87-17d4-4926-b9eb-32efd88b3ada">
+    <data-source source="LOCAL" name="clickhouse.aion@localhost" uuid="0f1c6e87-17d4-4926-b9eb-32efd88b3ada">
       <driver-ref>clickhouse</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>ru.yandex.clickhouse.ClickHouseDriver</jdbc-driver>

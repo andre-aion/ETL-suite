@@ -1,1 +1,1 @@
-from . import pythonClickhouse
+from . import pythonClickhouse, pythonRedis

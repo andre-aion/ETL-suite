@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="clichouse.aion@localhost" uuid="0f1c6e87-17d4-4926-b9eb-32efd88b3ada">
-      <database-info product="ClickHouse" version="0.42" jdbc-version="0.1" driver-name="ru.yandex.clickhouse-jdbc" driver-version="0.1" dbms="CLICKHOUSE" exact-version="18.16.1" exact-driver-version="0.1">
+    <data-source name="clickhouse.aion@localhost" uuid="0f1c6e87-17d4-4926-b9eb-32efd88b3ada">
+      <database-info product="ClickHouse" version="0.42" jdbc-version="0.1" driver-name="ru.yandex.clickhouse-jdbc" driver-version="0.1" family="CLICKHOUSE" exact-version="18.16.1">
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
@@ -11,7 +11,7 @@
       <introspection-schemas>*:@</introspection-schemas>
     </data-source>
     <data-source name="staging@40.113.226.240" uuid="25557775-5259-4a7f-970c-094cf8d180f9">
-      <database-info product="MySQL" version="5.7.24-0ubuntu0.16.04.1-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )" dbms="MYSQL" exact-version="5.7.24" exact-driver-version="5.1">
+      <database-info product="MySQL" version="5.7.24-0ubuntu0.16.04.1-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )" family="MYSQL" exact-version="5.7.24">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

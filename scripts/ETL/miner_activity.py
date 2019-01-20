@@ -1,0 +1,395 @@
+from datetime import timedelta, datetime, date
+
+from tornado import gen
+from tornado.gen import coroutine
+
+from config.df_construct_config import table_dict, columns
+from scripts.ETL.checkpoint import Checkpoint
+from scripts.utils.mylogger import mylogger
+from scripts.utils.myutils import concat_dfs
+import pandas as pd
+import dask.dataframe as dd
+
+logger = mylogger(__file__)
+
+class MinerActivity(Checkpoint):
+    def __init__(self,table):
+        Checkpoint.__init__(self,table)
+        self.table = table
+        self.active_list = []
+        self.churn_window = 7
+        # create tables and connection
+        self.temp_lsts = {
+            'new':[],
+            'churned':[],
+            'active':[]
+        }
+        self.aggs = {
+            'difficulty': 'mean',
+            'block_nrg_consumed': 'mean',
+            'nrg_limit': 'mean',
+            'num_transactions': 'mean',
+            'block_size': 'mean',
+            'block_time': 'mean',
+            'approx_nrg_reward': 'mean',
+            'approx_value': 'mean',
+            'transaction_nrg_consumed': 'mean',
+            'nrg_price': 'mean',
+        }
+        self.df = None
+        self.table_dict = table_dict[table]
+        self.meta = self.table_dict
+        # manage messages
+        self.batch_counter = 0 # number of days before save
+        self.batch_counter_threshold = 5
+        self.batch_messages = []
+        self.is_up_to_date_window = self.churn_window
+        self.cols = columns[table]
+        self.initial_date = '2018-05-01 00:00:00'
+        self.checkpoint_column = 'block_timestamp'
+        self.key_params = 'checkpoint:'+self.table
+
+    def str_to_date(self,x):
+        if isinstance(x,str):
+            return datetime.striptime(x,self.DATEFORMAT)
+        return x
+
+    def get_daily_miners(self,df,thisdate,col):
+        try:
+            logger.warning('thisdate(56):%s',thisdate)
+            df = df[df['block_timestamp'] == thisdate]
+            logger.warning('timestamp col line(61):%s',df.head(10))
+            df = df.compute()
+            lst = df[col].unique()
+            #logger.warning('daily %s lst:%s(line 59)',col,lst)
+            return lst
+        except Exception:
+            logger.error('get daily miners',exc_info=True)
+
+    def cast_date(self,x):
+        x = pd.to_datetime(str(x))
+        #x = x.strftime(self.DATEFORMAT)
+        return x
+
+    def cast_cols(self, df):
+        try:
+            for column, type in self.meta.items():
+                if column in list(self.aggs.keys()): # restrict
+                    if 'Float' in type:
+                        values = {column: 0}
+                        df = df.fillna(value=values)
+                        df[column] = df[column].astype(float)
+                    elif 'Int' in type:
+                        values = {column: 0}
+                        df = df.fillna(value=values)
+                        df[column] = df[column].astype(int)
+                    elif type == 'String':
+                        values = {column: 'unknown'}
+                        df = df.fillna(value=values)
+                        df[column] = df[column].astype(str)
+            return df
+            # logger.warning('casted %s as %s',column,type)
+        except Exception:
+            logger.error('convert string', exc_info=True)
+
+    """
+        -load from -window to _window at start
+        -after start drop last day, add one day
+        
+    """
+    def manage_sliding_df(self,this_date):
+        try:
+            state = 'in_progress'
+            if self.df is None:
+                state = 'initial'
+                self.df = self.load_df(this_date,state)
+                self.df = self.df.map_partitions(self.cast_cols)
+            else:
+                #self.df['block_timestamp'] = self.df['block_timestamp'].\
+                    #apply(lambda x:self.cast_date(x))
+
+                last_date = this_date - timedelta(days=self.churn_window)
+                # filter, load and concat
+                self.df = self.df[self.df.block_timestamp > last_date]
+                df = self.load_df(this_date,state='in_progress')
+                self.df = concat_dfs(df,self.df)
+                logger.warning('line 116, after concat:%s',self.df)
+
+        except Exception:
+            logger.error('', exc_info=True)
+
+    def zero_out_datetime(self,x):
+        x = x.replace(hour=00,minute=00,second=00)
+        #x = x.date()
+        #x = date(x.year, x.month,x.day)
+        if isinstance(x,str):
+            logger.warning("date zeroed out (120):%s", x)
+        return x
+
+    def load_df(self,this_date,state='initial',table='block_tx_warehouse'):
+        try:
+            cols= [ 'block_timestamp',
+                    'difficulty',
+                    'block_nrg_consumed', 'nrg_limit', 'num_transactions',
+                    'block_size', 'block_time', 'approx_nrg_reward',
+                    'from_addr','to_addr', 'approx_value', 'transaction_nrg_consumed', 'nrg_price']
+
+            if state == 'initial':
+                start_date = this_date - timedelta(days=self.churn_window)
+                end_date = this_date + timedelta(days=self.churn_window+1)
+            else:
+                start_date = this_date
+                end_date = this_date + timedelta(day=1)
+            logger.warning('BEFORE LOAD DATA -%s:%s',start_date, end_date)
+
+            df = self.cl.load_data(table=table,cols=cols,
+                                start_date=start_date, end_date=end_date)
+            # convert to datetime to date
+            df['block_timestamp'] = df['block_timestamp'].map(self.zero_out_datetime)
+            #df['block_timestamp'] = df['block_timestamp'].map(self.cast_date)
+
+            return df
+        except Exception:
+            logger.warning('load_df',exc_info=True)
+
+    def update_checkpoint_dict(self, offset):
+        try:
+            logger.warning("INSIDE UPDATE CHECKPOINT DICT")
+            if isinstance(offset,str):
+                offset = datetime.strptime(offset,self.DATEFORMAT)
+            # update checkpoint
+            self.checkpoint_dict['offset'] = datetime.strftime(offset,self.DATEFORMAT)
+            self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+        except Exception:
+            logger.error("make warehouse", exc_info=True)
+
+
+    def str_to_lst(self,string,state='new'):
+        self.temp_lists['active'] += string.split(',')
+
+    def prepare_tier(self,df,this_date,tier=1):
+        try:
+            agg_col = "to_addr"
+            if tier in [1,"1"]:
+                agg_col = "from_addr"
+            active_lst = self.get_daily_miners(df,this_date,agg_col)
+            new_lst, retained_lst = self.get_new_retained(df,active_lst,this_date,agg_col)
+            churned_lst = self.get_churned(df,active_lst,this_date,agg_col)
+            lists ={
+                'active_lst' : active_lst,
+                'new_lst':new_lst,
+                'retained_lst':retained_lst,
+                'churned_lst':churned_lst,
+                'active_str': active_lst,
+                'new_str': new_lst,
+                'retained_str': retained_lst,
+                'churned_str': churned_lst
+            }
+            #logger.warning("lists:%s",lists)
+            #convert to string for saving
+            for key in ['active_str','new_str','retained_str','churned_str']:
+                lists[key] = ",".join(lists[key])
+
+            return lists
+
+        except Exception:
+            logger.error('prepare for write',exc_info=True)
+
+    """
+        df is load from warehouse table covering 14 day span
+        - for date x,
+            - make list of active miner on that day
+            - take 7 day window back grab from_addr/to_addr and make comprehensive list
+            - record retained,new, mean daily difficulty, nrg-price etc
+            - take 7 day window forward, grab from/to_addr and make comprehensive list
+            - record churned
+    """
+
+    def get_new_retained(self,df,this_date_lst,this_date,tier_col='from_addr'):
+        try:
+            # make bakwards window to find new miners
+            start_date = this_date - timedelta(days=self.churn_window)
+            end_date = this_date - timedelta(days=1)
+            df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp <= end_date)]
+            """
+                - make compound list of all miners for that period
+                - new: didn't appear
+            """
+            df1 = df1.compute()
+            active_lst = df1[tier_col].unique().tolist()
+            #logger.warning("tier_col(192):%s", tier_col)
+            logger.warning("active list(192):%s", len(active_lst))
+            logger.warning("this date list(line 193):%s",len(this_date_lst))
+
+            new_lst = list(set(this_date_lst).difference(active_lst))
+            retained_lst = list(set(this_date_lst).intersection(active_lst))
+            logger.warning("new lst (197):%s",len(new_lst))
+            logger.warning("retained lst(198):%s",len(retained_lst))
+
+
+            return new_lst, retained_lst
+        except Exception:
+            logger.error('',exc_info=True)
+
+    def get_churned(self,df,this_date_lst,this_date,tier_col='from_addr'):
+        try:
+            # make bakwards window to find new miners
+            start_date = this_date + timedelta(days=1)
+            end_date = this_date + timedelta(days=self.churn_window)
+            df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp <= end_date)]
+            """
+                - make compound list of all miners for that period
+                - new: didn't appear
+            """
+            df1 = df1.compute()
+            active_lst = df1[tier_col].unique().tolist()
+            logger.warning('active list (line 272):%s',len(active_lst))
+            churned_lst = list(set(this_date_lst).difference(active_lst))
+            logger.warning('churned list (line 272):%s',len(churned_lst))
+
+            return churned_lst
+        except Exception:
+            logger.error('',exc_info=True)
+
+    def prepare_tiers(self,df,this_date):
+        try:
+            tier_info = {
+                '1': {},
+                '2': {}
+            }
+            # load dataframe
+            for key,value in tier_info.items():
+                tier_info[key] = self.prepare_tier(self.df,this_date, int(key))
+            return tier_info
+        except Exception:
+            logger.error('prepare for write', exc_info=True)
+
+    def create_table_in_clickhouse(self):
+        try:
+            self.cl.create_table(self.table,self.table_dict,self.cols)
+        except Exception:
+            logger.error("Create self.table in clickhosue",exc_info=True)
+
+    def save_messages(self,this_date):
+        try:
+            logger.warning("INSIDE SAVED MESSAGES, Last OFFSET:%s",this_date)
+            # convert to pandas, then dask
+            df = pd.DataFrame([x for x in self.batch_messages], columns=self.cols)
+            #
+            df = dd.from_pandas(df,npartitions=1)
+            df = df.reset_index()
+            df = df.drop('index',axis=1)
+            logger.warning('line 269, df before upsert called:%s',df['block_timestamp'].head())
+            self.cl.upsert_df(df,cols=self.cols,table=self.table)
+
+            #self.cl.insert(self.table,self.cols,messages=self.batch_messages)
+            self.update_checkpoint_dict(datetime.strftime(this_date,self.DATEFORMAT))
+            self.batch_messages = []
+            self.batch_counter = 0
+            self.save_checkpoint()
+            logger.warning("messages inserted and offset saved, Last OFFSET:%s",this_date)
+        except Exception:
+            logger.error("Create self.table in clickhosue", exc_info=True)
+
+    def update(self):
+        try:
+            if self.checkpoint_dict is None:
+                self.checkpoint_dict = self.get_checkpoint_dict()
+                """
+                1) get checkpoint dictionary
+                2) if offset is not set
+                    - set offset as max from warehouse
+                    - if that is zero, set to genesis blcok
+                """
+
+            # handle reset or initialization
+            if self.checkpoint_dict['offset'] is None:
+                offset = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                # logger.warning("Checkpoint initiated in update warehoused:%s", offset)
+                if offset is None:
+                    offset = self.initial_date
+                self.checkpoint_dict['offset'] = offset
+                logger.warning("IN UPDATE: 276", )
+
+            # convert offset to datetime if needed
+            offset = self.checkpoint_dict['offset']
+            if isinstance(offset, str):
+                offset = datetime.strptime(offset, self.DATEFORMAT)
+
+            # LOAD THE DATE
+            this_date = pd.Timestamp(date(offset.year, offset.month, offset.day))
+            this_date = this_date + timedelta(days=1)
+            logger.warning("OFFSET:%s",offset)
+            self.manage_sliding_df(this_date)
+            tier_info = self.prepare_tiers(self.df, this_date)
+            a = tier_info["1"]
+            b = tier_info["2"]
+            # message for daily save
+            block_size, block_time, difficulty, nrg_limit, approx_nrg_reward,num_transactions, \
+                block_nrg_consumed, transaction_nrg_consumed,nrg_price, approx_value = \
+                dd.compute(self.df.block_size.mean(),self.df.block_time.mean(),self.df.difficulty.mean(),
+                           self.df.nrg_limit.mean(), self.df.approx_nrg_reward.mean(), self.df.num_transactions.mean(),
+                           self.df.block_nrg_consumed.mean(), self.df.transaction_nrg_consumed.mean(),
+                           self.df.nrg_price.mean(),
+                           self.df.approx_value.mean())
+            message = (this_date,
+                       a['new_str'],a['churned_str'],a['retained_str'],a['active_str'],
+                       len(a['new_lst']),len(a['churned_lst']), len(a['retained_lst']),len(a['active_lst']),
+                       b['new_str'], b['churned_str'], b['retained_str'], b['active_str'],
+                       len(b['new_lst']), len(b['churned_lst']), len(b['retained_lst']), len(b['active_lst']),
+                       round(block_size),round(block_time),round(difficulty),round(nrg_limit),
+                       round(approx_nrg_reward),round(num_transactions),
+                       round(block_nrg_consumed),round(transaction_nrg_consumed),round(nrg_price),round(approx_value),
+                       int(this_date.year), int(this_date.month), int(this_date.day), this_date.strftime('%a'))
+            #logger.warning('date:message-%s:%s',this_date,message)
+
+            self.batch_counter += 1
+            self.update_checkpoint_dict(this_date)
+            self.batch_messages.append(message)
+            if self.batch_counter < self.batch_counter_threshold:
+                self.batch_counter += 1
+                # send the messages immmediately if it is up to date
+                if this_date >= datetime.now() - timedelta(days=self.churn_window+1) and \
+                    this_date <= datetime.now() - timedelta(days=self.churn_window):
+                        self.save_messages(this_date)
+
+            else:
+                logger.warning("batch counter(line 332):%s",self.batch_counter)
+                self.save_messages(this_date)
+
+        except Exception:
+            logger.error("update",exc_info=True)
+
+    # check max date in a construction table
+    def is_up_to_date(self, construct_table):
+        try:
+            offset = self.checkpoint_dict['offset']
+            if offset is None:
+                offset = self.initial_date
+                self.checkpoint_dict['offset'] = self.initial_date
+            if isinstance(offset, str):
+                offset = datetime.strptime(offset, self.DATEFORMAT)
+            construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+            #logger.warning("max_val in is_up_to_date:%s",construct_max_val)
+            if isinstance(construct_max_val,str):
+                construct_max_val = datetime.strptime(construct_max_val,self.DATEFORMAT)
+            if offset >= construct_max_val - timedelta(days=self.is_up_to_date_window):
+                logger.warning("CHECKPOINT:UP TO DATE")
+                return True
+            logger.warning("CHECKPOINT:NOT UP TO DATE")
+
+            return False
+        except Exception:
+            logger.error("is_up_to_date", exc_info=True)
+            return False
+
+    @coroutine
+    def run(self):
+        # create warehouse table in clickhouse if needed
+        #self.create_table_in_clickhouse()
+        while True:
+            self.update()
+            if self.is_up_to_date(construct_table='block_tx_warehouse'):
+                 yield gen.sleep(86400)
+            else:
+                yield gen.sleep(30)

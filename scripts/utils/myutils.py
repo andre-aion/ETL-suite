@@ -1,7 +1,7 @@
 from scripts.utils.mylogger import mylogger
-from scripts.utils.pythonRedis import LoadType, RedisStorage
+from scripts.storage.pythonRedis import PythonRedis
 from scripts.streaming.streamingDataframe import StreamingDataframe as SD
-from config import columns, dedup_cols
+from config.df_construct_config import columns, dedup_cols
 
 import pandas as pd
 from os.path import join, dirname
@@ -257,106 +257,55 @@ def get_relative_day(day,delta):
     day = datetime.strftime(day, '%Y-%m-%d')
     return day
 
+# append dask dataframes
+def concat_dfs(top, bottom):
+    top = top.repartition(npartitions=100)
+    top = top.reset_index(drop=True)
+    bottom = bottom.repartition(npartitions=100)
+    bottom = bottom.reset_index(drop=True)
+    top = dd.dataframe.concat([top,bottom])
+    top = top.reset_index().set_index('index')
+    top = top.drop_duplicates(keep='last')
+    return top
 
-# get the data differential from the required start range
-def construct_df_upon_load(pc, df, table, cols, req_start_date,
-                           req_end_date, load_params):
-    if len(df) > 0:
-        logger.warning("df original, HEAD:%s", df.head())
-        logger.warning("df original, TAIL:%s", df.tail())
 
+def cast_cols(meta, df):
     try:
-        redis = RedisStorage()
-        # get the data parameters to determine from whence to load
-        params = redis.set_load_params(table, req_start_date,
-                                       req_end_date, load_params)
-        # load all from redis
-        logger.warning('construct df, params:%s', params)
-        if params['load_type'] & LoadType.REDIS_FULL.value == LoadType.REDIS_FULL.value:
-            lst = params['redis_key_full'].split(':')
-            sdate = date_to_ms(lst[1])
-            edate = date_to_ms(lst[2])
-            df = redis.load_df(params['redis_key_full'], table, sdate, edate)
-            logger.warning('')
-        # load all from cassandra
-        elif params['load_type'] & LoadType.CASS_FULL.value == LoadType.CASS_FULL.value:
-            sdate = date_to_cass_ts(req_start_date)
-            edate = date_to_cass_ts(req_end_date)
-            logger.warning('construct_df, in cass load, sdate:%s',sdate)
-            df = cass_load_from_daterange(pc, table, cols, sdate, edate)
-
-        # load from both cassandra and redis
-        else:
-            # load start
-            streaming_dataframe = SD(table, columns, dedup_cols)
-            df_start = streaming_dataframe.get_df()
-            df_end = streaming_dataframe.get_df()
-            df_temp = None
-
-            # add cass if needed, then add redis if needed
-            if params['load_type'] & LoadType.START_CASS.value == LoadType.START_CASS.value:
-                lst = params['cass_start_range']
-                sdate = date_to_ms(lst[0])
-                edate = date_to_ms(lst[1])
-
-                df_temp = cass_load_from_daterange(pc, table, cols, sdate, edate)
-                df_start = df_start.append(df_temp)
-
-            if params['load_type'] & LoadType.REDIS_START.value == LoadType.REDIS_START.value:
-                lst = params['redis_start_range']
-                sdate = date_to_ms(lst[0])
-                edate = date_to_ms(lst[1])
-                df_temp = redis.load_df(params['redis_key_start'], table, sdate, edate)
-                df_start = df_start.append(df_temp)
-
-
-            # load end, add redis df, then cass df if needed
-            if params['load_type'] & LoadType.REDIS_END.value == LoadType.REDIS_END.value:
-                lst = params['redis_end_range']
-                sdate = date_to_ms(lst[0])
-                edate = date_to_ms(lst[1])
-                df_temp = redis.load_df(params['redis_key_end'], table, sdate, edate)
-                df_end = df_end.append(df_temp)
-
-            if params['load_type'] & LoadType.CASS_END.value == LoadType.CASS_END.value:
-                lst = params['cass_end_range']
-                sdate = date_to_ms(lst[0])
-                edate = date_to_ms(lst[1])
-                df_temp = cass_load_from_daterange(pc, table, cols, sdate, edate)
-                df_end = df_end.append(df_temp)
-
-            # concatenate end and start to original df
-            if len(df_start>0):
-                df = df_start.append(df).reset_index()
-            if len(df_end>0):
-                df = df.append(df_end).reset_index()
-
-            del df_temp
-            del df_start
-            del df_end
-
-            gc.collect()
-
-        logger.warning("df constructed, HEAD:%s", df.head())
-        logger.warning("df constructed, TAIL:%s", df.tail())
-
-        # save df to  redis
-        # clean up by deleting any dfs in redis smaller than the one we just saved
-        """
-        redis_df      || ---------------- ||
-        required  |---------------------------- |
-
-        """
-        for key in params['redis_keys_to_delete']:
-            redis.conn.delete(key)
-            logger.warning('bigger df added so deleted key:%s',
-                           str(key, 'utf-8'))
-
-        # save (including overwrite to redis)
-        redis.save_df(df, table, req_start_date, req_end_date)
-
-        gc.collect()
+        meta = {
+            'block_number': 'int',
+            'transaction_hash': 'str',
+            'miner_address': 'str',
+            'approx_value': 'float',
+            'block_nrg_consumed': 'int',
+            'transaction_nrg_consumed': 'int',
+            'difficulty': 'int',
+            'total_difficulty': 'int',
+            'nrg_limit': 'int',
+            'block_size': 'int',
+            'block_time': 'int',
+            'approx_nrg_reward': 'float',
+            'block_year': 'int',
+            'block_day': 'int',
+            'block_month': 'int',
+            'from_addr': 'str',
+            'to_addr': 'str',
+            'nrg_price': 'int',
+            'num_transactions': 'int'
+        }
+        for column, type in meta.items():
+            if type =='float':
+                values = {column:0}
+                df = df.fillna(value=values)
+                df[column] = df[column].astype(float)
+            elif type == 'int':
+                values = {column:0}
+                df = df.fillna(value=values)
+                df[column] = df[column].astype(int)
+            elif type == 'str':
+                values = {column:'unknown'}
+                df = df.fillna(value=values)
+                df[column] = df[column].astype(str)
         return df
-
+        #logger.warning('casted %s as %s',column,type)
     except Exception:
-        logger.error('construct df from load', exc_info=True)
+        logger.error('convert string', exc_info=True)
