@@ -205,7 +205,7 @@ class PythonClickhouse:
     def get_min_max(self,table,col):
         qry = "SELECT min({}), max({}) FROM aion.{}".format(col,col,table)
 
-    def insert_df(self,df,cols,table='block_tx_warehouse'):
+    def insert_df(self,df,cols,table):
         try:
             df = df[cols]  # arrange order of columns for
             #logger.warning("columns in df to insert:%s",df.columns.tolist())
@@ -227,7 +227,7 @@ class PythonClickhouse:
             """
             start_range = df[col].min()
             end_range = df[col].max()
-            self.delete_data(start_range,end_range)
+            #self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
         except Exception:
             logger.error("Upsert df", exc_info=True)

@@ -15,16 +15,18 @@ from scripts.ETL.miner_activity import MinerActivity
 logger = mylogger(__file__)
 
 
-#table = 'miner_activity'
-#miner_activity = MinerActivity(table)
+table = 'miner_activity'
+miner_activity_etl = MinerActivity(table)
+#miner_activity_etl.reset('2018-04-25 05:00:00')
+
 table = 'block_tx_warehouse'
 warehouse_etl = Warehouse(table)
-#warehouse_etl.reset_offset('2018-04-22 00:00:00')
+#warehouse_etl.reset_offset('2018-04-23 00:00:00')
 @coroutine
 def kafka_spark_streamer(doc):
     try:
 
-        #yield miner_activity.run()
+        #yield miner_activity_etl.run()
 
         #t = Table('transaction_delete','transaction', 'create')
 

@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/miner_activity.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/miner_activity.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/ETL/warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/warehouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonRedis.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonRedis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +35,19 @@
         <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+        <item name="block_tx_warehouse: table" type="c0aa78b0:ClickHouseImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -42,61 +55,73 @@
     <session id="363758564">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="18" />
           <entry key="project.open.time.0" value="8" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.2" value="3" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
           <entry key="logs" value="8" />
-          <entry key="py" value="13171" />
-          <entry key="sql" value="309" />
+          <entry key="py" value="13404" />
+          <entry key="sql" value="752" />
           <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="26" />
-          <entry key="Python" value="13171" />
-          <entry key="Scratch" value="309" />
+          <entry key="Python" value="13404" />
+          <entry key="Scratch" value="752" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="block_tx_warehouse" value="4" />
+          <entry key="block_tx_warehouse" value="6" />
           <entry key="log" value="1" />
           <entry key="logs" value="14" />
-          <entry key="miner_activity" value="20" />
-          <entry key="py" value="109" />
-          <entry key="sql" value="14" />
+          <entry key="miner_activity" value="23" />
+          <entry key="py" value="118" />
+          <entry key="sql" value="24" />
           <entry key="transaction_delete" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="25" />
+          <entry key="Database Element" value="30" />
           <entry key="PLAIN_TEXT" value="15" />
-          <entry key="Python" value="109" />
-          <entry key="Scratch" value="14" />
+          <entry key="Python" value="118" />
+          <entry key="Scratch" value="24" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="281" column="73" lean-forward="true" selection-start-line="281" selection-start-column="73" selection-end-line="281" selection-end-column="73" />
+            <state relative-caret-position="1717">
+              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -104,46 +129,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_5.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" selection-start-column="12" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_6.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="51" lean-forward="true" selection-start-column="51" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="100" column="71" lean-forward="true" selection-start-line="90" selection-start-column="4" selection-end-line="100" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-                <marker date="1547995882899" expanded="true" signature="327:332" ph="..." />
-                <marker date="1547995882899" expanded="true" signature="357:1037" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-224">
-              <caret line="200" column="13" selection-start-line="200" selection-start-column="13" selection-end-line="200" selection-end-column="13" />
+            <state relative-caret-position="410">
+              <caret line="207" column="36" selection-start-line="207" selection-start-column="36" selection-end-line="207" selection-end-column="36" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_7.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -211,17 +213,19 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_1.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_2.sql" />
         <option value="$PROJECT_DIR$/scripts/utils/mylogger.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
-        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/miner_activity.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_3.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_4.sql" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonRedis.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_5.sql" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_6.sql" />
+        <option value="$PROJECT_DIR$/scripts/ETL/miner_activity.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/warehouse.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_7.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_3.sql" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_8.sql" />
+        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
       </list>
     </option>
   </component>
@@ -231,11 +235,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="32" />
-    <option name="width" value="1853" />
-    <option name="height" value="1048" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="870" />
+    <option name="y" value="72" />
+    <option name="width" value="1038" />
+    <option name="height" value="948" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,6 +268,12 @@
               <item name="mysql_clickhouse_streamer" type="b2602c69:ProjectViewProjectNode" />
               <item name="mysql_clickhouse_streamer" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="ETL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mysql_clickhouse_streamer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mysql_clickhouse_streamer" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -284,7 +294,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="clickhouse&#10;mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="database.console.LAST_STATE" value="false" />
+    <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -330,9 +340,9 @@
     <option name="totallyTimeSpent" value="22356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="32" width="1853" height="1048" extended-state="6" />
+    <frame x="67" y="32" width="1853" height="1048" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19532554" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20367278" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -342,11 +352,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32664436" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="7" visible="true" weight="0.57859534" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32961586" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32961586" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49946353" visible="true" weight="0.8717949" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946353" weight="0.36566332" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5005365" side_tool="true" weight="0.44575724" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.36677814" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -355,7 +365,7 @@
       <window_info anchor="right" id="SciView" order="3" weight="0.32999444" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.18252644" />
+      <window_info anchor="right" id="Database" order="6" weight="0.18252644" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="7" side_tool="true" weight="0.3155259" />
     </layout>
     <layout-to-restore>
@@ -403,20 +413,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/utils/poolminer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/streaming/kafka_spark_cass_clickhouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/tablemanager/Table.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -518,9 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
           <caret line="261" selection-start-line="261" selection-end-line="261" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -541,13 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_3.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -565,43 +551,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_4.sql">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/miner_activity">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/miner_activity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="177" column="29" selection-start-line="177" selection-start-column="29" selection-end-line="177" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-            <marker date="1547998147435" expanded="true" signature="1659:1764" ph="..." />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -610,35 +561,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="100" column="71" lean-forward="true" selection-start-line="90" selection-start-column="4" selection-end-line="100" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-            <marker date="1547995882899" expanded="true" signature="327:332" ph="..." />
-            <marker date="1547995882899" expanded="true" signature="357:1037" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-224">
-          <caret line="200" column="13" selection-start-line="200" selection-start-column="13" selection-end-line="200" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/storage/pythonRedis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="118" column="45" lean-forward="true" selection-start-line="118" selection-start-column="45" selection-end-line="118" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_6.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-513">
+          <caret line="93" column="57" lean-forward="true" selection-start-line="93" selection-start-column="57" selection-end-line="93" selection-end-column="57" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+            <marker date="1548082324944" expanded="true" signature="327:332" ph="..." />
+            <marker date="1548082324944" expanded="true" signature="357:1037" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/miner_activity">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -649,27 +615,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_5.sql">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_3.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/miner_activity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-414">
+          <caret line="365" column="121" selection-start-line="363" selection-start-column="27" selection-end-line="365" selection-end-column="121" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+            <marker date="1548085640062" expanded="true" signature="1659:1764" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="8" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="281" column="73" lean-forward="true" selection-start-line="281" selection-start-column="73" selection-end-line="281" selection-end-column="73" />
+        <state relative-caret-position="1717">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_6.sql">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_8.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="51" lean-forward="true" selection-start-column="51" selection-end-column="51" />
+        <state relative-caret-position="36">
+          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_7.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="207" column="36" selection-start-line="207" selection-start-column="36" selection-end-line="207" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -148,6 +148,7 @@ class Warehouse:
         #logger.warning("df_block in make_warehouse:%s", df_block.head(5))
         try:
             df_block = df_block.map_partitions(explode_transaction_hashes)
+            logger.warning('df_block after explode hashes:%s',df_block['transaction_hashes'].tail(30))
             df_block.reset_index()
 
             # join block and transaction table

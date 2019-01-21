@@ -226,9 +226,8 @@ class MinerActivity(Checkpoint):
             start_date = this_date - timedelta(days=self.churn_window)
             end_date = this_date
             logger.warning('ASSESSMENT OF ACTIVE RANGE:')
-            logger.warning('this_date:%s',this_date)
-            logger.warning('period start_date:%s',start_date)
-            logger.warning('period end_date:%s',end_date)
+            logger.warning('%s this_date:%s', tier_col,this_date)
+            logger.warning('%s period %s:%s',tier_col,start_date,end_date)
             active_lst=[]
             if len(df) > 0:
                 df1 = df[(df.block_timestamp >= start_date) & (df.block_timestamp < end_date)]
@@ -239,8 +238,8 @@ class MinerActivity(Checkpoint):
                 df1 = df1.compute()
                 active_lst = df1[tier_col].unique().tolist()
             #logger.warning("tier_col(192):%s", tier_col)
-            logger.warning("backward active over window:%s", len(active_lst))
-            logger.warning("this_date only list:%s",len(this_date_lst))
+            logger.warning("%s backward active over window:%s",tier_col,len(active_lst))
+            logger.warning("%s this_date only list:%s",tier_col,len(this_date_lst))
 
             new_lst = list(set(active_lst).difference(this_date_lst))
             retained_lst = list(set(active_lst).intersection(this_date_lst))
@@ -267,9 +266,9 @@ class MinerActivity(Checkpoint):
                 if len(df1) > 0:
                     df1 = df1.compute()
                     active_lst = df1[tier_col].unique().tolist()
-                    logger.warning('forward active list (line 272):%s',len(active_lst))
+                    logger.warning('%s forward active list:%s',tier_col,len(active_lst))
                     churned_lst = list(set(this_date_lst).difference(active_lst))
-            logger.warning('churned list (line 272):%s',len(churned_lst))
+            logger.warning('%s churned list:%s',tier_col,len(churned_lst))
             return churned_lst
         except Exception:
             logger.error('',exc_info=True)
