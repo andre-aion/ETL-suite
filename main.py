@@ -8,24 +8,27 @@ from tornado import gen
 from bokeh.server.server import Server
 from tornado.gen import coroutine
 
+from scripts.ETL.warehouse import Warehouse
 from scripts.tablemanager.Table import Table
 from scripts.utils.mylogger import mylogger
 from scripts.ETL.miner_activity import MinerActivity
 logger = mylogger(__file__)
 
 
-table = 'miner_activity'
-miner_activity = MinerActivity(table)
-
+#table = 'miner_activity'
+#miner_activity = MinerActivity(table)
+table = 'block_tx_warehouse'
+warehouse_etl = Warehouse(table)
+#warehouse_etl.reset_offset('2018-04-22 00:00:00')
 @coroutine
 def kafka_spark_streamer(doc):
     try:
 
-        yield miner_activity.run()
+        #yield miner_activity.run()
 
         #t = Table('transaction_delete','transaction', 'create')
 
-
+        yield warehouse_etl.run()
         tabs = Tabs(tabs=[])
         doc.add_root(tabs)
     except Exception:

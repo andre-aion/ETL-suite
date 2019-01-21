@@ -1,3 +1,5 @@
+import json
+
 from scripts.utils.mylogger import mylogger
 import pickle
 import redis
@@ -84,9 +86,14 @@ class PythonRedis:
                 self.conn.setex(name=key, time=EXPIRATION_SECONDS,
                                 value=zlib.compress(pickle.dumps(item)))
             elif type == 'checkpoint':
+                '''
                 self.conn.hmset(key_params,item)
+                '''
+                item = json.dumps(item)
+                self.conn.set(key_params, item)
                 self.conn.expire(key_params,EXPIRATION_SECONDS*50)
-                #logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
+
+                logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
 
         except Exception:
             logger.error('save to redis',exc_info=True)
@@ -108,8 +115,11 @@ class PythonRedis:
                     logger.warning("from redis load:%s",item.head(5))
             elif item_type == 'checkpoint':
                 if self.conn.exists(key):
-                    item=self.conn. hgetall(key)
+                    #item=self.conn.hgetall(key)
+                    item = self.conn.get(key)
+                    item = json.loads(item)
                     item = item.decode('UTF-8')
+
                     logger.warning("Checkpoint loaded from redis:%s",item)
                 else:
                     item = None

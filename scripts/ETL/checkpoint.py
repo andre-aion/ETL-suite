@@ -91,7 +91,7 @@ class Checkpoint:
     def save_df(self, df):
         try:
 
-            self.cl.upsert_df(df,self.table)
+            self.cl.upsert_df(df,self.columns,self.table)
             self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
             # logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",

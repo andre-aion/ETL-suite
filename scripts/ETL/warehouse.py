@@ -5,7 +5,8 @@ from statistics import mean
 from tornado import gen
 from tornado.gen import coroutine
 
-from config.df_construct_config import warehouse_inputs as cols
+from config.df_construct_config import warehouse_inputs as cols, table_dict,columns
+from scripts.ETL.checkpoint import checkpoint_dict
 from scripts.storage.pythonClickhouse import PythonClickhouse
 from scripts.storage.pythonRedis import PythonRedis
 from scripts.streaming.streamingDataframe import StreamingDataframe
@@ -18,9 +19,10 @@ import pandas as pd
 logger = mylogger(__file__)
 # create clickhouse table
 
-class ETL:
-    def __init__(self, table,checkpoint_dict,table_dict,columns, checkpoint_column):
-        self.checkpoint_dict = checkpoint_dict
+class Warehouse:
+    def __init__(self, table,checkpoint_dict=checkpoint_dict,
+                 table_dict=table_dict,columns=columns):
+        self.checkpoint_dict = checkpoint_dict[table]
         self.cl = PythonClickhouse('aion')
         self.redis = PythonRedis()
         self.window = 72 # hours
@@ -30,7 +32,7 @@ class ETL:
         self.table_dict = table_dict[table]
         self.columns = columns[table]
         # track when data for block and tx is not being updated
-        self.checkpoint_column = checkpoint_column
+        self.checkpoint_column = 'block_timestamp'
         self.key_params = 'checkpoint:'+ table
         self.df = ''
         self.dct = checkpoint_dict
@@ -192,7 +194,7 @@ class ETL:
     def save_df(self,df):
         try:
 
-            self.cl.upsert_df(df)
+            self.cl.upsert_df(df,self.columns,self.table)
             self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
             #logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",
@@ -277,10 +279,10 @@ class ETL:
 
     def window_adjuster(self):
         if len(self.df_size_lst) > 5:
-            if mean(self.df_size_lst) >= self.df__size_threshold['upper']:
+            if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
                 self.window = round(self.window*.75)
                 logger.warning("WINDOW ADJUSTED DOWNWARDS TO %s",self.window)
-            elif mean(self.df_size_lst) <= self.df_size_threshold['loser']:
+            elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
                 self.window = round(self.window*1.25)
                 logger.warning("WINDOW ADJUSTED UPWARDS TO %s",self.window)
 
@@ -311,7 +313,7 @@ class ETL:
     @coroutine
     def run(self):
         # create warehouse table in clickhouse if needed
-        self.create_table_in_clickhouse()
+        #self.create_table_in_clickhouse()
         while True:
             yield self.update_warehouse('block','transaction')
             if self.is_up_to_date(construct_table='block'):
