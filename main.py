@@ -17,22 +17,22 @@ logger = mylogger(__file__)
 
 table = 'miner_activity'
 miner_activity_etl = MinerActivity(table)
-#miner_activity_etl.reset('2018-04-25 05:00:00')
+#miner_activity_etl.reset_offset('2019-01-13 05:00:00')
 
 table = 'block_tx_warehouse'
 warehouse_etl = Warehouse(table)
-#warehouse_etl.reset_offset('2018-01-22 11:00:00')
+#warehouse_etl.reset_offset('2019-01-22 13:12:05')
 @coroutine
 def kafka_spark_streamer(doc):
     try:
 
-        #yield miner_activity_etl.run()
+        yield miner_activity_etl.run()
 
         #t = Table('transaction','transaction', 'create')
         #b = Table('block','block', 'create')
 
 
-        yield warehouse_etl.run()
+        #yield warehouse_etl.run()
         tabs = Tabs(tabs=[])
         doc.add_root(tabs)
     except Exception:

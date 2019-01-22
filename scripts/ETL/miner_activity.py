@@ -373,9 +373,14 @@ class MinerActivity(Checkpoint):
                 if self.batch_counter < self.batch_counter_threshold:
                     self.batch_counter += 1
                     # send the messages immmediately if it is up to date
-                    if this_date >= datetime.now() - timedelta(days=self.churn_window+1) and \
-                        this_date <= datetime.now() - timedelta(days=self.churn_window):
-                            self.save_messages(this_date)
+                    if isinstance(this_date,datetime):
+                        this_date = this_date.date()
+                    window_edge_date =  datetime.now() - timedelta(days=self.churn_window+1)
+                    if isinstance( window_edge_date,datetime):
+                        window_edge_date =  window_edge_date.date()
+                    if this_date >= window_edge_date:
+                        self.save_messages(this_date)
+                        self.batch_counter = 1
 
                 else:
                     #logger.warning("batch counter(line 332):%s",self.batch_counter)
@@ -419,6 +424,6 @@ class MinerActivity(Checkpoint):
         while True:
             self.update()
             if self.is_up_to_date(construct_table='block_tx_warehouse'):
-                 yield gen.sleep(86400) #sleep one day
+                yield gen.sleep(86400) #sleep one day
             else:
                 yield gen.sleep(1)

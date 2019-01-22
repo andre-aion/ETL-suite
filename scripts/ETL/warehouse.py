@@ -322,10 +322,10 @@ class Warehouse:
         # create warehouse table in clickhouse if needed
         #self.create_table_in_clickhouse()
         while True:
-            yield self.update_warehouse('block','transaction')
+            self.update_warehouse('block','transaction')
             if self.is_up_to_date(construct_table='block'):
-                gen.sleep(10800)
+                yield gen.sleep(10800)
             else:
-                gen.sleep(10)
+                yield gen.sleep(10)
 
 
