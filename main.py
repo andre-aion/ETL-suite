@@ -21,7 +21,7 @@ miner_activity_etl = MinerActivity(table)
 
 table = 'block_tx_warehouse'
 warehouse_etl = Warehouse(table)
-#warehouse_etl.reset_offset('2018-04-23 20:00:00')
+#warehouse_etl.reset_offset('2018-01-22 11:00:00')
 @coroutine
 def kafka_spark_streamer(doc):
     try:

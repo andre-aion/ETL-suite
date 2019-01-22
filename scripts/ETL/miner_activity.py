@@ -41,7 +41,7 @@ class MinerActivity(Checkpoint):
         self.meta = self.table_dict
         # manage messages
         self.batch_counter = 0 # number of days before save
-        self.batch_counter_threshold = 1
+        self.batch_counter_threshold = 3
         self.batch_messages = []
         self.is_up_to_date_window = self.churn_window+1
         self.cols = columns[table]

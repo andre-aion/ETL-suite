@@ -25,9 +25,9 @@ class Warehouse:
         self.checkpoint_dict = checkpoint_dict[table]
         self.cl = PythonClickhouse('aion')
         self.redis = PythonRedis()
-        self.window = 72 # hours
+        self.data_to_process_window = 72 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.is_up_to_date_window = 3 # hours
+        self.is_up_to_date_window = 3 # hours to sleep to give reorg time to happen
         self.table = table
         self.table_dict = table_dict[table]
         self.columns = columns[table]
@@ -66,7 +66,7 @@ class Warehouse:
                     self.checkpoint_dict['offset'] = result
                     self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             else:
-                # ensure that the offset in redis is good
+                # ensure that the offset in redis is set/reset
                 if self.checkpoint_dict['offset'] is None:
                     result = self.get_value_from_clickhouse(self.table,'MAX')
                     self.checkpoint_dict['offset'] = result
@@ -230,7 +230,7 @@ class Warehouse:
 
             # LOAD THE DATE
             start_datetime = offset
-            end_datetime = start_datetime + timedelta(hours=self.window)
+            end_datetime = start_datetime + timedelta(hours=self.data_to_process_window)
             self.update_checkpoint_dict(end_datetime)
             logger.warning("WAREHOUSE UPDATE WINDOW- %s:%s", start_datetime,end_datetime)
             df_block = self.cl.load_data(input_table1,cols[self.table][input_table1],
@@ -250,8 +250,8 @@ class Warehouse:
                     df_tx = StreamingDataframe(input_table2,cols[input_table2],dedup_cols=[]).df
                 df_warehouse = self.make_warehouse(df_tx, df_block)
                 self.df_size_lst.append(len(df_warehouse))
-                logger.warning("WAREHOUSE length %s", self.df_size_lst)
-                self.window_adjuster()
+                #logger.warning("WAREHOUSE length %s", self.df_size_lst)
+                self.window_adjuster(offset)
                 if len(df_warehouse) > 0:
                     # save warehouse to clickhouse
                     self.update_checkpoint_dict(end_datetime)
@@ -275,14 +275,23 @@ class Warehouse:
         except Exception:
             logger.error("update warehouse", exc_info=True)
 
-    def window_adjuster(self):
-        if len(self.df_size_lst) > 5:
-            if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
-                self.window = round(self.window*.75)
-                logger.warning("WINDOW ADJUSTED DOWNWARDS TO %s",self.window)
-            elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
-                self.window = round(self.window*1.25)
-                logger.warning("WINDOW ADJUSTED UPWARDS TO %s",self.window)
+    def window_adjuster(self, offset):
+        """
+        :logic:
+        1)dynamically adjust size of window to control save window when the warehouse
+            is caught up to current date
+        2)dynamically adjust window so to control dataframe size.
+        """
+        if offset >= datetime.now() - timedelta(days=3):
+            self.data_to_process_window = 1 # grab one hour of data
+        else:
+            if len(self.df_size_lst) >= 1:
+                if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
+                    self.data_to_process_window = round(self.data_to_process_window * .75)
+                    logger.warning("WINDOW ADJUSTED DOWNWARDS TO %s", self.data_to_process_window)
+                elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
+                    self.data_to_process_window = round(self.data_to_process_window * 1.25)
+                    logger.warning("WINDOW ADJUSTED UPWARDS TO %s", self.data_to_process_window)
 
     """
         warehouse is up to date if max value in warehouse checkpoint >= max value in  
@@ -299,7 +308,7 @@ class Warehouse:
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
             construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
-            #logger.warning("max_val in is_up_to_date:%s",construct_max_val)
+            logger.warning("max_val in is_up_to_date:%s",construct_max_val)
             if offset >= construct_max_val - timedelta(hours=self.is_up_to_date_window):
                 return True
             return False
