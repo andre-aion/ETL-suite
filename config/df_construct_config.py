@@ -22,22 +22,15 @@ load_columns['block']['churn'] = ['transaction_hashes', 'block_timestamp', 'mine
                   'block_size','block_time','approx_nrg_reward']
 
 
-columns['block'] = ["block_number", "miner_address", "miner_addr",
-               "nonce", "difficulty",
-               "total_difficulty", "nrg_consumed", "nrg_limit",
-               "block_size", "block_timestamp","block_date", "block_year",
-               "block_month", "block_day", "num_transactions",
-               "block_time", "approx_nrg_reward", "transaction_hashes"]
 
-
-columns_ch['block'] = ["block_number", "miner_address", "miner_addr",
+columns_ch_all['block'] = ["block_number", "miner_address", "miner_addr",
                "nonce", "difficulty",
                "total_difficulty", "nrg_consumed", "nrg_limit",
                "block_size", "block_timestamp","block_date", "year", "month",
                "day", "num_transactions",
                "block_time", "approx_nrg_reward", "transaction_hashes"]
 
-columns_ch_all['block'] = ["block_number", "block_hash","miner_address", "parent_hash",
+columns['block'] = ["block_number", "block_hash","miner_address", "parent_hash",
                "receipt_tx_root", "state_root","tx_trie_root","extra_data",
                "nonce", "bloom","solution","difficulty",
                "total_difficulty", "nrg_consumed", "nrg_limit",
@@ -51,35 +44,18 @@ dedup_cols['block'] = ['block_number']
 #                             TRANSACTIONS
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dedup_cols['transaction'] = ['transaction_hash']
-columns['transaction'] = ['transaction_hash','transaction_index','block_number',
-                       'transaction_timestamp','block_timestamp',"block_date",
-                       'from_addr','to_addr','approx_value','nrg_consumed',
-                       'nrg_price','nonce','contract_addr','transaction_year',
-                       'transaction_month','transaction_day']
+columns['transaction'] = ['transaction_hash','block_hash','block_number','block_timestamp',
+                          'transaction_index', 'from_addr','to_addr','nrg_consumed',
+                            'approx_value','nrg_price','transaction_timestamp',
+                       'value','transaction_log','data','nonce','tx_error',
+                      'contract_addr','year','month','day']
+
 load_columns['transaction']['churn'] = ['block_timestamp',
                         'transaction_hash', 'from_addr',
                         'to_addr', 'approx_value', 'nrg_consumed']
 
-table_dict['transaction'] = {
-                                'transaction_hash' : 'String',
-                                'transaction_index' : 'UInt16',
-                                'block_number' : 'UInt64',
-                                'transaction_timestamp' : 'UInt64',
-                                'block_timestamp' : 'Datetime',
-                                'block_date' : 'Date',
-                                'from_addr' : 'String',
-                                'to_addr' : 'String',
-                                'approx_value': 'Float64',
-                                'nrg_consumed': 'UInt64',
-                                'nrg_price': 'UInt64',
-                                'nonce': 'String',
-                                'contract_addr' : 'String',
-                                'transaction_year' : 'UInt16',
-                                'transaction_month' : 'UInt8',
-                                'transaction_day' :  'UInt8'
-                            }
 
-table_dict_all['transaction'] = {
+table_dict['transaction'] = {
     'transaction_hash' : 'String',
     'block_hash':'String',
     'block_number' : 'UInt64',
@@ -88,10 +64,10 @@ table_dict_all['transaction'] = {
     'from_addr' : 'String',
     'to_addr' : 'String',
     'nrg_consumed': 'UInt64',
+    'approx_value': 'Float64',
     'nrg_price': 'UInt64',
     'transaction_timestamp': 'UInt64',
     'value': 'Float64',
-    'approx_value': 'Float64',
     'transaction_log' : 'String',
     'data': 'String',
     'nonce': 'String',
@@ -171,27 +147,31 @@ table_dict['checkpoint'] = {
     'timestamp':'Datetime'
 }
 
-table_dict_all['block'] = {
+table_dict['block'] = {
                         'block_number':'UInt64',
                         'block_hash':'String',
                         'miner_address' : 'String',
                         'parent_hash' : 'String',
                         'receipt_tx_root':'String',
+
                         'state_root':'String',
                         'tx_trie_root':'String',
                         'extra_data':'String',
                         'nonce' : 'String',
                         'bloom':'String',
+
                         'solution':'String',
                         'difficulty' : 'UInt64',
                         'total_difficulty' : 'UInt64',
                         'nrg_consumed' : 'UInt64',
                         'nrg_limit' : 'UInt64',
+
                         'block_size' : 'UInt64',
                         'block_timestamp' : 'Datetime',
                         'num_transactions': 'UInt16',
                         'block_time' : 'UInt64',
                         'nrg_reward':'Float64',
+
                         'approx_nrg_reward': 'Float64',
                         'transaction_hash':'String',
                         'transaction_hashes': 'String',

@@ -180,8 +180,9 @@ class PythonClickhouse:
         except Exception:
             logger.error("Save df", exc_info=True)
 
-    def delete_data(self,start_range, end_range,db='aion',
-                    table='block_tx_warehouse',col='block_timestamp'):
+    def delete_data(self,start_range, end_range,
+                    table,col='block_timestamp',
+                    db='aion'):
         DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         if not isinstance(start_range,str):
             start_range = datetime.strftime(start_range,DATEFORMAT)
@@ -217,7 +218,7 @@ class PythonClickhouse:
             logger.error("insert_df", exc_info=True)
 
     @coroutine
-    def upsert_df(self,df,cols,table='',col='block_timestamp'):
+    def upsert_df(self,df,cols,table,col='block_timestamp'):
         try:
             df = df.compute()
             """
@@ -227,7 +228,7 @@ class PythonClickhouse:
             """
             start_range = df[col].min()
             end_range = df[col].max()
-            #self.delete_data(start_range,end_range,table)
+            self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
         except Exception:
             logger.error("Upsert df", exc_info=True)

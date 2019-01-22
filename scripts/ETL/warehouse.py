@@ -35,7 +35,7 @@ class Warehouse:
         self.checkpoint_column = 'block_timestamp'
         self.key_params = 'checkpoint:'+ table
         self.df = ''
-        self.dct = checkpoint_dict
+        self.dct = checkpoint_dict[table]
         self.initial_date = "2018-04-23 20:00:00"
         # manage size of warehouse
         self.df_size_lst = []
@@ -54,27 +54,25 @@ class Warehouse:
     def get_checkpoint_dict(self,col='block_timestamp', db='aion'):
         # try to load from , then redis, then clickhouse
         try:
-            if self.checkpoint_dict is None:
-                key = 'checkpoint:'+self.table
-                temp_dict = self.redis.load([],'','',key=key,item_type='checkpoint')
-                if temp_dict is None: # not in redis
-                    self.checkpoint_dict = self.dct
-                    # get last date from clickhouse
-                    qry = "select count() from {}.{}".format(db,self.table)
-                    numrows = self.cl.client.execute(qry)
-                    if numrows[0][0] >= 1:
-                        result = self.get_value_from_clickhouse(self.table,'MAX')
-                        self.checkpoint_dict['offset'] = result
-                        self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
-                else:
-                    self.checkpoint_dict = temp_dict # retrieved from redis
-                    # ensure that the offset in redis is good
-                    if self.checkpoint_dict['offset'] is None:
-                        result = self.get_value_from_clickhouse(self.table,'MAX')
-                        self.checkpoint_dict['offset'] = result
-                        self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            key = 'checkpoint:' + self.table
+            self.checkpoint_dict = self.redis.load([], '', '', key=key, item_type='checkpoint')
+            if self.checkpoint_dict is None: # not in redis
+                self.checkpoint_dict = self.dct
+                # get last date from clickhouse
+                qry = "select count() from {}.{}".format(db,self.table)
+                numrows = self.cl.client.execute(qry)
+                if numrows[0][0] >= 1:
+                    result = self.get_value_from_clickhouse(self.table,'MAX')
+                    self.checkpoint_dict['offset'] = result
+                    self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            else:
+                # ensure that the offset in redis is good
+                if self.checkpoint_dict['offset'] is None:
+                    result = self.get_value_from_clickhouse(self.table,'MAX')
+                    self.checkpoint_dict['offset'] = result
+                    self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
 
-            #logger.warning("CHECKPOINT dictionary (re)set or retrieved:%s",self.checkpoint_dict)
+            logger.warning("CHECKPOINT dictionary (re)set or retrieved:%s",self.checkpoint_dict)
             return self.checkpoint_dict
         except Exception:
             logger.error("get checkpoint dict",exc_info=True)
@@ -229,7 +227,6 @@ class Warehouse:
             offset = self.checkpoint_dict['offset']
             if isinstance(offset,str):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
-
 
             # LOAD THE DATE
             start_datetime = offset

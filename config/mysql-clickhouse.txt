@@ -7,13 +7,11 @@ clickhouse-mysql \
     --src-user=clickhouse \
     --src-password=1233tka061 \
     --src-tables=aion.block \
-    --src-tables-prefixes=log_ \
     --dst-host=127.0.0.1 \
     --dst-table=block \
     --dst-schema=aion \
-    --migrate-table \
-    --pump-data \
-    --csvpool
+    --migrate-table
+
 
 
 clickhouse-mysql \
@@ -25,13 +23,26 @@ clickhouse-mysql \
     --src-user=clickhouse \
     --src-password=1233tka061 \
     --src-tables=aion.transaction \
-    --src-tables-prefixes=log_ \
     --dst-host=127.0.0.1 \
-    --dst-table=transaction \
     --dst-schema=aion \
-    --migrate-table \
-    --pump-data \
-    --csvpool
+    --dst-table=transaction \
+    --migrate-table
+
+clickhouse-mysql \
+    --src-server-id=1 \
+    --src-resume \
+    --src-wait \
+    --nice-pause=1 \
+    --src-host=40.113.226.240 \
+    --src-user=clickhouse \
+    --src-password=1233tka061 \
+    --src-tables=aion.transaction \
+    --dst-host=127.0.0.1 \
+    --csvpool \
+    --csvpool-file-path-prefix=aion_ \
+    --mempool-max-flush-interval=60 \
+    --mempool-max-events-num=10000 \
+    --pump-data
 
 
 #___________________________________________________#
@@ -49,7 +60,6 @@ clickhouse-mysql \
     --src-host=40.113.226.240 \
     --src-user=clickhouse \
     --src-password=1233tka061 \
-    --src-tables-prefixes=log_ \
     --src-tables=aion.transaction \
     --dst-host=127.0.0.1 \
     --dst-table=transaction \
