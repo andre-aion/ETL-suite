@@ -252,7 +252,7 @@ class PythonClickhouse:
 
     def upsert_df(self,df,cols,table,col='block_timestamp'):
         try:
-            logger.warning(" df at start of upsert :%s",df.head(5))
+            #logger.warning(" df at start of upsert :%s",df.head(5))
             df = df.compute()
             """
             - get min max of range to use as start and end of range

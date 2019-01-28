@@ -240,8 +240,8 @@ class NetworkActivity(Checkpoint):
                 df1 = df1.compute()
                 active_lst = df1[tier_col].unique().tolist()
             # logger.warning("tier_col(192):%s", tier_col)
-            logger.warning("%s backward active over window:%s", tier_col, len(active_lst))
-            logger.warning("%s this_date only list:%s", tier_col, len(this_date_lst))
+            #logger.warning("%s backward active over window:%s", tier_col, len(active_lst))
+            #logger.warning("%s this_date only list:%s", tier_col, len(this_date_lst))
 
             new_lst = list(set(active_lst).difference(this_date_lst))
             retained_lst = list(set(active_lst).intersection(this_date_lst))
@@ -339,8 +339,9 @@ class NetworkActivity(Checkpoint):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
 
             # LOAD THE DATE
-
-            this_date = offset + timedelta(days=1)
+            # go back 1 day from stored offset to ensure no day is missed
+            # upsert will ensure deduplication
+            this_date = offset - timedelta(days=1)
             # logger.warning("OFFSET INCREASED:%s",offset)
             self.manage_sliding_df(this_date)
             if len(self.df) > 0:
@@ -412,7 +413,7 @@ class NetworkActivity(Checkpoint):
             if offset >= construct_max_val - timedelta(days=self.is_up_to_date_window):
                 #logger.warning("CHECKPOINT:UP TO DATE")
                 return True
-            logger.warning("CHECKPOINT:NOT UP TO DATE")
+            logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
 
             return False
         except Exception:

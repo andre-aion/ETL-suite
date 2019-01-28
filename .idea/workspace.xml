@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/df_construct_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/df_construct_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mysql-clickhouse.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/mysql-clickhouse.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/Table.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/Table.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/checkpoint.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/checkpoint.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/hashrate.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/hashrate.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/kafka_spark_cass_clickhouse.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/kafka_spark_cass_clickhouse.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/main.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/myutils.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/myutils.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/poolminer.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/poolminer.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/pythonClickhouse.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/pythonClickhouse.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/pythonRedis.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/pythonRedis.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/streamingDataframe.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/streamingDataframe.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/warehouse.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/warehouse.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ETL/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ETL/miner_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/network_activity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/network_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/network_activity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/ETL/warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/warehouse.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonRedis.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonRedis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +61,7 @@
         <counts>
           <entry key="dummy" value="27" />
           <entry key="logs" value="8" />
-          <entry key="py" value="17077" />
+          <entry key="py" value="17198" />
           <entry key="sql" value="1079" />
           <entry key="txt" value="79" />
         </counts>
@@ -88,7 +69,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="114" />
-          <entry key="Python" value="17076" />
+          <entry key="Python" value="17197" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="1079" />
         </counts>
@@ -99,19 +80,19 @@
           <entry key="log" value="1" />
           <entry key="logs" value="14" />
           <entry key="miner_activity" value="24" />
-          <entry key="network_activity" value="10" />
-          <entry key="py" value="155" />
+          <entry key="network_activity" value="11" />
+          <entry key="py" value="156" />
           <entry key="sql" value="38" />
           <entry key="transaction" value="6" />
           <entry key="transaction_delete" value="1" />
-          <entry key="txt" value="7" />
+          <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="48" />
-          <entry key="PLAIN_TEXT" value="22" />
-          <entry key="Python" value="155" />
+          <entry key="Database Element" value="49" />
+          <entry key="PLAIN_TEXT" value="23" />
+          <entry key="Python" value="156" />
           <entry key="Scratch" value="38" />
         </counts>
       </usages-collector>
@@ -122,8 +103,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/ETL/network_activity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="427" column="45" lean-forward="true" selection-start-line="427" selection-start-column="32" selection-end-line="427" selection-end-column="49" />
+            <state relative-caret-position="479">
+              <caret line="414" column="45" selection-start-line="414" selection-start-column="45" selection-end-line="414" selection-end-column="45" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -144,13 +125,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1571">
-              <caret line="214" column="19" lean-forward="true" selection-start-line="214" selection-start-column="19" selection-end-line="214" selection-end-column="19" />
+            <state relative-caret-position="254">
+              <caret line="231" column="66" selection-start-line="231" selection-start-column="66" selection-end-line="231" selection-end-column="66" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/network_activity">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-215">
+              <caret line="254" column="13" selection-start-line="254" selection-start-column="13" selection-end-line="254" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1548709435831" expanded="true" signature="4905:4910" ph="..." />
               </folding>
             </state>
           </provider>
@@ -241,10 +244,10 @@
         <option value="$PROJECT_DIR$/scripts/storage/pythonRedis.py" />
         <option value="$PROJECT_DIR$/scripts/utils/mylogger.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
-        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/warehouse.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/network_activity.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/warehouse.py" />
       </list>
     </option>
   </component>
@@ -254,7 +257,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1920" />
     <option name="y" value="-2" />
     <option name="width" value="1920" />
@@ -366,7 +369,7 @@
     <option name="totallyTimeSpent" value="22356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="1920" y="-2" width="1920" height="1082" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18830472" />
@@ -384,7 +387,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32961586" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005365" side_tool="true" weight="0.44575724" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49946353" visible="true" weight="0.3952739" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49946353" visible="true" weight="0.49624062" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.36566332" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -664,13 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/mysql-clickhouse.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="54" column="22" lean-forward="true" selection-start-line="48" selection-end-line="63" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -699,14 +695,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
+    <entry file="file://$PROJECT_DIR$/config/mysql-clickhouse.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="244" column="13" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1548708431122" expanded="true" signature="4905:4910" ph="..." />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="54" column="22" lean-forward="true" selection-start-line="48" selection-end-line="63" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -721,12 +713,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-215">
+          <caret line="254" column="13" selection-start-line="254" selection-start-column="13" selection-end-line="254" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1548709435831" expanded="true" signature="4905:4910" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/network_activity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="427" column="45" lean-forward="true" selection-start-line="427" selection-start-column="32" selection-end-line="427" selection-end-column="49" />
+        <state relative-caret-position="479">
+          <caret line="414" column="45" selection-start-line="414" selection-start-column="45" selection-end-line="414" selection-end-column="45" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="231" column="66" selection-start-line="231" selection-start-column="66" selection-end-line="231" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -735,16 +748,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1571">
-          <caret line="214" column="19" lean-forward="true" selection-start-line="214" selection-start-column="19" selection-end-line="214" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

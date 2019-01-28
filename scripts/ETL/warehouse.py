@@ -229,7 +229,8 @@ class Warehouse:
                 offset = datetime.strptime(offset, self.DATEFORMAT)
 
             # LOAD THE DATE
-            start_datetime = offset
+            # go backwards two days to ensure no data lost, upsert will deduplicate
+            start_datetime = offset - timedelta(days=2)
             end_datetime = start_datetime + timedelta(hours=self.data_to_process_window)
             self.update_checkpoint_dict(end_datetime)
             logger.warning("WAREHOUSE UPDATE WINDOW- %s:%s", start_datetime,end_datetime)
