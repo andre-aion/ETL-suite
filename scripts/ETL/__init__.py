@@ -1,3 +1,3 @@
 from . import checkpoint
-from . import miner_activity
+from . import network_activity
 from . import warehouse

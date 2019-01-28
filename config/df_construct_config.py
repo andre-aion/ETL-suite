@@ -186,24 +186,24 @@ columns['checkpoint'] = ['table','column','offset','timestamp']
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # WHEN JOINED, WHEN CHURNED
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-table_dict['miner_activity'] = {
+table_dict['network_activity'] = {
     'block_timestamp': 'Date',
-    'tier1_new_miners': 'String',
-    'tier1_churned_miners':'String',
-    'tier1_retained_miners':'String',
-    'tier1_active_miners':'String',
-    'tier1_new': 'UInt64',
-    'tier1_churned':'UInt64',
-    'tier1_retained':'UInt64',
-    'tier1_active':'UInt64',
-    'tier2_new_miners': 'String',
-    'tier2_churned_miners':'String',
-    'tier2_retained_miners':'String',
-    'tier2_active_miners':'String',
-    'tier2_new': 'UInt64',
-    'tier2_churned':'UInt64',
-    'tier2_retained':'UInt64',
-    'tier2_active':'UInt64',
+    'from_addr_new_lst': 'String',
+    'from_addr_churned_lst':'String',
+    'from_addr_retained_lst':'String',
+    'from_addr_active_lst':'String',
+    'from_addr_new': 'UInt64',
+    'from_addr_churned':'UInt64',
+    'from_addr_retained':'UInt64',
+    'from_addr_active':'UInt64',
+    'to_addr_new_lst': 'String',
+    'to_addr_churned_lst':'String',
+    'to_addr_retained_lst':'String',
+    'to_addr_active_lst':'String',
+    'to_addr_new': 'UInt64',
+    'to_addr_churned':'UInt64',
+    'to_addr_retained':'UInt64',
+    'to_addr_active':'UInt64',
     'block_size': 'Float64',
     'block_time': 'Float64',
     'difficulty': 'Float64',
@@ -220,12 +220,12 @@ table_dict['miner_activity'] = {
     'day_of_week':'String'
 }
 
-columns['miner_activity'] = [
+columns['network_activity'] = [
     'block_timestamp',
-    'tier1_new_miners','tier1_churned_miners','tier1_retained_miners','tier1_active_miners',
-    'tier1_new', 'tier1_churned', 'tier1_retained','tier1_active',
-    'tier2_new_miners','tier2_churned_miners','tier2_retained_miners', 'tier2_active_miners',
-    'tier2_new', 'tier2_churned', 'tier2_retained','tier2_active',
+    'from_addr_new_lst', 'from_addr_churned_lst', 'from_addr_retained_lst', 'from_addr_active_lst',
+    'from_addr_new','from_addr_churned','from_addr_retained','from_addr_active',
+    'to_addr_new_lst','to_addr_churned_lst','to_addr_retained_lst', 'to_addr_active_lst',
+    'to_addr_new', 'to_addr_churned', 'to_addr_retained', 'to_addr_active',
     'block_size', 'block_time','difficulty', 'nrg_limit',
     'approx_nrg_reward' , 'num_transactions','block_nrg_consumed','nrg_price',
     'approx_value', 'transaction_nrg_consumed',

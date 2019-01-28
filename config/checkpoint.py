@@ -7,7 +7,7 @@ checkpoint_dict[table] = {
     'timestamp' : None
 }
 
-table = 'miner_activity'
+table = 'network_activity'
 checkpoint_dict[table] ={
     'table' : table,
     'column':'block_timestamp',

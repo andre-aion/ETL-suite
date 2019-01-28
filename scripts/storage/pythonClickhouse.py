@@ -128,6 +128,7 @@ class PythonClickhouse:
         except Exception:
             logger.error("Construct table query")
 
+
     def create_table(self, table, table_dict, cols):
         try:
             qry = self.construct_create_query(table, table_dict, cols)
@@ -136,16 +137,45 @@ class PythonClickhouse:
         except Exception:
             logger.error("Create table error", exc_info=True)
 
-    def construct_insert_query(self, table, cols, messages):
+    def construct_insert_query_OLD(self, table, cols, messages):
         # messages is list of tuples similar to cassandra
-        qry = 'INSERT INTO ' + self.db + '.' + table + ' ' + cols + ' VALUES '
+        qry = "INSERT INTO " + self.db + "." + table + " [('"
+        for idx,col in enumerate(cols):
+            qry += col
+            if idx < (len(cols)-1):
+                qry += ', '
+        qry += "')] VALUES "
+        #logger.warning("partial messages to insert:%s", qry)
         for idx, message in enumerate(messages):
-            if idx > 0:
-                qry += ','
-            qry += message
-        qry += "'"
+            qry += str(message)
+            if idx < len(messages)-1:
+                qry += ","
         logger.warning('data insert query:%s', qry)
         return qry
+
+    def construct_insert_query(self, table, cols, message):
+        try:
+            qry = """ INSERT INTO aion.{} 
+                   [({},{},{},{},{},{},
+                     {},{},{},{},{},{},
+                     {},{},{},{},{},{},
+                     {},{},{},{},{},{},
+                     {},{},{},{},{},{},
+                     {})] VALUES {}   
+            """.format(table,
+                        cols[0],cols[1],cols[2],cols[3],cols[4],cols[5],
+                        cols[6],cols[7], cols[8], cols[9], cols[10], cols[11],
+                        cols[12], cols[13], cols[14], cols[15], cols[16], cols[17],
+                        cols[18], cols[19], cols[20], cols[21], cols[22], cols[23],
+                        cols[24], cols[25], cols[26],cols[27], cols[28], cols[29],
+                        cols[30],
+                       message)
+            logger.warning('data insert query:%s', qry)
+            return qry
+        except Exception:
+            logger.error(" ")
+
+            logger.error("Construct table query", exc_info=True)
 
     def insert(self, table, cols, messages):
         qry = self.construct_insert_query(table, cols, messages)
@@ -153,7 +183,7 @@ class PythonClickhouse:
             self.client.execute(qry)
             logger.warning('DATA SUCCESSFULLY INSERTED TO {}:%s', qry, table)
         except Exception:
-            logger.error("Create table error", exc_info=True)
+            logger.error("Insert table error", exc_info=True)
 
     def delete(self, item, type="table"):
         if type == 'table':
@@ -161,20 +191,23 @@ class PythonClickhouse:
         logger.warning("%s deleted from clickhouse", item)
 
 
-    def save_pandas_df(self,df,cols,table='block_tx_warehouse'):
+    def save_pandas_df(self,df,messages,cols,table):
         try:
             logger.warning("INSIDE SAVE PANDAS DF")
             #df.to_sql(table,self.ch,if_exists='append',index=False)
-            logger.warning("%s inserted to clickhouse",table.upper())
+            logger.warning("messages to insert:%s",messages)
 
-            messages = list(zip(df['block_number'],df['block_timestamp'],df['transaction_hash'],df['miner_address'],
-            df['total_difficulty'],df['difficulty'],
-            df['block_nrg_consumed'],df['nrg_limit'],df['num_transactions'],
-            df['block_size'],df['block_time'],df['approx_nrg_reward'],df['block_year'],df['block_month'],
-            df['block_day'],df['from_addr'],
-            df['to_addr'],df['approx_value'],df['transaction_nrg_consumed'],df['nrg_price']))
 
-            self.insert(table,cols[table],messages)
+            if table == 'block_tx_warehouse':
+                messages = list(zip(df['block_number'],df['block_timestamp'],df['transaction_hash'],df['miner_address'],
+                df['total_difficulty'],df['difficulty'],
+                df['block_nrg_consumed'],df['nrg_limit'],df['num_transactions'],
+                df['block_size'],df['block_time'],df['approx_nrg_reward'],df['block_year'],df['block_month'],
+                df['block_day'],df['from_addr'],
+                df['to_addr'],df['approx_value'],df['transaction_nrg_consumed'],df['nrg_price']))
+
+
+            self.insert(table,cols,messages)
             logger.warning("AFTER SAVE PANDAS DF")
 
         except Exception:
@@ -213,13 +246,13 @@ class PythonClickhouse:
             #logger.warning("df to insert:%s",df.head())
 
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
-            logger.warning("DF UPSERTED:%s", affected_rows)
+            #logger.warning("DF UPSERTED:%s", affected_rows)
         except:
             logger.error("insert_df", exc_info=True)
 
-    @coroutine
     def upsert_df(self,df,cols,table,col='block_timestamp'):
         try:
+            logger.warning(" df at start of upsert :%s",df.head(5))
             df = df.compute()
             """
             - get min max of range to use as start and end of range
@@ -230,7 +263,25 @@ class PythonClickhouse:
             end_range = df[col].max()
             self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
+
         except Exception:
             logger.error("Upsert df", exc_info=True)
 
+    def upsert_messages(self,message, cols,table, col='block_timestamp'):
+        try:
+            #df = df.compute()
+            """
+            - get min max of range to use as start and end of range
+            - delete data
+            - insert data
+            """
+            start_range =message[0]
+            end_range = message[0]
+            self.delete_data(start_range, end_range, table)
+            #self.insert_df(df, cols=cols, table=table)
+
+            self.insert(table, cols, message)
+
+        except Exception:
+            logger.error("Upsert df", exc_info=True)
 

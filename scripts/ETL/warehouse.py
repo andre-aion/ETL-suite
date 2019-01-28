@@ -1,3 +1,4 @@
+import asyncio
 import time
 from datetime import datetime, timedelta, date
 from statistics import mean
@@ -47,7 +48,7 @@ class Warehouse:
     def save_checkpoint(self):
         try:
             self.redis.save(self.checkpoint_dict,self.key_params,"","",type='checkpoint')
-            logger.warning('CHECKPOINT SAVED TO REDIS:%s', self.key_params)
+            logger.warning('block_tx_warehouse CHECKPOINT SAVED TO REDIS:%s', self.key_params)
         except Exception:
             logger.error("Construct table query",exc_info=True)
 
@@ -72,7 +73,7 @@ class Warehouse:
                     self.checkpoint_dict['offset'] = result
                     self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
 
-            logger.warning("CHECKPOINT dictionary (re)set or retrieved:%s",self.checkpoint_dict)
+            #logger.warning("CHECKPOINT dictionary (re)set or retrieved:%s",self.checkpoint_dict)
             return self.checkpoint_dict
         except Exception:
             logger.error("get checkpoint dict",exc_info=True)
@@ -146,7 +147,7 @@ class Warehouse:
         #logger.warning("df_block in make_warehouse:%s", df_block.head(5))
         try:
             df_block = df_block.map_partitions(explode_transaction_hashes)
-            logger.warning('df_block after explode hashes:%s',df_block['transaction_hashes'].tail(30))
+            #logger.warning('df_block after explode hashes:%s',df_block['transaction_hashes'].tail(30))
             df_block.reset_index()
 
             # join block and transaction table
@@ -173,7 +174,7 @@ class Warehouse:
 
             df = df.drop(['transaction_hashes'], axis=1)
 
-            logger.warning("WAREHOUSE MADE, Merged columns:%s", df.head())
+            #logger.warning("WAREHOUSE MADE, Merged columns:%s", df.head())
             return df
         except Exception:
             logger.error("make warehouse", exc_info=True)
@@ -181,7 +182,7 @@ class Warehouse:
 
     def update_checkpoint_dict(self,end_datetime):
         try:
-            logger.warning("INSIDE UPDATE CHECKPOINT DICT")
+            #logger.warning("INSIDE UPDATE CHECKPOINT DICT")
 
             # update checkpoint
             self.checkpoint_dict['offset'] = datetime.strftime(end_datetime + timedelta(seconds=1),
@@ -196,13 +197,13 @@ class Warehouse:
             self.cl.upsert_df(df,self.columns,self.table)
             self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
-            #logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",
-                           #self.checkpoint_dict['offset'],
-                           #self.checkpoint_dict['timestamp'])
+            logger.warning("BLOCK_TX_WAREHOUSE UPDATED,CHECKPOINT,offset:%s, timestamp:%s",
+                           self.checkpoint_dict['offset'],
+                           self.checkpoint_dict['timestamp'])
         except:
             logger.error("save dataframe to clickhouse", exc_info=True)
 
-    def update_warehouse(self, input_table1, input_table2):
+    async def update_warehouse(self, input_table1, input_table2):
         try:
             if self.checkpoint_dict is None:
                 self.checkpoint_dict = self.get_checkpoint_dict()
@@ -220,7 +221,6 @@ class Warehouse:
                 if offset is None:
                     offset = self.initial_date
                 self.checkpoint_dict['offset'] = offset
-                logger.warning("UPDATE WAREHOUSE: 215", )
 
 
             # convert offset to datetime if needed
@@ -242,7 +242,6 @@ class Warehouse:
                                              start_datetime,end_datetime)
 
 
-
             # SLIDE WINDOW, UPSERT DATA, SAVE CHECKPOINT
             if len(df_block) > 0:
                 if df_tx is None:
@@ -256,7 +255,6 @@ class Warehouse:
                     # save warehouse to clickhouse
                     self.update_checkpoint_dict(end_datetime)
                     self.save_df(df_warehouse)
-
 
         except Exception:
             logger.error("update warehouse", exc_info=True)
@@ -288,10 +286,10 @@ class Warehouse:
             if len(self.df_size_lst) >= 1:
                 if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
                     self.data_to_process_window = round(self.data_to_process_window * .75)
-                    logger.warning("WINDOW ADJUSTED DOWNWARDS TO %s", self.data_to_process_window)
+                    logger.warning("block_tx_warehouse WINDOW ADJUSTED DOWNWARDS TO %s", self.data_to_process_window)
                 elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
                     self.data_to_process_window = round(self.data_to_process_window * 1.25)
-                    logger.warning("WINDOW ADJUSTED UPWARDS TO %s", self.data_to_process_window)
+                    logger.warning("block_tx_warehouse WINDOW ADJUSTED UPWARDS TO %s", self.data_to_process_window)
 
     """
         warehouse is up to date if max value in warehouse checkpoint >= max value in  
@@ -308,24 +306,24 @@ class Warehouse:
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
             construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
-            logger.warning("max_val in is_up_to_date:%s",construct_max_val)
+            logger.warning("block_tx_warehouse contruct max_val in is_up_to_date:%s",construct_max_val)
             if offset >= construct_max_val - timedelta(hours=self.is_up_to_date_window):
                 return True
             return False
         except Exception:
-            logger.error("is_up_to_date", exc_info=True)
+            logger.error("block_tx_warehouse s_up_to_date", exc_info=True)
             return False
 
-
-    @coroutine
-    def run(self):
+    async def run(self):
         # create warehouse table in clickhouse if needed
         #self.create_table_in_clickhouse()
         while True:
-            self.update_warehouse('block','transaction')
+            await self.update_warehouse('block','transaction')
             if self.is_up_to_date(construct_table='block'):
-                yield gen.sleep(10800)
+                logger.warning("BLOCK_TX_WAREHOUSE UP TO DATE: WENT TO SLEEP FOR THREE HOURS")
+
+                await asyncio.sleep(10800)
             else:
-                yield gen.sleep(10)
+                await  asyncio.sleep(5)
 
 

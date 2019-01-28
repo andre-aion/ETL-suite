@@ -129,7 +129,6 @@ class PythonRedis:
             logger.error('load item', exc_info=True)
             return None
 
-    @coroutine
     def save_dict(self,dct,key_params='block_tx_warehouse',type='churned'):
         try:
             if dct:

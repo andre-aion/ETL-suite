@@ -38,12 +38,30 @@ clickhouse-mysql \
     --src-password=1233tka061 \
     --src-tables=aion.transaction \
     --dst-host=127.0.0.1 \
+    --dst-table=transaction \
     --csvpool \
     --csvpool-file-path-prefix=aion_ \
     --mempool-max-flush-interval=60 \
     --mempool-max-events-num=10000 \
     --pump-data
 
+
+clickhouse-mysql \
+    --src-server-id=1 \
+    --src-resume \
+    --src-wait \
+    --nice-pause=1 \
+    --src-host=40.113.226.240 \
+    --src-user=clickhouse \
+    --src-password=1233tka061 \
+    --src-tables=aion.block \
+    --dst-host=127.0.0.1 \
+    --dst-table=block\
+    --csvpool \
+    --csvpool-file-path-prefix=aion_ \
+    --mempool-max-flush-interval=60 \
+    --mempool-max-events-num=10000 \
+    --pump-data
 
 #___________________________________________________#
 
@@ -60,29 +78,13 @@ clickhouse-mysql \
     --src-host=40.113.226.240 \
     --src-user=clickhouse \
     --src-password=1233tka061 \
-    --src-tables=aion.transaction \
+    --src-tables=aion.block \
     --dst-host=127.0.0.1 \
-    --dst-table=transaction \
+    --dst-table=block\
     --dst-schema=aion \
     --csvpool \
     --pump-data
 
-
-clickhouse-mysql \
-    --src-server-id=1 \
-    --src-resume \
-    --src-wait \
-    --nice-pause=1 \
-    --src-host=40.113.226.240 \
-    --src-user=clickhouse \
-    --src-password=1233tka061 \
-    --src-tables=aion.block \
-    --src-tables-prefixes=log_ \
-    --dst-host=127.0.0.1 \
-    --dst-table=block \
-    --dst-schema=aion \
-    --pump-data \
-    --csvpool
 
 # from  cassandra to csv to  clickhouse
 COPY aion.block (block_number, miner_address, miner_addr,
