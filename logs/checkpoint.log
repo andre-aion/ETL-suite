@@ -12,3 +12,16 @@
 2019-01-28 16:19:26,876 - [logs/checkpoint.log:17]=> logs/checkpoint.log
 2019-01-28 16:26:05,767 - [logs/checkpoint.log:17]=> logs/checkpoint.log
 2019-01-28 16:34:07,839 - [logs/checkpoint.log:17]=> logs/checkpoint.log
+2019-01-29 13:45:53,301 - [logs/checkpoint.log:17]=> logs/checkpoint.log
+2019-01-29 13:45:53,311 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:53,312 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:54,332 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:54,336 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:55,370 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:55,374 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:56,409 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:56,412 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:57,443 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:57,446 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:58,476 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT
+2019-01-29 13:45:58,479 - [logs/checkpoint.log:81]=> INSIDE UPDATE CHECKPOINT DICT

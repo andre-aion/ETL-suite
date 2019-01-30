@@ -11,7 +11,7 @@ logger = mylogger(__file__)
 
 def Table(table,table_alias,action):
     try:
-        cols = list(table_dict[table_alias].keys())
+        cols = sorted(list(table_dict[table_alias].keys()))
         if action == 'create':
             text = pc.create_table(table,table_dict[table_alias],cols)
 

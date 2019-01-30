@@ -26,7 +26,7 @@ class Warehouse:
         self.checkpoint_dict = checkpoint_dict[table]
         self.cl = PythonClickhouse('aion')
         self.redis = PythonRedis()
-        self.data_to_process_window = 72 # hours
+        self.data_to_process_window = 1 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = 3 # hours to sleep to give reorg time to happen
         self.table = table
@@ -108,6 +108,7 @@ class Warehouse:
                 'transaction_hash': 'str',
                 'miner_address': 'str',
                 'approx_value': 'float',
+                'balance':'float',
                 'block_nrg_consumed': 'int',
                 'transaction_nrg_consumed': 'int',
                 'difficulty': 'int',
@@ -157,7 +158,7 @@ class Warehouse:
                                     right_on='transaction_hash')  # do the merge
                 df = df.map_partitions(self.cast_cols)
             else:
-                #conver to pandas for empty join
+                #convert to pandas for empty join
                 df_block = df_block.compute()
                 df_tx = df_tx.compute()
                 df = df_block.reindex(df_block.columns.union(df_tx.columns), axis=1)
@@ -229,8 +230,7 @@ class Warehouse:
                 offset = datetime.strptime(offset, self.DATEFORMAT)
 
             # LOAD THE DATE
-            # go backwards two days to ensure no data lost, upsert will deduplicate
-            start_datetime = offset - timedelta(days=2)
+            start_datetime = offset
             end_datetime = start_datetime + timedelta(hours=self.data_to_process_window)
             self.update_checkpoint_dict(end_datetime)
             logger.warning("WAREHOUSE UPDATE WINDOW- %s:%s", start_datetime,end_datetime)
@@ -242,13 +242,14 @@ class Warehouse:
             df_tx = self.cl.load_data(input_table2,cols[self.table][input_table2],
                                              start_datetime,end_datetime)
 
-
+            # add balance column to df_tx
             # SLIDE WINDOW, UPSERT DATA, SAVE CHECKPOINT
             if len(df_block) > 0:
                 if df_tx is None:
                     # make two dataframes to pandas
                     df_tx = StreamingDataframe(input_table2,cols[input_table2],dedup_cols=[]).df
                 df_warehouse = self.make_warehouse(df_tx, df_block)
+            if df_warehouse is not None:
                 self.df_size_lst.append(len(df_warehouse))
                 #logger.warning("WAREHOUSE length %s", self.df_size_lst)
                 self.window_adjuster(offset)
@@ -277,7 +278,7 @@ class Warehouse:
     def window_adjuster(self, offset):
         """
         :logic:
-        1)dynamically adjust size of window to control save window when the warehouse
+        1)dynamically adjust size of window to control save_window when the warehouse
             is caught up to current date
         2)dynamically adjust window so to control dataframe size.
         """

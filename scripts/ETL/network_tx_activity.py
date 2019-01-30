@@ -13,7 +13,7 @@ import dask.dataframe as dd
 logger = mylogger(__file__)
 
 
-class NetworkActivity(Checkpoint):
+class NetworkTxActivity(Checkpoint):
     def __init__(self, table):
         Checkpoint.__init__(self, table)
         self.table = table
@@ -49,6 +49,7 @@ class NetworkActivity(Checkpoint):
         self.initial_date = '2018-05-01 00:00:00'
         self.checkpoint_column = 'block_timestamp'
         self.key_params = 'checkpoint:' + self.table
+        self.temp_lst = []
 
     def str_to_date(self, x):
         if isinstance(x, str):
@@ -341,7 +342,7 @@ class NetworkActivity(Checkpoint):
             # LOAD THE DATE
             # go back 1 day from stored offset to ensure no day is missed
             # upsert will ensure deduplication
-            this_date = offset - timedelta(days=1)
+            this_date = offset
             # logger.warning("OFFSET INCREASED:%s",offset)
             self.manage_sliding_df(this_date)
             if len(self.df) > 0:

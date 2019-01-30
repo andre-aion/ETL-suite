@@ -97,7 +97,7 @@ columns['block_tx_warehouse'] = ['block_number','block_timestamp','transaction_h
                 'block_nrg_consumed','nrg_limit','num_transactions',
                 'block_size','block_time','approx_nrg_reward','block_year','block_month',
                 'block_day','from_addr',
-                'to_addr', 'approx_value', 'transaction_nrg_consumed','nrg_price']
+                'to_addr', 'approx_value','transaction_nrg_consumed','nrg_price']
 
 dedup_cols['block_tx_warehouse'] = []
 
@@ -231,6 +231,43 @@ columns['network_activity'] = [
     'approx_value', 'transaction_nrg_consumed',
     'block_year','block_month', 'block_day', 'day_of_week']
 
+################################################################
+#            AION account
+#################################################################
+table_dict['account_balance'] = {
+    'address': 'String',
+    'block_day': 'UInt8',
+    'block_month': 'UInt8',
+    'block_number': 'UInt64',
+    'block_timestamp': 'Datetime',
+    'block_year': 'UInt16',
+    'day_of_week': 'String',
+    'from_addr':'String',
+    'tx_nrg_consumed': 'UInt64',
+    'approx_value': 'Float64',
+    'nrg_price': 'UInt64',
+    'to_addr': 'String',
+    'transaction_hash':'String',
+    'value': 'Float64'
+
+}
+
+table_dict['account_activity'] = {
+    'activity':'String',
+    'address': 'String',
+    'block_day': 'UInt8',
+    'block_hour': 'UInt8',
+    'block_month': 'UInt8',
+    'block_number': 'UInt64',
+    'block_timestamp': 'Datetime',
+    'block_year': 'UInt16',
+    'day_of_week': 'String',
+    'from_addr':'String',
+    'to_addr': 'String',
+    'transaction_hash':'String',
+    'value': 'Float64',
+
+}
 
 ################################################################
 #            MODEL FUNCTION

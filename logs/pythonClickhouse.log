@@ -618,3 +618,214 @@ Traceback (most recent call last):
     raise ClickhouseException(response.content)
 pandahouse.http.ClickhouseException: b'Code: 27, e.displayText() = DB::Exception: Cannot parse input: expected " before: a0ead4c6661b8e2e3ec5f207d540b0becdb3b43e54ad4999320d6530c4a401b8,a0460659ac0fb42e19590b1ed27bd8835e97392417fa8d6d5fcd02015fcf36a3,a05bcaf3b86728600e31ee50d7654f: (at row 1)\n\nRow 1:\nColumn 0,   name: block_timestamp,          type: Date,    parsed text: "<DOUBLE QUOTE>2018-05-02<DOUBLE QUOTE>"\nColumn 1,   name: from_addr_new,            type: UInt64,  ERROR: text "<DOUBLE QUOTE>a0ead4c66" is not like UInt64\n\n, e.what() = DB::Exception\n'
 2019-01-28 16:34:25,377 - [logs/pythonClickhouse.log:103]=> DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:201886
+2019-01-29 13:45:52,914 - [logs/pythonClickhouse.log:17]=> logs/pythonClickhouse.log
+2019-01-29 13:45:53,311 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:00 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+
+2019-01-29 13:45:54,335 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:01 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+
+2019-01-29 13:45:55,373 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:02 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+
+2019-01-29 13:45:56,411 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:03 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+
+2019-01-29 13:45:57,446 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:04 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+
+2019-01-29 13:45:58,479 - [logs/pythonClickhouse.log:107]=>  load data :%s
+Traceback (most recent call last):
+  File "/home/andre/aion/data_science/my-analytics-suite/ETL-suite/scripts/storage/pythonClickhouse.py", line 92, in load_data
+    'max_execution_time': 3600})
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 149, in execute
+    columnar=columnar
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 222, in process_ordinary_query
+    columnar=columnar)
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 57, in receive_result
+    return result.get_result()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/result.py", line 39, in get_result
+    for packet in self.packet_generator:
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 69, in packet_generator
+    packet = self.receive_packet()
+  File "/home/andre/anaconda3/envs/analytics/lib/python3.5/site-packages/clickhouse_driver/client.py", line 86, in receive_packet
+    raise packet.exception
+clickhouse_driver.errors.ServerException: Code: 62.
+DB::Exception: Syntax error: failed at position 128 (line 1, col 128): 2018-04-23 20:00:05 WHERE toDate(block_timestamp) >= toDate('2018-04-22 00:00:00') AND 
+               toDate(block_timestamp) <= toDate('2018-05-16 00:00:00') . Expected identifier. Stack trace:
+
+0. /usr/bin/clickhouse-server(StackTrace::StackTrace()+0x16) [0x9c778f6]
+1. /usr/bin/clickhouse-server(DB::Exception::Exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int)+0x22) [0x32b6342]
+2. /usr/bin/clickhouse-server(DB::parseQuery(DB::IParser&, char const*, char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long)+0xac) [0x766c86c]
+3. /usr/bin/clickhouse-server() [0x6fbe0a5]
+4. /usr/bin/clickhouse-server(DB::executeQuery(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, DB::Context&, bool, DB::QueryProcessingStage::Enum)+0x8a) [0x6fc01da]
+5. /usr/bin/clickhouse-server(DB::TCPHandler::runImpl()+0x4d5) [0x32c4455]
+6. /usr/bin/clickhouse-server(DB::TCPHandler::run()+0x2b) [0x32c563b]
+7. /usr/bin/clickhouse-server(Poco::Net::TCPServerConnection::start()+0xf) [0x9dfb50f]
+8. /usr/bin/clickhouse-server(Poco::Net::TCPServerDispatcher::run()+0x16a) [0x9dfb8ea]
+9. /usr/bin/clickhouse-server(Poco::PooledThread::run()+0x77) [0xa0ce957]
+10. /usr/bin/clickhouse-server(Poco::ThreadImpl::runnableEntry(void*)+0x38) [0xa0ca818]
+11. /usr/bin/clickhouse-server() [0xa94e40f]
+12. /lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f7aa2b816db]
+13. /lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f7aa210088f]
+

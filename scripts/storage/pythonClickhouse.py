@@ -61,20 +61,21 @@ class PythonClickhouse:
         qry = 'SELECT '
         if len(cols) >= 1:
             for pos, col in enumerate(cols):
-                if pos > 0:
-                    qry += ','
                 qry += col
+                if pos < len(cols)-1:
+                    qry += ','
         else:
             qry += '*'
 
         qry += """ FROM {}.{} WHERE toDate(block_timestamp) >= toDate('{}') AND 
                toDate(block_timestamp) <= toDate('{}') ORDER BY block_timestamp""" \
-            .format(self.db,table, startdate, enddate)
+            .format(self.db, table, startdate, enddate)
 
         #logger.warning('query:%s', qry)
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
+
         start_date = self.ts_to_date(start_date)
         end_date = self.ts_to_date(end_date)
         #logger.warning('load data start_date:%s', start_date)
@@ -91,16 +92,18 @@ class PythonClickhouse:
                                                settings={
                                                'max_execution_time': 3600})
             df = pd.DataFrame(query_result, columns=cols)
-            # if transaction table change the name of nrg_consumed
-            if table in ['transaction', 'block']:
-                if 'nrg_consumed' in df.columns.tolist():
-                    new_name = table + '_nrg_consumed'
-                    df = df.rename(index=str, columns={"nrg_consumed": new_name})
-                    #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
-                    #logger.warning("columns renamed:%s", df.columns.tolist())
-            df = dd.dataframe.from_pandas(df, npartitions=15)
-            # logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
-            logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",len(df))
+            if df is not None:
+                if len(df)>0:
+                    # if transaction table change the name of nrg_consumed
+                    if table in ['transaction', 'block']:
+                        if 'nrg_consumed' in df.columns.tolist():
+                            new_name = table + '_nrg_consumed'
+                            df = df.rename(index=str, columns={"nrg_consumed": new_name})
+                            #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
+                            #logger.warning("columns renamed:%s", df.columns.tolist())
+                    df = dd.dataframe.from_pandas(df, npartitions=15)
+                    # logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
+                    #logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",df.head(10))
             return df
 
         except Exception:
@@ -252,7 +255,7 @@ class PythonClickhouse:
 
     def upsert_df(self,df,cols,table,col='block_timestamp'):
         try:
-            #logger.warning(" df at start of upsert :%s",df.head(5))
+            #logger.warning(" df at start of upsert :%s",df.columns.tolist())
             df = df.compute()
             """
             - get min max of range to use as start and end of range
@@ -261,6 +264,7 @@ class PythonClickhouse:
             """
             start_range = df[col].min()
             end_range = df[col].max()
+            #logger.warning('delete range:%s:%s')
             self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
 

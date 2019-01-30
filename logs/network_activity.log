@@ -1310,3 +1310,4 @@
 2019-01-28 16:34:26,381 - [logs/network_activity.log:270]=> to_addr forward active list:152
 2019-01-28 16:34:26,381 - [logs/network_activity.log:272]=> to_addr churned list:4
 2019-01-28 16:34:26,662 - [logs/network_activity.log:416]=> CHECKPOINT:NOT UP TO DATE
+2019-01-29 13:45:53,302 - [logs/network_activity.log:17]=> logs/network_activity.log

@@ -3,6 +3,7 @@ from statistics import mean
 
 from config.checkpoint import checkpoint_dict
 from scripts.storage.pythonClickhouse import PythonClickhouse
+from scripts.storage.pythonMysql import PythonMysql
 from scripts.storage.pythonRedis import PythonRedis
 from scripts.utils.mylogger import mylogger
 
@@ -10,14 +11,14 @@ logger = mylogger(__file__)
 
 class Checkpoint:
     def __init__(self,table):
-        self.checkpoint_dict = checkpoint_dict
         self.checkpoint_dict = checkpoint_dict[table]
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
+        self.my = PythonMysql('aion')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.window = 72 # hours
+        self.window = 24 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.is_up_to_date_window = 3 # hours
+        self.is_up_to_date_window = 4 # hours
         self.table = table
         self.key_params = 'checkpoint:'+ table
         self.dct = checkpoint_dict
@@ -28,6 +29,7 @@ class Checkpoint:
             'upper': 60000,
             'lower': 40000
         }
+        self.checkpoint_column = 'block_timestamp'
 
     def save_checkpoint(self):
         try:
@@ -78,7 +80,7 @@ class Checkpoint:
 
     def update_checkpoint_dict(self, offset):
         try:
-            logger.warning("INSIDE UPDATE CHECKPOINT DICT")
+            #logger.warning("INSIDE UPDATE CHECKPOINT DICT")
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
             offset = offset + timedelta(seconds=1)
@@ -90,7 +92,6 @@ class Checkpoint:
 
     def save_df(self, df):
         try:
-
             self.cl.upsert_df(df,self.columns,self.table)
             self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
@@ -114,14 +115,31 @@ class Checkpoint:
         except Exception:
             logger.error("update warehouse", exc_info=True)
 
+    def int_to_date(self, x):
+        return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+
+    def get_value_from_mysql(self, table, min_max='MAX'):
+        try:
+            qry = """select {}({}) AS result from {}.{}  LIMIT 1""" \
+                .format(min_max, self.checkpoint_column, 'aion', table)
+            result = self.my.conn.execute(qry)
+            row = self.my.conn.fetchone()
+            result = row[0]
+            #logger.warning('%s value from mysql %s:%s', min_max, table.upper(), result)
+
+            return result
+        except Exception:
+            logger.error("update warehouse", exc_info=True)
+
     def window_adjuster(self):
         if len(self.df_size_lst) > 5:
-            if mean(self.df_size_lst) >= self.df__size_threshold['upper']:
+            if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
                 self.window = round(self.window * .75)
-                logger.warning("WINDOW ADJUSTED DOWNWARDS TO %s", self.window)
-            elif mean(self.df_size_lst) <= self.df_size_threshold['loser']:
+                logger.warning("WINDOW ADJUSTED DOWNWARDS FROM: %s", mean(self.df_size_lst))
+            elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
                 self.window = round(self.window * 1.25)
-                logger.warning("WINDOW ADJUSTED UPWARDS TO %s", self.window)
+                logger.warning("WINDOW ADJUSTED UPWARDS FROM: %s",  mean(self.df_size_lst))
+            self.df_size_lst = []
 
     # check max date in a construction table
     def is_up_to_date(self, construct_table='block'):
@@ -140,3 +158,32 @@ class Checkpoint:
         except Exception:
             logger.error("is_up_to_date", exc_info=True)
             return False
+
+    def get_offset(self):
+        try:
+            if self.checkpoint_dict is None:
+                self.checkpoint_dict = self.get_checkpoint_dict()
+                """
+                1) get checkpoint dictionary
+                2) if offset is not set
+                    - set offset as max from warehouse
+                    - if that is zero, set to genesis blcok
+                """
+
+                # handle reset or initialization
+            if self.checkpoint_dict['offset'] is None:
+                offset = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                # logger.warning("Checkpoint initiated in update warehoused:%s", offset)
+                if offset is None:
+                    offset = self.initial_date
+                self.checkpoint_dict['offset'] = offset
+
+                # convert offset to datetime if needed
+            offset = self.checkpoint_dict['offset']
+            if isinstance(offset, str):
+                offset = datetime.strptime(offset, self.DATEFORMAT)
+
+            return offset
+
+        except Exception:
+            logger.error('register new addresses', exc_info=True)
