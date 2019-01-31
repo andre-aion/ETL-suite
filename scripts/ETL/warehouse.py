@@ -124,7 +124,6 @@ class Warehouse:
                 'nrg_price': 'int',
                 'num_transactions': 'int'
             }
-            logger.warning('df:%s',df.head())
             for column, type in meta.items():
                 if type =='float':
                     values = {column:0}
@@ -164,7 +163,6 @@ class Warehouse:
                 #convert to pandas for empty join
                 df_block = df_block.compute()
                 df = df_block.reindex(df_block.columns.union(df_tx.columns), axis=1)
-                logger.warning('df when df_tx is empty: %s',df.columns.tolist())
 
                 df = df.reset_index()
                 df['block_timestamp'] = df['block_timestamp'].apply(lambda x:self.cast_date(x))
@@ -256,7 +254,6 @@ class Warehouse:
                 df_warehouse = self.make_warehouse(df_tx, df_block)
             if df_warehouse is not None:
                 self.df_size_lst.append(len(df_warehouse))
-                #logger.warning("WAREHOUSE length %s", self.df_size_lst)
                 self.window_adjuster(offset)
                 if len(df_warehouse) > 0:
                     # save warehouse to clickhouse

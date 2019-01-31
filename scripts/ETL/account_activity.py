@@ -290,7 +290,7 @@ class AccountActivity(Checkpoint):
         while True:
             await self.update()
             if self.is_up_to_date(construct_table='transaction'):
-                logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 1 DAY:UP TO DATE")
+                logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 3 hours:UP TO DATE")
                 await asyncio.sleep(10800)  # sleep three hours
             else:
                 await asyncio.sleep(1)

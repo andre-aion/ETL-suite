@@ -45,7 +45,7 @@
         <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
-        <item name="block_tx_warehouse: table" type="c0aa78b0:ClickHouseImplModel$Table" />
+        <item name="network_activity: table" type="c0aa78b0:ClickHouseImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -144,14 +144,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="63" />
-          <entry key="py" value="10974" />
+          <entry key="py" value="10986" />
           <entry key="sql" value="249" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="63" />
-          <entry key="Python" value="10974" />
+          <entry key="Python" value="10986" />
           <entry key="Scratch" value="249" />
         </counts>
       </usages-collector>
@@ -159,7 +159,7 @@
         <counts>
           <entry key="account_activity" value="6" />
           <entry key="account_balance" value="8" />
-          <entry key="py" value="55" />
+          <entry key="py" value="57" />
           <entry key="sql" value="17" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="4" />
@@ -169,7 +169,7 @@
         <counts>
           <entry key="Database Element" value="15" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="55" />
+          <entry key="Python" value="57" />
           <entry key="Scratch" value="17" />
         </counts>
       </usages-collector>
@@ -180,22 +180,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="129">
+              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="258" column="72" lean-forward="true" selection-start-line="258" selection-start-column="72" selection-end-line="258" selection-end-column="72" />
-              <folding>
-                <marker date="1548897097426" expanded="true" signature="8933:8938" ph="..." />
               </folding>
             </state>
           </provider>
@@ -204,11 +192,37 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="90" column="51" lean-forward="true" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
+            <state relative-caret-position="472">
+              <caret line="267" column="12" lean-forward="true" selection-start-line="267" selection-start-column="12" selection-end-line="267" selection-end-column="12" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <marker date="1548897228062" expanded="true" signature="5032:5037" ph="..." />
+                <marker date="1548898196172" expanded="true" signature="5032:5037" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="533">
+              <caret line="292" column="69" selection-start-line="292" selection-start-column="69" selection-end-line="292" selection-end-column="69" />
+              <folding>
+                <element signature="e#239#248#0" expanded="true" />
+                <marker date="1548897868839" expanded="true" signature="6666:8343" ph="..." />
+                <marker date="1548897868839" expanded="true" signature="8338:8343" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/ETL/network_tx_activity.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2410">
+              <caret line="403" column="42" lean-forward="true" selection-start-line="403" selection-start-column="42" selection-end-line="403" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -303,9 +317,9 @@
         <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_24.sql" />
-        <option value="$PROJECT_DIR$/scripts/ETL/account_activity.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/warehouse.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/account_activity.py" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
       </list>
     </option>
@@ -594,6 +608,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19098713" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -610,7 +625,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32961586" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005365" side_tool="true" weight="0.44575724" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49946353" visible="true" weight="0.8034372" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946353" visible="true" weight="0.49194413" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.36566332" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -619,7 +634,7 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.21888413" />
+      <window_info active="true" anchor="right" id="Database" order="7" visible="true" weight="0.21888413" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17811158" />
@@ -879,16 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/network_tx_activity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="403" column="42" lean-forward="true" selection-start-line="403" selection-start-column="42" selection-end-line="403" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/25557775-5259-4a7f-970c-094cf8d180f9/console_2.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -980,45 +985,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1569">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+          <folding>
+            <marker date="1548897478202" expanded="true" signature="8806:8811" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="254" column="56" lean-forward="true" selection-start-line="254" selection-start-column="56" selection-end-line="254" selection-end-column="56" />
+        <state relative-caret-position="533">
+          <caret line="292" column="69" selection-start-line="292" selection-start-column="69" selection-end-line="292" selection-end-column="69" />
           <folding>
             <element signature="e#239#248#0" expanded="true" />
-            <marker date="1548895337626" expanded="true" signature="6666:8343" ph="..." />
-            <marker date="1548895337626" expanded="true" signature="8338:8343" ph="..." />
+            <marker date="1548897868839" expanded="true" signature="6666:8343" ph="..." />
+            <marker date="1548897868839" expanded="true" signature="8338:8343" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="129">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/warehouse.py">
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/network_tx_activity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="258" column="72" lean-forward="true" selection-start-line="258" selection-start-column="72" selection-end-line="258" selection-end-column="72" />
+        <state relative-caret-position="2410">
+          <caret line="403" column="42" lean-forward="true" selection-start-line="403" selection-start-column="42" selection-end-line="403" selection-end-column="42" />
           <folding>
-            <marker date="1548897097426" expanded="true" signature="8933:8938" ph="..." />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="90" column="51" lean-forward="true" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
+        <state relative-caret-position="472">
+          <caret line="267" column="12" lean-forward="true" selection-start-line="267" selection-start-column="12" selection-end-line="267" selection-end-column="12" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1548897228062" expanded="true" signature="5032:5037" ph="..." />
+            <marker date="1548898196172" expanded="true" signature="5032:5037" ph="..." />
           </folding>
         </state>
       </provider>

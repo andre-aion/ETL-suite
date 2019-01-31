@@ -38,7 +38,7 @@ account_activity_etl = AccountActivity(table)
 async def run_etls():
     tasks = [
         asyncio.ensure_future(warehouse_etl.run()),
-        #asyncio.ensure_future(network_activity_etl.run()),
+        asyncio.ensure_future(network_activity_etl.run()),
         asyncio.ensure_future(account_activity_etl.run()),
 
     ]

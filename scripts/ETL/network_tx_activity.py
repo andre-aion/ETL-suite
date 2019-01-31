@@ -57,22 +57,8 @@ class NetworkTxActivity(Checkpoint):
         return x
 
     def cast_date(self, x):
-        logger.warning('date before cast: %s', type(x))
-        '''
-        if x:
-            x = pd.to_datetime(x.strip('"'))
-        else:
-            pd.NaT
-        '''
-        x = x.strip('"')
-        logger.warning('date after strip: %s', type(x))
-
-        x = datetime.strptime(x, self.DATEFORMAT)
-        # x = datetime.fromtimestamp(int(x) / 10 ** 9)
-        # logger.warning('date after cast: %s', type(x))
-
-        # x = date(x.year,x.month,x.day)
-        # x = x.strftime(self.DATEFORMAT)
+        if isinstance(x,datetime):
+            return x.date()
         return x
 
     def cast_cols(self, df):
@@ -304,6 +290,7 @@ class NetworkTxActivity(Checkpoint):
             df = df.reset_index()
             df = df.drop('index', axis=1)
             # logger.warning('df before upsert called:%s',df['block_timestamp'].head())
+            df['block_timestamp'] = df['block_timestamp'].map(self.cast_date)
             self.cl.upsert_df(df, cols=self.cols, table=self.table)
 
             # self.cl.insert(self.table,self.cols,messages=self.batch_messages)
@@ -340,9 +327,7 @@ class NetworkTxActivity(Checkpoint):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
 
             # LOAD THE DATE
-            # go back 1 day from stored offset to ensure no day is missed
-            # upsert will ensure deduplication
-            this_date = offset
+            this_date = offset + timedelta(days=1)
             # logger.warning("OFFSET INCREASED:%s",offset)
             self.manage_sliding_df(this_date)
             if len(self.df) > 0:
@@ -414,7 +399,7 @@ class NetworkTxActivity(Checkpoint):
             if offset >= construct_max_val - timedelta(days=self.is_up_to_date_window):
                 #logger.warning("CHECKPOINT:UP TO DATE")
                 return True
-            logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
+            #logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
 
             return False
         except Exception:
