@@ -93,15 +93,15 @@ class PythonClickhouse:
                                                'max_execution_time': 3600})
             df = pd.DataFrame(query_result, columns=cols)
             if df is not None:
-                if len(df)>0:
-                    # if transaction table change the name of nrg_consumed
-                    if table in ['transaction', 'block']:
-                        if 'nrg_consumed' in df.columns.tolist():
-                            new_name = table + '_nrg_consumed'
-                            df = df.rename(index=str, columns={"nrg_consumed": new_name})
-                            #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
-                            #logger.warning("columns renamed:%s", df.columns.tolist())
-                    df = dd.dataframe.from_pandas(df, npartitions=15)
+                #if len(df)>0:
+                # if transaction table change the name of nrg_consumed
+                if table in ['transaction', 'block']:
+                    if 'nrg_consumed' in df.columns.tolist():
+                        new_name = table + '_nrg_consumed'
+                        df = df.rename(index=str, columns={"nrg_consumed": new_name})
+                        #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
+                        #logger.warning("columns renamed:%s", df.columns.tolist())
+                df = dd.dataframe.from_pandas(df, npartitions=15)
                     # logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
                     #logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",df.head(10))
             return df

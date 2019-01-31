@@ -48,8 +48,8 @@ class AccountActivity(Checkpoint):
         # manage size of warehouse
         self.df_size_lst = []
         self.df_size_threshold = {
-            'upper': 50000,
-            'lower': 30000
+            'upper': 70000,
+            'lower': 50000
         }
 
         self.columns = sorted(list(table_dict[table].keys()))
@@ -205,6 +205,7 @@ class AccountActivity(Checkpoint):
             end_date = start_date + timedelta(hours=self.window)
             self.update_checkpoint_dict(end_date)
             # get data
+            logger.warning('LOAD RANGE %s:%s',start_date,end_date)
             for table in self.cols_dict.keys():
                 cols = self.cols_dict[table]['cols']
                 df = self.load_df(start_date,end_date,cols,table,'mysql')
@@ -290,6 +291,6 @@ class AccountActivity(Checkpoint):
             await self.update()
             if self.is_up_to_date(construct_table='transaction'):
                 logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 1 DAY:UP TO DATE")
-                await asyncio.sleep(86400)  # sleep one day
+                await asyncio.sleep(10800)  # sleep three hours
             else:
                 await asyncio.sleep(1)

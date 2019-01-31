@@ -108,7 +108,6 @@ class Warehouse:
                 'transaction_hash': 'str',
                 'miner_address': 'str',
                 'approx_value': 'float',
-                'balance':'float',
                 'block_nrg_consumed': 'int',
                 'transaction_nrg_consumed': 'int',
                 'difficulty': 'int',
@@ -125,6 +124,7 @@ class Warehouse:
                 'nrg_price': 'int',
                 'num_transactions': 'int'
             }
+            logger.warning('df:%s',df.head())
             for column, type in meta.items():
                 if type =='float':
                     values = {column:0}
@@ -156,12 +156,16 @@ class Warehouse:
                 df = df_block.merge(df_tx, how='left',
                                     left_on='transaction_hashes',
                                     right_on='transaction_hash')  # do the merge
+                if df is not None:
+                    if 'transaction_hashes' in df.columns.tolist():
+                        df = df.drop(['transaction_hashes'], axis=1)
                 df = df.map_partitions(self.cast_cols)
             else:
                 #convert to pandas for empty join
                 df_block = df_block.compute()
-                df_tx = df_tx.compute()
                 df = df_block.reindex(df_block.columns.union(df_tx.columns), axis=1)
+                logger.warning('df when df_tx is empty: %s',df.columns.tolist())
+
                 df = df.reset_index()
                 df['block_timestamp'] = df['block_timestamp'].apply(lambda x:self.cast_date(x))
 
@@ -170,10 +174,9 @@ class Warehouse:
                 df = dd.dataframe.from_pandas(df, npartitions=1)
                 df = df.reset_index()
                 df = df.drop(['level_0','index'],axis=1)
-
                 df = self.cast_cols(df)
 
-            df = df.drop(['transaction_hashes'], axis=1)
+
 
             #logger.warning("WAREHOUSE MADE, Merged columns:%s", df.head())
             return df
@@ -247,7 +250,9 @@ class Warehouse:
             if len(df_block) > 0:
                 if df_tx is None:
                     # make two dataframes to pandas
-                    df_tx = StreamingDataframe(input_table2,cols[input_table2],dedup_cols=[]).df
+                    mycols = cols[input_table2]
+                    new_cols = ['transaction_nrg_consumed' if word == 'nrg_consumed' else word for word in mycols]
+                    df_tx = StreamingDataframe(input_table2,new_cols,dedup_cols=[]).df
                 df_warehouse = self.make_warehouse(df_tx, df_block)
             if df_warehouse is not None:
                 self.df_size_lst.append(len(df_warehouse))
