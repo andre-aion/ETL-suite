@@ -82,7 +82,7 @@ class PythonMysql:
 
                     if table in ['token_transfers']:
                         rename = {"transfer_timestamp": "block_timestamp",
-                                                       'scaled_value': 'value'}
+                                  'scaled_value': 'value'}
 
                     elif table in ['internal_transfer']:
                         rename = {"value_transferred":"value"}
@@ -90,7 +90,6 @@ class PythonMysql:
                         rename = {"approx_value": "value"}
 
                     df = df.rename(index=str, columns=rename)
-
                     # convert to dask
                     df = dd.dataframe.from_pandas(df, npartitions=5)
                     df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)

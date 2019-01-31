@@ -262,6 +262,7 @@ table_dict['account_activity'] = {
     'block_timestamp': 'Datetime',
     'block_year': 'UInt16',
     'day_of_week': 'String',
+    'event':'String',
     'from_addr':'String',
     'to_addr': 'String',
     'transaction_hash':'String',

@@ -24,23 +24,22 @@ logger = mylogger(__file__)
 
 table = 'network_activity'
 network_activity_etl = NetworkTxActivity(table)
-network_activity_etl.reset_offset('2019-01-13 05:00:00')
+#network_activity_etl.reset_offset('2019-01-23 00:00:00')
 
 table = 'block_tx_warehouse'
 warehouse_etl = Warehouse(table)
 
 table = 'account_activity'
+# tb = Table('account_activity','account_activity','create')
 account_activity_etl = AccountActivity(table)
-#tb = Table('account_activity','account_activity','create')
+#account_activity_etl.reset_offset('2018-04-25 00:00:00')
 
-
-#warehouse_etl.reset_offset('2019-01-28 15:00:00')
 async def run_etls():
-    tasks = [
-        asyncio.ensure_future(warehouse_etl.run()),
-        asyncio.ensure_future(network_activity_etl.run()),
-        asyncio.ensure_future(account_activity_etl.run()),
 
+    tasks = [
+        #asyncio.ensure_future(warehouse_etl.run()),
+        #asyncio.ensure_future(network_activity_etl.run()),
+        asyncio.ensure_future(account_activity_etl.run())
     ]
     await asyncio.wait(tasks)
 

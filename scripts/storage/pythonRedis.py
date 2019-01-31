@@ -117,8 +117,7 @@ class PythonRedis:
                 if self.conn.exists(key):
                     #item=self.conn.hgetall(key)
                     item = self.conn.get(key)
-                    item = json.loads(item)
-                    item = item.decode('UTF-8')
+                    item = json.loads(item.decode('utf-8'))
 
                     logger.warning("Checkpoint loaded from redis:%s",item)
                 else:

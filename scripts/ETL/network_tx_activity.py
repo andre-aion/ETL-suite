@@ -48,7 +48,6 @@ class NetworkTxActivity(Checkpoint):
         self.cols = columns[table]
         self.initial_date = '2018-05-01 00:00:00'
         self.checkpoint_column = 'block_timestamp'
-        self.key_params = 'checkpoint:' + self.table
         self.temp_lst = []
 
     def str_to_date(self, x):
@@ -304,28 +303,7 @@ class NetworkTxActivity(Checkpoint):
 
     async def update(self):
         try:
-            if self.checkpoint_dict is None:
-                self.checkpoint_dict = self.get_checkpoint_dict()
-                """
-                1) get checkpoint dictionary
-                2) if offset is not set
-                    - set offset as max from warehouse
-                    - if that is zero, set to genesis blcok
-                """
-
-            # handle reset or initialization
-            if self.checkpoint_dict['offset'] is None:
-                offset = self.get_value_from_clickhouse(self.table, min_max='MAX')
-                # logger.warning("Checkpoint initiated in update warehoused:%s", offset)
-                if offset is None:
-                    offset = self.initial_date
-                self.checkpoint_dict['offset'] = offset
-
-            # convert offset to datetime if needed
-            offset = self.checkpoint_dict['offset']
-            if isinstance(offset, str):
-                offset = datetime.strptime(offset, self.DATEFORMAT)
-
+            offset = self.get_offset()
             # LOAD THE DATE
             this_date = offset + timedelta(days=1)
             # logger.warning("OFFSET INCREASED:%s",offset)
@@ -377,41 +355,17 @@ class NetworkTxActivity(Checkpoint):
 
                 self.update_checkpoint_dict(this_date)
 
-
         except Exception:
             logger.error("update", exc_info=True)
 
-    # check max date in a construction table
-    def is_up_to_date(self, construct_table):
-        try:
-            offset = self.checkpoint_dict['offset']
-            if offset is None:
-                offset = self.initial_date
-                self.checkpoint_dict['offset'] = self.initial_date
-            if isinstance(offset, str):
-                offset = datetime.strptime(offset, self.DATEFORMAT)
-
-            construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
-            if isinstance(construct_max_val, str):
-                construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
-                construct_max_val = construct_max_val.date()
-
-            if offset >= construct_max_val - timedelta(days=self.is_up_to_date_window):
-                #logger.warning("CHECKPOINT:UP TO DATE")
-                return True
-            #logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
-
-            return False
-        except Exception:
-            logger.error("is_up_to_date", exc_info=True)
-            return False
 
     async def run(self):
         # create warehouse table in clickhouse if needed
         # self.create_table_in_clickhouse()
         while True:
             await self.update()
-            if self.is_up_to_date(construct_table='block_tx_warehouse'):
+            if self.is_up_to_date(construct_table='block_tx_warehouse',
+                                  suspend_hours=  self.is_up_to_date_window * 24):
                 logger.warning("NETWORK ACTIVITY SLEEPING FOR 1 DAY:UP TO DATE")
                 await asyncio.sleep(86400)  # sleep one day
             else:

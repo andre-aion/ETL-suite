@@ -245,8 +245,8 @@ class PythonClickhouse:
     def insert_df(self,df,cols,table):
         try:
             df = df[cols]  # arrange order of columns for
-            logger.warning("columns in df to insert:%s",df.columns.tolist())
-            logger.warning("df to insert:%s",df.head())
+            #logger.warning("columns in df to insert:%s",df.columns.tolist())
+            #logger.warning("df to insert:%s",df.head())
 
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
             logger.warning("DF UPSERTED:%s", affected_rows)
@@ -262,6 +262,7 @@ class PythonClickhouse:
             - delete data
             - insert data
             """
+            logger.warning('before upsert: %s',df.head(10))
             start_range = df[col].min()
             end_range = df[col].max()
             #logger.warning('delete range:%s:%s')

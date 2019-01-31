@@ -11,7 +11,9 @@ logger = mylogger(__file__)
 
 class Checkpoint:
     def __init__(self,table):
-        self.checkpoint_dict = checkpoint_dict[table]
+        self.checkpoint_dict = None
+        self.dct = checkpoint_dict[table]
+        self.key_params = 'checkpoint:'+ table
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
         self.my = PythonMysql('aion')
@@ -20,8 +22,6 @@ class Checkpoint:
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = 4 # hours
         self.table = table
-        self.key_params = 'checkpoint:'+ table
-        self.dct = checkpoint_dict
         self.initial_date = "2018-04-23 20:00:00"
         # manage size of warehouse
         self.df_size_lst = []
@@ -30,6 +30,7 @@ class Checkpoint:
             'lower': 40000
         }
         self.checkpoint_column = 'block_timestamp'
+
 
     def save_checkpoint(self):
         try:
@@ -41,34 +42,52 @@ class Checkpoint:
     def get_checkpoint_dict(self, col='block_timestamp', db='aion'):
         # try to load from , then redis, then clickhouse
         try:
-            if self.checkpoint_dict is None:
-                key = 'checkpoint:' + self.table
-                temp_dict = self.redis.load([], '', '', key=key, item_type='checkpoint')
-                if temp_dict is None:  # not in redis
-                    self.checkpoint_dict = self.dct
-                    # get last date from clickhouse
-                    qry = "select count() from {}.{}".format(db, self.table)
-                    numrows = self.cl.client.execute(qry)
-                    if numrows[0][0] >= 1:
-                        result = self.get_value_from_clickhouse(self.table, 'MAX')
-                        self.checkpoint_dict['offset'] = result
-                        self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
-                else:
-                    self.checkpoint_dict = temp_dict  # retrieved from redis
-                    # ensure that the offset in redis is good
-                    if self.checkpoint_dict['offset'] is None:
-                        result = self.get_value_from_clickhouse(self.table, 'MAX')
-                        self.checkpoint_dict['offset'] = result
-                        self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            key = self.key_params
+            if self.checkpoint_dict is not None:
+                if self.checkpoint_dict['offset'] is None:
+                    # get it from redis
+                    temp_dct = self.redis.load([], '', '', key=key, item_type='checkpoint')
+                    if temp_dct is not None:
+                        self.checkpoint_dict = temp_dct
+                    else: # set if from config
+                        self.checkpoint_dict = self.dct
+                    #logger.warning(" %s CHECKPOINT dictionary (re)set or retrieved:%s", self.table, self.temp_dict)
+            else:
+                self.checkpoint_dict = self.dct
+                self.get_checkpoint_dict()
+                #logger.warning(" %s CHECKPOINT dictionary recursion call :%s", self.table, self.temp_dict)
 
-            # logger.warning("CHECKPOINT dictionary (re)set or retrieved:%s",self.checkpoint_dict)
-            return self.checkpoint_dict
         except Exception:
             logger.error("get checkpoint dict", exc_info=True)
 
+
+    def get_offset(self):
+        try:
+            self.get_checkpoint_dict()
+            # handle reset or initialization
+            if self.checkpoint_dict['offset'] is None:
+                if self.table == 'account_activity':
+                    self.checkpoint_dict['offset'] = self.get_value_from_mysql(self.table, min_max='MAX')
+                elif self.table == 'network_activity':
+                    self.checkpoint_dict['offset'] = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                logger.warning("Checkpoint retreived from construct table:%s", self.checkpoint_dict['offset'])
+                if  self.checkpoint_dict['offset'] is None:
+                    self.checkpoint_dict['offset'] = self.initial_date
+
+            # convert offset to datetime if needed
+            if isinstance(self.checkpoint_dict['offset'], str):
+                self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
+                                                                   self.DATEFORMAT)
+
+
+            return self.checkpoint_dict['offset']
+
+        except Exception:
+            logger.error('register new addresses', exc_info=True)
+
     def reset_offset(self, reset_value):
         try:
-            self.checkpoint_dict = self.get_checkpoint_dict()
+            self.get_checkpoint_dict()
             if isinstance(reset_value, datetime) or isinstance(reset_value, date):
                 reset_value = datetime.strftime(reset_value, self.DATEFORMAT)
             self.checkpoint_dict['offset'] = reset_value
@@ -92,6 +111,7 @@ class Checkpoint:
 
     def save_df(self, df):
         try:
+
             self.cl.upsert_df(df,self.columns,self.table)
             self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
@@ -126,8 +146,9 @@ class Checkpoint:
             row = self.my.conn.fetchone()
             result = row[0]
             #logger.warning('%s value from mysql %s:%s', min_max, table.upper(), result)
-
-            return result
+            if result is not None:
+                return result
+            return self.initial_date
         except Exception:
             logger.error("update warehouse", exc_info=True)
 
@@ -141,49 +162,24 @@ class Checkpoint:
                 logger.warning("WINDOW ADJUSTED UPWARDS FROM: %s",  mean(self.df_size_lst))
             self.df_size_lst = []
 
-    # check max date in a construction table
-    def is_up_to_date(self, construct_table='block'):
+        # check max date in a construction table
+
+    def is_up_to_date(self, construct_table, suspend_hours):
         try:
-            offset = self.checkpoint_dict['offset']
-            if offset is None:
-                offset = self.initial_date
-                self.checkpoint_dict['offset'] = self.initial_date
-            if isinstance(offset, str):
-                offset = datetime.strptime(offset, self.DATEFORMAT)
+            offset = self.get_offset()
             construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
-            # logger.warning("max_val in is_up_to_date:%s",construct_max_val)
-            if offset >= construct_max_val - timedelta(hours=self.is_up_to_date_window):
+            if isinstance(construct_max_val, str):
+                construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
+                construct_max_val = construct_max_val.date()
+
+            if offset >= construct_max_val - timedelta(hours=suspend_hours):
+                # logger.warning("CHECKPOINT:UP TO DATE")
                 return True
+            # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
+
             return False
         except Exception:
             logger.error("is_up_to_date", exc_info=True)
             return False
 
-    def get_offset(self):
-        try:
-            if self.checkpoint_dict is None:
-                self.checkpoint_dict = self.get_checkpoint_dict()
-                """
-                1) get checkpoint dictionary
-                2) if offset is not set
-                    - set offset as max from warehouse
-                    - if that is zero, set to genesis blcok
-                """
 
-                # handle reset or initialization
-            if self.checkpoint_dict['offset'] is None:
-                offset = self.get_value_from_clickhouse(self.table, min_max='MAX')
-                # logger.warning("Checkpoint initiated in update warehoused:%s", offset)
-                if offset is None:
-                    offset = self.initial_date
-                self.checkpoint_dict['offset'] = offset
-
-                # convert offset to datetime if needed
-            offset = self.checkpoint_dict['offset']
-            if isinstance(offset, str):
-                offset = datetime.strptime(offset, self.DATEFORMAT)
-
-            return offset
-
-        except Exception:
-            logger.error('register new addresses', exc_info=True)
