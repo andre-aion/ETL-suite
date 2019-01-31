@@ -59,13 +59,13 @@ class AccountActivity(Checkpoint):
         self.cols_dict = {
             'internal_transfer': {
                 'cols': ['from_addr', 'to_addr', 'transaction_hash',
-                         'block_number','block_timestamp','value_transferred'],
-                'value': 'value_transferred'
+                         'block_number','block_timestamp','approx_value'],
+                'value': 'approx_value'
             },
             'token_transfers': {
                 'cols': ['from_addr', 'to_addr', 'transaction_hash',
-                         'block_number','transfer_timestamp','raw_value'],
-                'value': 'scaled_value'
+                         'block_number','transfer_timestamp','approx_value'],
+                'value': 'approx_value'
             },
             'transaction': {
                 'cols': ['from_addr', 'to_addr','transaction_hash',
@@ -108,11 +108,14 @@ class AccountActivity(Checkpoint):
     def create_address_transaction(self,row,table):
         try:
             if row is not None:
-                #logger.warning('%s',row)
                 block_timestamp = row['block_timestamp']
                 if isinstance(row['block_timestamp'],str):
                     block_timestamp = datetime.strptime(block_timestamp,self.DATEFORMAT)
-                event = 'token transfer' if table == 'token_transfers' else 'native transfer'
+                if table == 'token_transfers':
+                    #logger.warning("TOKEN TRANSFER")
+                    event = "token transfer"
+                else:
+                    event = "native transfer"
 
                 # DETERMING IF NEW ADDRESS
                 # if first sighting is from_ then make 'value' negative
@@ -183,12 +186,13 @@ class AccountActivity(Checkpoint):
             logger.warning('LOAD RANGE %s:%s',start_date,end_date)
             for table in self.cols_dict.keys():
                 cols = self.cols_dict[table]['cols']
+                # load production data from staging
                 df = self.load_df(start_date,end_date,cols,table,'mysql')
                 #logger.warning('TABLE:COLS %s:%s',table,cols)
 
                 if df is not None:
                     if len(df)>0:
-                        #logger.warning("%s LOADED, WINDOW:- %s:%s", table.upper(), start_date, end_date)
+                        #logger.warning("%s LOADED, WINDOW:- %s", table.upper(), df.head())
                         # convert to plus minus transactions
                         df = df.compute()
                         if len(self.address_lst) <= 0:
@@ -198,19 +202,19 @@ class AccountActivity(Checkpoint):
                         del df
                         gc.collect()
 
-                        # save data
-                        if len(self.new_activity_lst) > 0:
-                            # register new events
-                            df = pd.DataFrame(self.new_activity_lst)
-                            # save dataframe
-                            df = dd.from_pandas(df, npartitions=5)
-                            logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
+            # save data
+            if len(self.new_activity_lst) > 0:
+                # register new events
+                df = pd.DataFrame(self.new_activity_lst)
+                # save dataframe
+                df = dd.from_pandas(df, npartitions=5)
+                #logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
 
-                            self.save_df(df)
-                            self.df_size_lst.append(len(df))
-                            self.window_adjuster() # adjust size of window to load bigger dataframes
+                self.save_df(df)
+                self.df_size_lst.append(len(df))
+                self.window_adjuster() # adjust size of window to load bigger dataframes
 
-                            self.new_activity_lst = [] #reset for next window
+                self.new_activity_lst = [] #reset for next window
                 # logger.warning('FINISHED %s',table.upper())
 
             # update composite list
@@ -225,8 +229,7 @@ class AccountActivity(Checkpoint):
         # self.create_table_in_clickhouse()
         while True:
             await self.update()
-            if self.is_up_to_date(construct_table='transaction',
-                                  suspend_hours=self.is_up_to_date_window):
+            if self.is_up_to_date(construct_table='transaction',window_hours=self.window):
                 logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 3 hours:UP TO DATE")
                 await asyncio.sleep(10800)  # sleep three hours
             else:

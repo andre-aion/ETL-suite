@@ -32,7 +32,7 @@ warehouse_etl = Warehouse(table)
 table = 'account_activity'
 # tb = Table('account_activity','account_activity','create')
 account_activity_etl = AccountActivity(table)
-#account_activity_etl.reset_offset('2018-04-25 00:00:00')
+#account_activity_etl.reset_offset('2018-05-21 05:00:00')
 
 async def run_etls():
 

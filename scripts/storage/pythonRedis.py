@@ -93,7 +93,7 @@ class PythonRedis:
                 self.conn.set(key_params, item)
                 self.conn.expire(key_params,EXPIRATION_SECONDS*50)
 
-                logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
+                #logger.warning('CHECKPOINT UPDATED OR SAVED:%s', key_params)
 
         except Exception:
             logger.error('save to redis',exc_info=True)
@@ -119,7 +119,7 @@ class PythonRedis:
                     item = self.conn.get(key)
                     item = json.loads(item.decode('utf-8'))
 
-                    logger.warning("Checkpoint loaded from redis:%s",item)
+                    #logger.warning("Checkpoint loaded from redis:%s",item)
                 else:
                     item = None
 

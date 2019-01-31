@@ -262,7 +262,7 @@ class PythonClickhouse:
             - delete data
             - insert data
             """
-            logger.warning('before upsert: %s',df.head(10))
+            #logger.warning('before upsert: %s',df.head(10))
             start_range = df[col].min()
             end_range = df[col].max()
             #logger.warning('delete range:%s:%s')

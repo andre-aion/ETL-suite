@@ -365,7 +365,7 @@ class NetworkTxActivity(Checkpoint):
         while True:
             await self.update()
             if self.is_up_to_date(construct_table='block_tx_warehouse',
-                                  suspend_hours=  self.is_up_to_date_window * 24):
+                                  window_hours= self.is_up_to_date_window * 24):
                 logger.warning("NETWORK ACTIVITY SLEEPING FOR 1 DAY:UP TO DATE")
                 await asyncio.sleep(86400)  # sleep one day
             else:

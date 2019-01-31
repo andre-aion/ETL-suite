@@ -73,23 +73,15 @@ class PythonMysql:
                 if len(df)>0:
                     # do some renaming
 
-                    if table in ['transaction', 'block']:
-                        if 'nrg_consumed' in df.columns.tolist():
-                            new_name = table + '_nrg_consumed'
-                            df = df.rename(index=str, columns={"nrg_consumed": new_name})
-                            #new_columns = [new_name if x == 'nrg_consumed' else x for x in df.columns.tolist()]
-                            #logger.warning("columns renamed:%s", df.columns.tolist())
-
                     if table in ['token_transfers']:
                         rename = {"transfer_timestamp": "block_timestamp",
-                                  'scaled_value': 'value'}
+                                  "approx_value":"value"}
 
-                    elif table in ['internal_transfer']:
-                        rename = {"value_transferred":"value"}
-                    elif table in ['transaction']:
-                        rename = {"approx_value": "value"}
+                    elif table in ['internal_transfer','transaction']:
+                        rename = {"approx_value":"value"}
 
                     df = df.rename(index=str, columns=rename)
+
                     # convert to dask
                     df = dd.dataframe.from_pandas(df, npartitions=5)
                     df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)

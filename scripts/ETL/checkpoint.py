@@ -156,15 +156,15 @@ class Checkpoint:
         if len(self.df_size_lst) > 5:
             if mean(self.df_size_lst) >= self.df_size_threshold['upper']:
                 self.window = round(self.window * .75)
-                logger.warning("WINDOW ADJUSTED DOWNWARDS FROM: %s", mean(self.df_size_lst))
+                logger.warning("WINDOW ADJUSTED DOWNWARDS FROM: %s hours", self.window)
             elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
                 self.window = round(self.window * 1.25)
-                logger.warning("WINDOW ADJUSTED UPWARDS FROM: %s",  mean(self.df_size_lst))
+                logger.warning("WINDOW ADJUSTED UPWARDS FROM: %s hours",  self.window)
             self.df_size_lst = []
 
         # check max date in a construction table
 
-    def is_up_to_date(self, construct_table, suspend_hours):
+    def is_up_to_date(self, construct_table,window_hours):
         try:
             offset = self.get_offset()
             construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
@@ -172,7 +172,7 @@ class Checkpoint:
                 construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
                 construct_max_val = construct_max_val.date()
 
-            if offset >= construct_max_val - timedelta(hours=suspend_hours):
+            if offset >= construct_max_val - timedelta(hours=window_hours):
                 # logger.warning("CHECKPOINT:UP TO DATE")
                 return True
             # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
