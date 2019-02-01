@@ -25,10 +25,9 @@ class Warehouse(Checkpoint):
                  table_dict=table_dict,columns=columns):
         Checkpoint.__init__(self, table)
 
-        self.data_to_process_window = 1 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = 3 # hours to sleep to give reorg time to happen
-        self.window = 3
+        self.window = 3 #hours
         self.table = table
         self.table_dict = table_dict[table]
         self.columns = columns[table]
@@ -144,7 +143,7 @@ class Warehouse(Checkpoint):
 
             # LOAD THE DATE
             start_datetime = offset
-            end_datetime = start_datetime + timedelta(hours=self.data_to_process_window)
+            end_datetime = start_datetime + timedelta(hours=self.window)
             self.update_checkpoint_dict(end_datetime)
             logger.warning("WAREHOUSE UPDATE WINDOW- %s:%s", start_datetime,end_datetime)
             df_block = self.load_df(
