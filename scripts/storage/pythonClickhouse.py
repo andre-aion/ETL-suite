@@ -207,7 +207,7 @@ class PythonClickhouse:
                 df['block_nrg_consumed'],df['nrg_limit'],df['num_transactions'],
                 df['block_size'],df['block_time'],df['approx_nrg_reward'],df['block_year'],df['block_month'],
                 df['block_day'],df['from_addr'],
-                df['to_addr'],df['approx_value'],df['transaction_nrg_consumed'],df['nrg_price']))
+                df['to_addr'],df['value'],df['transaction_nrg_consumed'],df['nrg_price']))
 
 
             self.insert(table,cols,messages)

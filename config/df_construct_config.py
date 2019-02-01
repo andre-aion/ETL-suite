@@ -46,13 +46,13 @@ dedup_cols['block'] = ['block_number']
 dedup_cols['transaction'] = ['transaction_hash']
 columns['transaction'] = ['transaction_hash','block_hash','block_number','block_timestamp',
                           'transaction_index', 'from_addr','to_addr','nrg_consumed',
-                            'approx_value','nrg_price','transaction_timestamp',
+                            'p','nrg_price','transaction_timestamp',
                        'value','transaction_log','data','nonce','tx_error',
                       'contract_addr','year','month','day']
 
 load_columns['transaction']['churn'] = ['block_timestamp',
                         'transaction_hash', 'from_addr',
-                        'to_addr', 'approx_value', 'nrg_consumed']
+                        'to_addr', 'p', 'nrg_consumed']
 
 
 table_dict['transaction'] = {
@@ -88,16 +88,16 @@ columns_ch['transaction'] = ['transaction_hash','transaction_index','block_numbe
 #                             block tx warehouse poolminer
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 load_columns['block_tx_warehouse']['churn'] = ['block_timestamp', 'block_number', 'to_addr',
-                      'from_addr', 'miner_address', 'approx_value','transaction_hash',
+                      'from_addr', 'miner_address', 'p','transaction_hash',
                       'block_nrg_consumed','transaction_nrg_consumed','difficulty',
-                      'nrg_limit','block_size','block_time', 'approx_nrg_reward']
+                      'nrg_limit','block_size','block_time', 'nrg_reward']
 
 columns['block_tx_warehouse'] = ['block_number','block_timestamp','transaction_hash','miner_address',
                 'total_difficulty','difficulty',
                 'block_nrg_consumed','nrg_limit','num_transactions',
-                'block_size','block_time','approx_nrg_reward','block_year','block_month',
+                'block_size','block_time','nrg_reward','block_year','block_month',
                 'block_day','from_addr',
-                'to_addr', 'approx_value','transaction_nrg_consumed','nrg_price']
+                'to_addr', 'value','transaction_nrg_consumed','nrg_price']
 
 dedup_cols['block_tx_warehouse'] = []
 
@@ -111,14 +111,14 @@ table_dict['block_tx_warehouse'] = {
     'total_difficulty':'Float64',
     'nrg_limit':'UInt64',
     'transaction_hash': 'String',
-    'approx_nrg_reward':'Float64',
+    'nrg_reward':'Float64',
     'from_addr': 'String',
     'to_addr': 'String',
     'num_transactions': 'UInt16',
     'block_nrg_consumed':'UInt64',
     'transaction_nrg_consumed': 'UInt64',
     'nrg_price': 'UInt64',
-    'approx_value': 'Float64',
+    'value': 'Float64',
     'block_year': 'UInt16',
     'block_month': 'UInt8',
     'block_day':  'UInt8'
@@ -213,7 +213,7 @@ table_dict['network_activity'] = {
     'block_nrg_consumed': 'Float64',
     'transaction_nrg_consumed': 'Float64',
     'nrg_price': 'Float64',
-    'approx_value': 'Float64',
+    'p': 'Float64',
     'block_year': 'UInt16',
     'block_month': 'UInt16',
     'block_day':'UInt16',
@@ -228,7 +228,7 @@ columns['network_activity'] = [
     'to_addr_new', 'to_addr_churned', 'to_addr_retained', 'to_addr_active',
     'block_size', 'block_time','difficulty', 'nrg_limit',
     'approx_nrg_reward' , 'num_transactions','block_nrg_consumed','nrg_price',
-    'approx_value', 'transaction_nrg_consumed',
+    'p', 'transaction_nrg_consumed',
     'block_year','block_month', 'block_day', 'day_of_week']
 
 ################################################################
@@ -244,7 +244,7 @@ table_dict['account_balance'] = {
     'day_of_week': 'String',
     'from_addr':'String',
     'tx_nrg_consumed': 'UInt64',
-    'approx_value': 'Float64',
+    'p': 'Float64',
     'nrg_price': 'UInt64',
     'to_addr': 'String',
     'transaction_hash':'String',

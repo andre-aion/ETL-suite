@@ -110,7 +110,7 @@ class KafkaConnectPyspark:
                            message_temp['transaction_timestamp'],message_temp['block_timestamp'],
                            message_temp['block_date'],
                            message_temp['from_addr'],message_temp['to_addr'],
-                           message_temp['approx_value'], message_temp['nrg_consumed'],
+                           message_temp['value'], message_temp['nrg_consumed'],
                            message_temp['nrg_price'], message_temp['nonce'],
                            message_temp['contract_addr'],message_temp['transaction_year'],
                            message_temp['transaction_month'], message_temp['transaction_day'])

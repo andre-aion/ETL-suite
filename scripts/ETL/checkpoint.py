@@ -22,7 +22,7 @@ class Checkpoint:
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = 4 # hours
         self.table = table
-        self.initial_date = "2018-04-23 20:00:00"
+        self.initial_date = "2018-04-25 17:00:00"
         # manage size of warehouse
         self.df_size_lst = []
         self.df_size_threshold = {
@@ -31,6 +31,31 @@ class Checkpoint:
         }
         self.checkpoint_column = 'block_timestamp'
 
+    def int_to_date(self, x):
+        return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+
+    def str_to_date(self,x):
+        if isinstance(x,str):
+            return datetime.strptime(x,self.DATEFORMAT)
+        return x
+
+    def load_df(self, start_date, end_date, cols, table, storage_medium):
+        try:
+            start_date = self.str_to_date(start_date)
+            end_date = self.str_to_date(end_date)
+            #start_date = datetime.combine(start_date, datetime.min.time())
+            if storage_medium == 'mysql':
+                df = self.my.load_data(table=table, cols=cols,
+                                       start_date=start_date, end_date=end_date)
+            elif storage_medium == 'clickhouse':
+                df = self.cl.load_data(table=table, cols=cols,
+                                       start_date=start_date, end_date=end_date)
+            # logger.warning('line 157, load:%s',df['block_timestamp'])
+            # convert to datetime to date
+
+            return df
+        except Exception:
+            logger.warning('load_df', exc_info=True)
 
     def save_checkpoint(self):
         try:
@@ -135,8 +160,7 @@ class Checkpoint:
         except Exception:
             logger.error("update warehouse", exc_info=True)
 
-    def int_to_date(self, x):
-        return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+
 
     def get_value_from_mysql(self, table, min_max='MAX'):
         try:
@@ -164,10 +188,15 @@ class Checkpoint:
 
         # check max date in a construction table
 
-    def is_up_to_date(self, construct_table,window_hours):
+    def is_up_to_date(self, construct_table,storage_medium,window_hours):
         try:
             offset = self.get_offset()
-            construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+            if storage_medium == 'mysql':
+                construct_max_val = self.get_value_from_mysql(construct_table, 'MAX')
+            else:
+                construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+            if isinstance(construct_max_val,int):
+                construct_max_val = datetime.fromtimestamp(construct_max_val)
             if isinstance(construct_max_val, str):
                 construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
                 construct_max_val = construct_max_val.date()

@@ -55,10 +55,10 @@ class PythonMysql:
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
+        logger.warning('%s load data start_date,%s:%s',table,start_date, end_date)
 
         start_date = self.date_to_int(start_date)
         end_date = self.date_to_int(end_date)
-        # logger.warning('load data start_date,%s:%s', start_date, end_date)
         # logger.warning('table:cols=%s:%s', table, cols)
 
         if start_date > end_date:
@@ -77,15 +77,28 @@ class PythonMysql:
                         rename = {"transfer_timestamp": "block_timestamp",
                                   "approx_value":"value"}
 
-                    elif table in ['internal_transfer','transaction']:
+                    elif table in ['internal_transfer']:
                         rename = {"approx_value":"value"}
 
+                    elif table in ['transaction']:
+                        rename = {"approx_value":"value"}
+
+                    elif table in ['block']:
+                        rename = {
+                            'nrg_consumed':'block_nrg_consumed',
+                            'month':'block_month',
+                            'day':'block_day',
+                            'year':'block_year',
+                            'approx_nrg_reward':'nrg_reward'
+                        }
                     df = df.rename(index=str, columns=rename)
 
                     # convert to dask
                     df = dd.dataframe.from_pandas(df, npartitions=5)
-                    df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
-                    #logger.warning("%s data loaded in my df_load:%s",table.upper(),len(df))
+                    #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
+                    if table not in ['transaction']:
+                        df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
+                    #logger.warning("%s data loaded from mysql:%s",table.upper(),df.head(10))
             return df
 
         except Exception:

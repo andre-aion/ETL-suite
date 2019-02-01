@@ -44,7 +44,7 @@ class AccountTransactions(Checkpoint):
         }
 
         self.columns = sorted(list(table_dict[table].keys()))
-        self.input_cols = ['block_timestamp','block_number','approx_value','from_addr',
+        self.input_cols = ['block_timestamp','block_number','value','from_addr',
                             'to_addr','year','month','day','transaction_hash']
         # lst to make new df for account balance
         self.new_lst = []
@@ -99,7 +99,7 @@ class AccountTransactions(Checkpoint):
                         'nrg_price': row['nrg_price'],
                         'to_addr':row['to_addr'],
                         'transaction_hash':row['transaction_hash'],
-                        'value':row['approx_value'] * -1,
+                        'value':row['value'] * -1,
                    },
                     {
                         'address': row['to_addr'],
@@ -114,7 +114,7 @@ class AccountTransactions(Checkpoint):
                         'nrg_price': row['nrg_price'],
                         'to_addr': row['to_addr'],
                         'transaction_hash': row['transaction_hash'],
-                        'value': row['approx_value'],
+                        'value': row['value'],
 
                     },
 

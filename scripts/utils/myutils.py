@@ -275,7 +275,7 @@ def cast_cols(meta, df):
             'block_number': 'int',
             'transaction_hash': 'str',
             'miner_address': 'str',
-            'approx_value': 'float',
+            'value': 'float',
             'block_nrg_consumed': 'int',
             'transaction_nrg_consumed': 'int',
             'difficulty': 'int',

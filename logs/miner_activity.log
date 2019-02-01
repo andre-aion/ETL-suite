@@ -131,7 +131,7 @@ npartitions=15
 9975               ...
 Name: block_timestamp, dtype: datetime64[ns]
 Dask Name: getitem, 30 tasks
-2019-01-20 09:45:27,754 - [logs/miner_activity.log:132]=> line 114, one day  before concat:      block_timestamp  difficulty  block_nrg_consumed  nrg_limit     ...                                                 to_addr  approx_value  transaction_nrg_consumed    nrg_price
+2019-01-20 09:45:27,754 - [logs/miner_activity.log:132]=> line 114, one day  before concat:      block_timestamp  difficulty  block_nrg_consumed  nrg_limit     ...                                                 to_addr  p  transaction_nrg_consumed    nrg_price
 0 2018-05-21 00:00:09   6378130.0                   0   15004565     ...                                                 unknown       0.00000                         0            0
 1 2018-05-21 00:00:55   6375016.0                   0   14989913     ...                                                 unknown       0.00000                         0            0
 2 2018-05-21 00:01:33   6362568.0              378000   15004551     ...       a076c011b4a7b860020833bf8123c7635cd56d04e1b71d...       0.68964                     21000  10000000000
@@ -359,7 +359,7 @@ npartitions=15
 9975               ...
 Name: block_timestamp, dtype: datetime64[ns]
 Dask Name: getitem, 30 tasks
-2019-01-20 09:46:50,190 - [logs/miner_activity.log:132]=> line 114, one day  before concat:      block_timestamp  difficulty  block_nrg_consumed  nrg_limit     ...                                                 to_addr  approx_value  transaction_nrg_consumed    nrg_price
+2019-01-20 09:46:50,190 - [logs/miner_activity.log:132]=> line 114, one day  before concat:      block_timestamp  difficulty  block_nrg_consumed  nrg_limit     ...                                                 to_addr  p  transaction_nrg_consumed    nrg_price
 0 2018-05-21 00:00:09   6378130.0                   0   15004565     ...                                                 unknown       0.00000                         0            0
 1 2018-05-21 00:00:55   6375016.0                   0   14989913     ...                                                 unknown       0.00000                         0            0
 2 2018-05-21 00:01:33   6362568.0              378000   15004551     ...       a076c011b4a7b860020833bf8123c7635cd56d04e1b71d...       0.68964                     21000  10000000000

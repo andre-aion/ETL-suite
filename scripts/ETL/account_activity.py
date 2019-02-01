@@ -56,41 +56,23 @@ class AccountActivity(Checkpoint):
         self.address_lst = [] # all addresses ever on network
 
         # what to bring back from tables
-        self.cols_dict = {
+        self.construction_cols_dict = {
             'internal_transfer': {
                 'cols': ['from_addr', 'to_addr', 'transaction_hash',
-                         'block_number','block_timestamp','approx_value'],
-                'value': 'approx_value'
+                         'block_number','block_timestamp','value'],
+                'value': 'value'
             },
             'token_transfers': {
                 'cols': ['from_addr', 'to_addr', 'transaction_hash',
-                         'block_number','transfer_timestamp','approx_value'],
-                'value': 'approx_value'
+                         'block_number','transfer_timestamp','value'],
+                'value': 'value'
             },
             'transaction': {
                 'cols': ['from_addr', 'to_addr','transaction_hash',
-                         'block_number', 'block_timestamp','approx_value'],
+                         'block_number', 'block_timestamp','value'],
                 'value': 'approx_value'
             }
         }
-
-
-    def load_df(self, start_date, end_date,cols,table,storage):
-        try:
-            start_date = datetime.combine(start_date, datetime.min.time())
-            if storage == 'mysql':
-                df = self.my.load_data(table=table, cols=cols,
-                                    start_date=start_date, end_date=end_date)
-            elif storage == 'clickhouse':
-                df = self.cl.load_data(table=table, cols=cols,
-                                    start_date=start_date, end_date=end_date)
-            # logger.warning('line 157, load:%s',df['block_timestamp'])
-            # convert to datetime to date
-
-            return df
-        except Exception:
-            logger.warning('load_df', exc_info=True)
-
 
     def get_addresses(self,start_date):
         try:
@@ -184,8 +166,8 @@ class AccountActivity(Checkpoint):
             self.update_checkpoint_dict(end_date)
             # get data
             logger.warning('LOAD RANGE %s:%s',start_date,end_date)
-            for table in self.cols_dict.keys():
-                cols = self.cols_dict[table]['cols']
+            for table in self.construction_cols_dict.keys():
+                cols = self.construction_cols_dict[table]['cols']
                 # load production data from staging
                 df = self.load_df(start_date,end_date,cols,table,'mysql')
                 #logger.warning('TABLE:COLS %s:%s',table,cols)
@@ -229,7 +211,9 @@ class AccountActivity(Checkpoint):
         # self.create_table_in_clickhouse()
         while True:
             await self.update()
-            if self.is_up_to_date(construct_table='transaction',window_hours=self.window):
+            if self.is_up_to_date(construct_table='transaction',
+                                  storage_medium='mysql',
+                                  window_hours=self.window):
                 logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 3 hours:UP TO DATE")
                 await asyncio.sleep(10800)  # sleep three hours
             else:

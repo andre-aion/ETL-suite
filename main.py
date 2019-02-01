@@ -30,16 +30,18 @@ table = 'block_tx_warehouse'
 warehouse_etl = Warehouse(table)
 
 table = 'account_activity'
-# tb = Table('account_activity','account_activity','create')
+#tb = Table('block_tx_warehouse','block_tx_warehouse','create')
+#warehouse_etl.reset_offset('2018-04-23 05:00:00')
+
+
 account_activity_etl = AccountActivity(table)
-#account_activity_etl.reset_offset('2018-05-21 05:00:00')
 
 async def run_etls():
 
     tasks = [
-        #asyncio.ensure_future(warehouse_etl.run()),
+        asyncio.ensure_future(warehouse_etl.run()),
         #asyncio.ensure_future(network_activity_etl.run()),
-        asyncio.ensure_future(account_activity_etl.run())
+        #asyncio.ensure_future(account_activity_etl.run())
     ]
     await asyncio.wait(tasks)
 

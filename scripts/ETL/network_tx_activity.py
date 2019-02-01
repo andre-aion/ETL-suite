@@ -32,8 +32,8 @@ class NetworkTxActivity(Checkpoint):
             'num_transactions': 'mean',
             'block_size': 'mean',
             'block_time': 'mean',
-            'approx_nrg_reward': 'mean',
-            'approx_value': 'mean',
+            'nrg_reward': 'mean',
+            'value': 'mean',
             'transaction_nrg_consumed': 'mean',
             'nrg_price': 'mean',
         }
@@ -111,8 +111,8 @@ class NetworkTxActivity(Checkpoint):
             cols = ['block_timestamp',
                     'difficulty',
                     'block_nrg_consumed', 'nrg_limit', 'num_transactions',
-                    'block_size', 'block_time', 'approx_nrg_reward',
-                    'from_addr', 'to_addr', 'approx_value', 'transaction_nrg_consumed', 'nrg_price']
+                    'block_size', 'block_time', 'nrg_reward',
+                    'from_addr', 'to_addr', 'value', 'transaction_nrg_consumed', 'nrg_price']
 
             if state == 'initial':
                 start_date = this_date - timedelta(days=self.churn_window)
@@ -314,13 +314,13 @@ class NetworkTxActivity(Checkpoint):
                 b = tier_info["2"]
                 # message for daily save
                 block_size, block_time, difficulty, nrg_limit, approx_nrg_reward, num_transactions, \
-                block_nrg_consumed, transaction_nrg_consumed, nrg_price, approx_value = \
+                block_nrg_consumed, transaction_nrg_consumed, nrg_price, value = \
                     dd.compute(self.df.block_size.mean(), self.df.block_time.mean(), self.df.difficulty.mean(),
                                self.df.nrg_limit.mean(), self.df.approx_nrg_reward.mean(),
                                self.df.num_transactions.mean(),
                                self.df.block_nrg_consumed.mean(), self.df.transaction_nrg_consumed.mean(),
                                self.df.nrg_price.mean(),
-                               self.df.approx_value.mean())
+                               self.df.value.mean())
                 message = (this_date,
                            a['new_str'], a['churned_str'], a['retained_str'], a['active_str'],
                            len(a['new_lst']), len(a['churned_lst']), len(a['retained_lst']), len(a['active_lst']),
@@ -329,7 +329,7 @@ class NetworkTxActivity(Checkpoint):
                            round(block_size), round(block_time), round(difficulty), round(nrg_limit),
                            round(approx_nrg_reward), round(num_transactions),
                            round(block_nrg_consumed), round(transaction_nrg_consumed), round(nrg_price),
-                           round(approx_value),
+                           round(value),
                            int(this_date.year), int(this_date.month), int(this_date.day), this_date.strftime('%a'))
                 # logger.warning('date:message-%s:%s',this_date,message)
 

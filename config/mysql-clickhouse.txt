@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS aion.transaction(
                                 block_date  Date,
                                 from_addr  String,
                                 to_addr  String,
-                                approx_value Float64,
+                                p Float64,
                                 nrg_consumed UInt64,
                                 nrg_price UInt64,
                                 nonce String,
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS aion.transaction(
 
 COPY aion.transaction (transaction_hash,transaction_index,block_number,
                        transaction_timestamp,block_timestamp,block_date,
-                       from_addr,to_addr,approx_value,nrg_consumed,
+                       from_addr,to_addr,p,nrg_consumed,
                        nrg_price,nonce,contract_addr,transaction_year,
                        transaction_month,transaction_day) TO 'Downloads/transaction.csv' WITH HEADER = TRUE AND DATETIMEFORMAT='%Y-%m-%d %H:%M:%S';
 
