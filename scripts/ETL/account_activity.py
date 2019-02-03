@@ -46,8 +46,8 @@ class AccountActivity(Checkpoint):
         # manage size of warehouse
         self.df_size_lst = []
         self.df_size_threshold = {
-            'upper': 70000,
-            'lower': 50000
+            'upper': 50000,
+            'lower': 30000
         }
 
         self.columns = sorted(list(table_dict[table].keys()))
@@ -74,20 +74,50 @@ class AccountActivity(Checkpoint):
             }
         }
 
-    def get_addresses(self,start_date):
+    """
+        - get addresses from start til now
+        - filter for current addresses and extant addresses
+    """
+    def get_addresses(self,start_date,end_date):
         try:
+            # get addresses from start of time til end block
+            self.df = self.load_df(self.initial_date,end_date,['address'],self.table,'clickhouse')
 
-            df = self.load_df(self.initial_date,start_date,['address'],self.table,'clickhouse')
-            if df is not None:
-                if len(df)>0:
-                    df = df.compute()
-                    return list(df['address'].unique())
+            if self.df is not None:
+                if len(self.df)>0:
+                    # if the compreshensive address list is empty, refill it
+                    # this occurs at ETL restart, etc.
+                    if len(self.address_lst) <=0:
+                        self.before = self.df[['address','block_timestamp']]
+                        self.before = self.before[self.before.block_timestamp > start_date]
+                        self.address_lst = self.before['address'].unique().tolist()
+                    # prune til we only have from start of time til start date
+                    # so that new joiners in the current block can be labelled
+                    df_current = self.df[self.df.block_timestamp >= start_date and
+                                              self.df.block_timestamp <= end_date]
+
+                    df_current = df_current.compute()
+                    return list(df_current['address'].unique())
             return []
 
         except Exception:
             logger.error('get addresses', exc_info=True)
 
-    def create_address_transaction(self,row,table):
+
+    def determine_churn(self, current_addresses):
+        try:
+            # the addresses in the current block the sum to zero
+            # (tranactions from the beginning, have churned
+            df = self.df[self.df.from_addr == current_addresses]
+            df = self.df.groupby('from_addr')['value'].sum()
+            df = df.reset_index()
+            df = df[df.value == 0]
+            churned_addresses = df['from_addr'].unique().tolist()
+            return churned_addresses
+        except Exception:
+            logger.error('determine churn', exc_info=True)
+
+    def create_address_transaction(self,row,table,churned_addresses):
         try:
             if row is not None:
                 block_timestamp = row['block_timestamp']
@@ -103,7 +133,10 @@ class AccountActivity(Checkpoint):
                 # if first sighting is from_ then make 'value' negative
                 #logger.warning('self address list:%s',self.address_lst)
                 if row['from_addr'] in self.address_lst:
-                    from_activity = 'active'
+                    if row['from_addr'] in self.churned_addresses:
+                        from_activity = 'churned'
+                    else:
+                        from_activity = 'active'
                 elif row['from_addr'] not in self.address_lst:
                     from_activity = 'joined'
                     self.address_lst.append(row['from_addr'])
@@ -177,16 +210,16 @@ class AccountActivity(Checkpoint):
                         #logger.warning("%s LOADED, WINDOW:- %s", table.upper(), df.head())
                         # convert to plus minus transactions
                         df = df.compute()
-                        if len(self.address_lst) <= 0:
-                            self.address_lst = self.get_addresses(start_date)
-                        df.apply(lambda row: self.create_address_transaction(row,table), axis=1)
+                        # get addresses in current block
+                        self.address_lst = self.get_addresses(start_date,end_date)
+                        churned_addresses = self.determine_churn()
+                        df.apply(lambda row: self.create_address_transaction(row,table,churned_addresses), axis=1)
 
                         del df
                         gc.collect()
 
             # save data
             if len(self.new_activity_lst) > 0:
-                # register new events
                 df = pd.DataFrame(self.new_activity_lst)
                 # save dataframe
                 df = dd.from_pandas(df, npartitions=5)
@@ -196,6 +229,7 @@ class AccountActivity(Checkpoint):
                 self.df_size_lst.append(len(df))
                 self.window_adjuster() # adjust size of window to load bigger dataframes
 
+                self.address_lst += self.new_activity_lst
                 self.new_activity_lst = [] #reset for next window
                 # logger.warning('FINISHED %s',table.upper())
 

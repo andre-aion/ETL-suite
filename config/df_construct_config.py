@@ -227,8 +227,8 @@ columns['network_activity'] = [
     'to_addr_new_lst','to_addr_churned_lst','to_addr_retained_lst', 'to_addr_active_lst',
     'to_addr_new', 'to_addr_churned', 'to_addr_retained', 'to_addr_active',
     'block_size', 'block_time','difficulty', 'nrg_limit',
-    'approx_nrg_reward' , 'num_transactions','block_nrg_consumed','nrg_price',
-    'p', 'transaction_nrg_consumed',
+    'nrg_reward' , 'num_transactions','block_nrg_consumed','nrg_price',
+    'value', 'transaction_nrg_consumed',
     'block_year','block_month', 'block_day', 'day_of_week']
 
 ################################################################
@@ -243,9 +243,6 @@ table_dict['account_balance'] = {
     'block_year': 'UInt16',
     'day_of_week': 'String',
     'from_addr':'String',
-    'tx_nrg_consumed': 'UInt64',
-    'p': 'Float64',
-    'nrg_price': 'UInt64',
     'to_addr': 'String',
     'transaction_hash':'String',
     'value': 'Float64'
@@ -270,6 +267,22 @@ table_dict['account_activity'] = {
 
 }
 
+table_dict['account_activity_churn'] = {
+    'block_timestamp': 'Date',
+    'new_lst': 'String',
+    'churned_lst':'String',
+    'retained_lst':'String',
+    'active_lst':'String',
+    'new': 'UInt64',
+    'churned':'UInt64',
+    'retained':'UInt64',
+    'active':'UInt64',
+    'value': 'Float64',
+    'block_year': 'UInt16',
+    'block_month': 'UInt16',
+    'block_day':'UInt16',
+    'day_of_week':'String'
+}
 ################################################################
 #            MODEL FUNCTION
 #################################################################

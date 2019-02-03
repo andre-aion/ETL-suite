@@ -107,7 +107,7 @@ class PythonClickhouse:
             return df
 
         except Exception:
-            logger.error(' load data :%s', exc_info=True)
+            logger.error(' load data:', exc_info=True)
 
         # cols is a dict, key is colname, type is col type
 
@@ -245,8 +245,8 @@ class PythonClickhouse:
     def insert_df(self,df,cols,table):
         try:
             df = df[cols]  # arrange order of columns for
-            #logger.warning("columns in df to insert:%s",df.columns.tolist())
-            #logger.warning("df to insert:%s",df.head())
+            logger.warning("columns in df to insert:%s",df.columns.tolist())
+            logger.warning("df to insert:%s",df.head())
 
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
             logger.warning("DF UPSERTED:%s", affected_rows)

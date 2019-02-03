@@ -16,9 +16,9 @@ class Checkpoint:
         self.key_params = 'checkpoint:'+ table
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
-        self.my = PythonMysql('aion')
+        #self.my = PythonMysql('aion')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.window = 24 # hours
+        self.window = 3 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = 4 # hours
         self.table = table
@@ -91,19 +91,14 @@ class Checkpoint:
             self.get_checkpoint_dict()
             # handle reset or initialization
             if self.checkpoint_dict['offset'] is None:
-                if self.table == 'account_activity':
-                    self.checkpoint_dict['offset'] = self.get_value_from_mysql(self.table, min_max='MAX')
-                elif self.table == 'network_activity':
-                    self.checkpoint_dict['offset'] = self.get_value_from_clickhouse(self.table, min_max='MAX')
-                logger.warning("Checkpoint retreived from construct table:%s", self.checkpoint_dict['offset'])
-                if  self.checkpoint_dict['offset'] is None:
+                self.checkpoint_dict['offset'] = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                if self.checkpoint_dict['offset'] is None:
                     self.checkpoint_dict['offset'] = self.initial_date
 
             # convert offset to datetime if needed
             if isinstance(self.checkpoint_dict['offset'], str):
                 self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
                                                                    self.DATEFORMAT)
-
 
             return self.checkpoint_dict['offset']
 

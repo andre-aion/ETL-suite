@@ -30,3 +30,21 @@ checkpoint_dict[table] ={
     'offset':None,
     'timestamp' : None
 }
+
+
+table = 'account_activity_churn'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'block_timestamp',
+    'offset':None,
+    'timestamp' : None
+}
+
+table = 'account_value_churn'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'block_timestamp',
+    'offset':None,
+    'timestamp' : None
+}
+
