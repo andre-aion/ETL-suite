@@ -1,3 +1,4 @@
+import gc
 from datetime import timedelta, datetime, date
 
 import asyncio
@@ -243,6 +244,48 @@ class AccountActivityChurn(Checkpoint):
             self.cl.create_table(self.table, self.table_dict, self.cols)
         except Exception:
             logger.error("Create self.table in clickhosue", exc_info=True)
+            
+    def get_warehouse_summary(self,this_date):
+        # load daily summary from warehouse
+        try:
+            if isinstance(this_date,date):
+                this_date = datetime.combine(this_date, datetime.min.time())
+            start_date = this_date
+            end_date = start_date + timedelta(days=1)
+            cols = ["block_size", "block_time", "difficulty", "nrg_limit", "nrg_reward", "num_transactions",
+                    "block_nrg_consumed", "transaction_nrg_consumed", "nrg_price"]
+            # get data for that particular day
+            df = self.cl.load_data('block_tx_warehouse',cols,start_date,end_date)
+            summary = dict()
+            summary["block_size"] = 0.0
+            summary["block_time"] = 0.0
+            summary["difficulty"] = 0.0
+            summary["nrg_limit"] = 0.0
+            summary["nrg_reward"] = 0.0
+            summary["num_transactions"] = 0.0
+            summary["block_nrg_consumed"] = 0.0
+            summary["transaction_nrg_consumed"] = 0.0
+            summary["nrg_price"] = 0.0
+        
+            if df is not None:
+                if len(df) > 0:
+                    df = df.compute()
+                    summary["block_size"] = df.block_size.mean()
+                    summary["block_time"] = df.block_time.mean()
+                    summary["difficulty"] = df.difficulty.mean()
+                    summary["nrg_limit"] = df.nrg_limit.mean()
+                    summary["nrg_reward"] = df.nrg_reward.mean()
+                    summary["num_transactions"] = df.num_transactions.mean()
+                    summary["block_nrg_consumed"] = df.block_nrg_consumed.mean()
+                    summary["transaction_nrg_consumed"] = df.transaction_nrg_consumed.mean()
+                    summary["nrg_price"] = df.nrg_price.mean()
+            del df
+            gc.collect()
+            return summary
+            
+        except Exception:
+            logger.error("get warehouse summary", exc_info=True)
+
 
     def save_messages(self, this_date):
         try:
@@ -264,7 +307,7 @@ class AccountActivityChurn(Checkpoint):
             self.save_checkpoint()
             logger.warning("messages inserted and offset saved, Last OFFSET:%s",this_date)
         except Exception:
-            logger.error("Create self.table in clickhosue", exc_info=True)
+            logger.error("Create self.table in clickhouse", exc_info=True)
 
     async def update(self):
         try:
@@ -278,22 +321,41 @@ class AccountActivityChurn(Checkpoint):
             if self.df is not None:
                 if len(self.df) > 0:
                     b = self.prep_columns(self.df, this_date)
-                    # message for daily save
-                    value_count, value = dd.compute(self.df.value.count(),self.df.value.mean())
-                    message = {'block_timestamp': this_date.date(),
-                               'new_lst': b['new_str'],
-                               'churned_lst': b['churned_str'],
-                               'retained_lst': b['retained_str'],
-                               'active_lst': b['active_str'],
-                               'new':len(b['new_lst']),
-                               'churned':len(b['churned_lst']),
-                               'retained':len(b['retained_lst']),
-                               'active':len(b['active_lst']),
-                               'value':round(value),
-                               'block_year':int(this_date.year),
-                               'block_month':int(this_date.month),
-                               'block_day':int(this_date.day),
-                               'day_of_week': this_date.strftime('%a')
+                    # calculate daily value, because of double entry, cannot simply sum,
+                    # so filter out half the transactions
+                    df = self.df.compute()
+                    df = df[['value']]
+                    df = df[df.value >= 0]
+                    value_count, value = df.value.count(),df.value.mean()
+
+                    # construct dict to append to save-list
+                    summary = self.get_warehouse_summary(this_date)
+                    #logger.warning("summary:%s",summary)
+                    message = {
+                        'block_timestamp': this_date.date(),
+                        'new_lst': b['new_str'],
+                        'churned_lst': b['churned_str'],
+                        'retained_lst': b['retained_str'],
+                        'active_lst': b['active_str'],
+                        'new':len(b['new_lst']),
+                        'churned':len(b['churned_lst']),
+                        'retained':len(b['retained_lst']),
+                        'active':len(b['active_lst']),
+                        'value':round(value,4),
+                        'value_counts':value_count,
+                        'block_year':int(this_date.year),
+                        'block_month':int(this_date.month),
+                        'block_day':int(this_date.day),
+                        'day_of_week': this_date.strftime('%a'),
+                        'block_size': summary["block_size"],
+                        'block_time': summary["block_time"],
+                        'difficulty': summary["difficulty"],
+                        'nrg_limit': summary["nrg_limit"],
+                        'nrg_reward': summary["nrg_reward"],
+                        'num_transactions':summary["num_transactions"],
+                        'block_nrg_consumed':summary["block_nrg_consumed"],
+                        'transaction_nrg_consumed':summary["transaction_nrg_consumed"],
+                        'nrg_price':summary["nrg_price"]
                     }
                     #logger.warning('date:message-%s:%s',this_date,message)
 
@@ -310,7 +372,7 @@ class AccountActivityChurn(Checkpoint):
                             # register new events
                             df = pd.DataFrame(self.batch_messages)
                             # save dataframe
-                            df = dd.from_pandas(df, npartitions=2)
+                            df = dd.from_pandas(df, npartitions=3)
                             # logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
                             self.save_df(df)
                             self.batch_counter = 1

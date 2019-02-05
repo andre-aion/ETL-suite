@@ -213,7 +213,7 @@ table_dict['network_activity'] = {
     'block_nrg_consumed': 'Float64',
     'transaction_nrg_consumed': 'Float64',
     'nrg_price': 'Float64',
-    'p': 'Float64',
+    'value': 'Float64',
     'block_year': 'UInt16',
     'block_month': 'UInt16',
     'block_day':'UInt16',
@@ -278,10 +278,21 @@ table_dict['account_activity_churn'] = {
     'retained':'UInt64',
     'active':'UInt64',
     'value': 'Float64',
+    'value_counts':'UInt64',
+    'block_size': 'Float64',
+    'block_time': 'Float64',
+    'difficulty': 'Float64',
+    'nrg_limit': 'Float64',
+    'nrg_reward': 'Float64',
+    'num_transactions': 'Float64',
+    'block_nrg_consumed': 'Float64',
+    'transaction_nrg_consumed': 'Float64',
+    'nrg_price': 'Float64',
     'block_year': 'UInt16',
     'block_month': 'UInt16',
     'block_day':'UInt16',
-    'day_of_week':'String'
+    'day_of_week':'String',
+
 }
 ################################################################
 #            MODEL FUNCTION

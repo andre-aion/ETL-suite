@@ -22,10 +22,10 @@ table = 'account_activity'
 #warehouse_etl.reset_offset('2018-04-23 05:00:00')
 account_activity_etl = AccountActivity(table)
 '''
+
 table = 'account_activity_churn'
-account_activity_churn_etl = AccountActivityChurn(table)
 #tb = Table(table,table,'create')
-logger.warning("batch counter(line 332)")
+account_activity_churn_etl = AccountActivityChurn(table)
 
 async def run_etls():
 

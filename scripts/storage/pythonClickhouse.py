@@ -244,9 +244,10 @@ class PythonClickhouse:
 
     def insert_df(self,df,cols,table):
         try:
+            #logger.warning("columns in df to insert:%s",df.columns.tolist())
+            #logger.warning("df to insert:%s",df.head())
             df = df[cols]  # arrange order of columns for
-            logger.warning("columns in df to insert:%s",df.columns.tolist())
-            logger.warning("df to insert:%s",df.head())
+
 
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
             logger.warning("DF UPSERTED:%s", affected_rows)
