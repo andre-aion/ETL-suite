@@ -66,16 +66,14 @@ class PythonClickhouse:
                     qry += ','
         else:
             qry += '*'
-
         qry += """ FROM {}.{} WHERE toDate(block_timestamp) >= toDate('{}') AND 
-               toDate(block_timestamp) <= toDate('{}') ORDER BY block_timestamp""" \
+            toDate(block_timestamp) <= toDate('{}') ORDER BY block_timestamp""" \
             .format(self.db, table, startdate, enddate)
 
-        #logger.warning('query:%s', qry)
+        # logger.warning('query:%s', qry)
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
-
         start_date = self.ts_to_date(start_date)
         end_date = self.ts_to_date(end_date)
         #logger.warning('load data start_date:%s', start_date)
@@ -85,8 +83,7 @@ class PythonClickhouse:
             logger.warning("END DATE IS GREATER THAN START DATE")
             logger.warning("BOTH DATES SET TO START DATE")
             start_date = end_date
-        sql = self.construct_read_query(table, cols, start_date, end_date)
-
+        sql = self.construct_read_query(table=table, cols=cols, startdate=start_date, enddate=end_date)
         try:
             query_result = self.client.execute(sql,
                                                settings={
@@ -140,53 +137,6 @@ class PythonClickhouse:
         except Exception:
             logger.error("Create table error", exc_info=True)
 
-    def construct_insert_query_OLD(self, table, cols, messages):
-        # messages is list of tuples similar to cassandra
-        qry = "INSERT INTO " + self.db + "." + table + " [('"
-        for idx,col in enumerate(cols):
-            qry += col
-            if idx < (len(cols)-1):
-                qry += ', '
-        qry += "')] VALUES "
-        #logger.warning("partial messages to insert:%s", qry)
-        for idx, message in enumerate(messages):
-            qry += str(message)
-            if idx < len(messages)-1:
-                qry += ","
-        logger.warning('data insert query:%s', qry)
-        return qry
-
-    def construct_insert_query(self, table, cols, message):
-        try:
-            qry = """ INSERT INTO aion.{} 
-                   [({},{},{},{},{},{},
-                     {},{},{},{},{},{},
-                     {},{},{},{},{},{},
-                     {},{},{},{},{},{},
-                     {},{},{},{},{},{},
-                     {})] VALUES {}   
-            """.format(table,
-                        cols[0],cols[1],cols[2],cols[3],cols[4],cols[5],
-                        cols[6],cols[7], cols[8], cols[9], cols[10], cols[11],
-                        cols[12], cols[13], cols[14], cols[15], cols[16], cols[17],
-                        cols[18], cols[19], cols[20], cols[21], cols[22], cols[23],
-                        cols[24], cols[25], cols[26],cols[27], cols[28], cols[29],
-                        cols[30],
-                       message)
-            logger.warning('data insert query:%s', qry)
-            return qry
-        except Exception:
-            logger.error(" ")
-
-            logger.error("Construct table query", exc_info=True)
-
-    def insert(self, table, cols, messages):
-        qry = self.construct_insert_query(table, cols, messages)
-        try:
-            self.client.execute(qry)
-            logger.warning('DATA SUCCESSFULLY INSERTED TO {}:%s', qry, table)
-        except Exception:
-            logger.error("Insert table error", exc_info=True)
 
     def delete(self, item, type="table"):
         if type == 'table':
@@ -273,21 +223,4 @@ class PythonClickhouse:
         except Exception:
             logger.error("Upsert df", exc_info=True)
 
-    def upsert_messages(self,message, cols,table, col='block_timestamp'):
-        try:
-            #df = df.compute()
-            """
-            - get min max of range to use as start and end of range
-            - delete data
-            - insert data
-            """
-            start_range =message[0]
-            end_range = message[0]
-            self.delete_data(start_range, end_range, table)
-            #self.insert_df(df, cols=cols, table=table)
-
-            self.insert(table, cols, message)
-
-        except Exception:
-            logger.error("Upsert df", exc_info=True)
 

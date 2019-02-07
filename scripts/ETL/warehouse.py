@@ -211,5 +211,3 @@ class Warehouse(Checkpoint):
                 await asyncio.sleep(10800)
             else:
                 await  asyncio.sleep(1)
-
-

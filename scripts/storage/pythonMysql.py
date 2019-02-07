@@ -31,7 +31,9 @@ class PythonMysql:
         return int(x.timestamp())
 
     def int_to_date(self, x):
-        return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+        if isinstance(x,int):
+            return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+        return x
 
     def construct_read_query(self, table, cols, startdate, enddate):
         qry = 'SELECT '
@@ -96,9 +98,8 @@ class PythonMysql:
                     # convert to dask
                     df = dd.dataframe.from_pandas(df, npartitions=5)
                     #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
-                    if table not in ['transaction']:
-                        df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
-                    #logger.warning("%s data loaded from mysql:%s",table.upper(),df.head(10))
+                    df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
+                    #logger.warning("%s data loaded from mysql:%s",table,df['block_timestamp'].head(10))
             return df
 
         except Exception:

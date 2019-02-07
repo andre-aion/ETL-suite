@@ -260,6 +260,7 @@ table_dict['account_activity'] = {
     'block_year': 'UInt16',
     'day_of_week': 'String',
     'event':'String',
+    'account_type':'String',
     'from_addr':'String',
     'to_addr': 'String',
     'transaction_hash':'String',
@@ -292,6 +293,28 @@ table_dict['account_activity_churn'] = {
     'block_month': 'UInt16',
     'block_day':'UInt16',
     'day_of_week':'String',
+
+}
+
+table_dict['account_value_churn'] = {
+    'block_timestamp': 'Datetime',
+    'address':'String',
+    'value': 'Float64',
+    'transaction_hash':'String',
+    'block_size': 'Float64',
+    'block_time': 'Float64',
+    'difficulty': 'Float64',
+    'nrg_limit': 'Float64',
+    'nrg_reward': 'Float64',
+    'num_transactions': 'Float64',
+    'block_nrg_consumed': 'Float64',
+    'transaction_nrg_consumed': 'Float64',
+    'nrg_price': 'Float64',
+    'block_year': 'UInt16',
+    'block_month': 'UInt16',
+    'block_day':'UInt16',
+    'day_of_week':'String',
+    'activity':'String'
 
 }
 ################################################################

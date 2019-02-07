@@ -375,7 +375,7 @@ class AccountActivityChurn(Checkpoint):
                             df = dd.from_pandas(df, npartitions=3)
                             # logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
                             self.save_df(df)
-                            self.batch_counter = 1
+                            self.batch_counter = 0
                     else:
                         #logger.warning("batch counter(line 332):%s",self.batch_counter)
                         # register new events
@@ -384,6 +384,9 @@ class AccountActivityChurn(Checkpoint):
                         df = dd.from_pandas(df, npartitions=2)
                         # logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
                         self.save_df(df)
+                        self.batch_counter = 0
+                        self.batch_messages = []
+
 
         except Exception:
             logger.error("update", exc_info=True)

@@ -16,7 +16,7 @@ class Checkpoint:
         self.key_params = 'checkpoint:'+ table
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
-        #self.my = PythonMysql('aion')
+        self.my = PythonMysql('aion')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
