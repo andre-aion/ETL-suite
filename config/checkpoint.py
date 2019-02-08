@@ -48,3 +48,10 @@ checkpoint_dict[table] ={
     'timestamp' : None
 }
 
+table = 'account_activity_warehouse'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'block_timestamp',
+    'offset':None,
+    'timestamp' : None
+}

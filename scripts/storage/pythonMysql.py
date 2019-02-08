@@ -19,11 +19,23 @@ logger = mylogger(__file__)
 
 class PythonMysql:
     # port = '9000'
-    ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
+    #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
     def __init__(self,db):
+        self.host = '40.113.226.240'
+        self.password = '1233tka061'
+        self.user = 'clickhouse'
+        self.df = db
+
+        # when home
+        self.host = '127.0.0.1'
+        self.password = 'password'
+        self.user = 'admin'
+        self.db = 'aion_analytics'
+
         self.schema = db
-        self.connection = MySQLdb.connect(user='clickhouse', password='1233tka061',
-                                    database=db, host='40.113.226.240')
+        self.connection = MySQLdb.connect(user=self.user, password=self.password,
+                                    database=self.db, host=self.host)
+
         self.conn = self.connection.cursor()
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -57,7 +69,7 @@ class PythonMysql:
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
-        logger.warning('%s load data start_date,%s:%s',table,start_date, end_date)
+        #logger.warning('%s load data start_date,%s:%s',table,start_date, end_date)
 
         start_date = self.date_to_int(start_date)
         end_date = self.date_to_int(end_date)
@@ -74,31 +86,39 @@ class PythonMysql:
             if df is not None:
                 if len(df)>0:
                     # do some renaming
-
+                    rename = {}
                     if table in ['token_transfers']:
-                        rename = {"transfer_timestamp": "block_timestamp",
-                                  "approx_value":"value"}
-
+                        if 'transfer_timestamp' in df.columns.tolist():
+                            rename['transfer_timestamp'] = 'block_timestamp'
+                        if 'approx_value' in df.columns.tolist():
+                            rename['approx_value'] = 'value'
                     elif table in ['internal_transfer']:
-                        rename = {"approx_value":"value"}
-
-                    elif table in ['transaction']:
-                        rename = {"approx_value":"value"}
-
+                        if 'approx_value' in df.columns.tolist():
+                            rename['approx_value'] = 'value'
                     elif table in ['block']:
-                        rename = {
-                            'nrg_consumed':'block_nrg_consumed',
-                            'month':'block_month',
-                            'day':'block_day',
-                            'year':'block_year',
-                            'approx_nrg_reward':'nrg_reward'
-                        }
+                        if 'nrg_consumed' in df.columns.tolist():
+                            rename['nrg_consumed'] = 'block_nrg_consumed'
+                        if 'month' in df.columns.tolist():
+                            rename['month'] = 'block_month'
+                        if 'day' in df.columns.tolist():
+                            rename['day'] = 'block_day'
+                        if 'year' in df.columns.tolist():
+                            rename['year'] = 'block_year'
+                        if 'approx_nrg_reward' in df.columns.tolist():
+                            rename['approx_nrg_reward'] = 'nrg_reward'
+                    elif table in ['transaction']:
+                        if 'nrg_consumed' in df.columns.tolist():
+                            rename['nrg_consumed'] = 'transaction_nrg_consumed'
+                        if 'approx_value' in df.columns.tolist():
+                            rename['approx_value'] = 'value'
+
                     df = df.rename(index=str, columns=rename)
 
                     # convert to dask
                     df = dd.dataframe.from_pandas(df, npartitions=5)
                     #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
-                    df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
+                    if 'block_timestamp' in df.columns.tolist():
+                        df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
                     #logger.warning("%s data loaded from mysql:%s",table,df['block_timestamp'].head(10))
             return df
 

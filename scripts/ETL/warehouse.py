@@ -10,7 +10,7 @@ from config.df_construct_config import warehouse_inputs as cols, table_dict,colu
 from scripts.ETL.checkpoint import checkpoint_dict, Checkpoint
 from scripts.storage.pythonClickhouse import PythonClickhouse
 from scripts.storage.pythonRedis import PythonRedis
-from scripts.streaming.streamingDataframe import StreamingDataframe
+from scripts.streaming.streamingDataframe import StreamingDataframe as SD
 from scripts.utils.mylogger import mylogger
 from scripts.utils.poolminer import explode_transaction_hashes
 import dask as dd
@@ -160,7 +160,7 @@ class Warehouse(Checkpoint):
                     if df_tx is None:
                         # make two dataframes to pandas
                         mycols = self.construction_cols_dict[input_table2]
-                        df_tx = StreamingDataframe(input_table2,mycols,[]).get_df()
+                        df_tx = SD(input_table2,mycols,[]).get_df()
                         logger.warning("SD df_tx columns:%s", df_tx.columns.tolist())
 
                     rename = {'nrg_consumed': 'transaction_nrg_consumed',

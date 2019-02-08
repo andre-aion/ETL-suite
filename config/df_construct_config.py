@@ -317,6 +317,31 @@ table_dict['account_value_churn'] = {
     'activity':'String'
 
 }
+
+table_dict['account_activity_warehouse'] = {
+    'block_timestamp': 'Datetime',
+    'activity': 'String',
+    'address':'String',
+    'event':'String',
+    'account_type':'String',
+    'value': 'Float64',
+    'block_size': 'Float64',
+    'block_time': 'Float64',
+    'difficulty': 'Float64',
+    'nrg_limit': 'Float64',
+    'nrg_reward': 'Float64',
+    'num_transactions': 'Float64',
+    'block_nrg_consumed': 'Float64',
+    'transaction_nrg_consumed': 'Float64',
+    'nrg_price': 'Float64',
+    'block_year': 'UInt16',
+    'block_month': 'UInt16',
+    'block_day':'UInt16',
+    'day_of_week':'String',
+    'from_addr':'String',
+    'to_addr':'String',
+    'transaction_hash':'String'
+}
 ################################################################
 #            MODEL FUNCTION
 #################################################################
@@ -327,4 +352,9 @@ def model(self, date):
     except Exception:
         logger.error('', exc_info=True)
 
+''' '''
+self.new_activity_lst = df.apply(create_address_transaction,
+                                 args=(table,churned_addresses,self.new_activity_lst,),
+                                 axis=1,meta=('address_lst','O'))
 '''
+

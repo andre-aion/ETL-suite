@@ -70,7 +70,7 @@ class PythonClickhouse:
             toDate(block_timestamp) <= toDate('{}') ORDER BY block_timestamp""" \
             .format(self.db, table, startdate, enddate)
 
-        # logger.warning('query:%s', qry)
+        #logger.warning('query:%s', qry)
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
@@ -123,7 +123,7 @@ class PythonClickhouse:
                 count += 1
             qry += ") ENGINE = MergeTree() ORDER BY (block_timestamp)"
 
-            logger.warning('create table query:%s', qry)
+            #logger.warning('create table query:%s', qry)
             return qry
         except Exception:
             logger.error("Construct table query")
@@ -197,8 +197,6 @@ class PythonClickhouse:
             #logger.warning("columns in df to insert:%s",df.columns.tolist())
             #logger.warning("df to insert:%s",df.head())
             df = df[cols]  # arrange order of columns for
-
-
             affected_rows = pandahouse.to_clickhouse(df, table=table, connection=self.conn, index=False)
             logger.warning("DF UPSERTED:%s", affected_rows)
         except:
