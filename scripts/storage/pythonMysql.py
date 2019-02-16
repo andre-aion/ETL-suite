@@ -24,13 +24,14 @@ class PythonMysql:
         self.host = '40.113.226.240'
         self.password = '1233tka061'
         self.user = 'clickhouse'
-        self.df = db
+        self.db = db
 
-        # when home
-        self.host = '127.0.0.1'
-        self.password = 'password'
-        self.user = 'admin'
-        self.db = 'aion_analytics'
+        #self.host = '104.200.110.155'
+        self.host = '192.168.1.7'
+        self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
+        self.user = 'clickhouse'
+        self.db = db
+
 
         self.schema = db
         self.connection = MySQLdb.connect(user=self.user, password=self.password,

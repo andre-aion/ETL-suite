@@ -20,7 +20,7 @@ class Checkpoint:
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.is_up_to_date_window = 4 # hours
+        self.is_up_to_date_window = self.window + 2 # hours
         self.table = table
         self.initial_date = "2018-04-25 17:00:00"
         # manage size of warehouse
@@ -179,6 +179,7 @@ class Checkpoint:
             elif mean(self.df_size_lst) <= self.df_size_threshold['lower']:
                 self.window = round(self.window * 1.25)
                 logger.warning("WINDOW ADJUSTED UPWARDS FROM: %s hours",  self.window)
+            self.is_up_to_date_window = self.window + 2
             self.df_size_lst = []
 
         # check max date in a construction table

@@ -29,43 +29,54 @@ logger = mylogger(__file__)
 contract_addresses = []
 my = PythonMysql('aion')
 DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-initial_date = datetime.strptime("2018-04-25 00:00:00", "%Y-%m-%d %H:%M:%S")
+initial_date = datetime.strptime("2018-04-25 10:00:00", "%Y-%m-%d %H:%M:%S")
 start_date = my.date_to_int(initial_date)
 end_date = my.date_to_int(datetime.now())
-qry = """SELECT contract_addr FROM aion.contract WHERE deploy_timestamp >= {} AND 
-              deploy_timestamp <= {} ORDER BY deploy_timestamp""".format(start_date, end_date)
-df = pd.read_sql(qry, my.connection)
-if len(df) > 0:
-    contract_addresses = df['contract_addr'].tolist()
+if len(contract_addresses) <= 0:
+    qry = """SELECT contract_addr FROM aion.contract WHERE deploy_timestamp >= {} AND 
+                  deploy_timestamp <= {} ORDER BY deploy_timestamp""".format(start_date, end_date)
+    df = pd.read_sql(qry, my.connection)
+    logger.warning("line 39: contract addresses loaded from mysql")
+    if len(df) > 0:
+        contract_addresses = df['contract_addr'].tolist()
+        del df
+        gc.collect()
 
-def get_account_type(address):
+all_df = None
+global all_df
+
+
+def get_account_type(address,my):
     try:
-        my = PythonMysql('aion')
         # check contracts
-        qry = """select address,transaction_hash from aion.account 
-                                where address = '{}' """.format(address)
-        df = pd.read_sql(qry, my.connection)
-        if df is not None:
-            if len(df) > 0:
-                transaction_hash = df['transaction_hash'].unique().tolist()
-                del df
-                gc.collect()
-                # logger.warning('transaction_hash searching for miner %s:%s',address,transaction_hash)
-                if transaction_hash[0] == '':
-                    # logger.warning("MINER FOUND:%s",transaction_hash)
-                    return 'miner'
-                else:
-                    # logger.warning("AIONNER FOUND:%s",transaction_hash)
-
-                    return 'aionner'
+        if address in contract_addresses:
+            return 'contract'
+        else:
+            qry = """select address,transaction_hash from aion.account 
+                                    where address = '{}' """.format(address)
+            df = pd.read_sql(qry, my.connection)
+            if df is not None:
+                if len(df) > 0:
+                    transaction_hash = df['transaction_hash'].unique().tolist()
+                    del df
+                    gc.collect()
+                    #logger.warning('transaction_hash searching for miner %s:%s',address,transaction_hash)
+                    if transaction_hash[0] == '':
+                        # logger.warning("MINER FOUND:%s",transaction_hash)
+                        return 'miner'
+                    else:
+                        # logger.warning("AIONNER FOUND:%s",transaction_hash)
+                        return 'aionner'
 
         return 'aionner'
     except Exception:
-        logger.error('get_account_type:%s', exc_info=True)
+        logger.error('get_account_type:', exc_info=True)
 
-def create_address_transaction(row,table,churned_addresses,address_lst,
-                               new_activity_lst):
+def create_address_transaction(row,table,address_lst,
+                               new_activity_lst,my):
     try:
+        global all_df
+        all_df = extend_self_df(row)
         #logger.warning('%s:',row['from_addr'])
         if row is not None:
             block_timestamp = row['block_timestamp']
@@ -79,27 +90,21 @@ def create_address_transaction(row,table,churned_addresses,address_lst,
             else:
                 event = "native transfer"
 
-            # DETERMING IF NEW ADDRESS
-            # if first sighting is from_ then make 'value' negative
-            #logger.warning('self address list:%s',self.address_lst)
+            # DETERMINE IF NEW ADDRESS
+            #logger.warning('self address list:%s',self.existing_addresses)
             if row['from_addr'] in address_lst:
-                from_activity = 'active'
-                if churned_addresses is not None:
-                    if len(churned_addresses) > 0:
-                        if row['from_addr'] in churned_addresses:
-                            from_activity = 'churned'
-                            logger.warning("ADDRESS CHURNED:%s",row['from_addr'])
+                from_activity = determine_churn(row['from_addr'])
             elif row['from_addr'] not in address_lst:
                 from_activity = 'joined'
                 address_lst.append(row['from_addr'])
             if row['to_addr'] in address_lst:
-                to_activity = 'active'
+                to_activity = determine_churn(row['to_addr'])
             elif row['to_addr'] not in address_lst:
                 to_activity = 'joined'
                 address_lst.append(row['to_addr'])
 
-            account_type_from = get_account_type(row['from_addr'])
-            account_type_to = get_account_type(row['to_addr'])
+            account_type_from = get_account_type(row['from_addr'],my)
+            account_type_to = get_account_type(row['to_addr'],my)
             temp_lst = [
                {
                     'activity': from_activity,
@@ -144,17 +149,67 @@ def create_address_transaction(row,table,churned_addresses,address_lst,
     except Exception:
         logger.error('create address transaction:',exc_info=True)
 
-def calling_create_address_transaction(df,table,churned_addresses,address_lst,
-                               new_activity_lst):
+def calling_create_address_transaction(df,table,address_lst,
+                                       new_activity_lst):
     try:
-        #logger.warning('%s',df.head(10))
+        my = PythonMysql('aion')
         tmp_lst = df.apply(create_address_transaction, axis=1,
-                                    args=(table, churned_addresses, address_lst,
-                                    new_activity_lst,))
+                                    args=(table, address_lst,
+                                    new_activity_lst,my))
+
         new_activity_lst += tmp_lst
+        my.conn.close()
+        my.connection.close()
         return new_activity_lst
     except Exception:
         logger.error('calling create address ....:', exc_info=True)
+
+def extend_self_df(row):
+    try:
+        # concatenate to self.df
+        global all_df
+        if all_df is not None:
+            all_df = all_df.repartition(npartitions=10)
+            all_df = all_df.reset_index(drop=True)
+            temp_dict = [
+                {
+                    'address': row['to_addr'],
+                    'value': row['value']
+                },
+                {
+                    'address': row['from_addr'],
+                    'value':row['value']*-1
+                }]
+            df_temp = pd.DataFrame(temp_dict)
+            df_temp = dd.from_pandas(df_temp,npartitions=10)
+            df_temp = df_temp.reset_index(drop=True)
+            all_df = dd.concat([all_df, df_temp], axis=0, interleave_partitions=True)
+
+    except Exception:
+        logger.error('extend self.df', exc_info=True)
+
+def determine_churn(current_addresses):
+    try:
+        global all_df
+        if all_df is not None:
+            if len(all_df) > 0:
+                # the addresses in the current block the sum to zero
+                # (transactions from the beginning, have churned
+                logger.warning('line 267 length of current addresses in period:%s',len(current_addresses))
+                df = all_df[all_df['address'].isin(current_addresses)]
+                df = df.groupby('address')['value'].sum()
+                df = df.reset_index()
+                df = df[df.value == 0]
+                df = df[['address']]
+                df = df.compute()
+                churned_addresses = df['address'].unique().tolist()
+                if len(churned_addresses)>0:
+                    logger.warning('line 276: length churned addresses: %s', len(churned_addresses))
+                    return 'churned'
+                return 'active'
+        return 'active'
+    except Exception:
+        logger.error('determine churn', exc_info=True)
 
 class AccountActivity(Checkpoint):
     def __init__(self, table):
@@ -165,28 +220,29 @@ class AccountActivity(Checkpoint):
 
         self.cl = PythonClickhouse('aion')
         self.redis = PythonRedis()
-        self.window = 3  # hours
+        self.window = 2  # hours
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
-        self.is_up_to_date_window = 4  # hours to sleep to give reorg time to happen
+        self.is_up_to_date_window = self.window + 2  # hours to sleep to give reorg time to happen
         self.table = table
         self.table_dict = table_dict[table]
 
         self.df = None
         self.df_history = None
-        self.churn_cols = ['address', 'value','from_addr','block_timestamp']
+        self.churn_cols = ['address', 'value']
 
-        self.initial_date = datetime.strptime("2018-04-25 00:00:00",self.DATEFORMAT)
+        self.initial_date = datetime.strptime("2018-04-25 10:00:00",self.DATEFORMAT)
         # manage size of warehouse
         self.df_size_lst = []
         self.df_size_threshold = {
-            'upper': 1500,
-            'lower': 1000
+            'upper': 1000,
+            'lower': 500
         }
 
         self.columns = sorted(list(table_dict[table].keys()))
         # lst to make new df for account balance
         self.new_activity_lst = []
-        self.address_lst = [] # all addresses ever on network
+        self.existing_addresses = [] # all addresses ever on network
+        self.current_addresses = []
         self.churned_addresses = []
 
         # what to bring back from tables
@@ -215,84 +271,69 @@ class AccountActivity(Checkpoint):
         - get addresses from start til now
         - filter for current addresses and extant addresses
     """
-    def get_addresses(self,start_date,end_date):
+    def set_all_previous_addresses(self,start_date,end_date):
         try:
-            if self.df is None:
-                # get addresses from start of time til end of block under consideration
-                self.df = self.load_df(self.initial_date,end_date,self.churn_cols,
-                                       self.table,'clickhouse')
-                self.df = self.df.repartition(npartitions=30)
-            else:
-                if len(self.df)>0:
+            if self.existing_addresses is None:
+                if len(self.existing_addresses) <= 0:
+                    # get addresses from start of time til end of block under consideration
+                    df = self.load_df(self.initial_date,end_date,self.churn_cols,
+                                           self.table,'clickhouse')
+                    df = df.repartition(npartitions=100)
+                    logger.warning('line 234: self.df loaded from clickhouse:%s',len(df))
 
-                    # if the compreshensive address list is empty, refill it
-                    # this occurs at ETL restart, etc.
-                    if self.address_lst is None:
-                        self.address_lst = []
-                    if len(self.address_lst) <=0:
-                        self.before = self.df[self.churn_cols]
-                        self.before = self.before[self.before.block_timestamp > start_date]
-                        self.before = self.before[['address']]
-                        self.before = self.before.compute()
-                        self.address_lst = self.before['address'].unique().tolist()
-                    # prune til we only have from start of time til start date
-                    # so that new joiners in the current block can be labelled
-                    if isinstance(start_date,int):
-                        start_date = datetime.fromtimestamp(start_date)
-                    if isinstance(end_date, int):
-                        end_date = datetime.fromtimestamp(end_date)
-                    df_current = self.df[(self.df['block_timestamp'] >= start_date) &
-                                         (self.df['block_timestamp'] <= end_date)]
+                    self.before = self.before[self.before.block_timestamp > start_date]
+                    self.before = self.before[['address']]
+                    self.before = self.before.compute()
+                    self.existing_addresses = self.before['address'].unique().tolist()
+                    if self.existing_addresses is None:
+                        self.existing_addresses = []
+                    del df
 
-                    df_current = df_current[['address']]
-                    df_current = df_current.compute()
-                    return list(df_current['address'].unique())
-            return []
-
+            self.existing_addresses = self.existing_addresses + self.current_addresses
+            #logger.warning('line 253: length of existing addresses:%s', len(self.existing_addresses))
         except Exception:
             logger.error('get addresses', exc_info=True)
 
 
-    def determine_churn(self, current_addresses,end_date):
+
+    # get current addresses and add new transactions to self.df
+    def set_current_addresses(self,df):
         try:
-            if self.df is None:
-                self.df = self.load_df(start_date=self.initial_date,
-                                       end_date=end_date,
-                                       table=self.table,
-                                       cols=self.churn_cols,
-                                       storage_medium='clickhouse'
-                                       )
-                self.df = self.df.repartition(npartitions=30)
+            # make df
+            df = df[['value', 'from_addr','to_addr']]
+            df = df.compute()
+            # add to current address
+            self.current_addresses += list(df['from_addr'].unique())
+            self.current_addresses += list(df['to_addr'].unique())
+            self.current_addresses = list(set(self.current_addresses))
 
-            if self.df is not None:
-                if len(self.df) > 0:
-                    # the addresses in the current block the sum to zero
-                    # (transactions from the beginning, have churned
-                    df = self.df[self.df['from_addr'].isin(current_addresses)]
-                    df = df.groupby('from_addr')['value'].sum()
-                    df = df.reset_index()
-                    df = df[df.value == 0]
-                    df = df[['from_addr']]
-                    df = df.compute()
-                    churned_addresses = df['from_addr'].unique().tolist()
-                    return churned_addresses
-            return []
+
         except Exception:
-            logger.error('determine churn', exc_info=True)
-
+            logger.error('set current addresses', exc_info=True)
 
     async def update(self):
         try:
+            global all_df
             # SETUP
             offset = self.get_offset()
             if isinstance(offset, str):
                 offset = datetime.strptime(offset, self.DATEFORMAT)
             start_date = offset
             end_date = start_date + timedelta(hours=self.window)
+            if all_df is None:
+                cl = PythonClickhouse('aion')
+                all_df = cl.load_data(start_date=initial_date,
+                                      end_date=end_date,
+                                      table='account_activity',
+                                      cols=['address', 'value'],
+                                      )
+                all_df = all_df.repartition(npartitions=30)
+                logger.warning("all_df loaded:%s",len(all_df))
             self.update_checkpoint_dict(end_date)
             # get data
             logger.warning('LOAD RANGE %s:%s',start_date,end_date)
             self.new_activity_lst = []
+            self.current_addresses = []
             for table in self.construction_cols_dict.keys():
                 logger.warning('CONSTRUCTION STARTED for: %s',table)
                 cols = self.construction_cols_dict[table]['cols']
@@ -303,54 +344,45 @@ class AccountActivity(Checkpoint):
                     if len(df)>0:
                         # convert to plus minus transactions
                         # get addresses in current block
-                        self.address_lst = self.get_addresses(start_date,end_date)
-                        if self.address_lst is not None:
+                        self.set_all_previous_addresses(start_date,end_date) # update address list, set addresses
+                        if self.existing_addresses is not None:
                             #logger.warning("%s LOADED, WINDOW:- %s", table.upper(), len(df))
-                            churned_addresses = self.determine_churn(self.address_lst,end_date)
                             '''
                             self.new_activity_lst = df.apply(create_address_transaction, axis=1,
-                                                             args=(table, churned_addresses,self.address_lst,
+                                                             args=(table, churned_addresses,self.existing_addresses,
                                                                    self.new_activity_lst,),
                                                               meta=('address_lst', 'O'))
                             '''
+                            df = df.repartition(npartitions=5)
                             self.new_activity_lst = df.map_partitions(calling_create_address_transaction,
-                                                                      table, churned_addresses, self.address_lst,
+                                                                      table, self.existing_addresses,
                                                                       self.new_activity_lst,
-                                                                      meta=('new_activity_list', 'O'))
+                                                                      meta=(None, 'O')).compute(get=get)
+
                         del df
                         gc.collect()
 
             # save data
-            if len(self.new_activity_lst) > 0:
-                logger.warning('%s',self.new_activity_lst)
+            #self.new_activity_lst = self.new_activity_lst.compute()
+            lst = []
+            for item in self.new_activity_lst:
+                lst.append(item[0])
+
+            if len(lst) > 0:
+                #logger.warning('line 336: length of new activity list:%s',len(lst))
+                self.new_activity_lst = lst
                 df = pd.DataFrame(self.new_activity_lst)
                 # save dataframe
-                df = dd.from_pandas(df, npartitions=10)
-                logger.warning("INSIDE SAVE DF:%s", df.columns.tolist())
+                df = dd.from_pandas(df, npartitions=100)
 
                 self.save_df(df)
                 self.df_size_lst.append(len(df))
                 self.window_adjuster() # adjust size of window to load bigger dataframes
 
-                self.address_lst += self.new_activity_lst
+                self.existing_addresses += self.new_activity_lst
                 self.new_activity_lst = [] #reset for next window
-                # logger.warning('FINISHED %s',table.upper())
 
-                # append newly made df to existing self.df
-                temp_df = df[self.churn_cols]
-                if self.df is not None:
-                    # make equal partitions to use concat
-                    self.df = self.df.repartition(npartitions=50)
-                    self.df = self.df.reset_index(drop=True)
-                    temp_df = temp_df.repartition(npartitions=50)
-                    temp_df = temp_df.reset_index(drop=True)
-                    self.df = dd.concat([self.df,temp_df],axis=0,interleave_partitions=True)
-                    self.df = self.df.drop_duplicates() # deduplicate
-                    logger.warning('df length-%s:timestamp after append:%s',len(self.df),
-                                   self.df['block_timestamp'].tail(5))
-                else:
-                    self.df = temp_df
-                del temp_df
+
                 gc.collect()
 
             # update composite list

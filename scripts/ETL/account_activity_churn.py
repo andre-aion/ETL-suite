@@ -401,7 +401,7 @@ class AccountActivityChurn(Checkpoint):
                                   storage_medium='clickhouse',
                                   window_hours= self.is_up_to_date_window
                                   ):
-                logger.warning("NETWORK ACTIVITY SLEEPING FOR 1 DAY:UP TO DATE")
+                logger.warning("NETWORK ACTIVITY CHURN SLEEPING FOR 1 DAY:UP TO DATE")
                 await asyncio.sleep(86400)  # sleep one day
             else:
                 await asyncio.sleep(1)
