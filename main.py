@@ -1,6 +1,6 @@
 from scripts.ETL.account_activity_churn import AccountActivityChurn
 from scripts.ETL.account_activity_warehouse import AccountActivityWarehouse
-from scripts.ETL.account_activity_new import AccountActivity
+from scripts.ETL.account_activity import AccountActivity
 
 from scripts.ETL.warehouse import Warehouse
 from scripts.tablemanager.Table import Table

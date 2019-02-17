@@ -26,12 +26,12 @@ class PythonMysql:
         self.user = 'clickhouse'
         self.db = db
 
-        #self.host = '104.200.110.155'
+
+        self.host = '104.200.110.155'
         self.host = '192.168.1.7'
         self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
         self.user = 'clickhouse'
         self.db = db
-
 
         self.schema = db
         self.connection = MySQLdb.connect(user=self.user, password=self.password,
@@ -66,7 +66,7 @@ class PythonMysql:
                    block_timestamp <= {} ORDER BY block_timestamp""" \
                 .format(self.schema, table, startdate, enddate)
 
-        # logger.warning('query:%s', qry)
+        #logger.warning('query:%s', qry)
         return qry
 
     def load_data(self,table,cols,start_date,end_date):
