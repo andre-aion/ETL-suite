@@ -214,8 +214,9 @@ class PythonClickhouse:
             #logger.warning('before upsert: %s',df.head(10))
             start_range = df[col].min()
             end_range = df[col].max()
-            #logger.warning('delete range:%s:%s')
-            self.delete_data(start_range,end_range,table)
+            logger.warning('upsert delete range: start:end %s:%s',start_range,end_range)
+            if table != 'account_activity':
+                self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
 
         except Exception:

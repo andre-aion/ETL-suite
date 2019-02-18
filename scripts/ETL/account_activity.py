@@ -103,29 +103,23 @@ def create_address_transaction(row,table,address_lst,
                 event = "native transfer"
 
             # DETERMINE IF NEW ADDRESS
+            #if len(churned_addresses) > 0 :
+                #logger.warning('%s:%s',row['from_addr'],row['to_addr'])
             from_activity = 'joined'
             if row['from_addr'] in churned_addresses:
                 if row['from_addr'] == row['to_addr']:
                     from_activity = 'self-to-self transfer'
                 else:
-                    logger.warning('CHURN LABEL APPLIED')
-                    logger.warning('from addr = %s', row['from_addr'])
+                    logger.warning('CHURN LABEL APPLIED(FROM)')
+                    #logger.warning('from addr = %s', row['from_addr'])
                     from_activity = 'churned'
             else:
                 if row['from_addr'] in address_lst:
                     from_activity = 'active'
 
             to_activity = 'joined'
-            if row['to_addr'] in churned_addresses:
-                if row['from_addr'] == row['to_addr']:
-                    to_activity = 'self-to-self transfer'
-                else:
-                    logger.warning('CHURN LABEL APPLIED')
-                    logger.warning('to addr = %s', row['to_addr'])
-                    to_activity = 'churned'
-            else:
-                if row['to_addr'] in address_lst:
-                    to_activity = 'active'
+            if row['to_addr'] in address_lst:
+                to_activity = 'active'
 
             account_type_from = get_account_type(row['from_addr'],my)
             account_type_to = get_account_type(row['to_addr'],my)
@@ -168,6 +162,8 @@ def create_address_transaction(row,table,address_lst,
             #logger.warning('temp lsit:%s',temp_lst)
             # for each to_addr
             new_activity_lst = new_activity_lst+temp_lst
+            del temp_lst
+            gc.collect()
             return new_activity_lst
 
     except Exception:
@@ -184,26 +180,12 @@ def calling_create_address_transaction(df,table,address_lst,
         new_activity_lst = new_activity_lst + tmp_lst
         my.conn.close()
         my.connection.close()
+        del tmp_lst
+        gc.collect()
         return new_activity_lst
     except Exception:
         logger.error('calling create address ....:', exc_info=True)
 
-def manage_all_df(end_date=None):
-    try:
-        # concatenate to self.df
-        global all_df
-
-        if all_df is None:
-            cl = PythonClickhouse('aion')
-            all_df = cl.load_data(start_date=initial_date,
-                                  end_date=end_date,
-                                  table='account_activity',
-                                  cols=['address', 'value'],
-                                  )
-            all_df = all_df.repartition(npartitions=10)
-            logger.warning("all_df loaded:%s", len(all_df))
-    except Exception:
-        logger.error('manage all df', exc_info=True)
 
 def set_churned_df_addresses(block_numbers):
     try:
@@ -214,16 +196,15 @@ def set_churned_df_addresses(block_numbers):
         account_churned_addresses = []
         token_holders_churned_addresses = []
         if len(account_churned_df) > 0:
-            temp = account_churned_df[account_churned_df.block_number.isin(block_numbers)]
+            temp = account_churned_df
+            temp = temp[temp.block_number.isin(block_numbers)]
             if len(temp) > 0:
                 account_churned_addresses = list(temp['address'].unique())
         if len(token_holders_churned_df) > 0:
-            temp = token_holders_churned_df[
-                token_holders_churned_df.block_number.isin(block_numbers)]
+            temp = token_holders_churned_df
+            temp = temp[temp.block_number.isin(block_numbers)]
             if len(temp) > 0:
                 token_holders_churned_addresses = list(temp['address'].unique())
-
-
     except Exception:
         logger.error('get churned df addresses', exc_info=True)
 
@@ -235,6 +216,7 @@ def load_churned_df(offset):
         global token_holders_churned_df
         my = PythonMysql('aion')
 
+        '''
         # get the block number nearest to the offset
         offset = my.date_to_int(offset)
         qry = """
@@ -246,21 +228,22 @@ def load_churned_df(offset):
             block_number = df['block_number'].min()
         else:
             block_number = 0
-
-        logger.warning('BLOCK NUMBER:%s',block_number)
+        
+        logger.warning('BLOCK NUMBER:%s')
+        '''
         if account_churned_df is None:
             qry = """
                 select address,last_block_number as block_number from account  
-                where balance = 0 and last_block_number >= {}
-            """.format(block_number)
+                where balance = 0
+            """
             account_churned_df = pd.read_sql(qry, my.connection)
             logger.warning("length of account churned:%s",len(account_churned_df))
 
         if token_holders_churned_df is None:
             qry = """
                 select contract_addr as address, block_number from token_holders 
-                where scaled_balance = 0 and block_number >= {}
-            """.format(block_number)
+                where scaled_balance = 0
+            """
             token_holders_churned_df = pd.read_sql(qry, my.connection)
             logger.warning("length of token holders churned:%s",len(token_holders_churned_df))
 
@@ -269,27 +252,23 @@ def load_churned_df(offset):
 
 def determine_churn(current_addresses):
     try:
-        global all_df
         global account_churned_addresses
         global token_holders_churned_addresses
-        # the addresses in the current block the sum to zero
         # (transactions from the beginning, have churned
-        df = all_df[all_df['address'].isin(current_addresses)]
-        if len(df) > 0 :
-            #logger.warning('inside determine churn, length of filtered df:%s',len(df))
-            df = df.groupby('address')['value'].sum()
+        churned_addresses = []
+        if len(current_addresses) > 0 :
             #logger.warning('inside df:%s',df.head(40))
 
-            df = df.reset_index()
-            df = df[(df.value == 0) | (df.address.isin(account_churned_addresses)) |
-                    (df.address.isin(token_holders_churned_addresses))]
-            if len(df) > 0:
-                df = df[['address']]
-                df = df.compute()
-                churned_addresses = df['address'].unique().tolist()
-                logger.warning("number of churned addresses:%s",len(churned_addresses))
-                logger.warning('churned addresses = %s', churned_addresses)
-                return churned_addresses
+            tmp = list(set(account_churned_addresses) & set(current_addresses))
+            if len(tmp) > 0:
+                churned_addresses += tmp
+            tmp = list(set(token_holders_churned_addresses) & set(current_addresses))
+            if len(tmp) > 0:
+                churned_addresses += tmp
+
+            logger.warning("number of churned addresses:%s",len(churned_addresses))
+            #logger.warning('churned addresses = %s', churned_addresses)
+            return churned_addresses
         logger.warning("number of churned accounts is 0")
 
         return []
@@ -357,50 +336,30 @@ class AccountActivity(Checkpoint):
         - get addresses from start til now
         - filter for current addresses and extant addresses
     """
+
+    def load_existing_addresses(self,end_date):
+        try:
+            if len(self.existing_addresses) <= 0:
+                cl = PythonClickhouse('aion')
+                temp_df = cl.load_data(start_date=initial_date,
+                                       end_date=end_date,
+                                       table='account_activity',
+                                       cols=['address'],
+                                       )
+                temp_df = temp_df.compute()
+                self.existing_addresses = list(set(list(temp_df['address'].unique())))
+                del temp_df
+                gc.collect()
+        except Exception:
+            logger.error('load existing addresses', exc_info=True)
+
     def set_all_previous_addresses(self):
         try:
-            #logger.warning('existing addresses:%s', self.existing_addresses)
-            #logger.warning('current addresses:%s', self.current_addresses)
+
             self.existing_addresses = list(set(self.existing_addresses + self.current_addresses))
             logger.warning('length of current addresses:%s', len(self.current_addresses))
         except Exception:
-            logger.error('get addresses', exc_info=True)
-
-
-    def add_to_all_df(self,df,npartitions=10):
-        global all_df
-        logger.warning('Length of all_df %s', len(all_df))
-
-        try:
-            if df is not None:
-                if len(df) > 0:
-                    temp = df[['from_addr', 'to_addr', 'value']]
-                    temp1 = temp.copy()
-                    temp1 = temp1.rename(columns={'from_addr': 'address'})
-                    temp1 = temp1[['address', 'value']]
-                    temp1.value = temp1.value * -1
-                    temp1 = temp1.repartition(npartitions=npartitions)
-                    temp1 = temp1.reset_index(drop=True)
-
-                    # prep to_addr
-                    temp2 = df.copy()
-                    temp2 = temp2.rename(columns={'to_addr': 'address'})
-                    temp2 = temp2[['address', 'value']]
-                    temp2 = temp2.repartition(npartitions=npartitions)
-                    temp2 = temp2.reset_index(drop=True)
-
-                    # concat
-                    all_df = all_df.repartition(npartitions=npartitions)
-                    all_df = all_df.reset_index(drop=True)
-                    all_df = all_df.repartition(npartitions=npartitions)
-                    all_df = all_df.reset_index(drop=True)
-                    #logger.warning('length all_df before concat:%s',len(all_df))
-                    all_df = dd.concat([all_df, temp1, temp2], axis=0, interleave_partitions=True)
-                    #logger.warning('length all_df after concat:%s',len(all_df))
-
-            #logger.warning('all_df: %s',all_df.head(10))
-        except Exception:
-            logger.error('add to all_df',exc_info=True)
+            logger.error('add to existing addresses', exc_info=True)
 
     # get current addresses and add new transactions to self.df
     def set_current_addresses(self,df1):
@@ -417,7 +376,6 @@ class AccountActivity(Checkpoint):
     async def update(self):
         try:
             # SETUP
-            global all_df
             global account_churned_df
 
             offset = self.get_offset()
@@ -426,35 +384,27 @@ class AccountActivity(Checkpoint):
             start_date = offset
             end_date = start_date + timedelta(hours=self.window)
 
-            # initialize if restarted/reset
-            if all_df is None:
-                manage_all_df(end_date=start_date)
-
             if account_churned_df is None:
                 load_churned_df(offset)
-
-            if len(self.existing_addresses) == 0:
-                temp_df = all_df[['address']]
-                temp_df = temp_df.compute()
-                self.existing_addresses = list(set(list(temp_df['address'].unique())))
-                del temp_df
-                gc.collect()
+            if len(self.existing_addresses) <= 0:
+                self.load_existing_addresses(start_date)
 
             self.update_checkpoint_dict(end_date)
             # get data
             logger.warning('LOAD RANGE %s:%s',start_date,end_date)
             self.new_activity_lst = []
+
             self.current_addresses = []
             df = None
             for table in self.construction_cols_dict.keys():
-                logger.warning('CONSTRUCTION STARTED for: %s',table)
                 cols = self.construction_cols_dict[table]['cols']
                 # load production data from staging
 
                 if df is not None:
-                    logger.warning('length of df: %s', len(df))
                     if len(df)>0:
                         temp = self.load_df(start_date, end_date, cols, table, 'mysql')
+                        logger.warning('length of %s df: %s', table, len(temp))
+
                         if len(temp) > 0:
 
                             df = df.repartition(npartitions=10)
@@ -468,16 +418,18 @@ class AccountActivity(Checkpoint):
 
                     else:
                         df = self.load_df(start_date, end_date, cols, table, 'mysql')
+                        logger.warning('length of %s df: %s', table, len(df))
+
                 else:
                     df = self.load_df(start_date, end_date, cols, table, 'mysql')
+                    logger.warning('length of %s df: %s',table, len(df))
+
 
             if df is not None:
                 if len(df) > 0:
+                    #logger.warning('length of df before split into multiple addresses: %s', len(df))
+
                     self.set_current_addresses(df)
-
-                    # add new data to all_df
-                    self.add_to_all_df(df)
-
                     # determine the addresses churned according to balance tables
                     # get list of block numbers
                     temp = df[['block_number']]
@@ -504,13 +456,13 @@ class AccountActivity(Checkpoint):
                         lst.append(item[0])
                         lst.append(item[1])
 
-
                     if len(lst) > 0:
                         #logger.warning('line 336: length of new activity list:%s',len(lst))
                         self.new_activity_lst = lst
                         df = pd.DataFrame(self.new_activity_lst)
                         # save dataframe
                         df = dd.from_pandas(df, npartitions=10)
+                        logger.warning('length of df before save: %s', len(df))
 
                         self.save_df(df)
                         self.df_size_lst.append(len(df))

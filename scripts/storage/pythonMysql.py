@@ -27,7 +27,7 @@ class PythonMysql:
         self.db = db
 
 
-        self.host = '104.200.110.155'
+        #self.host = '104.200.110.155'
         self.host = '192.168.1.7'
         self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
         self.user = 'clickhouse'
@@ -120,7 +120,7 @@ class PythonMysql:
                     #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
                     if 'block_timestamp' in df.columns.tolist():
                         df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
-                    #logger.warning("%s data loaded from mysql:%s",table,df['block_timestamp'].head(10))
+                    #logger.warning("%s length data loaded from mysql:%s",table,len(df))
             return df
 
         except Exception:
