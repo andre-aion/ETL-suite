@@ -44,12 +44,14 @@ global account_churned_df
 account_churned_df = None
 
 global account_churned_addresses
-account_churned_addresses = None
-global account_churned_transaction_hashes
-account_churned_transaction_hashes = []
-global token_holders_churned_addresses
-token_holders_churned_addresses = None
+account_churned_addresses = []
+global joined_addresses
+joined_addresses = []
 
+global account_joined_df
+global token_holders_joined_df
+account_joined_df = None
+token_holders_joined_df = None
 
 def load_contract_addresses(start_date, end_date):
     try:
@@ -75,24 +77,12 @@ def load_churned_df(start_date):
         global token_holders_churned_df
         my = PythonMysql('aion')
 
-        '''
-        # get the block number nearest to the offset
-        offset = my.date_to_int(offset)
-        qry = """
-            select min(block_number) as block_number from block 
-            where block_timestamp >= {}
-        """.format(offset)
-        df = pd.read_sql(qry, my.connection)
-        if len(df) > 0:
-            block_number = df['block_number'].min()
-        else:
-            block_number = 0
-
-        logger.warning('BLOCK NUMBER:%s')
-        '''
         if account_churned_df is None:
             qry = """
-                select address,transaction_hash, timestamp_of_last_event as block_timestamp 
+                select address, last_block_number as block_number
+                timestamp_of_last_event as block_timestamp,
+                block_number_of_last_event as last_block_number,
+                block_number_of_first_event as first_block_number
                 from account  
                 where balance = 0 and timestamp_of_last_event >= {}
             """.format(my.date_to_int(start_date))
@@ -101,13 +91,42 @@ def load_churned_df(start_date):
 
         if token_holders_churned_df is None:
             qry = """
-                select contract_addr as address, block_number, timestamp_of_last_event as block_timestamp  
+                select contract_addr as address, timestamp_of_last_event as block_timestamp  
+                block_number_of_last_event as last_block_number,
+                block_number_of_first_event as first_block_number
                 from token_holders 
                 where scaled_balance = 0  and timestamp_of_last_event >= {}
             """.format(my.date_to_int(start_date))
             token_holders_churned_df = pd.read_sql(qry, my.connection)
             logger.warning("length of token holders churned:%s", len(token_holders_churned_df))
 
+    except Exception:
+        logger.error('manage churned df', exc_info=True)
+
+def load_joined_df(start_date):
+    try:
+
+        global account_joined_df
+        global token_holders_joined_df
+        my = PythonMysql('aion')
+
+        if account_joined_df is None:
+            qry = """
+                select address,timestamp_of_first_event as block_timestamp,           
+                block_number_of_first_event as first_block_number
+                from account  
+            """.format(my.date_to_int(start_date))
+            account_joined_df = pd.read_sql(qry, my.connection)
+            logger.warning("length of account churned:%s", len(account_joined_df))
+
+        if token_holders_joined_df is None:
+            qry = """
+                select contract_addr as address, timestamp_of_first_event as block_timestamp  
+                block_number_of_first_event as first_block_number
+                from token_holders 
+            """.format(my.date_to_int(start_date))
+            token_holders_joined_df = pd.read_sql(qry, my.connection)
+            logger.warning("length of token holders churned:%s", len(token_holders_joined_df))
     except Exception:
         logger.error('manage churned df', exc_info=True)
 
@@ -140,8 +159,10 @@ def get_account_type(address,my):
         logger.error('get_account_type:', exc_info=True)
 
 def create_address_transaction(row, table, address_lst,
-                               new_activity_lst, churned_addresses,
-                               churned_block_numbers, my):
+                               new_activity_lst, my):
+    global account_churned_addresses
+    global account_joined_addresses
+
     try:
         #logger.warning('len all_df %s:',len(all_df))
         if row is not None:
@@ -159,8 +180,11 @@ def create_address_transaction(row, table, address_lst,
             # DETERMINE IF NEW ADDRESS
             #if len(churned_addresses) > 0 :
                 #logger.warning('%s:%s',row['from_addr'],row['to_addr'])
-            from_activity = 'joined'
-            if row['from_addr'] in churned_addresses:
+            from_activity = 'active'
+            if row['from_addr'] in account_joined_addresses:
+                logger.warning('JOIN LABEL APPLIED(FROM)')
+                from_activity = 'joined'
+            if row['from_addr'] in account_churned_addresses:
                 if row['from_addr'] == row['to_addr']:
                     logger.warning(" SELF TO SELF CHURN TRANSFER")
                     logger.warning('%s:%s', row['from_addr'], row['to_addr'])
@@ -172,13 +196,11 @@ def create_address_transaction(row, table, address_lst,
                         logger.warning('CHURN LABEL APPLIED(FROM)')
                         #logger.warning('from addr = %s', row['from_addr'])
                         from_activity = 'churned'
-            else:
-                if row['from_addr'] in address_lst:
-                    from_activity = 'active'
 
-            to_activity = 'joined'
-            if row['to_addr'] in address_lst:
-                to_activity = 'active'
+            to_activity = 'active'
+            if row['to_addr'] in account_joined_addresses:
+                logger.warning('JOIN LABEL APPLIED(TO)')
+                from_activity = 'joined'
 
             account_type_from = get_account_type(row['from_addr'],my)
             account_type_to = get_account_type(row['to_addr'],my)
@@ -229,14 +251,12 @@ def create_address_transaction(row, table, address_lst,
         logger.error('create address transaction:',exc_info=True)
 
 def calling_create_address_transaction(df,table,address_lst,
-                                       new_activity_lst,churned_addresses,
-                                       churned_blocks):
+                                       new_activity_lst):
     try:
         my = PythonMysql('aion')
         tmp_lst = df.apply(create_address_transaction, axis=1,
                                     args=(table, address_lst,
-                                          new_activity_lst,churned_addresses,
-                                          churned_blocks,my))
+                                          new_activity_lst,my))
 
         new_activity_lst = new_activity_lst + tmp_lst
         my.conn.close()
@@ -253,53 +273,101 @@ def set_churned_df_addresses(start_date, end_date):
         global account_churned_df
         global token_holders_churned_df
         global account_churned_addresses
-        global token_holders_churned_addresses
-        global churned_blocks
+        global churned_block_numbers
 
         my = PythonMysql('aion')
 
         account_churned_addresses = []
-        token_holders_churned_addresses = []
-        churned_blocks = []
+        churned_block_numbers = []
+        joined_block_numbers = []
+
         if len(account_churned_df) > 0:
             # filter/truncate dfs
-            account_churned_df = account_churned_df[account_churned_df.block_timestamp >= start_date]
+            account_churned_df = account_churned_df[account_churned_df.block_timestamp >= my.date_to_int(start_date)]
             temp = account_churned_df[account_churned_df.block_timestamp <= my.date_to_int(end_date)]
             if len(temp) > 0:
                 account_churned_addresses = list(temp['address'].unique())
-                churned_blocks = list(temp['block'].unique())
-        '''
+                churned_block_numbers = list(temp['last_block_number'].unique())
+
         if len(token_holders_churned_df) > 0:
-            temp = token_holders_churned_df
+            token_holders_churned_df = token_holders_churned_df[ token_holders_churned_df.block_timestamp >= start_date]
+            temp = token_holders_churned_df[token_holders_churned_df <= my.date_to_int(end_date)]
             if len(temp) > 0:
-                token_holders_churned_addresses = list(temp['address'].unique())
-        '''
+                account_churned_addresses += list(temp['address'].unique())
+                churned_block_numbers += list(temp['last_block_number'].unique())
+
     except Exception:
         logger.error('get churned df addresses', exc_info=True)
 
-def determine_churn(current_addresses):
+def set_joined_df_addresses(start_date, end_date):
+    try:
+        global account_joined_df
+        global token_holders_joined_df
+        global account_joined_addresses
+        global joined_block_numbers
+
+        my = PythonMysql('aion')
+
+        account_joined_addresses = []
+        joined_block_numbers = []
+
+        if len(account_joined_df) > 0:
+            # filter/truncate dfs
+            account_joined_df = account_joined_df[account_joined_df.block_timestamp >= my.date_to_int(start_date)]
+            temp = account_joined_df[account_joined_df.block_timestamp <= my.date_to_int(end_date)]
+            if len(temp) > 0:
+                account_joined_addresses = list(temp['address'].unique())
+                joined_block_numbers = list(temp['first_block_number'].unique())
+
+        if len(token_holders_joined_df) > 0:
+            token_holders_joined_df = token_holders_joined_df[ token_holders_joined_df.block_timestamp >= start_date]
+            temp = token_holders_joined_df[token_holders_joined_df <= my.date_to_int(end_date)]
+            if len(temp) > 0:
+                account_joined_addresses += list(temp['address'].unique())
+                joined_block_numbers += list(temp['first_block_number'].unique())
+
+    except Exception:
+        logger.error('get churned df addresses', exc_info=True)
+
+def determine_activity(current_addresses):
     try:
         global account_churned_addresses
-        global token_holders_churned_addresses
+        global account_joined_addresses
         # (transactions from the beginning, have churned
-        churned_addresses = []
         if len(current_addresses) > 0 :
-            #logger.warning('inside df:%s',df.head(40))
-            tmp = list(set(account_churned_addresses) & set(current_addresses))
-            if len(tmp) > 0:
-                churned_addresses += tmp
-            '''
-            tmp = list(set(token_holders_churned_addresses) & set(current_addresses))
-            if len(tmp) > 0:
-                churned_addresses += tmp
-            '''
+            if len(account_churned_addresses) > 0:
+                #logger.warning('inside df:%s',df.head(40))
+                tmp = list(set(account_churned_addresses) & set(current_addresses))
+                account_churned_addresses = []
+                if len(tmp) > 0:
+                    account_churned_addresses = tmp
+                '''
+                tmp = list(set(token_holders_churned_addresses) & set(current_addresses))
+                if len(tmp) > 0:
+                    churned_addresses += tmp
+                '''
 
-            logger.warning("number of churned addresses:%s",len(churned_addresses))
-            logger.warning('churned addresses = %s', churned_addresses)
-            return churned_addresses
-        logger.warning("number of churned accounts is 0")
+                logger.warning("number of churned addresses:%s", len(account_churned_addresses))
+                logger.warning('churned addresses = %s', account_churned_addresses)
+            else:
+                logger.warning("number of churned accounts is 0")
 
-        return []
+            if len(account_joined_addresses) > 0:
+                #logger.warning('inside df:%s',df.head(40))
+                tmp = list(set(account_joined_addresses) & set(current_addresses))
+                account_joined_addresses = []
+                if len(tmp) > 0:
+                    account_joined_addresses = tmp
+
+                logger.warning("number of joined addresses:%s", len(account_joined_addresses))
+                logger.warning('joined addresses = %s', account_joined_addresses)
+            else:
+                logger.warning("number of joined accounts is 0")
+        else:
+            logger.warning("number of churned accounts is 0")
+            logger.warning("number of joined accounts is 0")
+
+
     except Exception:
         logger.error('determine churn', exc_info=True)
 
@@ -404,7 +472,6 @@ class AccountActivity(Checkpoint):
     async def update(self):
         try:
             # SETUP
-            global account_churned_df
             global contract_addresses
 
             offset = self.get_offset()
@@ -464,17 +531,17 @@ class AccountActivity(Checkpoint):
                     self.set_current_addresses(df)
                     # determine the addresses churned according to balance tables
                     # get list of block numbers
-                    temp = df[['block_number']]
-                    temp = temp.compute()
                     set_churned_df_addresses(start_date,end_date)
+                    set_joined_df_addresses(start_date,end_date)
+
                     # determine churn
-                    churned_addresses, churned_blocks = determine_churn(self.current_addresses)
+                    determine_activity(self.current_addresses)
                     # prep from_addr
                     # determine joined, churned, contracts, etc.
                     logger.warning('# of existing addresses:%s',len(self.existing_addresses))
                     self.new_activity_lst = df.map_partitions(calling_create_address_transaction,
                                                               table, self.existing_addresses,
-                                                              self.new_activity_lst,churned_addresses,churned_blocks,
+                                                              self.new_activity_lst,
                                                               meta=(None, 'O')).compute()
 
                     #logger.warning('Length of all_df %s',len(all_df))
