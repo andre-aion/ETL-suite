@@ -23,10 +23,6 @@ class PythonMysql:
     def __init__(self,db):
         self.host = '40.113.226.240'
         self.password = '1233tka061'
-        self.user = 'clickhouse'
-        self.db = db
-
-
         #self.host = '104.200.110.155'
         self.host = '192.168.1.7'
         self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'

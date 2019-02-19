@@ -391,6 +391,28 @@ class AccountActivityChurn(Checkpoint):
         except Exception:
             logger.error("update", exc_info=True)
 
+    def is_up_to_date(self, construct_table,storage_medium,window_hours):
+        try:
+            offset = self.get_offset()
+            if storage_medium == 'mysql':
+                construct_max_val = self.get_value_from_mysql(construct_table, 'MAX')
+            else:
+                construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+            if isinstance(construct_max_val,int):
+                construct_max_val = datetime.fromtimestamp(construct_max_val)
+            if isinstance(construct_max_val, str):
+                construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
+                construct_max_val = construct_max_val.date()
+
+            if offset >= construct_max_val - timedelta(hours=window_hours):
+                # logger.warning("CHECKPOINT:UP TO DATE")
+                return True
+            # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
+
+            return False
+        except Exception:
+            logger.error("is_up_to_date", exc_info=True)
+            return False
 
     async def run(self):
         # create warehouse table in clickhouse if needed

@@ -13,11 +13,11 @@ logger = mylogger(__file__)
 
 #table = 'account_activity'
 #tb = Table(table,table,'create')
-#warehouse_etl.reset_offset('2018-04-23 05:00:00')
 warehouse_etl = Warehouse('block_tx_warehouse')
 account_activity_etl = AccountActivity('account_activity')
 account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
 
+#account_activity_etl.reset_offset('2018-06-13 10:00:00')
 
 #table = 'account_activity'
 #tb = Table(table,table,'create')
