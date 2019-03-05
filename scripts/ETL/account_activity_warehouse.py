@@ -1,6 +1,5 @@
 import asyncio
-import time
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, time
 from statistics import mean
 
 from tornado import gen
@@ -9,6 +8,7 @@ from tornado.gen import coroutine
 from config.df_construct_config import warehouse_inputs as cols, table_dict,columns
 from scripts.ETL.checkpoint import checkpoint_dict, Checkpoint
 from scripts.storage.pythonClickhouse import PythonClickhouse
+from scripts.storage.pythonMongo import PythonMongo
 from scripts.storage.pythonRedis import PythonRedis
 from scripts.streaming.streamingDataframe import StreamingDataframe
 from scripts.utils.mylogger import mylogger
@@ -36,7 +36,7 @@ class AccountActivityWarehouse(Checkpoint):
         self.df = ''
         self.dct = checkpoint_dict[table]
         self.table_dict = table_dict[table]
-        self.initial_date = "2018-04-23 20:00:00"
+        self.initial_date = "2018-04-24 20:00:00"
         # manage size of warehouse
         self.df_size_lst = []
         self.df_size_threshold = {
@@ -56,7 +56,7 @@ class AccountActivityWarehouse(Checkpoint):
             'transaction_nrg_consumed', 'transaction_hash', 'block_timestamp',
             'block_year', 'block_month', 'block_day', 'from_addr', 'to_addr']
 
-
+        self.pym = PythonMongo('aion')
 
     def cast_date(self,x):
         x = pd.to_datetime(str(x))
@@ -107,22 +107,60 @@ class AccountActivityWarehouse(Checkpoint):
             logger.error('convert string', exc_info=True)
 
 
-    def make_warehouse(self, df_aa, df_block_tx):
+    def make_warehouse(self, df_aa, df_block_tx, external):
         #logger.warning("df_tx in make__warehose:%s", df_tx.head(5))
         #logger.warning("df_block in make_warehouse:%s", df_block.head(5))
         try:
             # join account activity and block tx warehouse
             df = df_aa.merge(df_block_tx,on=['transaction_hash'])  # do the merge
-            #logger.warning("post merge:%s",df.head(10))
-            #df = df.map_partitions(self.cast_cols)
-            #df = df.drop(['level_0','index'],axis=1)
+            #logger.warning('pre merge 2 columns:%s',df.columns.tolist())
+
+            df = df.merge(external, on=['block_year','block_month','block_day'],how='left')
+            #logger.warning('post merge 2 columns:%s',df.columns.tolist())
+            #logger.warning("post merge 2:%s",df[['sp_close','block_day','block_timestamp','address']].head(40))
+            df = df.fillna(0)
+
             df = df.compute()
             df.drop_duplicates(keep='first',inplace=True)
             df = dd.from_pandas(df,npartitions=15)
+
             #logger.warning("WAREHOUSE MADE, Merged columns:%s", df.head())
             return df
         except Exception:
             logger.error("make warehouse", exc_info=True)
+
+
+    def load_external_data(self,start_date,end_date):
+        try:
+            # ensure start date is date, not datetime
+            if isinstance(start_date,datetime):
+                start_date = start_date.date()
+                start_date = datetime.combine(start_date,time.min)
+            if isinstance(end_date,datetime):
+                end_date = end_date.date()
+                end_date = datetime.combine(end_date,time.min)
+                end_date = end_date + timedelta(days=1)
+
+            df = self.pym.load_data('external',start_date,end_date)
+            if df is not None:
+                if len(df) > 0:
+                    # convert date to correct format
+                    df = df.drop('date',axis=1)
+                else: #construct dataframe
+                    mid_date = start_date + timedelta(days=1)
+                    data = [[start_date.month,start_date.day,start_date.year,0,0,0,0],
+                            [mid_date.month, mid_date.day, mid_date.year, 0, 0, 0, 0],
+                            [end_date.month, end_date.day, end_date.year, 0, 0, 0, 0]]
+                    df = pd.DataFrame(data, columns = [
+                        'block_month', 'block_day','block_year',
+                        'russell_close', 'russell_volume', 'sp_close', 'sp_volume'])
+                    df = df.drop_duplicates(keep='first')
+                    logger.warning('created df:%s',df.head())
+                    df = dd.from_pandas(df,npartitions=1)
+                return df
+
+        except Exception:
+            logger.error("load external data", exc_info=True)
 
 
     async def update_warehouse(self, input_table1, input_table2):
@@ -150,9 +188,13 @@ class AccountActivityWarehouse(Checkpoint):
                                          storage_medium='clickhouse')
                     if df_aa is not None:
                         if len(df_aa) > 0:
-                            # make two dataframes to pandas
-                            self.df_warehouse = self.make_warehouse(df_aa, df_block_tx)
-                            # determine churn
+                            # load external data
+                            external = self.load_external_data(start_datetime, end_datetime)
+
+                            # merge dataframes
+                            self.df_warehouse = self.make_warehouse(df_aa, df_block_tx, external)
+
+
                             if self.df_warehouse is not None:
                                 self.df_size_lst.append(len(self.df_warehouse))
                                 self.window_adjuster()

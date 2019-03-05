@@ -340,7 +340,18 @@ table_dict['account_activity_warehouse'] = {
     'day_of_week':'String',
     'from_addr':'String',
     'to_addr':'String',
-    'transaction_hash':'String'
+    'transaction_hash':'String',
+    'sp_volume':'Float64',
+    'sp_close':'Float64',
+    'russell_volume': 'Float64',
+    'russell_close': 'Float64',
+    'aion_coin_high': 'Float64',
+    'aion_coin_low': 'Float64',
+    'aion_coin_open': 'Float64',
+    'aion_coin_close': 'Float64',
+    'aion_coin_marketcap': 'Float64',
+    'aion_coin_volume': 'Float64',
+
 }
 ################################################################
 #            MODEL FUNCTION

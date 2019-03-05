@@ -21,13 +21,17 @@ class PythonMysql:
     # port = '9000'
     #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
     def __init__(self,db):
-        self.host = '40.113.226.240'
-        self.password = '1233tka061'
+
         #self.host = '104.200.110.155'
-        self.host = '192.168.1.7'
-        self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
-        self.user = 'clickhouse'
-        self.db = db
+        #self.host = '192.168.1.7'
+        #self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
+        #self.host = '40.113.226.240'
+        #self.password = '1233tka061'
+        #self.user = 'clickhouse'
+        self.host = '127.0.0.1'
+        self.user = 'admin'
+        self.password = 'password'
+        self.db = 'aion_analytics'
 
         self.schema = db
         self.connection = MySQLdb.connect(user=self.user, password=self.password,
@@ -41,7 +45,7 @@ class PythonMysql:
 
     def int_to_date(self, x):
         if isinstance(x,int):
-            return datetime.utcfromtimestamp(x).strftime(self.DATEFORMAT)
+            return datetime.fromtimestamp(x).strftime(self.DATEFORMAT)
         return x
 
     def construct_read_query(self, table, cols, startdate, enddate):
@@ -110,10 +114,16 @@ class PythonMysql:
                             rename['approx_value'] = 'value'
 
                     df = df.rename(index=str, columns=rename)
-
+                    if 'block_timestamp' in df.columns.tolist():
+                        min = df.block_timestamp.min()
+                        max = df.block_timestamp.max()
+                        min = datetime.fromtimestamp(min)
+                        max = datetime.fromtimestamp(max)
+                        #logger.warning('data loaded from mysql start:end=%s:%s',min,max)
                     # convert to dask
-                    df = dd.dataframe.from_pandas(df, npartitions=5)
                     #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
+
+                    df = dd.dataframe.from_pandas(df, npartitions=5)
                     if 'block_timestamp' in df.columns.tolist():
                         df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
                     #logger.warning("%s length data loaded from mysql:%s",table,len(df))

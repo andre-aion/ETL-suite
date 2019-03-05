@@ -159,6 +159,7 @@ class Checkpoint:
 
     def get_value_from_mysql(self, table, min_max='MAX'):
         try:
+            self.my = PythonMysql('aion')
             qry = """select {}({}) AS result from {}.{}  LIMIT 1""" \
                 .format(min_max, self.checkpoint_column, 'aion', table)
             result = self.my.conn.execute(qry)
