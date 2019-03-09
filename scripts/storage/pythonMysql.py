@@ -17,25 +17,44 @@ import MySQLdb
 executor = ThreadPoolExecutor(max_workers=20)
 logger = mylogger(__file__)
 
+
+credentials = {}
+credentials['dennis'] = {
+    'user':'clickhouse',
+    'host':'192.168.1.7',
+    'db':'aion_analytics',
+    'password': 'lDhtoP1xcDVaQalqhiWmgNOw5'
+}
+credentials['office'] = {
+    'user':'clickhouse',
+    'host':'104.200.110.155',
+    'db':'aion_analytics',
+    'password': 'lDhtoP1xcDVaQalqhiWmgNOw5'
+}
+credentials['staging'] = {
+    'user':'clickhouse',
+    'host':'40.113.226.240',
+    'db':'aion',
+    'password': '1233tka061'
+}
+
+credentials['localhost'] = {
+    'user':'admin',
+    'host':'127.0.0.1',
+    'db':'aion',
+    'password': 'password'
+}
+
 class PythonMysql:
     # port = '9000'
     #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
     def __init__(self,db):
-
-        #self.host = '104.200.110.155'
-        #self.host = '192.168.1.7'
-        #self.password = 'lDhtoP1xcDVaQalqhiWmgNOw5'
-        #self.host = '40.113.226.240'
-        #self.password = '1233tka061'
-        #self.user = 'clickhouse'
-        self.host = '127.0.0.1'
-        self.user = 'admin'
-        self.password = 'password'
-        self.db = 'aion_analytics'
-
-        self.schema = db
-        self.connection = MySQLdb.connect(user=self.user, password=self.password,
-                                    database=self.db, host=self.host)
+        tmp = credentials['localhost']
+        self.schema = tmp['db']
+        self.connection = MySQLdb.connect(user=tmp['user'],
+                                          password=tmp['password'],
+                                          database=tmp['db'],
+                                          host=tmp['host'])
 
         self.conn = self.connection.cursor()
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"

@@ -28,7 +28,7 @@ logger = mylogger(__file__)
 # get contract address
 global contract_addresses
 contract_addresses = []
-my = PythonMysql('aion')
+my = PythonMysql('aion-analytics')
 DATEFORMAT = "%Y-%m-%d %H:%M:%S"
 initial_date = datetime.strptime("2018-04-25 10:00:00", "%Y-%m-%d %H:%M:%S")
 start_date = my.date_to_int(initial_date)
@@ -56,31 +56,12 @@ account_joined_df = None
 token_holders_joined_df = None
 joined_block_numbers = []
 
-
-def load_contract_addresses(start_date, end_date):
-    try:
-        global contract_addresses
-        my = PythonMysql('aion')
-        if len(contract_addresses) <= 0:
-            qry = """SELECT contract_addr FROM aion.contract WHERE deploy_timestamp >= {} AND 
-                          deploy_timestamp <= {} ORDER BY deploy_timestamp"""\
-                .format(my.date_to_int(start_date), my.date_to_int(end_date))
-            df = pd.read_sql(qry, my.connection)
-            logger.warning("line 39: contract addresses loaded from mysql")
-            if len(df) > 0:
-                contract_addresses = list(df['contract_addr'].unique())
-                del df
-                gc.collect()
-    except:
-        logger.warning('load contract addresses:%s',exc_info=True)
-
-
 def load_churned_df(start_date):
     try:
 
         global account_churned_df
         global token_holders_churned_df
-        my = PythonMysql('aion')
+        my = PythonMysql('aion_analytics')
 
         if account_churned_df is None:
             qry = """
@@ -90,7 +71,6 @@ def load_churned_df(start_date):
                 from account  
                 where balance = 0 and timestamp_of_last_event >= {}
                 order by timestamp_of_last_event
-
             """.format(my.date_to_int(start_date))
             account_churned_df = pd.read_sql(qry, my.connection)
             logger.warning("length of account churned:%s", len(account_churned_df))
@@ -109,12 +89,12 @@ def load_churned_df(start_date):
     except Exception:
         logger.error('manage churned df', exc_info=True)
 
+
 def load_joined_df(start_date):
     try:
-
         global account_joined_df
         global token_holders_joined_df
-        my = PythonMysql('aion')
+        my = PythonMysql('aion_analytics')
 
         if account_joined_df is None:
             qry = """
@@ -509,8 +489,6 @@ class AccountActivity(Checkpoint):
                 load_joined_df(start_date)
             if len(self.existing_addresses) <= 0:
                 self.load_existing_addresses(start_date)
-            if len(contract_addresses) <= 0:
-                load_contract_addresses(start_date,end_date)
 
             self.update_checkpoint_dict(end_date)
             # get data
@@ -607,7 +585,7 @@ class AccountActivity(Checkpoint):
         # self.create_table_in_clickhouse()
         while True:
             await self.update()
-            if self.is_up_to_date(construct_table='transaction',
+            if self.is_up_to_date(construct_table='account_authoritative',
                                   storage_medium='mysql',
                                   window_hours=self.window):
                 logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 3 hours:UP TO DATE")

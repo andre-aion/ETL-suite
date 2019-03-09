@@ -8,12 +8,18 @@ from config.scrapy import scrapy_settings
 #--the spiders
 
 from scrapers.scrapy.aioncoin_spider import AioncoinSpider
+from scrapers.scrapy.sp_spider import SpSpider
+from scrapers.scrapy.nasdaq_spider import NasdaqSpider
 #--the spiders
 from scrapy.utils.log import configure_logging
 from twisted.logger import Logger
+from scrapers.utils import get_proxies
+import logging
 
 log = Logger()
 logger = mylogger(__file__)
+
+scrapy_settings['ROTATING_PROXY_LIST'] = get_proxies()
 
 class RunSpiders:
     def __init__(self):
@@ -24,6 +30,13 @@ class RunSpiders:
 
     async def run(self):
         configure_logging({'LOG_FORMAT': '%(name)s - %(levelname)s: %(message)s'})
+        '''
+        logging.basicConfig(
+            filename='log.txt',
+            format='%(name)s %(levelname)s: %(message)s',
+            level=logging.INFO
+        )
+        '''
         runner = CrawlerRunner(Settings(scrapy_settings))
 
         dfs = set()
@@ -31,7 +44,7 @@ class RunSpiders:
         #b = runner.crawl(RussellSpider)
         #c = runner.crawl(NasdaqSpider)
         try:
-            ac = runner.crawl(AioncoinSpider)
+            ac = runner.crawl(NasdaqSpider)
             #dfs.add(a)
             #dfs.add(b)
             dfs.add(ac)

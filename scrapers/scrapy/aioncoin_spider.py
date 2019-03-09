@@ -1,5 +1,7 @@
 import pymongo
 from scrapy.utils.log import configure_logging
+
+import logging
 from scripts.utils.mylogger import mylogger
 import scrapy
 from scrapy.http import request
@@ -10,26 +12,22 @@ from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
 import logging
 from datetime import date, datetime, time
-
 from scrapy.item import Item, Field
 
-logging.getLogger('scrapy').setLevel(logging.DEBUG)
 logger = mylogger(__file__)
-
 
 class AionCoinItem(Item):
     _id = Field()
-    aion_open = Field()
-    aion_close = Field()
-    aion_high = Field()
-    aion_low = Field()
-    aion_volume = Field()
-    aion_marketcap = Field()
+    aion_coin__open = Field()
+    aion_coin__close = Field()
+    aion_coin__high = Field()
+    aion_coin__low = Field()
+    aion_coin__volume = Field()
+    aion_coin__marketcap = Field()
     date = Field()
 
 class AioncoinSpider(scrapy.Spider):
     name = 'aioncoin'
-
     client = pymongo.MongoClient('localhost', 27017)
     db = client['aion']
     collection_name = 'external'
@@ -41,7 +39,16 @@ class AioncoinSpider(scrapy.Spider):
     high = 'aion_coin_high'
     low = 'aion_coin_low'
     cap = 'aion_coin_marketcap'
-    configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
+
+    def __init__(self,name=name):
+        logger = logging.getLogger('scrapy.spidermiddlewares.httperror')
+        logger.setLevel(logging.WARNING)
+        super().__init__(name)
+        try:
+            configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
+
+        except Exception:
+            logger.warning('init',exc_info=True)
 
     """
     def parse_old(self, response):
@@ -105,7 +112,7 @@ class AioncoinSpider(scrapy.Spider):
         DATEFORMAT = "%m/%d/%Y"
         DATEFORMAT = "%b %d, %Y"
         sel = Selector(response)
-        rows = response.xpath('//tr')
+        rows = response.xpath('//tr').extract()
         count = 0
         for row in rows:
             if count > 0:
