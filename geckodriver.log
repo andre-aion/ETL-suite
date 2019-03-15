@@ -1167,3 +1167,336 @@ JavaScript error: https://tag.cogocast.net/tag/partner/213?&dc_id=5116bd28ad964a
 1552096906438	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
 JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+console.error: BroadcastService: 
+console.error: BroadcastService: 
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  receivedBroadcastMessage: handler for
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  remote-settings/monitor_changes
+  threw error:
+  remote-settings/monitor_changes
+  threw error:
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+[Parent 27358, Gecko_IOThread] WARNING: pipe error (119): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552097378637	Marionette	INFO	Stopped listening on port 41579
+[Parent 28110, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552097401738	Marionette	INFO	Stopped listening on port 42051
+[Parent 27772, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552097407989	Marionette	INFO	Stopped listening on port 45237
+1552133202484	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SROayXonaKN4"
+1552133203000	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552133203001	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:8104): LIBDBUSMENU-GLIB-WARNING **: 08:06:44.484: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552133205313	Marionette	INFO	Listening on port 38969
+1552133205413	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1552133223521	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.vO3aNE5U3cUB"
+1552133223935	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552133223935	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:8453): LIBDBUSMENU-GLIB-WARNING **: 08:07:05.106: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552133225781	Marionette	INFO	Listening on port 46479
+1552133225845	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552133256222	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Ec79Xc5BMHnQ"
+1552133257127	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552133257128	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:8808): LIBDBUSMENU-GLIB-WARNING **: 08:07:39.068: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552133259904	Marionette	INFO	Listening on port 45671
+1552133259946	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552133301092	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.2KKI8r9tLE9Z"
+1552133301887	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552133301887	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:9189): LIBDBUSMENU-GLIB-WARNING **: 08:08:24.209: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552133305908	Marionette	INFO	Listening on port 44945
+1552133306027	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+[Parent 8808, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552133484098	Marionette	INFO	Stopped listening on port 45671
+[Parent 9189, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552133486054	Marionette	INFO	Stopped listening on port 44945
+[Parent 8453, Gecko_IOThread] WARNING: pipe error (121): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552133487633	Marionette	INFO	Stopped listening on port 46479
+1552134554259	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.fmG0xdFS8mEv"
+1552134554539	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134554539	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:10108): LIBDBUSMENU-GLIB-WARNING **: 08:29:15.570: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134556190	Marionette	INFO	Listening on port 37189
+1552134556266	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552134590419	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ABhqcVdn8IpD"
+1552134590682	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134590683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:10480): LIBDBUSMENU-GLIB-WARNING **: 08:29:51.512: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134591880	Marionette	INFO	Listening on port 37949
+1552134591926	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552134623349	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mks32D690qw6"
+1552134623604	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134623604	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:10834): LIBDBUSMENU-GLIB-WARNING **: 08:30:24.433: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134624884	Marionette	INFO	Listening on port 45247
+1552134624964	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1552134860056	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.dd0csiIANqw0"
+1552134860304	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134860304	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:11274): LIBDBUSMENU-GLIB-WARNING **: 08:34:21.156: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134861537	Marionette	INFO	Listening on port 33131
+1552134861569	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552134901972	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.5tfykx2PA8U3"
+1552134902228	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134902228	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:11630): LIBDBUSMENU-GLIB-WARNING **: 08:35:03.049: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134903409	Marionette	INFO	Listening on port 40379
+1552134903482	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552134944537	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.zw2sIx2hxS10"
+1552134944794	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134944794	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:12022): LIBDBUSMENU-GLIB-WARNING **: 08:35:45.639: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134945998	Marionette	INFO	Listening on port 44995
+1552134946049	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+1552134983926	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.GghgAJmlT7bS"
+1552134984207	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552134984207	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:12427): LIBDBUSMENU-GLIB-WARNING **: 08:36:25.099: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552134985457	Marionette	INFO	Listening on port 35859
+1552134985544	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 769: TypeError: document.getElementById(...) is null
+
+(/usr/lib/firefox/firefox:12670): dconf-WARNING **: 08:36:34.236: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://secure.quantserve.com/aquant.js?a=p-kGNZ2CXTUFYyw, line 8: TypeError: C.parentNode is null
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=4251254467591630&correlator=4446677936470972&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063065&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=728x90&eri=2&cookie=ID%3De0946c0119d69e12%3AT%3D1552135000%3AS%3DALNI_MZc9kuJ-qJu9OFNGZ7zrAfvjNeV_w&cdm=nasdaq.com&bc=13&lmt=1552135010&dt=1552135010749&dlt=1552135001769&idt=8846&ea=0&frm=23&biw=1268&bih=867&isw=728&ish=90&oid=3&adk=1115054233&uci=42buzuti4hex&ifi=1&ifk=2171959834&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=735866787.1552134994&ga_sid=1552135011&ga_hid=792667238&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2466303695320290&correlator=3228610878982377&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061743%2C21062378%2C21062421%2C21063065%2C21063204&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3De0946c0119d69e12%3AT%3D1552135000%3AS%3DALNI_MZc9kuJ-qJu9OFNGZ7zrAfvjNeV_w&cdm=nasdaq.com&bc=13&lmt=1552135011&dt=1552135011366&dlt=1552135001774&idt=9482&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=y8szg2x3umqg&ifi=1&ifk=774668116&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=735866787.1552134994&ga_sid=1552135011&ga_hid=1691244090&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2211799597019363&correlator=1680684579753128&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062378%2C21062415%2C21062887%2C21063043%2C21063066%2C21063159&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3De0946c0119d69e12%3AT%3D1552135000%3AS%3DALNI_MZc9kuJ-qJu9OFNGZ7zrAfvjNeV_w&cdm=nasdaq.com&bc=13&lmt=1552135011&dt=1552135011745&dlt=1552135007344&idt=4309&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=wshtuq081o&ifi=1&ifk=39144180&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=735866787.1552134994&ga_sid=1552135012&ga_hid=1761417186&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2352448535271110&correlator=1915889444670253&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063247%2C21062452%2C21062818%2C21062886%2C21063066&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3De0946c0119d69e12%3AT%3D1552135000%3AS%3DALNI_MZc9kuJ-qJu9OFNGZ7zrAfvjNeV_w&cdm=nasdaq.com&bc=13&lmt=1552135011&dt=1552135011860&dlt=1552135007371&idt=4322&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=4ce0reb537xw&ifi=1&ifk=654896085&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=735866787.1552134994&ga_sid=1552135012&ga_hid=1275958700&fws=2, line 1: TypeError: googletag.impl is undefined
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552135306284	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.RtdEFZMIPJDw"
+1552135306543	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552135306543	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:13074): LIBDBUSMENU-GLIB-WARNING **: 08:41:47.369: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552135307834	Marionette	INFO	Listening on port 39213
+1552135307889	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:13253): dconf-WARNING **: 08:41:55.876: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 769: TypeError: document.getElementById(...) is null
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=1228825539255822&correlator=4444522218166836&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061864%2C21063280%2C21062420%2C21063015%2C21063041%2C21063065%2C21063307&vrg=312&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=728x90&eri=2&cookie=ID%3D2e829be9c83faa05%3AT%3D1552135319%3AS%3DALNI_MZtKRjOh6ZTxS21oHTMDa5kemxWTw&cdm=nasdaq.com&bc=13&lmt=1552135327&dt=1552135327524&dlt=1552135320032&idt=7116&ea=0&frm=23&biw=1268&bih=867&isw=728&ish=90&oid=3&adk=1115054233&uci=btra1zessag0&ifi=1&ifk=2900833202&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=2&scr_x=0&scr_y=0&ga_vid=832591861.1552135317&ga_sid=1552135328&ga_hid=1141273598&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=1140645958613793&correlator=685004562109014&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063337%2C21062453%2C21062456%2C21063066&vrg=316&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3D2e829be9c83faa05%3AT%3D1552135319%3AS%3DALNI_MZtKRjOh6ZTxS21oHTMDa5kemxWTw&cdm=nasdaq.com&bc=13&lmt=1552135327&dt=1552135327547&dlt=1552135320018&idt=7222&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=pfeweoh6is7e&ifi=1&ifk=2869072260&u_tz=-240&u_his=2&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=2&scr_x=0&scr_y=0&ga_vid=832591861.1552135317&ga_sid=1552135328&ga_hid=578249024&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=686989413635100&correlator=3860672627665731&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061507%2C21061863%2C21063159&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3D2e829be9c83faa05%3AT%3D1552135319%3AS%3DALNI_MZtKRjOh6ZTxS21oHTMDa5kemxWTw&cdm=nasdaq.com&bc=13&lmt=1552135329&dt=1552135329535&dlt=1552135325963&idt=2475&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=q5wzop81acjy&ifi=1&ifk=3412880712&u_tz=-240&u_his=3&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=2&scr_x=0&scr_y=0&ga_vid=832591861.1552135317&ga_sid=1552135330&ga_hid=1198663602&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2908072055379802&correlator=2746955979455181&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063338%2C21063065%2C21063302%2C53887177&vrg=319&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=160x600&eri=2&cookie=ID%3D2e829be9c83faa05%3AT%3D1552135319%3AS%3DALNI_MZtKRjOh6ZTxS21oHTMDa5kemxWTw&cdm=nasdaq.com&bc=13&lmt=1552135329&dt=1552135329892&dlt=1552135325784&idt=3031&ea=0&frm=23&biw=1268&bih=867&isw=160&ish=600&oid=3&adk=3396976947&uci=h9b4zhvipyvy&ifi=1&ifk=3769068115&u_tz=-240&u_his=4&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=2&scr_x=0&scr_y=0&ga_vid=832591861.1552135317&ga_sid=1552135330&ga_hid=1616920781&fws=2, line 1: TypeError: googletag.impl is undefined
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+[Parent 11630, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+[Parent 11630, Gecko_IOThread] WARNING: pipe error (116): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552136484108	Marionette	INFO	Stopped listening on port 40379
+[Parent 11274, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552136485406	Marionette	INFO	Stopped listening on port 33131
+[Parent 12022, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+[Parent 12022, Gecko_IOThread] WARNING: pipe error (93): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552136485978	Marionette	INFO	Stopped listening on port 44995
+[Parent 12427, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552136488043	Marionette	INFO	Stopped listening on port 35859
+[Parent 13074, Gecko_IOThread] WARNING: pipe error (76): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+1552136489463	Marionette	INFO	Stopped listening on port 39213
+1552318054300	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SNuT22JOoKPy"
+1552318054579	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552318054579	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:6907): LIBDBUSMENU-GLIB-WARNING **: 11:27:35.433: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552318055908	Marionette	INFO	Listening on port 42343
+1552318056007	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552318094645	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.blT6bscyZpPW"
+1552318094959	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552318094959	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:7296): LIBDBUSMENU-GLIB-WARNING **: 11:28:16.275: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552318097297	Marionette	INFO	Listening on port 36359
+1552318097362	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552318164003	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.RoiD7dGcjmBi"
+1552318164299	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552318164299	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:7661): LIBDBUSMENU-GLIB-WARNING **: 11:29:25.284: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552318165963	Marionette	INFO	Listening on port 36571
+1552318166026	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://code.createjs.com/createjs-2015.11.26.min.js, line 12: TypeError: f is undefined
+1552318204179	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SUV7WcWBUPwC"
+1552318204618	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552318204619	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:8026): LIBDBUSMENU-GLIB-WARNING **: 11:30:05.910: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552318206656	Marionette	INFO	Listening on port 42019
+1552318206694	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 769: TypeError: document.getElementById(...) is null
+
+(/usr/lib/firefox/firefox:8189): dconf-WARNING **: 11:30:18.934: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=1315096521610792&correlator=322350968118696&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061864%2C370204027%2C21063280%2C21062797%2C21062832%2C21063043%2C21063203&vrg=312&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3De5f89bf34a8066a2%3AT%3D1552318223%3AS%3DALNI_Mb7CMi6KtmfHhkrR0oMD1UjcilVqg&cdm=nasdaq.com&bc=13&lmt=1552318231&dt=1552318231115&dlt=1552318223860&idt=7184&ea=0&frm=23&biw=1841&bih=944&isw=300&ish=250&oid=3&adk=1567906218&uci=ys50h7owp7lz&ifi=1&ifk=2562786544&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1727136324.1552318219&ga_sid=1552318231&ga_hid=446003499&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=78370650904674&correlator=4250766391186948&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062378%2C21062855%2C21063065%2C21063303&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3De5f89bf34a8066a2%3AT%3D1552318223%3AS%3DALNI_Mb7CMi6KtmfHhkrR0oMD1UjcilVqg&cdm=nasdaq.com&bc=13&lmt=1552318231&dt=1552318231507&dlt=1552318228652&idt=2778&ea=0&frm=23&biw=1841&bih=944&isw=300&ish=250&oid=3&adk=1567906218&uci=60klxx8kyxem&ifi=1&ifk=654896085&u_tz=-240&u_his=2&u_h=1080&u_w=1920&u_ah=1046&u_aw=1853&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1727136324.1552318219&ga_sid=1552318232&ga_hid=1808383766&fws=2, line 1: TypeError: googletag.impl is undefined
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+console.error: BroadcastService: 
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  receivedBroadcastMessage: handler for
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+1552318255595	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.fcvcAuny6a6C"
+1552318255869	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1552318255869	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:8385): LIBDBUSMENU-GLIB-WARNING **: 11:30:56.662: Unable to get session bus: Address element “/dev/null” does not contain a colon (:)
+1552318257098	Marionette	INFO	Listening on port 37375
+1552318257205	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 769: TypeError: document.getElementById(...) is null
+
+(/usr/lib/firefox/firefox:8571): dconf-WARNING **: 11:31:07.700: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:188:13
+
+JavaScript error: https://www.googletagservices.com/tag/js/gpt.js, line 1: TypeError: g.processGoogleToken is not a function
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2365598935589095&correlator=404078639898738&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&eid=21063338%2C21062068%2C21062261%2C21062886%2C21063016%2C21063041%2C21063065%2C21063302&vrg=319&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=970x250&eri=2&cookie=ID%3D86b7a8954836844c%3AT%3D1552318272%3AS%3DALNI_Maa80J_vkBL6GM4PLz8lNgG1a3-yw&cdm=nasdaq.com&bc=13&lmt=1552318282&dt=1552318282812&dlt=1552318272435&idt=10288&ea=0&frm=23&biw=1268&bih=867&isw=970&ish=250&oid=3&adk=2069754010&uci=4tcqjavec7dj&ifi=1&ifk=2291971297&u_tz=-240&u_his=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=833095062.1552318268&ga_sid=1552318283&ga_hid=2070312234&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=4329731775917906&correlator=2248166076801581&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062261&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3D86b7a8954836844c%3AT%3D1552318272%3AS%3DALNI_Maa80J_vkBL6GM4PLz8lNgG1a3-yw&cdm=nasdaq.com&bc=13&lmt=1552318283&dt=1552318283035&dlt=1552318272525&idt=10238&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=bzyr3p4521mj&ifi=1&ifk=2713414178&u_tz=-240&u_his=2&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=833095062.1552318268&ga_sid=1552318283&ga_hid=1193385357&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=573135226208688&correlator=856887316059631&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062261%2C21062456%2C21062833%2C21063065&vrg=318&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cookie=ID%3D86b7a8954836844c%3AT%3D1552318272%3AS%3DALNI_Maa80J_vkBL6GM4PLz8lNgG1a3-yw&cdm=nasdaq.com&bc=13&lmt=1552318284&dt=1552318284013&dlt=1552318277806&idt=6127&ea=0&frm=23&biw=1268&bih=867&isw=300&ish=250&oid=3&adk=1567906218&uci=y0vr7zard2u1&ifi=1&ifk=3412880712&u_tz=-240&u_his=3&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=833095062.1552318268&ga_sid=1552318284&ga_hid=660896657&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=4187912479817790&correlator=2681241179538257&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061864%2C21061743%2C21063280%2C21062261%2C21063066%2C21063095%2C21063305&vrg=312&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=160x600&eri=2&cookie=ID%3D86b7a8954836844c%3AT%3D1552318272%3AS%3DALNI_Maa80J_vkBL6GM4PLz8lNgG1a3-yw&cdm=nasdaq.com&bc=13&lmt=1552318284&dt=1552318284234&dlt=1552318278121&idt=6052&ea=0&frm=23&biw=1268&bih=867&isw=160&ish=600&oid=3&adk=3396976947&uci=ofzk0gjpooah&ifi=1&ifk=3769068115&u_tz=-240&u_his=4&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=833095062.1552318268&ga_sid=1552318284&ga_hid=1170774295&fws=2, line 1: TypeError: googletag.impl is undefined
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 7208, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+Exiting due to channel error.
+[Child 7134, Chrome_ChildThread] WARNING: pipe error (39): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[Child 7859, Chrome_ChildThread] WARNING: pipe error (39): Connection reset by peer: file /build/firefox-DVGW0d/firefox-65.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 349
+Exiting due to channel error.
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

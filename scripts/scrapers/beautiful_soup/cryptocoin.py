@@ -1,20 +1,13 @@
 import asyncio
 from datetime import datetime
 
-from selenium import webdriver
-from selenium.webdriver import Proxy
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.proxy import ProxyType
-from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located
 from bs4 import BeautifulSoup
-import re
-import pandas as pd
-import os
 from scripts.utils.mylogger import mylogger
 from scripts.storage.pythonMongo import PythonMongo
-from scrapers.beautiful_soup.scraper import Scraper
+from scripts.scrapers.beautiful_soup.scraper_interface import Scraper
 
 
 logger = mylogger(__file__)

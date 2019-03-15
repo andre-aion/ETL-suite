@@ -5,6 +5,8 @@ from config.checkpoint import checkpoint_dict
 from scripts.storage.pythonClickhouse import PythonClickhouse
 from scripts.storage.pythonMysql import PythonMysql
 from scripts.storage.pythonRedis import PythonRedis
+from scripts.storage.pythonMongo import PythonMongo
+
 from scripts.utils.mylogger import mylogger
 
 logger = mylogger(__file__)
@@ -16,10 +18,10 @@ class Checkpoint:
         self.key_params = 'checkpoint:'+ table
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
-        self.my = PythonMysql('aion')
+        self.pym = PythonMongo('aion')
+        #self.my = PythonMysql('aion')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
-        self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.is_up_to_date_window = self.window + 2 # hours
         self.table = table
         self.initial_date = "2018-04-25 17:00:00"
@@ -91,7 +93,7 @@ class Checkpoint:
             self.get_checkpoint_dict()
             # handle reset or initialization
             if self.checkpoint_dict['offset'] is None:
-                self.checkpoint_dict['offset'] = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                self.checkpoint_dict['offset'] = self.get_value_from_mongo(self.table, min_max='MAX')
                 if self.checkpoint_dict['offset'] is None:
                     self.checkpoint_dict['offset'] = self.initial_date
 
@@ -153,7 +155,7 @@ class Checkpoint:
                 return result[0][0]
             return self.initial_date  # if block_tx_warehouse is empty
         except Exception:
-            logger.error("update warehouse", exc_info=True)
+            logger.error("get value from clickhouse", exc_info=True)
 
 
 
@@ -170,7 +172,24 @@ class Checkpoint:
                 return result
             return self.initial_date
         except Exception:
-            logger.error("update warehouse", exc_info=True)
+            logger.error("get value from mysql", exc_info=True)
+
+    def get_value_from_mongo(self, table, min_max='MAX'):
+        try:
+            self.pym = PythonMongo('aion')
+            if min_max == 'MAX':
+                result = self.pym.db[self.table].find({'aion_fork':{'$exists':True}}).sort('date', -1).limit(1)
+            else:
+                result = self.pym.db[self.table].find({'aion_fork':{'$exists':True}}).sort('date', 1).limit(1)
+
+            if result.count() > 0:
+                logger.warning('%s value from mongo %s:%s', min_max, table.upper(), result)
+                for res in result:
+                    return res['date']
+            else:
+                return self.initial_date
+        except Exception:
+            logger.error("get value from mongo", exc_info=True)
 
     def window_adjuster(self):
         if len(self.df_size_lst) > 5:
@@ -190,20 +209,29 @@ class Checkpoint:
             offset = self.get_offset()
             if storage_medium == 'mysql':
                 construct_max_val = self.get_value_from_mysql(construct_table, 'MAX')
-            else:
+            elif storage_medium == 'clickhouse':
                 construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+            elif storage_medium == 'mongo':
+                construct_max_val = self.get_value_from_mongo(construct_table, 'MAX')
+
             if isinstance(construct_max_val,int):
                 construct_max_val = datetime.fromtimestamp(construct_max_val)
             if isinstance(construct_max_val, str):
                 construct_max_val = datetime.strptime(construct_max_val, self.DATEFORMAT)
                 construct_max_val = construct_max_val.date()
 
-            if offset >= construct_max_val - timedelta(hours=window_hours):
-                # logger.warning("CHECKPOINT:UP TO DATE")
-                return True
-            # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
+            if self.table in ['external']:
+                today = datetime.combine(datetime.today().date(), datetime.min.time())
+                if offset >= today - timedelta(hours=window_hours):
+                    return True
+                return False
+            else:
+                if offset >= construct_max_val - timedelta(hours=window_hours):
+                    # logger.warning("CHECKPOINT:UP TO DATE")
+                    return True
+                # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
 
-            return False
+                return False
         except Exception:
             logger.error("is_up_to_date", exc_info=True)
             return False

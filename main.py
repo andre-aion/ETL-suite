@@ -6,8 +6,8 @@ from scripts.ETL.account_activity import AccountActivity
 #from scripts.ETL.account_activity import AccountActivity
 from scripts.utils.mylogger import mylogger
 import asyncio
-from scrapers.beautiful_soup.runner import run_scrapers
-from scrapers.scrapy.runner import RunSpiders
+from scripts.scrapers.beautiful_soup.runner import run_scrapers
+from scripts.github.runner import GithubLoader
 #warehouse_etl = Warehouse('block_tx_warehouse')
 
 loop = asyncio.get_event_loop()
@@ -26,13 +26,14 @@ account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
 # scrapers
 cryptocurrencies = ['aion','cardano','bitcoin']
 financial_indicies = ['russell','sp']
-runner = RunSpiders()
-
+github_loader = GithubLoader()
 async def run_etls():
 
     tasks = [
-        asyncio.ensure_future(run_scrapers(scrape_period='history',cryptocurrencies=cryptocurrencies,
-                                           indicies=financial_indicies)),
+
+        #asyncio.ensure_future(run_scrapers(scrape_period='daily',cryptocurrencies=cryptocurrencies,
+                                           #fin_indicies=financial_indicies)),
+        asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(runner.run())
         #asyncio.ensure_future(warehouse_etl.run()),
         #asyncio.ensure_future(account_activity_etl.run()),

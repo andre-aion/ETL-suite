@@ -55,3 +55,11 @@ checkpoint_dict[table] ={
     'offset':None,
     'timestamp' : None
 }
+
+table = 'external'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'date',
+    'offset':None,
+    'timestamp' : None
+}

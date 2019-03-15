@@ -7,14 +7,11 @@ from config.scrapy import scrapy_settings
 
 #--the spiders
 
-from scrapers.scrapy.aioncoin_spider import AioncoinSpider
-from scrapers.scrapy.sp_spider import SpSpider
-from scrapers.scrapy.nasdaq_spider import NasdaqSpider
+from scripts.scrapers import NasdaqSpider
 #--the spiders
 from scrapy.utils.log import configure_logging
 from twisted.logger import Logger
-from scrapers.utils import get_proxies
-import logging
+from scripts.scrapers.utils import get_proxies
 
 log = Logger()
 logger = mylogger(__file__)
