@@ -1,13 +1,10 @@
-"""
-from scripts.ETL.account_activity_churn import AccountActivityChurn
-from scripts.ETL.account_activity import AccountActivity
-"""
-#from scripts.ETL.account_activity_warehouse import AccountActivityWarehouse
-#from scripts.ETL.account_activity import AccountActivity
+from scripts.ETL.warehouse import Warehouse
 from scripts.utils.mylogger import mylogger
 import asyncio
-from scripts.scrapers.beautiful_soup.runner import run_scrapers
-from scripts.github.runner import GithubLoader
+from scripts.scrapers.beautiful_soup.financial_indexes import FinancialIndexes
+from scripts.scrapers.beautiful_soup.cryptocoin import Cryptocoin
+from scripts.github.githubrunner import GithubLoader
+from scripts.utils.myutils import load_cryptos
 #warehouse_etl = Warehouse('block_tx_warehouse')
 
 loop = asyncio.get_event_loop()
@@ -23,19 +20,31 @@ account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
 """
 #account_activity_warehouse_etl = AccountActivityWarehouse('account_activity_warehouse')
 
+# ETLS
+#warehouse_etl = Warehouse('block_tx_warehouse')
+
 # scrapers
-cryptocurrencies = ['aion','cardano','bitcoin']
+cryptocurrencies = load_cryptos()
+cryptocurrencies =[
+                    'nem', 'zcash', 'vechain', 'waves', 'tezos',
+                    'qtum', 'omisego', 'decred', 'lisk', 'digibyte', '0x', 'zilliqa',
+                    'icon', 'bytecoin', 'steem', 'theta', 'aeternity', 'pundix', 'siacoin',
+                    'huobi', 'ravencoin', 'golem', 'ark', 'kucoin', 'factom', 'maidsafecoin',
+                    'waltonchain', 'wanchain', 'decentraland', 'pivx', 'aelf']
 financial_indicies = ['russell','sp']
 github_loader = GithubLoader()
+
+indexes_scraper = FinancialIndexes(financial_indicies)
+cryptos_scraper = Cryptocoin(cryptocurrencies)
+#cryptos_scraper.reset_offset('2018-04-24 00:00:00')
+logger.warning(cryptocurrencies)
 async def run_etls():
 
     tasks = [
-
-        #asyncio.ensure_future(run_scrapers(scrape_period='daily',cryptocurrencies=cryptocurrencies,
-                                           #fin_indicies=financial_indicies)),
-        asyncio.ensure_future(github_loader.run()),
-        #asyncio.ensure_future(runner.run())
         #asyncio.ensure_future(warehouse_etl.run()),
+        #asyncio.ensure_future(indexes_scraper.run()),
+        asyncio.ensure_future(cryptos_scraper.run()),
+        #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),
         #asyncio.ensure_future(account_activity_churn_etl.run()),
         #asyncio.ensure_future(account_activity_warehouse_etl.run()),

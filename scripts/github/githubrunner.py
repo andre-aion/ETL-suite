@@ -6,6 +6,8 @@ import gzip
 import urllib
 from pprint import pprint
 import yaml
+
+from config.checkpoint import checkpoint_dict
 from scripts.utils.mylogger import mylogger
 from scripts.ETL.checkpoint import Checkpoint
 import pandas as pd
@@ -15,6 +17,7 @@ from ast import literal_eval
 from itertools import chain
 from datetime import datetime, timedelta, date
 import concurrent.futures, threading
+import os
 
 logger = mylogger(__file__)
 
@@ -39,12 +42,49 @@ class GithubLoader(Checkpoint):
         self.item = {}
         self.item_tracker = []
 
+        # checkpointing
+        self.checkpoint_column = 'aion_fork'
+        self.checkpoint_key = 'githubloader'
+        self.key_params = 'checkpoint:' + self.checkpoint_key
+        self.dct = checkpoint_dict[self.checkpoint_key]
+
+
+    # /////////////////////////////////////////////////////////////////////
+    # ////////////          UTILS
     # function to return key for any value
     def get_key(self,val):
         for key, value in self.month_end_day_dict.items():
             if val in value:
                 return key
         return None
+
+    def get_offset(self):
+        try:
+            self.get_checkpoint_dict()
+            # handle reset or initialization
+            if self.checkpoint_dict['offset'] is None:
+                self.checkpoint_dict['offset'] = self.get_value_from_mongo(self.table, min_max='MAX')
+                if self.checkpoint_dict['offset'] is None:
+                    self.checkpoint_dict['offset'] = self.initial_date
+
+            # convert offset to datetime if needed
+            if isinstance(self.checkpoint_dict['offset'], str):
+                self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
+                                                                   self.DATEFORMAT)
+
+            # SET THE DATE
+            # ensure date fits mongo scheme
+            if isinstance(self.checkpoint_dict['offset'], date):
+                self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'], datetime.min.time())
+            if isinstance(self.checkpoint_dict['offset'], datetime):
+                self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'].date(), datetime.min.time())
+
+            return self.checkpoint_dict['offset']
+
+        except Exception:
+            logger.error('get offset', exc_info=True)
+
+    # ///////////////////    UTILS END       /////////////////////////////////////////////////
 
     def decompress(self,response):
         try:
@@ -62,7 +102,7 @@ class GithubLoader(Checkpoint):
             df = json_normalize(json_data)
             # Load the JSON to a Python list & dump it back out as formatted JSON
             df = df[['repo.name', 'repo.url', 'type','created_at']]
-            #logger.warning('flattened columns:%s', df.columns.tolist())
+            logger.warning('flattened columns:%s', df.columns.tolist())
             #logger.warning('df:%s', df.head(30))
             return df
         except Exception:
@@ -70,43 +110,45 @@ class GithubLoader(Checkpoint):
 
     def filter_df(self, df):
         try:
-            if len(df) > 0:
-                timestamp = df['created_at'].min()
-                DATEFORMAT = "%Y-%m-%dT%H:%M:%SZ"
-
-                hour = datetime.strptime(timestamp,DATEFORMAT).hour
-                df = df.drop(columns=['created_at'])
-                to_lower_lst = df.columns.tolist()
-                for col in to_lower_lst:
-                    df[col].str.lower()
-                df = df[(df['repo.name'].str.contains(self.cryptos_pattern)) |
-                        (df['repo.url'].str.contains(self.cryptos_pattern))]
+            if df is not None:
                 if len(df) > 0:
-                    df = df[df.type.str.contains(self.events_pattern)]
-                #logger.warning('FILTERING COMPLETE')
-                gc.collect()
-                return df,hour
+                    timestamp = df['created_at'].min()
+                    DATEFORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+                    hour = datetime.strptime(timestamp,DATEFORMAT).hour
+                    df = df.drop(columns=['created_at'])
+                    to_lower_lst = df.columns.tolist()
+                    for col in to_lower_lst:
+                        df[col].str.lower()
+                    df = df[(df['repo.name'].str.contains(self.cryptos_pattern)) |
+                            (df['repo.url'].str.contains(self.cryptos_pattern))]
+                    if len(df) > 0:
+                        df = df[df.type.str.contains(self.events_pattern)]
+                    #logger.warning('FILTERING COMPLETE')
+                    gc.collect()
+                    return df,hour
         except Exception:
             logger.error('filter df',exc_info=True)
 
     def log_occurrences(self, df, date, hour):
         try:
-            if len(df) > 0:
-                # make item
-                item = {
-                    'date':date
-                }
-                for crypto in self.cryptos:
-                    for event in self.events:
-                        df_temp = df[(df.type.str.contains(event)) & (df['repo.name'].str.contains(crypto))]
-                        event_truncated = event[:-5]
-                        column_name = '{}_{}'.format(crypto,event_truncated.lower())
-                        if len(df_temp)>0:
-                            item[column_name] = len(df_temp)
-                        else:
-                            item[column_name] = 0
-                self.aggregate_data(item,hour)
-                #logger.warning('hour %s item to aggregate:%s',hour,item)
+            if df is not None:
+                if len(df) > 0:
+                    # make item
+                    item = {
+                        'date':date
+                    }
+                    for crypto in self.cryptos:
+                        for event in self.events:
+                            df_temp = df[(df.type.str.contains(event)) & (df['repo.name'].str.contains(crypto))]
+                            event_truncated = event[:-5]
+                            column_name = '{}_{}'.format(crypto,event_truncated.lower())
+                            if len(df_temp)>0:
+                                item[column_name] = len(df_temp)
+                            else:
+                                item[column_name] = 0
+                    self.aggregate_data(item,hour)
+                    #logger.warning('hour %s item to aggregate:%s',hour,item)
 
         except Exception:
             logger.error('count occurrences', exc_info=True)
@@ -114,7 +156,9 @@ class GithubLoader(Checkpoint):
     # aggregate 24 hours of data,
     def aggregate_data(self,item, hour):
         try:
+            # ensure that 24 hours are logged uniquely
             if hour not in self.item_tracker:
+                # process the hour
                 if len(self.item_tracker) == 0:
                     self.item = item
                     logger.warning('SELF.ITEM SET TO ITEM:%s', self.item)
@@ -127,14 +171,11 @@ class GithubLoader(Checkpoint):
 
                 self.item_tracker.append(hour)
                 if len(self.item_tracker) >= 24:
-                    self.item_tracker = []
-                    self.process_item(self.item)
+                    self.item_tracker = [] # reset the tracker
+                    self.process_item(self.item) # save the data
                     self.item = {}
             else:
                 logger.warning('HOUR %s ALREADY AGGREGATED',hour)
-
-
-
         except Exception:
             logger.error('count occurrences', exc_info=True)
 
@@ -177,13 +218,7 @@ class GithubLoader(Checkpoint):
     async def update(self):
         try:
             offset = self.get_offset()
-            # LOAD THE DATE
-            this_date = offset + timedelta(days=1)
-            # ensure date fits mongo scheme
-            if isinstance(this_date,date):
-                this_date = datetime.combine(this_date, datetime.min.time())
-            if isinstance(this_date,datetime):
-                this_date = datetime.combine(this_date.date(),datetime.min.time())
+            this_date = offset+timedelta(days=1)
             logger.warning("OFFSET INCREASED:%s",this_date)
 
             self.update_checkpoint_dict(this_date)

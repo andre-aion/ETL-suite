@@ -309,3 +309,16 @@ def cast_cols(meta, df):
         #logger.warning('casted %s as %s',column,type)
     except Exception:
         logger.error('convert string', exc_info=True)
+
+def make_filepath(path):
+    return join(dirname(__file__), path)
+
+def load_cryptos():
+    try:
+        filepath = make_filepath('../../data/cryptos.csv')
+        df = pd.read_csv(filepath)
+        cryptos = df['Name'].str.lower().tolist()
+        return cryptos
+
+    except Exception:
+        logger.error('load cryptos', exc_info=True)

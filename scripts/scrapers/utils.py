@@ -20,9 +20,13 @@ def get_proxies():
     return list(proxies)
 
 def get_random_scraper_data():
-    proxies = get_proxies()
     data = {
-        'proxy':random.choice(proxies),
-        'user_agent':random.choice(scrapy_settings['USER_AGENTS'])
+        'user_agent': random.choice(scrapy_settings['USER_AGENTS'])
     }
+    proxies = get_proxies()
+    if len(proxies) == 0:
+        data['proxy'] = '65.48.185.213'
+    else:
+
+        data['proxy'] = random.choice(proxies)
     return data

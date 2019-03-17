@@ -49,7 +49,7 @@ class PythonMysql:
     # port = '9000'
     #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
     def __init__(self,db):
-        tmp = credentials['localhost']
+        tmp = credentials['office']
         self.schema = tmp['db']
         self.connection = MySQLdb.connect(user=tmp['user'],
                                           password=tmp['password'],
