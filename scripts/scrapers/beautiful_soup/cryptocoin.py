@@ -22,29 +22,31 @@ class Cryptocoin(Scraper):
         self.item_name = 'aion'
         self.items = items
         self.DATEFORMAT_coinmarket = "%b %d, %Y"
-        self.volume = self.item_name+'_coin_volume'
-        self.close = self.item_name+'_coin_close'
-        self.open = self.item_name+'_coin_open'
-        self.high = self.item_name+'_coin_high'
-        self.low = self.item_name+'_coin_low'
-        self.cap = self.item_name+'_coin_marketcap'
+        self.volume = 'volume'
+        self.close = 'close'
+        self.open = 'open'
+        self.high = 'high'
+        self.low = 'low'
+        self.cap = 'market_cap'
         self.url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
             .format(self.item_name)
         # checkpointing
         self.checkpoint_key = 'coinscraper'
         self.key_params = 'checkpoint:'+self.checkpoint_key
-        self.checkpoint_column = 'aion_coin_close'
+        self.checkpoint_column = 'close'
         self.dct = checkpoint_dict[self.checkpoint_key]
         self.offset = self.initial_date
+
+        self.scraper_name = 'crytpo coin'
+
 
     async def update(self):
         try:
             for self.item_name in self.items:
-                if self.item_is_up_to_date():
+                if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
                     pass
                 else:
                     self.offset = self.offset + timedelta(days=1)
-                    logger.warning("OFFSET:%s", self.offset)
                     url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
                         .format(self.item_name)
                     # launch url
@@ -61,7 +63,7 @@ class Cryptocoin(Scraper):
                         # click on the exposed link
                         wait = WebDriverWait(self.driver, 3)
                         link = wait.until(visibility_of_element_located(
-                            (By.CSS_SELECTOR, '.ranges li:nth-child(4)')))
+                            (By.CSS_SELECTOR, '.ranges li:nth-child(6)')))
                         print('LINK:',link)
 
                         link.click()
@@ -80,18 +82,28 @@ class Cryptocoin(Scraper):
                         item[self.high] = float(row.findAll('td')[2].contents[0].replace(',', ''))
                         item[self.low] = float(row.findAll('td')[3].contents[0].replace(',', ''))
                         item[self.close] = float(row.findAll('td')[4].contents[0].replace(',', ''))
-                        item[self.volume] = float(row.findAll('td')[5].contents[0].replace(',', ''))
-                        item[self.cap] = float(row.findAll('td')[6].contents[0].replace(',', ''))
+                        try:
+                            item[self.volume] = float(row.findAll('td')[5].contents[0].replace(',', ''))
+                        except:
+                            item[self.volume] = 0
+                        try:
+                            item[self.cap] = float(row.findAll('td')[6].contents[0].replace(',', ''))
+                        except:
+                            item[self.cap] = 0
+
                         if count <= 1:
                             self.cols = list(item)
                             self.cols.remove('date')
 
                         #print('{} {} data added'.format(self.coin,item['date']))
-                        self.process_item(item)
+                        self.process_item(item,self.item_name)
+
                         if self.scrape_period != 'history':
                             if count >= 1:
                                 break
                         count += 1
+                    self.update_checkpoint_dict(item_name=self.item_name)
+                    self.save_checkpoint()
 
                     logger.warning('%s SCRAPER %s COMPLETED', self.item_name.upper(),self.scrape_period)
 

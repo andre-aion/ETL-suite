@@ -60,26 +60,19 @@ table = 'coinscraper'
 checkpoint_dict[table] ={
     'table' : table,
     'column':'date',
-    'offset':None,
-    'timestamp' : None,
-    'items_updated': []
-
+    'items':{}
 }
 
 table = 'indexscraper'
 checkpoint_dict[table] ={
     'table' : table,
     'column':'date',
-    'offset':None,
-    'timestamp' : None,
-    'items_updated': []
-
+    'items':{}
 }
 
 table = 'githubloader'
 checkpoint_dict[table] ={
     'table' : table,
     'column':'date',
-    'offset':None,
-    'timestamp' : None,
+    'items':{}
 }
