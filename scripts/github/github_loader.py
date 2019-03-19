@@ -76,7 +76,7 @@ class GithubLoader(Scraper):
             for col in list(item.keys()):
                 # logger.warning('col:%s', col)
                 if col not in ['date', 'processed_hours']:
-                    logger.warning('col:%s',col)
+                    #logger.warning('col:%s',col)
                     nested_search = item_name+'.'+col
                     self.pym.db[self.collection].update_one(
                         {'date': item['date']},
@@ -95,7 +95,7 @@ class GithubLoader(Scraper):
                     }
                 })
 
-            logger.warning("%s item added to MongoDB database!", format(self.item_name))
+            #logger.warning("%s item added to MongoDB database!", format(self.item_name))
         except Exception:
             logger.error('process item', exc_info=True)
 
@@ -109,11 +109,16 @@ class GithubLoader(Scraper):
             data = data.splitlines()
             json_data = []
             for item in data:
-                if item[0] == '{' and item[-1] == '}':
-                    json_data.append(json.loads(item))
-            del data
-            gc.collect()
+                try:
+                    if item[0] == '{' and item[-1] == '}':
+                        json_data.append(json.loads(item))
+                except:
+                    logger.warning('string index out of range')
+           
             df = json_normalize(json_data)
+            del data
+            del json_data
+            gc.collect()
             # Load the JSON to a Python list & dump it back out as formatted JSON
             df = df[['repo.name', 'repo.url', 'type']]
             logger.warning('flattened columns:%s', df.columns.tolist())
@@ -171,8 +176,11 @@ class GithubLoader(Scraper):
                                 #logger.warning("coin:event=%s:%s",item_name,column_name)
                             item['processed_hours'] = self.checkpoint_dict['items'][item_name]['processed_hours']
                             self.aggregate_data(item, date, hour, item_name)
+
                         else:
                             logger.warning('ALREADY LOGGED - %s, hour:%s',item_name,hour)
+                    del df
+                    gc.collect()
 
         except Exception:
             logger.error('count occurrences', exc_info=True)
@@ -203,6 +211,10 @@ class GithubLoader(Scraper):
             #logger.warning('%s hour:%s saved, %s',item_name,hour, temp_item)
             self.process_item(temp_item, item_name)  # save the data
             self.save_checkpoint()
+            del res
+            del item
+            del temp_item
+            gc.collect()
         except Exception:
             logger.error('aggregate data', exc_info=True)
 
@@ -281,6 +293,8 @@ class GithubLoader(Scraper):
             data = self.load_url(url)
             df = self.decompress(data)
             df = self.filter_df(df)
+            del data
+            gc.collect()
             return df
         except Exception:
             logger.warning('run process',exc_info=True)
@@ -292,8 +306,9 @@ class GithubLoader(Scraper):
             logger.warning('offset:%s',offset)
             # reset the date and processed hour tracker in redis if all items, all hours are don
             url, offset, hour = self.determine_url(offset)
-            df =  self.run_process(url)
+            df = self.run_process(url)
             self.log_occurrences(df, offset, hour)
-
+            del df
+            gc.collect()
         except Exception:
             logger.error('github interface run', exc_info=True)

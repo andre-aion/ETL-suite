@@ -16,7 +16,7 @@ class Checkpoint:
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
         self.pym = PythonMongo('aion')
-        self.my = PythonMysql('aion')
+        self.my = PythonMysql('staging')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
         self.is_up_to_date_window = self.window + 2 # hours
@@ -146,16 +146,22 @@ class Checkpoint:
         except Exception:
             logger.error('reset checkpoint :%s', exc_info=True)
 
-    def update_checkpoint_dict(self, offset):
+    def update_checkpoint_dict(self, offset,item_name=None):
         try:
+            logger.warning('update checkpoint:%s',offset)
             if 'items_updated' in self.checkpoint_dict.keys():
                 self.checkpoint_dict['items_updated'] = self.items_updated
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
                 offset = offset + timedelta(seconds=1)
             # update checkpoint
-            self.checkpoint_dict['offset'] = datetime.strftime(offset,self.DATEFORMAT)
-            self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+
+            if 'items' in list(self.checkpoint_dict.keys()):
+                self.checkpoint_dict['items'][item_name]['offset'] = datetime.strftime(offset, self.DATEFORMAT)
+                self.checkpoint_dict['items'][item_name]['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            else:
+                self.checkpoint_dict['offset'] = datetime.strftime(offset, self.DATEFORMAT)
+                self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
         except Exception:
             logger.error("make warehouse", exc_info=True)
 
@@ -187,7 +193,6 @@ class Checkpoint:
 
     def get_value_from_mysql(self, table, min_max='MAX'):
         try:
-            self.my = PythonMysql('aion')
             qry = """select {}({}) AS result from {}.{}  LIMIT 1""" \
                 .format(min_max, self.checkpoint_column, 'aion', table)
             result = self.my.conn.execute(qry)

@@ -42,6 +42,7 @@ class FinancialIndexes(Scraper):
                 if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
                     pass
                 else:
+                    yesterday = datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
                     self.offset = self.offset + timedelta(days=1)
                     url = 'https://www.nasdaq.com/symbol/{}/historical'\
                         .format(self.coin_abbr[self.item_name])
@@ -84,7 +85,7 @@ class FinancialIndexes(Scraper):
                                 break
                         count += 1
 
-                    self.update_checkpoint_dict(item_name=self.item_name)
+                    self.update_checkpoint_dict(yesterday, self.item_name)
                     self.save_checkpoint()
                     logger.warning('%s SCRAPER %s COMPLETED:', self.item_name.upper(), self.scrape_period)
 

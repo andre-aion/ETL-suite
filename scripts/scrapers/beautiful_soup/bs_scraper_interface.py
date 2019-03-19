@@ -52,6 +52,8 @@ class Scraper(Checkpoint):
 
     def process_item(self,item, item_name):
         try:
+            if isinstance(item['date'],str):
+                item['date'] = datetime.strptime(item['date'], self.DATEFORMAT)
             #logger.warning('item before save:%s',item)
             for col in list(item.keys()):
                 #logger.warning('col:%s', col)
@@ -66,7 +68,7 @@ class Scraper(Checkpoint):
                         },
                         upsert=True)
 
-            logger.warning("%s item added to MongoDB database!",format(self.item_name))
+            #logger.warning("%s item added to MongoDB database!",format(self.item_name))
         except Exception:
             logger.error('process item', exc_info=True)
 
@@ -100,6 +102,7 @@ class Scraper(Checkpoint):
             # first check self.checkpoint_dict
             self.get_checkpoint_dict()
             if item_name in self.checkpoint_dict['items'].keys():
+                logger.warning('item offset from checkpoint')
                 offset = self.checkpoint_dict['items'][item_name]['offset']
                 offset = datetime.strptime(offset,self.DATEFORMAT)
             else:
@@ -165,13 +168,16 @@ class Scraper(Checkpoint):
 
     def item_is_up_to_date(self, checkpoint_column, item_name):
         try:
-            self.offset = self.get_item_offset(checkpoint_column,item_name)
-            today = datetime.combine(datetime.today().date(), datetime.min.time())
-            if self.offset >= today - timedelta(hours=self.is_up_to_date_window):
+            offset = self.get_item_offset(checkpoint_column,item_name)
+            yesterday =  datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
+            if offset >= yesterday:
+                logger.warning('%s upto date offset:yesterday=%s:%s',item_name,offset,yesterday)
                 return True
-            elif self.offset >= today - timedelta(hours=self.is_up_to_date_window*2):
+            elif offset >= yesterday - timedelta(days=1):
+                logger.warning('%s daily offset:yesterday=%s:%s',item_name,offset,yesterday-timedelta(days=1))
                 self.scrape_period = 'daily'
             else:
+                logger.warning('%s history:yesterday=%s:%s',item_name,offset,yesterday)
                 self.scrape_period = 'history'
             return False
         except Exception:

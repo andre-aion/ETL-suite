@@ -21,7 +21,7 @@ account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
 #account_activity_warehouse_etl = AccountActivityWarehouse('account_activity_warehouse')
 
 # ETLS
-#warehouse_etl = Warehouse('block_tx_warehouse')
+warehouse_etl = Warehouse('block_tx_warehouse')
 
 # scrapers
 cryptocurrencies = load_cryptos()
@@ -37,9 +37,9 @@ async def run_etls():
 
     tasks = [
         #asyncio.ensure_future(warehouse_etl.run()),
-        #asyncio.ensure_future(indexes_scraper.run()),
+        asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
-        asyncio.ensure_future(github_loader.run()),
+        #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),
         #asyncio.ensure_future(account_activity_churn_etl.run()),
         #asyncio.ensure_future(account_activity_warehouse_etl.run()),

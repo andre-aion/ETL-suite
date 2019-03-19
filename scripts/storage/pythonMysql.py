@@ -33,7 +33,7 @@ credentials['office'] = {
 }
 credentials['staging'] = {
     'user':'clickhouse',
-    'host':'40.113.226.240',
+    'host':'104.208.35.165',
     'db':'aion',
     'password': '1233tka061'
 }
@@ -48,8 +48,8 @@ credentials['localhost'] = {
 class PythonMysql:
     # port = '9000'
     #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
-    def __init__(self,db):
-        tmp = credentials['office']
+    def __init__(self,credential='staging'):
+        tmp = credentials[credential]
         self.schema = tmp['db']
         self.connection = MySQLdb.connect(user=tmp['user'],
                                           password=tmp['password'],

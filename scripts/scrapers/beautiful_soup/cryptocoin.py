@@ -21,6 +21,7 @@ class Cryptocoin(Scraper):
         Scraper.__init__(self)
         self.item_name = 'aion'
         self.items = items
+        self.items.sort()
         self.DATEFORMAT_coinmarket = "%b %d, %Y"
         self.volume = 'volume'
         self.close = 'close'
@@ -46,6 +47,7 @@ class Cryptocoin(Scraper):
                 if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
                     pass
                 else:
+                    yesterday = datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
                     self.offset = self.offset + timedelta(days=1)
                     url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
                         .format(self.item_name)
@@ -102,7 +104,7 @@ class Cryptocoin(Scraper):
                             if count >= 1:
                                 break
                         count += 1
-                    self.update_checkpoint_dict(item_name=self.item_name)
+                    self.update_checkpoint_dict(yesterday,self.item_name)
                     self.save_checkpoint()
 
                     logger.warning('%s SCRAPER %s COMPLETED', self.item_name.upper(),self.scrape_period)

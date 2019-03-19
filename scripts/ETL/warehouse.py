@@ -49,6 +49,8 @@ class Warehouse(Checkpoint):
             'block': cols[self.table]['block'],
             'transaction':cols[self.table]['transaction'],
         }
+        self.my = PythonMysql('staging')
+
 
     def cast_date(self,x):
         x = pd.to_datetime(str(x))
