@@ -52,23 +52,21 @@ class Scraper(Checkpoint):
 
     def process_item(self,item, item_name):
         try:
-            logger.warning('item before save:%s',item)
+            #logger.warning('item before save:%s',item)
             for col in list(item.keys()):
-                logger.warning('col:%s', col)
-                if col not in ['date']:
+                #logger.warning('col:%s', col)
+                if col != 'date':
+                    nested_search = item_name+'.'+col
                     self.pym.db[self.collection].update_one(
                         {'date': item['date']},
                         {'$set':
                              {
-                               item_name:
-                                {
-                                    col:item[col]
-                                }
+                               nested_search:item[col]
                              }
                         },
                         upsert=True)
 
-            #logger.warning("%s item added to MongoDB database!",format(self.item_name))
+            logger.warning("%s item added to MongoDB database!",format(self.item_name))
         except Exception:
             logger.error('process item', exc_info=True)
 
@@ -127,6 +125,8 @@ class Scraper(Checkpoint):
 
     def get_processed_hours(self,item_name,date):
         try:
+            if isinstance(date,str):
+                date = datetime.strptime(date, self.DATEFORMAT)
             self.pym = PythonMongo('aion')
             nested_field = item_name+"."+"processed_hours"
             result = self.pym.db[self.table].find(
@@ -137,7 +137,7 @@ class Scraper(Checkpoint):
             ).limit(1)
             if result.count() > 0:
                 for res in result:
-                    logger.warning(res)
+                    logger.warning('result: %s',res)
                     return res['processed_hours']
             else:
                 return []
@@ -210,7 +210,6 @@ class Scraper(Checkpoint):
             if temp_dct is not None:
                 self.checkpoint_dict = temp_dct
             else: # set if from config
-                logger.warning('GGGGGGGGGGGGGGGGGGGGGGGGG')
 
                 self.checkpoint_dict = self.dct
                 # refill checkpoint dict with last update from database
