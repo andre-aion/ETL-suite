@@ -41,14 +41,14 @@ credentials['staging'] = {
 credentials['localhost'] = {
     'user':'admin',
     'host':'127.0.0.1',
-    'db':'aion',
+    'db':'aion_analytics',
     'password': 'password'
 }
 
 class PythonMysql:
     # port = '9000'
     #ch = sa.create_engine('clickhouse://default:@127.0.0.1:8123/aion')
-    def __init__(self,credential='staging'):
+    def __init__(self,credential='localhost'):
         tmp = credentials[credential]
         self.schema = tmp['db']
         self.connection = MySQLdb.connect(user=tmp['user'],
@@ -88,7 +88,7 @@ class PythonMysql:
         #logger.warning('query:%s', qry)
         return qry
 
-    def load_data(self,table,cols,start_date,end_date):
+    def load_data(self,table,cols,start_date,end_date,type='dask'):
         #logger.warning('%s load data start_date,%s:%s',table,start_date, end_date)
 
         start_date = self.date_to_int(start_date)
@@ -142,9 +142,10 @@ class PythonMysql:
                     # convert to dask
                     #logger.warning("%s data loaded from mysql:%s",table.upper(),df.columns.tolist())
 
-                    df = dd.dataframe.from_pandas(df, npartitions=5)
-                    if 'block_timestamp' in df.columns.tolist():
-                        df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
+                    if type == 'dask':
+                        df = dd.dataframe.from_pandas(df, npartitions=5)
+                        if 'block_timestamp' in df.columns.tolist():
+                            df['block_timestamp'] = df['block_timestamp'].map(self.int_to_date)
                     #logger.warning("%s length data loaded from mysql:%s",table,len(df))
             return df
 

@@ -18,9 +18,8 @@ WINDOW_SIZE = "1920,1080"
 
 
 class Scraper(Checkpoint):
-    collection = 'external'
-    def __init__(self):
-        Checkpoint.__init__(self,'external')
+    def __init__(self,collection='external_daily'):
+        Checkpoint.__init__(self,collection)
         data = get_random_scraper_data()
         self.proxy = Proxy({
             'proxyType': ProxyType.MANUAL,
@@ -48,19 +47,19 @@ class Scraper(Checkpoint):
         self.driver = webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
                                         firefox_options=self.options)
         self.scraper = ''
-
+        self.collection = collection
 
     def process_item(self,item, item_name):
         try:
-            if isinstance(item['date'],str):
-                item['date'] = datetime.strptime(item['date'], self.DATEFORMAT)
+            if isinstance(item['timestamp'],str):
+                item['timestamp'] = datetime.strptime(item['timestamp'], self.DATEFORMAT)
             #logger.warning('item before save:%s',item)
             for col in list(item.keys()):
                 #logger.warning('col:%s', col)
-                if col != 'date':
+                if col != 'timestamp':
                     nested_search = item_name+'.'+col
                     self.pym.db[self.collection].update_one(
-                        {'date': item['date']},
+                        {'timestamp': item['timestamp']},
                         {'$set':
                              {
                                nested_search:item[col]
@@ -99,42 +98,37 @@ class Scraper(Checkpoint):
 
     def get_item_offset(self, checkpoint_column, item_name, min_max='MAX'):
         try:
-            # first check self.checkpoint_dict
-            self.get_checkpoint_dict()
-            if item_name in self.checkpoint_dict['items'].keys():
-                logger.warning('item offset from checkpoint')
-                offset = self.checkpoint_dict['items'][item_name]['offset']
-                offset = datetime.strptime(offset,self.DATEFORMAT)
+            nested_field = self.item_name+"."+checkpoint_column
+            if min_max == 'MAX':
+                result = self.pym.db[self.table].find(
+                    {nested_field: {'$exists': True}}).sort('timestamp', -1).limit(1)
             else:
-                nested_field = self.item_name+"."+checkpoint_column
-                if min_max == 'MAX':
-                    result = self.pym.db[self.table].find(
-                        {nested_field: {'$exists': True}}).sort('date', -1).limit(1)
-                else:
-                    result = self.pym.db[self.table].find(
-                        {nested_field: {'$exists': True}}).sort('date', 1).limit(1)
+                result = self.pym.db[self.table].find(
+                    {nested_field: {'$exists': True}}).sort('timestamp', 1).limit(1)
 
-                offset = self.initial_date
-                if result.count() > 0:
-                    for res in result:
-                        offset = res['date']
-                # SET DATETIME TO DATE WITH MIN TIME
-                # ensure date fits mongo scheme
+            offset = self.initial_date
+            if result.count() > 0:
+                for res in result:
+                    offset = res['timestamp']
+            # SET DATETIME TO DATE WITH MIN TIME
+            # ensure timestamp fits mongo scheme
+            if 'daily' in self.table:
                 offset = datetime.combine(offset.date(),datetime.min.time())
-                logger.warning('%s offset from mongo:%s', item_name, offset)
+
+            logger.warning('%s offset from mongo:%s', item_name, offset)
             return offset
         except Exception:
             logger.error("get item offset", exc_info=True)
 
-    def get_processed_hours(self,item_name,date):
+    def get_processed_hours(self,item_name,timestamp):
         try:
-            if isinstance(date,str):
-                date = datetime.strptime(date, self.DATEFORMAT)
+            if isinstance(timestamp,str):
+                timestamp = datetime.strptime(timestamp, self.DATEFORMAT)
             self.pym = PythonMongo('aion')
             nested_field = item_name+"."+"processed_hours"
             result = self.pym.db[self.table].find(
                 {
-                    'date': {'$eq':date},
+                    'timestamp': {'$eq':timestamp},
                     nested_field:{'exists':True}
                 }
             ).limit(1)
@@ -147,12 +141,12 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error("processed hours", exc_info=True)
 
-    def item_in_mongo(self, item_name, date):
+    def item_in_mongo(self, item_name, timestamp):
         try:
             nested_field = item_name
             result = self.pym.db[self.table].find(
                 {
-                    'date': {'$eq': date},
+                    'timestamp': {'$eq': timestamp},
                     nested_field: {'exists': True}
                 }
             ).limit(1)
@@ -171,7 +165,7 @@ class Scraper(Checkpoint):
             offset = self.get_item_offset(checkpoint_column,item_name)
             yesterday =  datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
             if offset >= yesterday:
-                logger.warning('%s upto date offset:yesterday=%s:%s',item_name,offset,yesterday)
+                logger.warning('%s up to timestamp offset:yesterday=%s:%s',item_name,offset,yesterday)
                 return True
             elif offset >= yesterday - timedelta(days=1):
                 logger.warning('%s daily offset:yesterday=%s:%s',item_name,offset,yesterday-timedelta(days=1))
@@ -183,27 +177,43 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error("item is_up_to_date", exc_info=True)
 
+    def get_date_data_from_mongo(self, timestamp):
+        try:
+            if isinstance(timestamp, str):
+                timestamp = datetime.strptime(timestamp, self.DATEFORMAT)
+
+            result = self.pym.db[self.table].find(
+                {
+                    'timestamp': {'$eq': timestamp},
+                }
+            ).limit(1)
+            if result.count() > 0:
+                for res in result:
+                    return res
+            else:
+                return None
+        except Exception:
+            logger.error("processed hours", exc_info=True)
+
     # check if all coins under inspection have been loaded up to yesterday
     def is_up_to_date(self):
         try:
-            self.get_checkpoint_dict()
+            if self.scraper_name != 'github':
+                timestamp = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(hours=self.window)
+            else:
+                timestamp = datetime.now() - timedelta(hours=self.window)
+                timestamp = datetime(timestamp.year,timestamp.month, timestamp.day,timestamp.hour,0,0)
+            result = self.get_date_data_from_mongo(timestamp)
             counter = 0
-            today = datetime.combine(datetime.today().date(), datetime.min.time())
-            for item in self.items:
-                if item in self.checkpoint_dict['items'].keys():
-                    offset = datetime.strptime(self.checkpoint_dict['items'][item]['offset'],self.DATEFORMAT)
-                    if self.scraper_name == 'github':
-                        hours_completed = len(self.checkpoint_dict['items'][item]['processed_hours'])
-                        if offset >= today - timedelta(hours=self.window) and hours_completed >= 24:
-                            counter += 1
-                    else:
-                        if offset >= today - timedelta(hours=self.window):
-                            counter += 1
-                else:
-                    return False
-            if counter == len(self.items):
+            if result:
+                for res in result.keys():
+                    if res in self.items:
+                        counter += 1
+
+            if counter >= len(self.items):
                 return True
             return False
+
         except Exception:
             logger.error("is_up_to_date", exc_info=True)
 
@@ -222,15 +232,15 @@ class Scraper(Checkpoint):
                 for item_name in self.items:
                     nested_field = item_name + "." + self.checkpoint_column
                     result = self.pym.db[self.table].find(
-                        {nested_field: {'$exists': True}}).sort('date', -1).limit(1)
+                        {nested_field: {'$exists': True}}).sort('timestamp', -1).limit(1)
 
                     offset = self.initial_date
                     processed_hours = []
                     if result.count() > 0:
                         for res in result:
                             logger.warning('res:%s',res)
-                            offset = res['date']
-                            if self.scraper_name == 'githubloader':
+                            offset = res['timestamp']
+                            if self.scraper_name == 'github':
                                 processed_hours = res['processed_hours']
 
                     self.checkpoint_dict['items'][item_name] = {
@@ -238,7 +248,7 @@ class Scraper(Checkpoint):
                         'timestamp': datetime.now().strftime(self.DATEFORMAT),
                     }
 
-                    if self.scraper_name == 'githubloader':
+                    if self.scraper_name == 'github':
                         self.checkpoint_dict['items'][item_name]['processed_hours'] = processed_hours
 
                     self.save_checkpoint()

@@ -1,92 +1,101 @@
-import asyncio
 import gc
 import json
-import ujson
 import gzip
 import urllib
-from pprint import pprint
-import yaml
 
 from config.checkpoint import checkpoint_dict
+from scripts.github_and_bsscraper_interface import Scraper
 from scripts.utils.mylogger import mylogger
-from scripts.ETL.checkpoint import Checkpoint
-import pandas as pd
 from pandas.io.json import json_normalize
-from requests import request
-from ast import literal_eval
-from itertools import chain
-from datetime import datetime, timedelta, date
-import concurrent.futures, threading
-import os
+from datetime import datetime, timedelta
+from iteration_utilities import deepflatten
 
 logger = mylogger(__file__)
 
-class GithubLoader(Checkpoint):
-    month_end_day_dict = {
-        '30' : ['09','04','06','11'],
-        '28' : ['02'],
-        '31':['01','03','05','07','08','10','12']
-    }
-    SLEEP = 300
-    def __init__(self):
-        Checkpoint.__init__(self,'external')
+class GithubLoader(Scraper):
+
+    def __init__(self, items):
+        Scraper.__init__(self)
         self.data = None
-        self.cryptos = ['aion','cardano','bitcoin','ethereum']
-        self.events = ['ReleaseEvent','PushEvent','WatchEvent','ForkEvent','IssueEvent']
-        self.cryptos_pattern = '|'.join(self.cryptos)
+        self.items = items
+        self.events = ['ReleaseEvent', 'PushEvent', 'WatchEvent', 'ForkEvent', 'IssueEvent']
+        self.cryptos_pattern = '|'.join(self.items)
         self.events_pattern = '|'.join(self.events)
-        self.initial_date = datetime.strptime("2018-04-23 00:00:00",self.DATEFORMAT)
+        self.initial_date = datetime.strptime("2018-04-25 00:00:00", self.DATEFORMAT)
         self.is_up_to_date_window = 24  # hours to sleep to give reorg time to happen
         self.window = 24
-        # save daily data
-        self.item = {}
-        self.item_tracker = []
 
         # checkpointing
         self.checkpoint_column = 'aion_fork'
+        self.checkpoint_append = '_fork'
         self.checkpoint_key = 'githubloader'
         self.key_params = 'checkpoint:' + self.checkpoint_key
         self.dct = checkpoint_dict[self.checkpoint_key]
+        self.offset = self.initial_date
 
+        self.scraper_name = 'githubloader'
+        self.item_name = 'aion'
+
+        self.day_data = {} # aggregate data over a day
 
     # /////////////////////////////////////////////////////////////////////
     # ////////////          UTILS
     # function to return key for any value
-    def get_key(self,val):
+    def get_key(self, val):
         for key, value in self.month_end_day_dict.items():
             if val in value:
                 return key
         return None
 
-    def get_offset(self):
+    def get_date_data_from_mongo(self,date):
         try:
-            self.get_checkpoint_dict()
-            # handle reset or initialization
-            if self.checkpoint_dict['offset'] is None:
-                self.checkpoint_dict['offset'] = self.get_value_from_mongo(self.table, min_max='MAX')
-                if self.checkpoint_dict['offset'] is None:
-                    self.checkpoint_dict['offset'] = self.initial_date
+            if isinstance(date,str):
+                date = datetime.strptime(date, self.DATEFORMAT)
 
-            # convert offset to datetime if needed
-            if isinstance(self.checkpoint_dict['offset'], str):
-                self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
-                                                                   self.DATEFORMAT)
-
-            # SET THE DATE
-            # ensure date fits mongo scheme
-            if isinstance(self.checkpoint_dict['offset'], date):
-                self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'], datetime.min.time())
-            if isinstance(self.checkpoint_dict['offset'], datetime):
-                self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'].date(), datetime.min.time())
-
-            return self.checkpoint_dict['offset']
-
+            result = self.pym.db[self.table].find(
+                {
+                    'date': {'$eq':date},
+                }
+            ).limit(1)
+            if result.count() > 0:
+                for res in result:
+                    return res
+            else:
+                return None
         except Exception:
-            logger.error('get offset', exc_info=True)
+            logger.error("processed hours", exc_info=True)
+
+    def process_item(self, item, item_name):
+        try:
+            # logger.warning('item before save:%s',item)
+            for col in list(item.keys()):
+                # logger.warning('col:%s', col)
+                if col not in ['date', 'processed_hours']:
+                    #logger.warning('col:%s',col)
+                    nested_search = item_name+'.'+col
+                    self.pym.db[self.collection].update_one(
+                        {'date': item['date']},
+                        {'$set':
+                            {
+                                nested_search: item[col]
+                            }
+                        },
+                        upsert=True)
+            nested_search = item_name+'.processed_hours'
+            self.pym.db[self.collection].update(
+                {'date': item['date']},
+                {'$addToSet':
+                    {
+                        nested_search: item['processed_hours']
+                    }
+                })
+
+            #logger.warning("%s item added to MongoDB database!", format(self.item_name))
+        except Exception:
+            logger.error('process item', exc_info=True)
 
     # ///////////////////    UTILS END       /////////////////////////////////////////////////
-
-    def decompress(self,response):
+    def decompress(self, response):
         try:
             data = gzip.decompress(response.read())
             data = data.decode('utf8').replace("'{", '{')
@@ -95,108 +104,116 @@ class GithubLoader(Checkpoint):
             data = data.splitlines()
             json_data = []
             for item in data:
-                if item[0] == '{' and item[-1] == '}':
-                    json_data.append(json.loads(item))
-            del data
-            gc.collect()
+                try:
+                    if item[0] == '{' and item[-1] == '}':
+                        json_data.append(json.loads(item))
+                except:
+                    logger.warning('string index out of range')
+
             df = json_normalize(json_data)
+            del data
+            del json_data
+            gc.collect()
             # Load the JSON to a Python list & dump it back out as formatted JSON
-            df = df[['repo.name', 'repo.url', 'type','created_at']]
+            df = df[['repo.name', 'repo.url', 'type']]
             logger.warning('flattened columns:%s', df.columns.tolist())
             #logger.warning('df:%s', df.head(30))
             return df
         except Exception:
-            logger.error('decompress',exc_info=True)
+            logger.error('decompress', exc_info=True)
 
     def filter_df(self, df):
         try:
+            #logger.warning(self.cryptos_pattern)
             if df is not None:
                 if len(df) > 0:
-                    timestamp = df['created_at'].min()
-                    DATEFORMAT = "%Y-%m-%dT%H:%M:%SZ"
+                    DATEFORMAT_created_at = "%Y-%m-%dT%H:%M:%SZ"
 
-                    hour = datetime.strptime(timestamp,DATEFORMAT).hour
-                    df = df.drop(columns=['created_at'])
                     to_lower_lst = df.columns.tolist()
                     for col in to_lower_lst:
                         df[col].str.lower()
                     df = df[(df['repo.name'].str.contains(self.cryptos_pattern)) |
                             (df['repo.url'].str.contains(self.cryptos_pattern))]
+
                     if len(df) > 0:
                         df = df[df.type.str.contains(self.events_pattern)]
-                    #logger.warning('FILTERING COMPLETE')
+
+                    logger.warning('FILTERING COMPLETE')
                     gc.collect()
-                    return df,hour
+                    return df
         except Exception:
-            logger.error('filter df',exc_info=True)
+            logger.error('filter df', exc_info=True)
 
     def log_occurrences(self, df, date, hour):
         try:
             if df is not None:
                 if len(df) > 0:
                     # make item
-                    item = {
-                        'date':date
-                    }
-                    for crypto in self.cryptos:
-                        for event in self.events:
-                            df_temp = df[(df.type.str.contains(event)) & (df['repo.name'].str.contains(crypto))]
-                            event_truncated = event[:-5]
-                            column_name = '{}_{}'.format(crypto,event_truncated.lower())
-                            if len(df_temp)>0:
-                                item[column_name] = len(df_temp)
-                            else:
-                                item[column_name] = 0
-                    self.aggregate_data(item,hour)
-                    #logger.warning('hour %s item to aggregate:%s',hour,item)
+
+                    self.get_checkpoint_dict()
+                    for item_name in self.items:
+                        item = {
+                            'date': date,
+                        }
+                        # do not run loop if the offset date is later than current date
+                        item_offset = datetime.strptime(self.checkpoint_dict['items'][item_name]['offset'],self.DATEFORMAT)
+                        if item_offset <= date and hour not in self.checkpoint_dict['items'][item_name]['processed_hours']:
+                            for event in self.events:
+                                df_temp = df[(df.type.str.contains(event)) &
+                                             ((df['repo.name'].str.contains(item_name)) |
+                                              (df['repo.url'].str.contains(item_name)))]
+                                event_truncated = event[:-5]
+                                column_name = '{}_{}'.format(item_name, event_truncated.lower())
+                                if len(df_temp) > 0:
+                                    item[column_name] = len(df_temp)
+                                else:
+                                    item[column_name] = 0
+                                #logger.warning("coin:event=%s:%s",item_name,column_name)
+                            item['processed_hours'] = self.checkpoint_dict['items'][item_name]['processed_hours']
+                            self.aggregate_data(item, date, hour, item_name)
+
+                        else:
+                            logger.warning('ALREADY LOGGED - %s, hour:%s',item_name,hour)
+                    del df
+                    gc.collect()
 
         except Exception:
             logger.error('count occurrences', exc_info=True)
+
 
     # aggregate 24 hours of data,
-    def aggregate_data(self,item, hour):
+    def aggregate_data(self, item, date, hour, item_name):
         try:
-            # ensure that 24 hours are logged uniquely
-            if hour not in self.item_tracker:
-                # process the hour
-                if len(self.item_tracker) == 0:
-                    self.item = item
-                    logger.warning('SELF.ITEM SET TO ITEM:%s', self.item)
-                    logger.warning('new day aggregate started')
-                else:
+            # find if item exists in mongo for a particular date
+            res = self.item_in_mongo(item_name,date)
+            if res is not None:
+                processed_hours = list(deepflatten(res['processed_hours'],depth=1))
+                # do not duplicate
+                if len(processed_hours) < 24 and hour not in processed_hours:
+                    temp_item = {'date': item['date']}
+                    processed_hours.append(hour)
+                    self.checkpoint_dict['items'][item_name]['processed_hours'] = processed_hours
+                    temp_item['processed_hours'] = hour
                     for col in item.keys():
-                        if col != 'date':
-                            self.item[col] = self.item[col] + item[col]
+                        if col not in ['date', 'processed_hours']:
+                            temp_item[col] = res[col] + item[col]
                     logger.warning('aggregate updated, hour %s', hour)
-
-                self.item_tracker.append(hour)
-                if len(self.item_tracker) >= 24:
-                    self.item_tracker = [] # reset the tracker
-                    self.process_item(self.item) # save the data
-                    self.item = {}
             else:
-                logger.warning('HOUR %s ALREADY AGGREGATED',hour)
-        except Exception:
-            logger.error('count occurrences', exc_info=True)
+                temp_item = item
+                temp_item['processed_hours']= hour
+                self.checkpoint_dict['items'][item_name]['processed_hours'] = [hour]
 
-    def process_item(self, item):
-        try:
-            for col in item.keys():
-                if col != 'date':
-                    self.pym.db[self.table].update_one(
-                        {'date': item['date']},
-                        {'$set':
-                            {
-                                col: item[col],
-                            }
-                        },
-                        upsert=True)
+            #logger.warning('%s hour:%s saved, %s',item_name,hour, temp_item)
+            self.process_item(temp_item, item_name)  # save the data
             self.save_checkpoint()
-            logger.warning("%s item added to MongoDB database!",format(item))
+            del res
+            del item
+            del temp_item
+            gc.collect()
         except Exception:
-            logger.error('process item', exc_info=True)
+            logger.error('aggregate data', exc_info=True)
 
-    def load_url(self,url):
+    def load_url(self, url):
         try:
             request = urllib.request.Request(
                 url,
@@ -209,83 +226,84 @@ class GithubLoader(Checkpoint):
         except Exception:
             logger.error('read requests', exc_info=True)
 
-    def run_process(self,url):
-        data = self.load_url(url)
-        df = self.decompress(data)
-        df, hour = self.filter_df(df)
-        return df, hour
+
+    def hour_to_process(self,offset):
+        try:
+            result = self.get_date_data_from_mongo(offset)
+            if result is not None:
+                #logger.warning('res:%s',result)
+                max_processed_hours = []
+                for item_name in self.items:
+                    if len(result[item_name]['processed_hours']) == 0:
+                        return -1
+                    max_processed_hours.append(max(list(deepflatten(result[item_name]['processed_hours']))))
+                    max_processed_hours = list(set(max_processed_hours))
+
+                # find mininum of max loaded numbers
+                if len(max_processed_hours) > 0:
+                    return min(max_processed_hours)
+                else:
+                    return -1
+            else: # if no data for date in table
+                return -1
+        except Exception:
+            logger.warning('decide start hour',exc_info=True)
+
+    def determine_url(self, offset):
+        try:
+            # determine the start hour, and the start date
+            offset_increment_tracker = 0
+            max_processed_hour = self.hour_to_process(offset) # determine which hour to start
+            logger.warning('max processed hour:%s',max_processed_hour)
+
+            # RESET REDIS CHECKPOINT IF NEEDED
+            hour = max_processed_hour + 1 # increment hour to consider
+            if max_processed_hour >= 23: # all 24 hours for all coins have been loaded
+                offset = offset + timedelta(days=1)
+                hour = 0
+                # reset self.checkpoint dict for new day
+                for item_name in self.items:
+                    self.checkpoint_dict['items'][item_name]['offset'] = datetime.strftime(offset, self.DATEFORMAT)
+                    self.checkpoint_dict['items'][item_name]['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+                    self.checkpoint_dict['items'][item_name]['processed_hours'] = []
+                self.save_checkpoint()
+
+            logger.warning('hour tracker:offset_increment_tracker= %s:%s',hour,offset)
+
+
+            # MAKE URL
+            month = str(offset.month).zfill(2)
+            year = offset.year
+            day = str(offset.day).zfill(2)
+            hour_str = str(hour)
+            url = 'http://data.gharchive.org/{}-{}-{}-{}.json.gz'.format(year, month, day, hour_str)
+            logger.warning('URL: %s',url)
+
+            return url, offset, hour
+        except Exception:
+            logger.warning('',exc_info=True)
+
+    def run_process(self, url):
+        try:
+            data = self.load_url(url)
+            df = self.decompress(data)
+            df = self.filter_df(df)
+            del data
+            gc.collect()
+            return df
+        except Exception:
+            logger.warning('run process',exc_info=True)
+
 
     async def update(self):
         try:
-            offset = self.get_offset()
-            this_date = offset+timedelta(days=1)
-            logger.warning("OFFSET INCREASED:%s",this_date)
-
-            self.update_checkpoint_dict(this_date)
-            month = str(this_date.month).zfill(2)
-            year = this_date.year
-            day = str(this_date.day).zfill(2)
-            # make four threads
-            start = 0
-            url_parallel_count = 3
-            while start + url_parallel_count <= 24:
-                URLS = []
-                for hour in list(range(start,start+url_parallel_count+1)):
-                    hour_str = str(hour)
-                    search_str = 'http://data.gharchive.org/{}-{}-{}-{}.json.gz'\
-                        .format(year,month,day,hour_str)
-                    URLS.append(search_str)
-                start = start+ url_parallel_count + 1
-                logger.warning(URLS)
-                try:
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-                        # Start the load operations and mark each future with its
-                        '''
-                        future_to_url = {executor.submit(self.load_url, url): url for url in URLS}
-                        
-                        for future in concurrent.futures.as_completed(future_to_url):
-                            url = future_to_url[future]
-                            try:
-                                data = future.result()
-                                
-                                df = self.decompress(data)
-                                if len(df) > 0:
-                                    df,hour = self.filter_df(df)
-                                if len(df) > 0:
-                                    self.log_occurrences(df, this_date, hour)
-                                
-
-                            except Exception as exc:
-                                logger.warning('%r generated an exception: %s' % (url, exc))
-                            else:
-                                logger.warning('%r page is %d bytes' % (url, len(data.read())))
-                        '''
-                        future_to_url = {executor.submit(self.run_process, url): url for url in URLS}
-                        for future in concurrent.futures.as_completed(future_to_url):
-                            url = future_to_url[future]
-                            try:
-                                df, hour = future.result()
-                                self.log_occurrences(df, this_date, hour)
-                            except Exception as exc:
-                                logger.warning('%r generated an exception: %s' % (url, exc))
-                            else:
-                                logger.warning('%r hour completed' % (url))
-
-                except Exception:
-                    logger.error('batch load failed',exc_info=True)
-
+            offset = datetime.strptime(self.checkpoint_dict['items']['aion']['offset'],self.DATEFORMAT)
+            logger.warning('offset:%s',offset)
+            # reset the date and processed hour tracker in redis if all items, all hours are don
+            url, offset, hour = self.determine_url(offset)
+            df = self.run_process(url)
+            self.log_occurrences(df, offset, hour)
+            del df
+            gc.collect()
         except Exception:
-            logger.error('github interface run',exc_info=True)
-
-    async def run(self):
-        # create warehouse table in clickhouse if needed
-        # self.create_table_in_clickhouse()
-        while True:
-            await self.update()
-            if self.is_up_to_date(construct_table='external',
-                                  storage_medium='mongo',
-                                  window_hours=self.window):
-                logger.warning("ACCOUNT ACTIVITY SLEEPING FOR 24 hours:UP TO DATE")
-                await asyncio.sleep(self.window*60*60)  # sleep
-            else:
-                await asyncio.sleep(1)
+            logger.error('github interface run', exc_info=True)

@@ -16,7 +16,7 @@ class Checkpoint:
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
         self.pym = PythonMongo('aion')
-        self.my = PythonMysql('staging')
+        self.my = PythonMysql('office')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
         self.is_up_to_date_window = self.window + 2 # hours
@@ -32,7 +32,7 @@ class Checkpoint:
         self.checkpoint_column = 'block_timestamp'
         self.checkpoint_key = table
         self.checkpoint_dict = None
-        if self.table != 'external':
+        if self.table != 'external_daily':
             self.dct = checkpoint_dict[self.checkpoint_key]
         else:
             self.dct = None
@@ -45,6 +45,15 @@ class Checkpoint:
         if isinstance(x,str):
             return datetime.strptime(x,self.DATEFORMAT)
         return x
+
+    def datetime_to_date(self,x):
+        if isinstance(x,str):
+            x = datetime.strptime(x,self.DATEFORMAT)
+        if isinstance(x, datetime):
+            return datetime.combine(x.date(), datetime.min.time())
+        if isinstance(x, date):
+            return datetime.combine(x, datetime.min.time())
+
 
     def load_df(self, start_date, end_date, cols, table, storage_medium):
         try:
@@ -96,7 +105,7 @@ class Checkpoint:
     def get_offset(self):
         try:
             self.get_checkpoint_dict()
-            if self.table == 'external': # scrapers, github
+            if self.table == 'external_daily': # scrapers, github
                 # handle reset or initialization
                 if self.checkpoint_dict['offset'] is None:
                     self.checkpoint_dict['offset'] = self.get_value_from_mongo(self.table, min_max='MAX')
@@ -113,7 +122,7 @@ class Checkpoint:
                     self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'],
                                                                       datetime.min.time())
                 if isinstance(self.checkpoint_dict['offset'], datetime):
-                    self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'].date(),
+                    self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'].timestamp(),
                                                                       datetime.min.time())
             else: # aion etls
                 # handle reset or initialization
@@ -177,13 +186,13 @@ class Checkpoint:
         except:
             logger.error("save dataframe to clickhouse", exc_info=True)
 
-    def get_value_from_clickhouse(self, table, min_max='MAX'):
+    def get_value_from_clickhouse(self, table, column='timestamp', min_max='MAX',db='aion'):
         try:
-            qry = "select count() from {}.{}".format('aion', table)
+            qry = "select count() from {}.{}".format(db, table)
             numrows = self.cl.client.execute(qry)
             if numrows[0][0] >= 1:
                 qry = """select {}({}) from {}.{} AS result LIMIT 1""" \
-                    .format(min_max, self.checkpoint_column, 'aion', table)
+                    .format(min_max, self.checkpoint_column, db, table)
                 result = self.cl.client.execute(qry)
                 # logger.warning('%s value from clickhouse:%s',min_max,result[0][0])
                 return result[0][0]
@@ -191,12 +200,11 @@ class Checkpoint:
         except Exception:
             logger.error("get value from clickhouse", exc_info=True)
 
-    def get_value_from_mysql(self, table, min_max='MAX'):
+    def get_value_from_mysql(self, table, column='block_timestamp',min_max='MAX',db='aion'):
         try:
             qry = """select {}({}) AS result from {}.{}  LIMIT 1""" \
-                .format(min_max, self.checkpoint_column, 'aion', table)
+                .format(min_max, column, db, table)
             result = self.my.conn.execute(qry)
-            logger.warning("result:%s",result)
             row = self.my.conn.fetchone()
             result = row[0]
             logger.warning('%s value from mysql %s:%s', min_max, table.upper(), result)
@@ -206,20 +214,20 @@ class Checkpoint:
         except Exception:
             logger.error("get value from mysql", exc_info=True)
 
-    def get_value_from_mongo(self, table, min_max='MAX'):
+    def get_value_from_mongo(self, table, column='timestamp',min_max='MAX',db='aion'):
         try:
-            self.pym = PythonMongo('aion')
+            self.pym = PythonMongo(db)
             if min_max == 'MAX':
-                result = self.pym.db[self.table].find(
-                    {self.checkpoint_column:{'$exists':True}}).sort('date', -1).limit(1)
+                result = self.pym.db[table].find(
+                    {self.checkpoint_column:{'$exists':True}}).sort(column, -1).limit(1)
             else:
-                result = self.pym.db[self.table].find(
-                    {self.checkpoint_column:{'$exists':True}}).sort('date', 1).limit(1)
+                result = self.pym.db[table].find(
+                    {self.checkpoint_column:{'$exists':True}}).sort(column, 1).limit(1)
 
             if result.count() > 0:
                 for res in result:
-                    logger.warning('%s value from mongo %s:%s', min_max, table.upper(), res['date'])
-                    return res['date']
+                    logger.warning('%s value from mongo %s:%s', min_max, table.upper(), res['timestamp'])
+                    return res['timestamp']
             else:
                 return self.initial_date
         except Exception:
@@ -236,23 +244,28 @@ class Checkpoint:
             self.is_up_to_date_window = self.window + 2
             self.df_size_lst = []
 
-        # check max date in a construction table
+        # check max timestamp in a construction table
 
-    def is_up_to_date(self, construct_table,storage_medium,window_hours):
+    def is_up_to_date(self, construct_table,storage_medium,window_hours,db):
         try:
             offset = self.get_offset()
-            if self.table in ['external']:
+            if self.table in ['external_daily']:
                 today = datetime.combine(datetime.today().date(), datetime.min.time())
                 if offset >= today - timedelta(hours=window_hours):
                     return True
                 return False
             else:
                 if storage_medium == 'mysql':
-                    construct_max_val = self.get_value_from_mysql(construct_table, 'MAX')
+                    construct_max_val = self.get_value_from_mysql(construct_table,
+                                                                  column='block_timestamp',
+                                                                  min_max='MAX',db=db)
+
                 elif storage_medium == 'clickhouse':
-                    construct_max_val = self.get_value_from_clickhouse(construct_table, 'MAX')
+                    construct_max_val = self.get_value_from_clickhouse(construct_table,column='timestamp',
+                                                                       min_max='MAX',db=db)
                 elif storage_medium == 'mongo':
-                    construct_max_val = self.get_value_from_mongo(construct_table, 'MAX')
+                    construct_max_val = self.get_value_from_mongo(construct_table,column='timestamp',
+                                                                  min_max='MAX',db=db)
 
                 if isinstance(construct_max_val,int):
                     construct_max_val = datetime.fromtimestamp(construct_max_val)

@@ -70,9 +70,17 @@ checkpoint_dict[table] ={
     'items':{}
 }
 
-table = 'githubloader'
+table = 'github'
 checkpoint_dict[table] ={
     'table' : table,
     'column':'date',
     'items':{}
+}
+
+table = 'account_external_warehouse'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'block_timestamp',
+    'offset':None,
+    'timestamp' : None
 }

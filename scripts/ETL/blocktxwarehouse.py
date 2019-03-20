@@ -20,7 +20,7 @@ from scripts.storage.pythonMysql import PythonMysql
 logger = mylogger(__file__)
 # create clickhouse table
 
-class Warehouse(Checkpoint):
+class BlockTxWarehouse(Checkpoint):
     def __init__(self, table,checkpoint_dict=checkpoint_dict,
                  table_dict=table_dict,columns=columns):
         Checkpoint.__init__(self, table)

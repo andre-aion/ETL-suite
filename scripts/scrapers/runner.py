@@ -1,7 +1,7 @@
 import asyncio
 
-from scripts.scrapers.beautiful_soup.cryptocoin import Cryptocoin
-from scripts.scrapers.beautiful_soup.financial_indexes import FinancialIndexes
+from scripts.scrapers.cryptocoin import Cryptocoin
+from scripts.scrapers.financial_indexes import FinancialIndexes
 from scripts.utils.mylogger import mylogger
 from scripts.scrapers.utils import get_random_scraper_data
 

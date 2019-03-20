@@ -4,9 +4,8 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 from config.checkpoint import checkpoint_dict
-from scripts.scrapers.utils import get_random_scraper_data
 from scripts.utils.mylogger import mylogger
-from scripts.scrapers.beautiful_soup.bs_scraper_interface import Scraper
+from scripts.github_and_bsscraper_interface import Scraper
 
 logger = mylogger(__file__)
 
@@ -18,7 +17,7 @@ class FinancialIndexes(Scraper):
     }
 
     def __init__(self, items):
-        Scraper.__init__(self)
+        Scraper.__init__(self,collection='external_daily')
         self.items = items
         self.item_name = 'russell'
         self.close = 'close'
@@ -73,20 +72,18 @@ class FinancialIndexes(Scraper):
                         if count >= 1:
                             # logger.warning('row:%s',row)
                             item = {}
-                            item['date'] = datetime.strptime(row.findAll('td')[0].contents[0].strip(),
+                            item['timestamp'] = datetime.strptime(row.findAll('td')[0].contents[0].strip(),
                                                              self.DATEFORMAT_finindex)
                             item[self.close] = float(row.findAll('td')[4].contents[0].strip().replace(',', ''))
                             item[self.volume] = float(row.findAll('td')[5].contents[0].strip().replace(',', ''))
 
-                            #logger.warning('%s: %s %s data added', self.item_name, item['date'], item[self.volume])
+                            #logger.warning('%s: %s %s data added', self.item_name, item['timestamp'], item[self.volume])
                             self.process_item(item,self.item_name)
                         if self.scrape_period != 'history':
                             if count > 1:
                                 break
                         count += 1
 
-                    self.update_checkpoint_dict(yesterday, self.item_name)
-                    self.save_checkpoint()
                     logger.warning('%s SCRAPER %s COMPLETED:', self.item_name.upper(), self.scrape_period)
 
                     # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS

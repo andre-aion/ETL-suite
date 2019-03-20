@@ -115,7 +115,7 @@ class PythonClickhouse:
             logger.warning('%s',qry)
             logger.warning('%s',columns)
             for col in columns:
-                logger.warning("key:%s",col)
+                #logger.warning("key:%s",col)
                 if count > 0:
                     qry += ','
                 qry += col + ' ' + table_dict[col]
