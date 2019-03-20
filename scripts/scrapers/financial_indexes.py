@@ -72,11 +72,16 @@ class FinancialIndexes(Scraper):
                         if count >= 1:
                             # logger.warning('row:%s',row)
                             item = {}
-                            item['timestamp'] = datetime.strptime(row.findAll('td')[0].contents[0].strip(),
+                            timestamp = datetime.strptime(row.findAll('td')[0].contents[0].strip(),
                                                              self.DATEFORMAT_finindex)
+
+                            item['timestamp'] = timestamp
                             item[self.close] = float(row.findAll('td')[4].contents[0].strip().replace(',', ''))
                             item[self.volume] = float(row.findAll('td')[5].contents[0].strip().replace(',', ''))
-
+                            item['month'] = item['timestamp'].month
+                            item['day'] = item['timestamp'].day
+                            item['year'] = item['timestamp'].year
+                            item['hour'] = item['timestamp'].hour
                             #logger.warning('%s: %s %s data added', self.item_name, item['timestamp'], item[self.volume])
                             self.process_item(item,self.item_name)
                         if self.scrape_period != 'history':

@@ -57,7 +57,10 @@ class Scraper(Checkpoint):
             for col in list(item.keys()):
                 #logger.warning('col:%s', col)
                 if col != 'timestamp':
-                    nested_search = item_name+'.'+col
+                    if col in ['month','day','year','hour']:
+                        nested_search = col
+                    else:
+                        nested_search = item_name+'.'+col
                     self.pym.db[self.collection].update_one(
                         {'timestamp': item['timestamp']},
                         {'$set':

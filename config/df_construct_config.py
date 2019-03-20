@@ -370,6 +370,11 @@ table_dict['account_external_warehouse'] = {
     'num_transactions': 'Float64',
     'transaction_nrg_consumed': 'Float64',
     'hash_power': 'Float64',
+    'year':'UInt16',
+    'month':'UInt16',
+    'day':'UInt16',
+    'hour':'UInt16'
+
 }
 ################################################################
 #            MODEL FUNCTION

@@ -26,7 +26,7 @@ class GithubLoader(Scraper):
         self.table = self.collection
 
         # checkpointing
-        self.checkpoint_column = 'aion_fork'
+        self.checkpoint_column = 'timestamp'
         self.checkpoint_append = '_fork'
         self.checkpoint_key = 'github'
         self.key_params = 'checkpoint:' + self.checkpoint_key
@@ -211,7 +211,7 @@ class GithubLoader(Scraper):
             # determine the start hour, and the start date
             offset_increment_tracker = 0
             hour_to_process = self.hour_to_process(offset)
-            logger.warning('hour to processess:%s',hour_to_process)
+            logger.warning('hour to process:%s',hour_to_process)
 
             # RESET REDIS CHECKPOINT IF NEEDED
             hour = hour_to_process
@@ -219,11 +219,13 @@ class GithubLoader(Scraper):
                 hour = 0
                 offset = offset + timedelta(days=1)
             offset = datetime(offset.year,offset.month,offset.day,hour,0,0)
+            '''
             # reset self.checkpoint dict for new day
             for item_name in self.items:
                 self.checkpoint_dict['items'][item_name]['offset'] = datetime.strftime(offset, self.DATEFORMAT)
                 self.checkpoint_dict['items'][item_name]['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
+            '''
 
             logger.warning('hour tracker:offset_increment_tracker= %s:%s',hour,offset)
 
@@ -251,10 +253,16 @@ class GithubLoader(Scraper):
         except Exception:
             logger.warning('run process',exc_info=True)
 
+    def get_offset(self):
+        try:
+            offset = self.get_value_from_mongo(table=self.table,column='timestamp')
+            return offset
+        except Exception:
+            logger.error('get offset',exc_info=True)
 
     async def update(self):
         try:
-            offset = datetime.strptime(self.checkpoint_dict['items']['aion']['offset'],self.DATEFORMAT)
+            offset = self.get_offset()
             logger.warning('offset:%s',offset)
             # reset the date and processed hour tracker in redis if all items, all hours are don
             url, offset = self.determine_url(offset)

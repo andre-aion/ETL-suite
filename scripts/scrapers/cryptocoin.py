@@ -83,6 +83,10 @@ class Cryptocoin(Scraper):
                         item[self.high] = float(row.findAll('td')[2].contents[0].replace(',', ''))
                         item[self.low] = float(row.findAll('td')[3].contents[0].replace(',', ''))
                         item[self.close] = float(row.findAll('td')[4].contents[0].replace(',', ''))
+                        item['month'] = item['timestamp'].month
+                        item['day'] = item['timestamp'].day
+                        item['year'] = item['timestamp'].year
+                        item['hour'] = item['timestamp'].hour
                         try:
                             item[self.volume] = float(row.findAll('td')[5].contents[0].replace(',', ''))
                         except:

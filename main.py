@@ -36,7 +36,7 @@ github_loader = GithubLoader(cryptocurrencies)
 logger.warning(cryptocurrencies)
 
 table = 'account_external_warehouse'
-account_external_warehouse = AccountExternalWarehouse('account_external_warehouse',mysql_credentials='dennis')
+#account_external_warehouse = AccountExternalWarehouse('account_external_warehouse',mysql_credentials='dennis')
 
 async def run_etls():
 
@@ -44,8 +44,8 @@ async def run_etls():
         #asyncio.ensure_future(account_external_warehouse.run()),
         #asyncio.ensure_future(warehouse_etl.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
-        asyncio.ensure_future(cryptos_scraper.run()),
-        #asyncio.ensure_future(github_loader.run()),
+        #asyncio.ensure_future(cryptos_scraper.run()),
+        asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),
         #asyncio.ensure_future(account_activity_churn_etl.run()),
         #asyncio.ensure_future(account_activity_warehouse_etl.run()),
