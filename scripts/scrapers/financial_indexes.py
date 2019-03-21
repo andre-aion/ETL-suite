@@ -68,6 +68,7 @@ class FinancialIndexes(Scraper):
                     soup = BeautifulSoup(self.driver.page_source, 'html.parser')
                     div = soup.find('div', attrs={'id': 'quotes_content_left_pnlAJAX'})
                     rows = div.find('tbody').findAll('tr')
+
                     for row in rows:
                         if count >= 1:
                             # logger.warning('row:%s',row)

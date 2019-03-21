@@ -317,7 +317,7 @@ def load_cryptos():
     try:
         filepath = make_filepath('../../data/cryptos.csv')
         df = pd.read_csv(filepath)
-        cryptos = df['Name'].str.lower().tolist()
+        cryptos = sorted(df['Name'].str.lower().tolist())
         return cryptos
 
     except Exception:

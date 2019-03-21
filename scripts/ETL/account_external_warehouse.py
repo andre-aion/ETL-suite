@@ -36,7 +36,7 @@ class AccountExternalWarehouse(Checkpoint):
         self.columns = sorted(list(self.dct.keys()))
         # construction
         # external columns to load
-        self.table1 = 'account_authoritative'
+        self.table1 = 'account_authoritative_old'
         self.table2 = 'external_daily'
         self.table3 = 'github'
         self.offset = self.initial_date
@@ -58,7 +58,7 @@ class AccountExternalWarehouse(Checkpoint):
             logger.warning('my max date:%s',my_max_date)
             if my_max_date < yesterday:
                 table = {
-                    'account_authoritatitve' : {
+                    self.table1 : {
                         'storage': 'mysql',
                         'db':'aion_analytics'
                     },
@@ -74,7 +74,7 @@ class AccountExternalWarehouse(Checkpoint):
                 # get max timestamp from
                 dates = []
                 res1,max_date1= self.is_up_to_date(
-                    table='account_authoritative',timestamp=yesterday,
+                    table=self.table1,timestamp=yesterday,
                     storage_medium='mysql',window_hours=self.window,db='aion_analytics')
                 #logger.warning('res, max_date1=%s,%s', res1, max_date1)
                 if res1:
@@ -83,7 +83,7 @@ class AccountExternalWarehouse(Checkpoint):
                     dates.append(max_date1)
 
                 res2,max_date2 = self.is_up_to_date(
-                        table='external',timestamp=yesterday,
+                        table=self.table2,timestamp=yesterday,
                         storage_medium='mongo',window_hours=self.window,db='aion')
                 if res2:
                     dates.append(yesterday)
@@ -94,7 +94,7 @@ class AccountExternalWarehouse(Checkpoint):
 
                 '''
                 res3, max_date3 = self.is_up_to_date(
-                    table='external', timestamp=yesterday,
+                    table=self.table3, timestamp=yesterday,
                     storage_medium='mongo', window_hours=self.window, db='aion')
                 logger.warning('res3, max_date3=%s,%s',res3,max_date3)
                 '''
@@ -168,9 +168,6 @@ class AccountExternalWarehouse(Checkpoint):
             logger.error('adjust labels',exc_info=True)
 
 
-
-
-
     def make_table(self,df):
         try:
             dct = table_dict[self.table].copy()
@@ -199,6 +196,7 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('create table',exc_info=True)
 
+
     def string_contains(self,lst,string):
         for item in lst:
             if item in string:
@@ -219,6 +217,44 @@ class AccountExternalWarehouse(Checkpoint):
             return df
         except Exception:
             logger.error('',exc_info=True)
+
+    def initialize_table(self):
+        try:
+            timestamp = self.initial_date
+            df1 = self.load_account_data(timestamp)
+            cols = []
+
+            cols1 = ['release', 'push', 'watch', 'fork', 'issue',
+                     'open', 'low', 'market_cap', 'high', 'volume', 'close']
+            for item in self.items:
+                for col in cols1:
+                    item = item.replace('.', '_')
+                    item = item.replace('-', '_')
+                    item = item.replace('0x', 'Ox')
+                    cols.append(item + '_' + col)
+            dct = {
+                'timestamp': [timestamp] * 24,
+                'year': [timestamp.year] * 24,
+                'month': [timestamp.month] * 24,
+                'day': [timestamp.day] * 24,
+                'hour': list(range(0, 24)),
+            }
+            cols.append('sp_close')
+            cols.append('sp_volume')
+            cols.append('russell_close')
+            cols.append('russell_volume')
+            for col in cols:
+                dct[col] = np.zeros(24).tolist()
+
+            # '''''''''
+            df = pd.DataFrame(data=dct)
+            df = self.type_to_int(df)
+            df2 = dd.from_pandas(df, npartitions=1)
+
+            df = df1.merge(df2, on=['year', 'month', 'day', 'hour'], how='inner')
+            self.make_table(df)
+        except:
+            logger.error('table', exc_info=True)
 
     # //////////////////////////////////////////////////////////////
 
@@ -258,7 +294,7 @@ class AccountExternalWarehouse(Checkpoint):
             end = start + timedelta(days=1)
             qry = """select * from {}.{} where block_timestamp >= '{}' and block_timestamp 
                 < '{}' """.format(self.my.schema,self.table1,start,end)
-            logger.warning("qry:%s",qry)
+            #logger.warning("qry:%s",qry)
             df = pd.read_sql(qry, self.my.connection)
             if df is not None:
                 if len(df) > 0:
@@ -324,9 +360,9 @@ class AccountExternalWarehouse(Checkpoint):
                 'timestamp':[datetime(timestamp.year,timestamp.month,timestamp.day,
                              0,0,0)]*24
             }
+
             for col in cols:
                 dct[col] = np.zeros(24).tolist()
-
 
             df = pd.DataFrame(data=dct)
             df = self.type_to_int(df)
@@ -352,7 +388,6 @@ class AccountExternalWarehouse(Checkpoint):
                 df = self.make_warehouse(df1,df2,self.table2)
                 df3 = self.load_external_data(offset, self.table3)
                 df = self.make_warehouse(df,df3,self.table3)
-                #self.make_table(df)
                 # logger.warning('df after warehouse:%s',df.head(10))
                 # save dataframe
                 self.save_df(df)
@@ -360,6 +395,8 @@ class AccountExternalWarehouse(Checkpoint):
             logger.error('update',exc_info=True)
 
     async def run(self):
+        #self.initialize_table()
+
         while True:
             if self.am_i_up_to_date(self.table1,self.table2):
                 logger.warning("%s UP TO DATE- WENT TO SLEEP FOR %s HOURS",self.table,self.window)
@@ -367,4 +404,5 @@ class AccountExternalWarehouse(Checkpoint):
             else:
                 await  asyncio.sleep(1)
             await self.update()
+
 

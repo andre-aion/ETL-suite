@@ -42,63 +42,68 @@ class Cryptocoin(Scraper):
 
     async def update(self):
         try:
+            self.items = ['vechain']
             for self.item_name in self.items:
-                if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
+                #if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
+                a = '2'
+                if a == 3:
                     pass
                 else:
-                    yesterday = datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
-                    self.offset = self.offset + timedelta(days=1)
-                    url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
-                        .format(self.item_name)
-                    # launch url
-                    self.driver.implicitly_wait(30)
-                    self.driver.get(url)
-                    logger.warning('url loaded:%s',url)
-                    await asyncio.sleep(6)
-                    if self.scrape_period == 'history':
-                        # click on the dropdown list to expose it
-                        dropdown = self.driver.find_element_by_id('reportrange')
-                        self.driver.execute_script("arguments[0].click();", dropdown)
-                        await asyncio.sleep(2)
-
-                        # click on the exposed link
-                        wait = WebDriverWait(self.driver, 3)
-                        link = wait.until(visibility_of_element_located(
-                            (By.CSS_SELECTOR, '.ranges li:nth-child(6)')))
-                        print('LINK:',link)
-
-                        link.click()
+                    yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
+                    try:
+                        self.offset = self.offset + timedelta(days=1)
+                        url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
+                            .format(self.item_name)
+                        # launch url
+                        self.driver.implicitly_wait(30)
+                        self.driver.get(url)
+                        logger.warning('url loaded:%s',url)
                         await asyncio.sleep(6)
+                        if self.scrape_period == 'history':
+                            # click on the dropdown list to expose it
+                            dropdown = self.driver.find_element_by_id('reportrange')
+                            self.driver.execute_script("arguments[0].click();", dropdown)
+                            await asyncio.sleep(2)
 
-                    # get soup
-                    soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                    table = soup.find('table', attrs={'class':'table'})
-                    # parse table and write to database
-                    count = 0
-                    rows = table.find('tbody').findAll('tr')
-                    for row in rows:
-                        item = {}
-                        item['timestamp'] = datetime.strptime(row.findAll('td')[0].contents[0],self.DATEFORMAT_coinmarket)
-                        item[self.open] = float(row.findAll('td')[1].contents[0].replace(',', ''))
-                        item[self.high] = float(row.findAll('td')[2].contents[0].replace(',', ''))
-                        item[self.low] = float(row.findAll('td')[3].contents[0].replace(',', ''))
-                        item[self.close] = float(row.findAll('td')[4].contents[0].replace(',', ''))
-                        item['month'] = item['timestamp'].month
-                        item['day'] = item['timestamp'].day
-                        item['year'] = item['timestamp'].year
-                        item['hour'] = item['timestamp'].hour
-                        try:
-                            item[self.volume] = float(row.findAll('td')[5].contents[0].replace(',', ''))
-                        except:
-                            item[self.volume] = 0
-                        try:
-                            item[self.cap] = float(row.findAll('td')[6].contents[0].replace(',', ''))
-                        except:
-                            item[self.cap] = 0
+                            # click on the exposed link
+                            wait = WebDriverWait(self.driver, 3)
+                            link = wait.until(visibility_of_element_located(
+                                (By.CSS_SELECTOR, '.ranges li:nth-child(6)')))
+                            print('LINK:',link)
 
-                        if count <= 1:
-                            self.cols = list(item)
-                            self.cols.remove('timestamp')
+                            link.click()
+                            await asyncio.sleep(6)
+
+                        # get soup
+                        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                        table = soup.find('table', attrs={'class':'table'})
+                        # parse table and write to database
+                        count = 0
+                        rows = table.find('tbody').findAll('tr')
+                        for row in rows:
+                            item = {}
+                            item['timestamp'] = datetime.strptime(row.findAll('td')[0].contents[0],self.DATEFORMAT_coinmarket)
+                            item[self.open] = float(row.findAll('td')[1].contents[0].replace(',', ''))
+                            item[self.high] = float(row.findAll('td')[2].contents[0].replace(',', ''))
+                            item[self.low] = float(row.findAll('td')[3].contents[0].replace(',', ''))
+                            item[self.close] = float(row.findAll('td')[4].contents[0].replace(',', ''))
+                            item['month'] = item['timestamp'].month
+                            item['day'] = item['timestamp'].day
+                            item['year'] = item['timestamp'].year
+                            item['hour'] = item['timestamp'].hour
+                            try:
+                                item[self.volume] = float(row.findAll('td')[5].contents[0].replace(',', ''))
+                            except:
+                                item[self.volume] = 0
+                            try:
+                                item[self.cap] = float(row.findAll('td')[6].contents[0].replace(',', ''))
+                            except:
+                                item[self.cap] = 0
+
+                            if count <= 1:
+                                self.cols = list(item)
+                                self.cols.remove('timestamp')
+
 
                         #print('{} {} data added'.format(self.coin,item['timestamp']))
                         self.process_item(item,self.item_name)
@@ -107,6 +112,25 @@ class Cryptocoin(Scraper):
                             if count >= 1:
                                 break
                         count += 1
+                    except:
+                        # catch coins that were not yet launched
+                        offset = self.initial_date
+                        while offset < yesterday:
+                            item = {
+                                'timestamp': offset,
+                                self.close: 0,
+                                self.volume: 0,
+                                self.cap:0,
+                                self.low:0,
+                                self.high:0,
+                                self.open:0,
+                                'month': offset.month,
+                                'day': offset.day,
+                                'year': offset.year,
+                                'hour': 0
+                            }
+                            self.process_item(item,self.item_name)
+                            offset = offset + timedelta(days=1)
 
                     logger.warning('%s SCRAPER %s COMPLETED', self.item_name.upper(),self.scrape_period)
 
@@ -116,3 +140,13 @@ class Cryptocoin(Scraper):
         except Exception:
             logger.error('BS4: crytocoin run:',exc_info=True)
 
+    async def run(self):
+        # create warehouse table in clickhouse if needed
+        # self.create_table_in_clickhouse()
+        while True:
+            if self.is_up_to_date():
+                logger.warning("%s SCRAPER SLEEPING FOR 24 hours:UP TO DATE", self.scraper_name)
+                await asyncio.sleep(self.window * 60 * 60)  # sleep
+            else:
+                await asyncio.sleep(1)
+            await self.update()

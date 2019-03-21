@@ -227,7 +227,7 @@ class Checkpoint:
 
             if result.count() > 0:
                 for res in result:
-                    logger.warning('%s value from mongo %s:%s', min_max, table.upper(), res['timestamp'])
+                    #logger.warning('%s value from mongo %s:%s', min_max, table.upper(), res['timestamp'])
                     return res['timestamp']
             else:
                 return self.initial_date
