@@ -356,7 +356,6 @@ table_dict['account_activity_warehouse'] = {
 
 table_dict['account_external_warehouse'] = {
     'block_timestamp': 'Datetime',
-    'token_address': 'String',
     'address': 'String',
     'timestamp_of_first_event': 'Datetime',
     'update_type':'String',
@@ -364,11 +363,11 @@ table_dict['account_external_warehouse'] = {
     'value': 'Float64',
     'transaction_cost': 'Float64',
     'block_time': 'Float64',
+    'balance':'Float64',
     'difficulty': 'Float64',
     'mining_reward': 'Float64',
     'nrg_reward': 'Float64',
     'num_transactions': 'Float64',
-    'transaction_nrg_consumed': 'Float64',
     'hash_power': 'Float64',
     'year':'UInt16',
     'month':'UInt16',

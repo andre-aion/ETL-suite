@@ -119,7 +119,7 @@ class PythonClickhouse:
                 if count > 0:
                     qry += ','
                 qry += col + ' ' + table_dict[col]
-                logger.warning("key:value - %s:%s",col,table_dict[col])
+                #logger.warning("key:value - %s:%s",col,table_dict[col])
                 count += 1
             qry += ") ENGINE = MergeTree() ORDER BY (block_timestamp)"
 
@@ -194,6 +194,8 @@ class PythonClickhouse:
 
     def insert_df(self,df,cols,table):
         try:
+            if table == 'account_external_warehouse':
+                cols = sorted(df.columns.tolist())
             #logger.warning("columns in df to insert:%s",df.columns.tolist())
             #logger.warning("df to insert:%s",df.head())
             df = df[cols]  # arrange order of columns for
@@ -214,7 +216,7 @@ class PythonClickhouse:
             #logger.warning('before upsert: %s',df.head(10))
             start_range = df[col].min()
             end_range = df[col].max()
-            logger.warning('upsert delete range: start:end %s:%s',start_range,end_range)
+            #logger.warning('upsert delete range: start:end %s:%s',start_range,end_range)
             self.delete_data(start_range,end_range,table)
             self.insert_df(df,cols=cols,table=table)
 

@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/df_construct_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/df_construct_config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/github/github_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github/github_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,34 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="aion_analytics@my_sql.dennis" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+        <item name="account_external_warehouse: table" type="c0aa78b0:ClickHouseImplModel$Table" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -122,31 +149,32 @@
     <session id="1903770663">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="35" />
+          <entry key="project.closed" value="37" />
           <entry key="project.open.time.0" value="14" />
           <entry key="project.open.time.1" value="11" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="3" />
           <entry key="project.open.time.19" value="3" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="46" />
+          <entry key="project.opened" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="280" />
-          <entry key="py" value="103030" />
+          <entry key="py" value="106622" />
           <entry key="sql" value="3933" />
           <entry key="txt" value="76" />
         </counts>
@@ -154,7 +182,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="356" />
-          <entry key="Python" value="103014" />
+          <entry key="Python" value="106606" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="3933" />
         </counts>
@@ -167,7 +195,7 @@
           <entry key="account_activity_warehouse" value="4" />
           <entry key="account_authoritative" value="5" />
           <entry key="account_balance" value="10" />
-          <entry key="account_external_warehouse" value="2" />
+          <entry key="account_external_warehouse" value="7" />
           <entry key="account_value_churn" value="7" />
           <entry key="block_tx_warehouse" value="2" />
           <entry key="csv" value="1" />
@@ -175,9 +203,9 @@
           <entry key="json" value="2" />
           <entry key="log" value="12" />
           <entry key="mongo@localhost/aion/external" value="99" />
-          <entry key="mongo@localhost/aion/external_daily" value="10" />
-          <entry key="mongo@localhost/aion/github" value="10" />
-          <entry key="py" value="572" />
+          <entry key="mongo@localhost/aion/external_daily" value="11" />
+          <entry key="mongo@localhost/aion/github" value="15" />
+          <entry key="py" value="587" />
           <entry key="sql" value="121" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="10" />
@@ -185,13 +213,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="101" />
+          <entry key="Database Element" value="106" />
           <entry key="IPNB" value="1" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="5" />
-          <entry key="MONGO" value="119" />
+          <entry key="MONGO" value="125" />
           <entry key="PLAIN_TEXT" value="18" />
-          <entry key="Python" value="572" />
+          <entry key="Python" value="587" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="120" />
         </counts>
@@ -203,8 +231,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+            <state relative-caret-position="400">
+              <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -212,49 +240,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="260" column="45" selection-start-line="260" selection-start-column="45" selection-end-line="260" selection-end-column="45" />
+            <state relative-caret-position="81">
+              <caret line="218" selection-start-line="218" selection-end-line="218" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1553122242101" expanded="true" signature="919:921" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="964:965" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="964:969" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="1798:1803" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="6591:8078" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="8143:8148" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="9945:11903" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="10662:11903" ph="..." />
-                <marker date="1553122242101" expanded="true" signature="11939:11952" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <marker date="1553122771923" expanded="true" signature="6810:6811" ph="..." />
-                <marker date="1553122771923" expanded="true" signature="9794:10002" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="919:921" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="964:965" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="964:969" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="1980:1985" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="7230:7238" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="7262:9127" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="9192:9197" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="11605:13796" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="12759:13796" ph="..." />
+                <marker date="1553192481063" expanded="true" signature="13832:13845" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+        <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1212">
+              <caret line="209" selection-start-line="209" selection-end-line="209" />
             </state>
           </provider>
         </entry>
@@ -271,10 +283,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>map_partitions</find>
-      <find>map_partitions(lambda</find>
-      <find>compute</find>
-      <find>lambda</find>
       <find>drop_d</find>
       <find>self.address_lst</find>
       <find>account_churned_addresses</find>
@@ -301,6 +309,10 @@
       <find>external</find>
       <find>date</find>
       <find>']</find>
+      <find>max_val</find>
+      <find>my_max_date</find>
+      <find>val</find>
+      <find>col</find>
     </findStrings>
     <replaceStrings>
       <replace>:'mean',</replace>
@@ -312,7 +324,6 @@
       <replace>self.new_activity_lst</replace>
       <replace>p</replace>
       <replace />
-      <replace>value</replace>
       <replace>approx_value</replace>
       <replace>&quot;, &quot;</replace>
       <replace>&quot;],summary[&quot;</replace>
@@ -322,12 +333,15 @@
       <replace>token_holders_joined_df</replace>
       <replace>russel</replace>
       <replace>coin+'</replace>
-      <replace>item</replace>
       <replace>aion_coin_</replace>
       <replace>item_name</replace>
-      <replace>col</replace>
       <replace>external_daily</replace>
       <replace>timestamp</replace>
+      <replace>value</replace>
+      <replace>construct_max</replace>
+      <replace>self.offset</replace>
+      <replace>col</replace>
+      <replace>item</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/scripts</dir>
@@ -376,21 +390,21 @@
         <option value="$PROJECT_DIR$/scripts/tablemanager/Table.py" />
         <option value="$PROJECT_DIR$/scripts/tablemanager/table.py" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
-        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
         <option value="$PROJECT_DIR$/scripts/github/githubrunner_old.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/github_and_bsscraper_interface.py" />
         <option value="$PROJECT_DIR$/config/checkpoint.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/financial_indexes.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/cryptocoin.py" />
-        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
-        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
         <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
         <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
+        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
+        <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
       </list>
     </option>
   </component>
@@ -401,10 +415,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="-2" />
-    <option name="width" value="1920" />
-    <option name="height" value="1082" />
+    <option name="x" value="2177" />
+    <option name="y" value="76" />
+    <option name="width" value="1266" />
+    <option name="height" value="1022" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -412,7 +426,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -434,7 +447,19 @@
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
               <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="scrapers" type="462c0819:PsiDirectoryNode" />
+              <item name="ETL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="streaming" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
@@ -448,6 +473,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -550,7 +576,7 @@
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15128756" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17113733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -564,7 +590,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.7993562" visible="true" weight="0.5520945" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.7993562" visible="true" weight="0.8141783" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20064378" side_tool="true" weight="0.3630505" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -574,11 +600,11 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.23390558" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" visible="true" weight="0.14216739" />
+      <window_info anchor="right" id="Database" order="7" visible="true" weight="0.19581544" />
+      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.14190318" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19198665" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17113733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -592,8 +618,8 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.7993562" visible="true" weight="0.47380155" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.67335564" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7993562" visible="true" weight="0.43071964" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20064378" side_tool="true" weight="0.3630505" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -602,8 +628,8 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.23390558" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.18809126" />
+      <window_info anchor="right" id="Database" order="7" weight="0.19581544" />
+      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.14190318" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,30 +680,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/utils/mylogger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding>
-            <element signature="e#17#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/account_activity_warehouse">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_68.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="45" selection-start-column="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.5/site-packages/scrapy/crawler.py" />
     <entry file="file://$PROJECT_DIR$/scrapers/spider_runner.py" />
     <entry file="file://$PROJECT_DIR$/log.json" />
@@ -728,11 +730,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/utils/poolminer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-535" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/utils/myutils.py">
@@ -764,10 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="31" selection-start-line="31" selection-end-line="31" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1552779198833" expanded="true" signature="957:961" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -802,9 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31">
           <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -843,26 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1952">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/account_external_warehouse">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -870,9 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="52" selection-start-line="10" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,13 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="374" column="19" selection-start-line="374" selection-start-column="19" selection-end-line="374" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandas/core/reshape/merge.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -912,88 +873,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="60" column="43" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553116263418" expanded="true" signature="2991:2997" ph="..." />
-            <marker date="1553116263418" expanded="true" signature="3411:3424" ph="..." />
-            <marker date="1553116263418" expanded="true" signature="5093:6430" ph="..." />
-          </folding>
+        <state relative-caret-position="141">
+          <caret line="85" column="63" lean-forward="true" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="81" column="63" lean-forward="true" selection-start-line="80" selection-start-column="27" selection-end-line="83" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553116263410" expanded="true" signature="1115:1124" ph="..." />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
+    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="85" column="63" lean-forward="true" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553115623037" expanded="true" signature="565:570" ph="..." />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/dask/dataframe/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="4346" selection-start-line="4346" selection-end-line="4346" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandahouse/http.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="370" selection-start-line="370" selection-end-line="370" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        <state relative-caret-position="400">
+          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="260" column="45" selection-start-line="260" selection-start-column="45" selection-end-line="260" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553122242101" expanded="true" signature="919:921" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="964:965" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="964:969" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="1798:1803" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="6591:8078" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="8143:8148" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="9945:11903" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="10662:11903" ph="..." />
-            <marker date="1553122242101" expanded="true" signature="11939:11952" ph="..." />
-          </folding>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/account_external_warehouse">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="158">
+          <caret line="210" column="13" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="13" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        <state relative-caret-position="1212">
+          <caret line="209" selection-start-line="209" selection-end-line="209" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="218" selection-start-line="218" selection-end-line="218" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1553122771923" expanded="true" signature="6810:6811" ph="..." />
-            <marker date="1553122771923" expanded="true" signature="9794:10002" ph="..." />
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553192481063" expanded="true" signature="919:921" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="964:965" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="964:969" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="1980:1985" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="7230:7238" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="7262:9127" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="9192:9197" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="11605:13796" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="12759:13796" ph="..." />
+            <marker date="1553192481063" expanded="true" signature="13832:13845" ph="..." />
           </folding>
         </state>
       </provider>

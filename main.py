@@ -28,24 +28,26 @@ account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
 cryptocurrencies = load_cryptos()
 financial_indicies = ['russell','sp']
 
-indexes_scraper = FinancialIndexes(financial_indicies)
-cryptos_scraper = Cryptocoin(cryptocurrencies)
-github_loader = GithubLoader(cryptocurrencies)
+#indexes_scraper = FinancialIndexes(financial_indicies)
+#cryptos_scraper = Cryptocoin(cryptocurrencies)
+#github_loader = GithubLoader(cryptocurrencies)
 
 #cryptos_scraper.reset_offset('2018-04-24 00:00:00')
 logger.warning(cryptocurrencies)
 
 table = 'account_external_warehouse'
-#account_external_warehouse = AccountExternalWarehouse('account_external_warehouse',mysql_credentials='dennis')
+account_external_warehouse = AccountExternalWarehouse(table='account_external_warehouse',
+                                                      mysql_credentials='dennis',
+                                                      items=cryptocurrencies)
 
 async def run_etls():
 
     tasks = [
-        #asyncio.ensure_future(account_external_warehouse.run()),
+        asyncio.ensure_future(account_external_warehouse.run()),
         #asyncio.ensure_future(warehouse_etl.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
-        asyncio.ensure_future(github_loader.run()),
+        #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),
         #asyncio.ensure_future(account_activity_churn_etl.run()),
         #asyncio.ensure_future(account_activity_warehouse_etl.run()),

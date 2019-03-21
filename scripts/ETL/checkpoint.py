@@ -178,7 +178,8 @@ class Checkpoint:
         try:
 
             self.cl.upsert_df(df,self.columns,self.table)
-            self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            if self.table != 'account_external_warehouse':
+                self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
             self.save_checkpoint()
             # logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",
             # self.checkpoint_dict['offset'],
@@ -194,7 +195,7 @@ class Checkpoint:
                 qry = """select {}({}) from {}.{} AS result LIMIT 1""" \
                     .format(min_max, self.checkpoint_column, db, table)
                 result = self.cl.client.execute(qry)
-                # logger.warning('%s value from clickhouse:%s',min_max,result[0][0])
+                #logger.warning('%s value from clickhouse:%s',min_max,result[0][0])
                 return result[0][0]
             return self.initial_date  # if block_tx_warehouse is empty
         except Exception:
@@ -207,7 +208,7 @@ class Checkpoint:
             result = self.my.conn.execute(qry)
             row = self.my.conn.fetchone()
             result = row[0]
-            logger.warning('%s value from mysql %s:%s', min_max, table.upper(), result)
+            #logger.warning('%s value from mysql %s:%s', min_max, table.upper(), result)
             if result is not None:
                 return result
             return self.initial_date
@@ -219,10 +220,10 @@ class Checkpoint:
             self.pym = PythonMongo(db)
             if min_max == 'MAX':
                 result = self.pym.db[table].find(
-                    {self.checkpoint_column:{'$exists':True}}).sort(column, -1).limit(1)
+                    {column:{'$exists':True}}).sort(column, -1).limit(1)
             else:
                 result = self.pym.db[table].find(
-                    {self.checkpoint_column:{'$exists':True}}).sort(column, 1).limit(1)
+                    {column:{'$exists':True}}).sort(column, 1).limit(1)
 
             if result.count() > 0:
                 for res in result:
