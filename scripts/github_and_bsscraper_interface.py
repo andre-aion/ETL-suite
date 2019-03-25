@@ -74,6 +74,13 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error('process item', exc_info=True)
 
+    def start_firefox_driver(self):
+        try:
+            self.driver = webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
+                                            firefox_options=self.options)
+        except Exception:
+            logger.error('start firefox driver',exc_info=True)
+
     def set_scrape_period(self,offset):
         try:
             today = datetime.combine(datetime.today().date(),datetime.min.time())
@@ -162,11 +169,16 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error('item in mongo', exc_info=True)
 
-
     def item_is_up_to_date(self, checkpoint_column, item_name):
         try:
             offset = self.get_item_offset(checkpoint_column,item_name)
             yesterday =  datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
+            if self.scraper_name == 'financial indexes':
+                # if yesterday is a weekend day, adjust to friday
+                logger.warning('yesterday.weekday: %s',yesterday.weekday())
+                if yesterday.weekday() in [5,6]:
+                    yesterday = yesterday - timedelta(days=abs(yesterday.weekday() - 4))
+
             if offset >= yesterday:
                 logger.warning('%s up to timestamp offset:yesterday=%s:%s',item_name,offset,yesterday)
                 return True
@@ -174,7 +186,7 @@ class Scraper(Checkpoint):
                 logger.warning('%s daily offset:yesterday=%s:%s',item_name,offset,yesterday-timedelta(days=1))
                 self.scrape_period = 'daily'
             else:
-                logger.warning('%s history:yesterday=%s:%s',item_name,offset,yesterday)
+                logger.warning('%s history offset:yesterday=%s:%s',item_name,offset,yesterday)
                 self.scrape_period = 'history'
             return False
         except Exception:
@@ -206,6 +218,12 @@ class Scraper(Checkpoint):
             else:
                 timestamp = datetime.now() - timedelta(hours=self.window)
                 timestamp = datetime(timestamp.year,timestamp.month, timestamp.day,timestamp.hour,0,0)
+                if self.scraper_name == 'financial indexes':
+                    # if yesterday is a weekend day, adjust to friday
+                    if timestamp.weekday() in [5, 6]:
+                        logger.warning('DATE ADJUSTED CAUSE YESTERDAY IS A WEEKEND')
+                        timestamp = timestamp - timedelta(days=abs(timestamp.weekday() - 4))
+
             result = self.get_date_data_from_mongo(timestamp)
             counter = 0
             if result:
@@ -259,3 +277,15 @@ class Scraper(Checkpoint):
             logger.error("get checkpoint dict", exc_info=True)
 
 
+    async def run(self):
+        # create warehouse table in clickhouse if needed
+        # self.create_table_in_clickhouse()
+        while True:
+            if self.is_up_to_date():
+                logger.warning("%s SCRAPER SLEEPING FOR 24 hours:UP TO DATE", self.scraper_name)
+                self.driver.quit()
+                await asyncio.sleep(self.window * 60 * 60)  # sleep
+                self.start_firefox_driver()
+            else:
+                await asyncio.sleep(1)
+            await self.update()

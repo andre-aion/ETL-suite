@@ -1,3 +1,4 @@
+import asyncio
 import gc
 import json
 import gzip
@@ -272,3 +273,14 @@ class GithubLoader(Scraper):
             gc.collect()
         except Exception:
             logger.error('github interface run', exc_info=True)
+
+    async def run(self):
+        # create warehouse table in clickhouse if needed
+        # self.create_table_in_clickhouse()
+        while True:
+            if self.is_up_to_date():
+                logger.warning("%s SCRAPER SLEEPING FOR 24 hours:UP TO DATE", self.scraper_name)
+                await asyncio.sleep(self.window * 60 * 60)  # sleep
+            else:
+                await asyncio.sleep(1)
+            await self.update()

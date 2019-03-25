@@ -30,22 +30,23 @@ financial_indicies = ['russell','sp']
 
 indexes_scraper = FinancialIndexes(financial_indicies)
 cryptos_scraper = Cryptocoin(cryptocurrencies)
-#github_loader = GithubLoader(cryptocurrencies)
+github_loader = GithubLoader(cryptocurrencies)
 
 #cryptos_scraper.reset_offset('2018-04-24 00:00:00')
 logger.warning(cryptocurrencies)
 
 table = 'account_external_warehouse'
+
 account_external_warehouse = AccountExternalWarehouse(table='account_external_warehouse',
-                                                      mysql_credentials='dennis',
+                                                      mysql_credentials='office',
                                                       items=cryptocurrencies)
 
 async def run_etls():
 
     tasks = [
-        asyncio.ensure_future(account_external_warehouse.run()),
+        #asyncio.ensure_future(account_external_warehouse.run()),
         #asyncio.ensure_future(warehouse_etl.run()),
-        #syncio.ensure_future(indexes_scraper.run()),
+        asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
         #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),
