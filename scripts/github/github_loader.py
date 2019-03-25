@@ -212,7 +212,7 @@ class GithubLoader(Scraper):
             # determine the start hour, and the start date
             offset_increment_tracker = 0
             hour_to_process = self.hour_to_process(offset)
-            logger.warning('hour to process:%s',hour_to_process)
+            #logger.warning('hour to process:%s',hour_to_process)
 
             # RESET REDIS CHECKPOINT IF NEEDED
             hour = hour_to_process

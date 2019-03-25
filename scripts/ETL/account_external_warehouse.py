@@ -36,7 +36,7 @@ class AccountExternalWarehouse(Checkpoint):
         self.columns = sorted(list(self.dct.keys()))
         # construction
         # external columns to load
-        self.table1 = 'account_authoritative_old'
+        self.table1 = 'account_authoritative'
         self.table2 = 'external_daily'
         self.table3 = 'github'
         self.offset = self.initial_date
@@ -117,8 +117,12 @@ class AccountExternalWarehouse(Checkpoint):
                                                     min_max='MAX',db=db)
 
             elif storage_medium == 'clickhouse':
-                construct_max = self.get_value_from_clickhouse(table,column='timestamp',
+                try:
+                    construct_max = self.get_value_from_clickhouse(table,column='timestamp',
                                                         min_max='MAX',db=db)
+                except:
+                    logger.warning('%s table does not exist in clickhouse',table)
+                    return False, self.initial_date
             elif storage_medium == 'mongo':
                 construct_max = self.get_value_from_mongo(table,column='timestamp',
                                                     min_max='MAX',db=db)
@@ -187,6 +191,7 @@ class AccountExternalWarehouse(Checkpoint):
             if (len(list(df.columns))) == len(list(dct.keys())):
                 logger.warning("COLUMNS MATCHED")
                 self.cl.create_table(self.table, dct, cols)
+                self.columns = sorted(list(df.columns))
             else:
                 logger.warning('length df=%s',len(list(df.columns)))
                 logger.warning('length dict=%s',len(list(dct.keys())))
@@ -194,7 +199,7 @@ class AccountExternalWarehouse(Checkpoint):
                 logger.warning("COLUMNS NOT MATCHED-%s",list(set(list(df.columns)) - set(list(dct.keys()))))
 
         except Exception:
-            logger.error('create table',exc_info=True)
+            logger.error('make table',exc_info=True)
 
 
     def string_contains(self,lst,string):
@@ -256,13 +261,19 @@ class AccountExternalWarehouse(Checkpoint):
         except:
             logger.error('table', exc_info=True)
 
+    def reset_offset(self, timestamp):
+        try:
+            return datetime.strptime(timestamp, self.DATEFORMAT)
+        except Exception:
+            logger.error('reset offset :%s', exc_info=True)
+
     # //////////////////////////////////////////////////////////////
 
     def load_external_data(self,timestamp, table):
         try:
             start = datetime(timestamp.year, timestamp.month, timestamp.day, 0, 0, 0)
             end = start + timedelta(days=1)
-            logger.warning('start:end=%s:%s',start,end)
+            #logger.warning('start:end=%s:%s',start,end)
             df = json_normalize(list(self.pym.db[table].find({
                 'timestamp':{'$gte':start, '$lt':end}
             })))
@@ -314,10 +325,11 @@ class AccountExternalWarehouse(Checkpoint):
     def make_warehouse(self, df1,df2,table):
         try:
             '''
-            if table == self.table3:
-                logger.warning('df1:%s',df1[['day','hour']].head(10))
-                logger.warning('df2:%s',df2[['day','hour']].head(10))
+            if table == self.table2:
+                logger.warning('df1:%s',df1[['year','month','day']].head(10))
+                logger.warning('df2:%s',df2[['year','month','day']].head(10))
             '''
+
 
             if df1 is not None and df2 is not None:
                 if len(df1) > 0 and len(df2) > 0:
@@ -331,10 +343,11 @@ class AccountExternalWarehouse(Checkpoint):
                     del df1
                     del df2
                     gc.collect()
-                    '''
-                    if table == self.table3:
-                        logger.warning('after merge:%s',df.head(10))
-                    '''
+
+                    if table in [self.table3,self.table2]:
+                        #logger.warning('after merge:%s',df.head(10))
+                        pass
+
                     return df
             return None
 
@@ -385,11 +398,13 @@ class AccountExternalWarehouse(Checkpoint):
                 logger.warning('offset:%s', offset)
                 df1 = self.load_account_data(offset)
                 df2 = self.load_external_data(offset,self.table2)
+                #logger.warning('df2:%s',df2.head(10))
                 df = self.make_warehouse(df1,df2,self.table2)
                 df3 = self.load_external_data(offset, self.table3)
                 df = self.make_warehouse(df,df3,self.table3)
                 # logger.warning('df after warehouse:%s',df.head(10))
                 # save dataframe
+                self.columns = list(df.columns)
                 self.save_df(df)
         except Exception:
             logger.error('update',exc_info=True)

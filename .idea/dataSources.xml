@@ -49,11 +49,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="aion_analytics@my_sql.dennis" uuid="3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0">
+    <data-source source="LOCAL" name="aion_analytics@my_sql.staging" uuid="3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.1.7:3306/aion_analytics</jdbc-url>
+      <jdbc-url>jdbc:mysql://40.113.226.240:3306/aion_analytics</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

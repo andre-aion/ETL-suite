@@ -208,7 +208,8 @@ class BlockTxWarehouse(Checkpoint):
             await self.update_warehouse('block','transaction')
             if self.is_up_to_date(construct_table='block',
                                   storage_medium='mysql',
-                                  window_hours=self.window):
+                                  window_hours=self.window,
+                                  db=self.my.schema):
                 logger.warning("BLOCK_TX_WAREHOUSE UP TO DATE: WENT TO SLEEP FOR THREE HOURS")
                 await asyncio.sleep(10800)
             else:

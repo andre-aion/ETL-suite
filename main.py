@@ -5,7 +5,8 @@ from scripts.scrapers.cryptocoin import Cryptocoin
 from scripts.github.github_loader import GithubLoader
 from scripts.ETL.account_external_warehouse import AccountExternalWarehouse
 from scripts.utils.myutils import load_cryptos
-#warehouse_etl = Warehouse('block_tx_warehouse')
+#from scripts.ETL.blocktxwarehouse import BlockTxWarehouse
+#warehouse_etl = BlockTxWarehouse('block_tx_warehouse')
 
 loop = asyncio.get_event_loop()
 
@@ -35,18 +36,18 @@ github_loader = GithubLoader(cryptocurrencies)
 #cryptos_scraper.reset_offset('2018-04-24 00:00:00')
 logger.warning(cryptocurrencies)
 
-table = 'account_external_warehouse'
+table = 'account_ext_warehouse'
 
-account_external_warehouse = AccountExternalWarehouse(table='account_external_warehouse',
-                                                      mysql_credentials='office',
+account_external_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
+                                                      mysql_credentials='staging',
                                                       items=cryptocurrencies)
 
 async def run_etls():
 
     tasks = [
-        #asyncio.ensure_future(account_external_warehouse.run()),
+        asyncio.ensure_future(account_external_warehouse.run()),
         #asyncio.ensure_future(warehouse_etl.run()),
-        asyncio.ensure_future(indexes_scraper.run()),
+        #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
         #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(account_activity_etl.run()),

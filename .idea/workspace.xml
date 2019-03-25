@@ -2,13 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0f1c6e87-17d4-4926-b9eb-32efd88b3ada.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/df_construct_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/df_construct_config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/account_activity_warehouse_todelete.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/github/github_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github/github_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/github/githubrunner_old.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/storage/pythonMysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/pythonMysql.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,18 +43,7 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="aion_analytics@my_sql.dennis" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="aion_analytics@my_sql.dennis" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="aion_analytics@my_sql.dennis" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="aion_analytics: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="aion_analytics@my_sql.staging" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -61,6 +59,13 @@
         <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="clickhouse.aion@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="aion: schema" type="7da24568:ClickHouseImplModel$Schema" />
+        <item name="account_ext_warehouse: table" type="c0aa78b0:ClickHouseImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -152,8 +157,8 @@
     <session id="1903770663">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="49" />
-          <entry key="project.open.time.0" value="16" />
+          <entry key="project.closed" value="54" />
+          <entry key="project.open.time.0" value="21" />
           <entry key="project.open.time.1" value="13" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
@@ -167,30 +172,30 @@
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.3" value="3" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="61" />
+          <entry key="project.opened" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="280" />
-          <entry key="py" value="108967" />
-          <entry key="sql" value="4050" />
+          <entry key="py" value="109712" />
+          <entry key="sql" value="4092" />
           <entry key="txt" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="356" />
-          <entry key="Python" value="108951" />
+          <entry key="Python" value="109696" />
           <entry key="SQL" value="16" />
-          <entry key="Scratch" value="4050" />
+          <entry key="Scratch" value="4092" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -199,8 +204,9 @@
           <entry key="account_activity" value="53" />
           <entry key="account_activity_churn" value="15" />
           <entry key="account_activity_warehouse" value="4" />
-          <entry key="account_authoritative" value="5" />
+          <entry key="account_authoritative" value="6" />
           <entry key="account_balance" value="10" />
+          <entry key="account_ext_warehouse" value="1" />
           <entry key="account_external_warehouse" value="9" />
           <entry key="account_value_churn" value="7" />
           <entry key="block_tx_warehouse" value="2" />
@@ -211,101 +217,108 @@
           <entry key="mongo@localhost/aion/external" value="99" />
           <entry key="mongo@localhost/aion/external_daily" value="18" />
           <entry key="mongo@localhost/aion/github" value="15" />
-          <entry key="py" value="615" />
-          <entry key="sql" value="126" />
+          <entry key="py" value="633" />
+          <entry key="sql" value="127" />
           <entry key="transaction" value="1" />
-          <entry key="txt" value="10" />
+          <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Database Element" value="108" />
+          <entry key="Database Element" value="110" />
           <entry key="IPNB" value="1" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="6" />
           <entry key="MONGO" value="132" />
-          <entry key="PLAIN_TEXT" value="18" />
-          <entry key="Python" value="615" />
+          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="Python" value="633" />
           <entry key="SQL" value="1" />
-          <entry key="Scratch" value="125" />
+          <entry key="Scratch" value="126" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6401791">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="372">
-                  <caret line="57" selection-start-line="57" selection-end-line="58" />
-                  <folding>
-                    <element signature="e#0#43#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="282" selection-start-line="282" selection-end-line="282" />
-                  <folding>
-                    <element signature="e#0#14#0" expanded="true" />
-                    <marker date="1553205880278" expanded="true" signature="6825:6826" ph="..." />
-                    <marker date="1553205880278" expanded="true" signature="9809:10017" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="184" column="27" lean-forward="true" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#14#0" expanded="true" />
-                    <marker date="1553526647451" expanded="true" signature="3028:3310" ph="..." />
-                    <marker date="1553526647451" expanded="true" signature="3304:3310" ph="..." />
-                    <marker date="1553526647451" expanded="true" signature="3724:3737" ph="..." />
-                    <marker date="1553526647451" expanded="true" signature="5406:6742" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#0#14#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-252">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="330" lean-forward="true" selection-start-line="330" selection-end-line="330" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMysql.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1314">
+              <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3744">
+              <caret line="208" column="26" selection-start-line="208" selection-start-column="26" selection-end-line="208" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -317,7 +330,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.address_lst</find>
       <find>account_churned_addresses</find>
       <find>churned_block_numbers</find>
       <find>fromtimestamp</find>
@@ -347,6 +359,7 @@
       <find>val</find>
       <find>col</find>
       <find>authoritative</find>
+      <find>checkpoint</find>
     </findStrings>
     <replaceStrings>
       <replace>:'mean',</replace>
@@ -388,8 +401,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scrapers/runner.py" />
-        <option value="$PROJECT_DIR$/scrapers/beautiful_soup/scrappers_runner.py" />
         <option value="$PROJECT_DIR$/scrapers/beautiful_soup/aioncoin.py" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonMongo.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_activity.py" />
@@ -419,26 +430,28 @@
         <option value="$PROJECT_DIR$/notebooks/test.ipynb" />
         <option value="$PROJECT_DIR$/scripts/tablemanager/Table.py" />
         <option value="$PROJECT_DIR$/scripts/tablemanager/table.py" />
-        <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
         <option value="$PROJECT_DIR$/scripts/github/githubrunner_old.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/github_and_bsscraper_interface.py" />
-        <option value="$PROJECT_DIR$/config/checkpoint.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/financial_indexes.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/cryptocoin.py" />
-        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
-        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_69.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_1.sql" />
         <option value="$PROJECT_DIR$/scripts/utils/myutils.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
-        <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_2.sql" />
         <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
         <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
+        <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
+        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
+        <option value="$PROJECT_DIR$/config/df_construct_config.py" />
+        <option value="$PROJECT_DIR$/config/checkpoint.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_3.sql" />
+        <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
       </list>
     </option>
   </component>
@@ -449,10 +462,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1934" />
-    <option name="y" value="30" />
-    <option name="width" value="1843" />
-    <option name="height" value="942" />
+    <option name="x" value="2041" />
+    <option name="y" value="15" />
+    <option name="width" value="1657" />
+    <option name="height" value="951" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -460,7 +473,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -498,18 +510,6 @@
             </path>
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="streaming" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -520,6 +520,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -620,9 +621,10 @@
     <option name="totallyTimeSpent" value="22356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1934" y="30" width="1843" height="942" extended-state="0" />
+    <frame x="2041" y="15" width="1657" height="951" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2893117" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23048095" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -632,11 +634,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.47709322" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.47690654" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.5120101" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.51" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20144686" side_tool="true" weight="0.41025642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -646,8 +648,8 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.30274203" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.1413467" />
+      <window_info anchor="right" id="Database" order="7" weight="0.29106808" />
+      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.14109442" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,15 +696,14 @@
           <line>8</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/ETL/checkpoint.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.5/asyncio/tasks.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/scrapy/russell_spider.py" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/scrapy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-74">
@@ -775,7 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/schema/aion_analytics/table/account_authoritative" />
     <entry file="file://$PROJECT_DIR$/scripts/ETL/account_transactions.py" />
     <entry file="file://$PROJECT_DIR$/scripts/ETL/network_tx_activity.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -796,20 +796,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity_warehouse_todelete.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1715">
-          <caret line="36" column="34" selection-start-line="36" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="207" column="49" lean-forward="true" selection-start-line="203" selection-start-column="4" selection-end-line="214" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity_warehouse_todelete.py" />
     <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -827,20 +814,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/githubrunner_old.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="314" selection-start-line="314" selection-end-line="314" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="72" column="15" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/github/githubrunner_old.py" />
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/beautiful_soup/__init__.py" />
     <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandas/io/json/normalize.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -889,31 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="229" column="21" selection-start-line="229" selection-start-column="21" selection-end-line="229" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="381" column="22" lean-forward="true" selection-start-line="381" selection-start-column="22" selection-end-line="381" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/asyncio/base_events.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="1397" selection-start-line="1397" selection-end-line="1397" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="42" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -924,46 +877,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="209" selection-start-line="209" selection-end-line="210" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="256" column="48" selection-start-line="256" selection-start-column="48" selection-end-line="256" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_2.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="57" selection-start-line="57" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="282" selection-start-line="282" selection-end-line="282" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553205880278" expanded="true" signature="6825:6826" ph="..." />
-            <marker date="1553205880278" expanded="true" signature="9809:10017" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -974,26 +891,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
+    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+        <state relative-caret-position="868">
+          <caret line="214" column="13" selection-start-line="214" selection-start-column="13" selection-end-line="214" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553526974079" expanded="true" signature="6825:6826" ph="..." />
+            <marker date="1553526974079" expanded="true" signature="9810:10018" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/schema/aion_analytics/table/account_authoritative">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mysql-clickhouse.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-940">
+          <caret line="59" column="15" lean-forward="true" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_3.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="54" lean-forward="true" selection-start-column="54" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/account_ext_warehouse">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1314">
+          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3744">
+          <caret line="208" column="26" selection-start-line="208" selection-start-column="26" selection-end-line="208" selection-end-column="26" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="184" column="27" lean-forward="true" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+        <state relative-caret-position="-252">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553526647451" expanded="true" signature="3028:3310" ph="..." />
-            <marker date="1553526647451" expanded="true" signature="3304:3310" ph="..." />
-            <marker date="1553526647451" expanded="true" signature="3724:3737" ph="..." />
-            <marker date="1553526647451" expanded="true" signature="5406:6742" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonClickhouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="206" column="11" lean-forward="true" selection-start-line="206" selection-start-column="11" selection-end-line="206" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553526804822" expanded="true" signature="3028:3310" ph="..." />
+            <marker date="1553526804822" expanded="true" signature="3304:3310" ph="..." />
+            <marker date="1553526804822" expanded="true" signature="3724:3737" ph="..." />
+            <marker date="1553526804822" expanded="true" signature="5406:6742" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="389" column="28" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="330" lean-forward="true" selection-start-line="330" selection-end-line="330" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>

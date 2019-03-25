@@ -16,7 +16,7 @@ class Checkpoint:
         self.redis = PythonRedis()
         self.cl = PythonClickhouse('aion')
         self.pym = PythonMongo('aion')
-        self.my = PythonMysql('office')
+        self.my = PythonMysql('localhost')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
         self.is_up_to_date_window = self.window + 2 # hours
@@ -104,39 +104,34 @@ class Checkpoint:
 
     def get_offset(self):
         try:
-            self.get_checkpoint_dict()
             if self.table == 'external_daily': # scrapers, github
                 # handle reset or initialization
-                if self.checkpoint_dict['offset'] is None:
-                    self.checkpoint_dict['offset'] = self.get_value_from_mongo(self.table, min_max='MAX')
-                    if self.checkpoint_dict['offset'] is None:
-                        self.checkpoint_dict['offset'] = self.initial_date
+                offset = self.get_value_from_mongo(self.table, min_max='MAX')
+                if offset is None:
+                    offset = self.initial_date
 
                 # convert offset to datetime if needed
-                if isinstance(self.checkpoint_dict['offset'], str):
-                    self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
-                                                                       '%Y-%m-%d %H:%M:%S')
+                if isinstance(offset, str):
+                    offset = datetime.strptime(offset,'%Y-%m-%d %H:%M:%S')
+
                 # SET DATETIME TO DATE WITH MIN TIME
                 # ensure date fits mongo scheme
-                if isinstance(self.checkpoint_dict['offset'], date):
-                    self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'],
-                                                                      datetime.min.time())
+                if isinstance(offset, date):
+                    offset = datetime.combine(offset,datetime.min.time())
                 if isinstance(self.checkpoint_dict['offset'], datetime):
                     self.checkpoint_dict['offset'] = datetime.combine(self.checkpoint_dict['offset'].timestamp(),
                                                                       datetime.min.time())
             else: # aion etls
                 # handle reset or initialization
-                if self.checkpoint_dict['offset'] is None:
-                    self.checkpoint_dict['offset'] = self.get_value_from_clickhouse(self.table, min_max='MAX')
-                    if self.checkpoint_dict['offset'] is None:
-                        self.checkpoint_dict['offset'] = self.initial_date
+                offset = self.get_value_from_clickhouse(self.table, min_max='MAX')
+                if offset is None:
+                    offset = self.initial_date
 
                 # convert offset to datetime if needed
-                if isinstance(self.checkpoint_dict['offset'], str):
-                    self.checkpoint_dict['offset'] = datetime.strptime(self.checkpoint_dict['offset'],
-                                                                       self.DATEFORMAT)
+                if isinstance(offset, str):
+                    offset = datetime.strptime(offset,self.DATEFORMAT)
 
-            return self.checkpoint_dict['offset']
+            return offset
 
         except Exception:
             logger.error('get offset', exc_info=True)
@@ -178,9 +173,6 @@ class Checkpoint:
         try:
 
             self.cl.upsert_df(df,self.columns,self.table)
-            if self.table != 'account_external_warehouse':
-                self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
-            self.save_checkpoint()
             # logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",
             # self.checkpoint_dict['offset'],
             # self.checkpoint_dict['timestamp'])
@@ -199,7 +191,8 @@ class Checkpoint:
                 return result[0][0]
             return self.initial_date  # if block_tx_warehouse is empty
         except Exception:
-            logger.error("get value from clickhouse", exc_info=True)
+            #logger.error("get value from clickhouse", exc_info=True)
+            return self.initial_date
 
     def get_value_from_mysql(self, table, column='block_timestamp',min_max='MAX',db='aion'):
         try:
@@ -262,8 +255,13 @@ class Checkpoint:
                                                                   min_max='MAX',db=db)
 
                 elif storage_medium == 'clickhouse':
-                    construct_max_val = self.get_value_from_clickhouse(construct_table,column='timestamp',
-                                                                       min_max='MAX',db=db)
+                    try:
+                        construct_max_val = self.get_value_from_clickhouse(construct_table,column='timestamp',
+                                                                           min_max='MAX',db=db)
+                    except: #table does not exist
+                        logger.warning('clickhouse table does not exist')
+                        return False
+
                 elif storage_medium == 'mongo':
                     construct_max_val = self.get_value_from_mongo(construct_table,column='timestamp',
                                                                   min_max='MAX',db=db)

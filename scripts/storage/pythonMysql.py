@@ -33,8 +33,8 @@ credentials['office'] = {
 }
 credentials['staging'] = {
     'user':'clickhouse',
-    'host':'104.208.35.165',
-    'db':'aion',
+    'host':'40.113.226.240',
+    'db':'aion_analytics',
     'password': '1233tka061'
 }
 
