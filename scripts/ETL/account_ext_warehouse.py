@@ -385,11 +385,16 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('make empty dataframe',exc_info=True)
 
-    async def update(self):
+    async def update(self,offset_update=None):
         try:
-            # find last data loaded
-            offset = self.get_value_from_clickhouse(self.table)
-            #offset = self.offset
+            # load date either from offset or from completion
+            if offset_update is not None:
+                offset,offset_update = self.reset_offset(offset_update)
+                logger.warning('offset set by reset')
+            else:
+                logger.warning('offset set by clickhouse')
+                offset = self.get_value_from_clickhouse(self.table)
+            logger.warning('offset_update:%s',offset_update)
             offset = datetime.combine(offset.date(), datetime.min.time())
             yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
 
@@ -406,18 +411,62 @@ class AccountExternalWarehouse(Checkpoint):
                 # save dataframe
                 self.columns = list(df.columns)
                 self.save_df(df)
+                if offset_update is not None:
+                    self.update_checkpoint_dict(offset)
+                    self.save_checkpoint()
+                del df
+                del df3
+                del df1
+                del df2
+                gc.collect()
         except Exception:
             logger.error('update',exc_info=True)
 
-    async def run(self):
-        #self.initialize_table()
+    def reset_offset(self,offset_update):
+        try:
+            key = self.key_params
+            # get it from redis
+            self.checkpoint_dict = self.redis.load([], '', '', key=key, item_type='checkpoint')
+            if self.checkpoint_dict is not None:  # reset currently in progress
+                # make a new checkpoint_dct if necessary
+                if self.checkpoint_dict['start'] is not None:
+                    if self.checkpoint_dict['start'] == offset_update['start']:
+                        if self.checkpoint_dict['end'] == offset_update['end']:
+                            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
+                            end = datetime.strptime(self.checkpoint_dict['end'], self.DATEFORMAT)
+                            if offset >= end:  # stop reset proceedure
+                                offset = self.get_value_from_clickhouse(self.table)
+                                offset_update = None
+                                logger.warning('OFFSET RESET FINISHED')
+                                logger.warning(" %s CHECKPOINT dictionary (re)set|retrieved and saved:%s", self.table,
+                                               self.checkpoint_dict)
+                            return offset, offset_update
+            self.checkpoint_dict = self.dct
+            self.checkpoint_dict['start'] = offset_update['start']
+            self.checkpoint_dict['end'] = offset_update['end']
+            self.checkpoint_dict['offset'] = offset_update['start']
+            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
+            logger.warning('OFFSET RESET BEGUN')
+            return offset,offset_update
 
+        except Exception:
+            logger.error('reset offset',exc_info=True)
+
+    async def run(self,offset_update=None):
+        #self.initialize_table()
+        """
+        --offset up_date takes the form
+        offset_update = {
+            'start': datetime.strptime('2018-06-20 00:00:00,self.DATEFORMAT'),
+            'end': datetime.strptime('2018-08-12 00:00:00,self.DATEFORMAT')
+        }
+        """
         while True:
             if self.am_i_up_to_date(self.table1,self.table2):
                 logger.warning("%s UP TO DATE- WENT TO SLEEP FOR %s HOURS",self.table,self.window)
                 await asyncio.sleep(self.window*60*60)
             else:
                 await  asyncio.sleep(1)
-            await self.update()
+            await self.update(offset_update=offset_update)
 
 

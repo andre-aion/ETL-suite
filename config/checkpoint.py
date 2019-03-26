@@ -88,7 +88,9 @@ checkpoint_dict[table] ={
 table = 'account_ext_warehouse'
 checkpoint_dict[table] ={
     'table' : table,
-    'column':'block_timestamp',
+    'column':'timestamp',
     'offset':None,
-    'timestamp' : None
+    'timestamp' : None,
+    'start':None,
+    'end':None
 }

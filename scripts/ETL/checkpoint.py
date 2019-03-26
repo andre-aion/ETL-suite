@@ -80,27 +80,6 @@ class Checkpoint:
         except Exception:
             logger.error("Construct table query", exc_info=True)
 
-    def get_checkpoint_dict(self, col='block_timestamp', db='aion'):
-        # try to load from , then redis, then clickhouse
-        try:
-            key = self.key_params
-            if self.checkpoint_dict is not None:
-                if self.checkpoint_dict['offset'] is None:
-                    # get it from redis
-                    temp_dct = self.redis.load([], '', '', key=key, item_type='checkpoint')
-                    if temp_dct is not None:
-                        self.checkpoint_dict = temp_dct
-                    else: # set if from config
-                        self.checkpoint_dict = self.dct
-                    #logger.warning(" %s CHECKPOINT dictionary (re)set or retrieved:%s", self.table, self.temp_dict)
-            else:
-                self.checkpoint_dict = self.dct
-                self.get_checkpoint_dict()
-                #logger.warning(" %s CHECKPOINT dictionary recursion call :%s", self.table, self.temp_dict)
-
-        except Exception:
-            logger.error("get checkpoint dict", exc_info=True)
-
 
     def get_offset(self):
         try:
@@ -150,22 +129,15 @@ class Checkpoint:
         except Exception:
             logger.error('reset checkpoint :%s', exc_info=True)
 
-    def update_checkpoint_dict(self, offset,item_name=None):
+    def update_checkpoint_dict(self, offset):
         try:
             logger.warning('update checkpoint:%s',offset)
-            if 'items_updated' in self.checkpoint_dict.keys():
-                self.checkpoint_dict['items_updated'] = self.items_updated
             if isinstance(offset,str):
                 offset = datetime.strptime(offset,self.DATEFORMAT)
                 offset = offset + timedelta(seconds=1)
             # update checkpoint
-
-            if 'items' in list(self.checkpoint_dict.keys()):
-                self.checkpoint_dict['items'][item_name]['offset'] = datetime.strftime(offset, self.DATEFORMAT)
-                self.checkpoint_dict['items'][item_name]['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
-            else:
-                self.checkpoint_dict['offset'] = datetime.strftime(offset, self.DATEFORMAT)
-                self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
+            self.checkpoint_dict['offset'] = datetime.strftime(offset, self.DATEFORMAT)
+            self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
         except Exception:
             logger.error("make warehouse", exc_info=True)
 
