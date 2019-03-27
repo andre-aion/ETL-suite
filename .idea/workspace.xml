@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,7 @@
     <session id="1903770663">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="55" />
+          <entry key="project.closed" value="56" />
           <entry key="project.open.time.0" value="22" />
           <entry key="project.open.time.1" value="13" />
           <entry key="project.open.time.10" value="1" />
@@ -137,7 +136,7 @@
           <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="3" />
           <entry key="project.open.time.19" value="3" />
-          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.2" value="3" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.3" value="3" />
@@ -147,13 +146,13 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="68" />
+          <entry key="project.opened" value="69" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="280" />
-          <entry key="py" value="113031" />
+          <entry key="py" value="114988" />
           <entry key="sql" value="4104" />
           <entry key="txt" value="76" />
         </counts>
@@ -161,7 +160,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="356" />
-          <entry key="Python" value="113015" />
+          <entry key="Python" value="114972" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="4104" />
         </counts>
@@ -184,8 +183,8 @@
           <entry key="log" value="13" />
           <entry key="mongo@localhost/aion/external" value="99" />
           <entry key="mongo@localhost/aion/external_daily" value="18" />
-          <entry key="mongo@localhost/aion/github" value="16" />
-          <entry key="py" value="640" />
+          <entry key="mongo@localhost/aion/github" value="17" />
+          <entry key="py" value="645" />
           <entry key="sql" value="128" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="12" />
@@ -197,9 +196,9 @@
           <entry key="IPNB" value="1" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="6" />
-          <entry key="MONGO" value="133" />
+          <entry key="MONGO" value="134" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="640" />
+          <entry key="Python" value="645" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="127" />
         </counts>
@@ -208,11 +207,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+            <state relative-caret-position="410">
+              <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -221,25 +220,29 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py">
+        <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6262">
-              <caret line="426" column="33" selection-start-line="426" selection-start-column="33" selection-end-line="426" selection-end-column="33" />
+            <state relative-caret-position="5130">
+              <caret line="285" column="31" selection-start-line="276" selection-start-column="4" selection-end-line="285" selection-end-column="31" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1553619880409" expanded="true" signature="17387:19155" ph="..." />
+                <marker date="1553526974079" expanded="true" signature="6825:6826" ph="..." />
+                <marker date="1553526974079" expanded="true" signature="9810:10018" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="8" />
+            <state relative-caret-position="161">
+              <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
               <folding>
-                <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1553700436439" expanded="true" signature="170:176" ph="..." />
+                <marker date="1553700436439" expanded="true" signature="940:945" ph="..." />
+                <marker date="1553700436439" expanded="true" signature="3209:3214" ph="..." />
               </folding>
             </state>
           </provider>
@@ -250,14 +253,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>account_churned_addresses</find>
       <find>churned_block_numbers</find>
       <find>fromtimestamp</find>
       <find>sp</find>
@@ -287,6 +289,7 @@
       <find>col</find>
       <find>authoritative</find>
       <find>checkpoint</find>
+      <find>outputs_dir</find>
     </findStrings>
     <replaceStrings>
       <replace>:'mean',</replace>
@@ -316,6 +319,7 @@
       <replace>self.offset</replace>
       <replace>col</replace>
       <replace>item</replace>
+      <replace>self.outputs_dir</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/scripts</dir>
@@ -328,7 +332,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scripts/ETL/account_activity.py" />
         <option value="$PROJECT_DIR$/scrapers/proxies.py" />
         <option value="$PROJECT_DIR$/scrapers/utils.py" />
         <option value="$PROJECT_DIR$/config/scrapy.py" />
@@ -366,7 +369,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_2.sql" />
         <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
-        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
         <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
@@ -377,8 +379,10 @@
         <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$PROJECT_DIR$/config/checkpoint.py" />
+        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" />
       </list>
     </option>
   </component>
@@ -388,11 +392,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1950" />
-    <option name="y" value="17" />
-    <option name="width" value="1717" />
-    <option name="height" value="1037" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1920" />
+    <option name="y" value="36" />
+    <option name="width" value="1190" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -400,7 +404,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -411,18 +414,26 @@
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
               <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
               <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="ETL" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="backup" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
@@ -436,6 +447,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -536,9 +548,9 @@
     <option name="totallyTimeSpent" value="22356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1950" y="17" width="1717" height="1037" extended-state="0" />
+    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22215533" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25107297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -552,7 +564,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.5112867" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.49194413" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20144686" side_tool="true" weight="0.41025642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -563,7 +575,7 @@
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
       <window_info anchor="right" id="Database" order="7" weight="0.28055388" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.3004372" />
+      <window_info anchor="right" id="Mongo Explorer" order="8" visible="true" weight="0.14216739" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,17 +626,15 @@
           <url>file://$PROJECT_DIR$/scripts/ETL/checkpoint.py</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/instructions/scrapy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="81" lean-forward="true" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/scrapy/aioncoin_spider.py" />
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/scrapy/nasdaq_spider.py" />
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/scrapy/runner.py" />
@@ -798,18 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="868">
-          <caret line="214" column="13" selection-start-line="214" selection-start-column="13" selection-end-line="214" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553526974079" expanded="true" signature="6825:6826" ph="..." />
-            <marker date="1553526974079" expanded="true" signature="9810:10018" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/schema/aion_analytics/table/account_authoritative">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -862,20 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553526804822" expanded="true" signature="3028:3310" ph="..." />
-            <marker date="1553526804822" expanded="true" signature="3304:3310" ph="..." />
-            <marker date="1553526804822" expanded="true" signature="3724:3737" ph="..." />
-            <marker date="1553526804822" expanded="true" signature="5406:6742" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -903,9 +887,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="464" column="55" lean-forward="true" selection-start-line="464" selection-start-column="55" selection-end-line="464" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553693892213" expanded="true" signature="17387:19155" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="174" column="28" lean-forward="true" selection-start-line="174" selection-end-line="175" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553690628424" expanded="true" signature="3028:3310" ph="..." />
+            <marker date="1553690628424" expanded="true" signature="3304:3310" ph="..." />
+            <marker date="1553690628424" expanded="true" signature="3724:3737" ph="..." />
+            <marker date="1553690628424" expanded="true" signature="5406:6742" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
+        <state relative-caret-position="-1692">
           <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="8" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
@@ -913,23 +922,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py">
+    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6262">
-          <caret line="426" column="33" selection-start-line="426" selection-start-column="33" selection-end-line="426" selection-end-column="33" />
+        <state relative-caret-position="5130">
+          <caret line="285" column="31" selection-start-line="276" selection-start-column="4" selection-end-line="285" selection-end-column="31" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553619880409" expanded="true" signature="17387:19155" ph="..." />
+            <marker date="1553526974079" expanded="true" signature="6825:6826" ph="..." />
+            <marker date="1553526974079" expanded="true" signature="9810:10018" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        <state relative-caret-position="410">
+          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1553700436439" expanded="true" signature="170:176" ph="..." />
+            <marker date="1553700436439" expanded="true" signature="940:945" ph="..." />
+            <marker date="1553700436439" expanded="true" signature="3209:3214" ph="..." />
           </folding>
         </state>
       </provider>

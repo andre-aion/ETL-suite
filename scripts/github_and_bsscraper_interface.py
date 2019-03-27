@@ -175,7 +175,7 @@ class Scraper(Checkpoint):
             yesterday =  datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
             if self.scraper_name == 'financial indexes':
                 # if yesterday is a weekend day, adjust to friday
-                logger.warning('yesterday.weekday: %s',yesterday.weekday())
+                #logger.warning('yesterday.weekday: %s',yesterday.weekday())
                 if yesterday.weekday() in [5,6]:
                     yesterday = yesterday - timedelta(days=abs(yesterday.weekday() - 4))
 
