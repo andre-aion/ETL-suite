@@ -52,7 +52,7 @@ reset_offset = {'start':'2018-09-05 00:00:00', 'end':'2018-09-11 00:00:00'}
 async def run_etls():
     tasks = [
         #asyncio.ensure_future(mongo_backup.run()),
-        #asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
+        asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
         #asyncio.ensure_future(warehouse_etl.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
