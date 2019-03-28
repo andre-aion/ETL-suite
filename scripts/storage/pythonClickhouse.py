@@ -100,7 +100,7 @@ class PythonClickhouse:
                         #logger.warning("columns renamed:%s", df.columns.tolist())
                 df = dd.dataframe.from_pandas(df, npartitions=15)
                     # logger.warning("df loaded in clickhouse df_load:%s", df.tail(10))
-                    #logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",df.head(10))
+                #logger.warning("DATA SUCCESSFULLY LOADED FROM CLICKHOUSE:%s",df.head(10))
             return df
 
         except Exception:

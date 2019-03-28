@@ -32,7 +32,7 @@ class AccountExternalWarehouse(Checkpoint):
         self.dct = checkpoint_dict[table]
         self.checkpoint_column = 'timestamp'
         self.my = PythonMysql(mysql_credentials)
-        self.initial_date = datetime.strptime("2018-04-24 00:00:00",self.DATEFORMAT)
+        self.initial_date = datetime.strptime("2018-04-25 00:00:00",self.DATEFORMAT)
         self.columns = sorted(list(self.dct.keys()))
         # construction
         # external columns to load
@@ -49,14 +49,20 @@ class AccountExternalWarehouse(Checkpoint):
 
     # /////////////////////////// UTILS ///////////////////////////
 
-    def am_i_up_to_date(self, table1, table2):
+    def am_i_up_to_date(self, offset_update=None):
         try:
+
             today = datetime.combine(datetime.today().date(), datetime.min.time())
             yesterday = today - timedelta(days=1)
+            self.offset_update = offset_update
+            if offset_update is not None:
+                self.offset, self.offset_update = self.reset_offset(offset_update)
+            else:
+                self.offset = self.get_value_from_clickhouse(self.table)
+
             # first check if the ETL table is up to timestamp
-            my_max_date = self.get_value_from_clickhouse(self.table)
-            logger.warning('my max date:%s',my_max_date)
-            if my_max_date < yesterday:
+            logger.warning('my max date:%s',self.offset)
+            if self.offset < yesterday:
                 table = {
                     self.table1 : {
                         'storage': 'mysql',
@@ -100,8 +106,7 @@ class AccountExternalWarehouse(Checkpoint):
                 '''
                 #logger.warning('feeder tables max dates=%s',dates)
                 # compare our max timestamp to the minimum of the max dates of the tables
-                if my_max_date < min(dates):
-                    self.offset = my_max_date
+                if self.offset < min(dates):
                     return False
                 else:
                     logger.warning('max min(timestamp) in construction table(s) =%s', min(dates))
@@ -261,11 +266,13 @@ class AccountExternalWarehouse(Checkpoint):
         except:
             logger.error('table', exc_info=True)
 
+    ''' 
     def reset_offset(self, timestamp):
         try:
             return datetime.strptime(timestamp, self.DATEFORMAT)
         except Exception:
             logger.error('reset offset :%s', exc_info=True)
+    '''
 
     # //////////////////////////////////////////////////////////////
 
@@ -305,7 +312,7 @@ class AccountExternalWarehouse(Checkpoint):
             end = start + timedelta(days=1)
             qry = """select * from {}.{} where block_timestamp >= '{}' and block_timestamp 
                 < '{}' """.format(self.my.schema,self.table1,start,end)
-            #logger.warning("qry:%s",qry)
+            # logger.warning("qry:%s",qry)
             df = pd.read_sql(qry, self.my.connection)
             if df is not None:
                 if len(df) > 0:
@@ -385,19 +392,11 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('make empty dataframe',exc_info=True)
 
-    async def update(self,offset_update=None):
+    async def update(self):
         try:
-            # load date either from offset or from completion
-            if offset_update is not None:
-                offset,offset_update = self.reset_offset(offset_update)
-                logger.warning('offset set by reset')
-            else:
-                logger.warning('offset set by clickhouse')
-                offset = self.get_value_from_clickhouse(self.table)
-            logger.warning('offset_update:%s',offset_update)
-            offset = datetime.combine(offset.date(), datetime.min.time())
-            yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
 
+            yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
+            offset = self.offset
             if offset < yesterday:
                 offset = offset+timedelta(days=1)
                 logger.warning('offset:%s', offset)
@@ -411,7 +410,7 @@ class AccountExternalWarehouse(Checkpoint):
                 # save dataframe
                 self.columns = list(df.columns)
                 self.save_df(df)
-                if offset_update is not None:
+                if self.offset_update is not None:
                     self.update_checkpoint_dict(offset)
                     self.save_checkpoint()
                 del df
@@ -452,7 +451,7 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('reset offset',exc_info=True)
 
-    async def run(self,offset_update=None):
+    async def run(self,offset_update):
         #self.initialize_table()
         """
         --offset up_date takes the form
@@ -462,11 +461,13 @@ class AccountExternalWarehouse(Checkpoint):
         }
         """
         while True:
-            if self.am_i_up_to_date(self.table1,self.table2):
+            if self.am_i_up_to_date(offset_update):
                 logger.warning("%s UP TO DATE- WENT TO SLEEP FOR %s HOURS",self.table,self.window)
                 await asyncio.sleep(self.window*60*60)
             else:
                 await  asyncio.sleep(1)
-            await self.update(offset_update=offset_update)
+            await self.update()
+
+
 
 

@@ -18,8 +18,6 @@ logger = mylogger(__file__)
 """
 #tb = Table(table,table,'create')
 account_activity_etl = AccountActivity('account_activity')
-account_activity_churn_etl = AccountActivityChurn('account_activity_churn')
-
 #account_activity_etl.reset_offset('2018-07-01 01:00:00')
 """
 #account_activity_warehouse_etl = AccountActivityWarehouse('account_activity_warehouse')
@@ -44,22 +42,18 @@ logger.warning(cryptocurrencies)
 table = 'account_ext_warehouse'
 
 account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
-                                                      mysql_credentials='staging',
-                                                      items=cryptocurrencies)
+                                                 mysql_credentials='staging',
+                                                    items=cryptocurrencies)
 
-reset_offset = {'start':'2018-09-05 00:00:00', 'end':'2018-09-11 00:00:00'}
+reset_offset = {'start':'2018-06-21 00:00:00', 'end':'2018-06-26 00:00:00'}
 
 async def run_etls():
     tasks = [
-        #asyncio.ensure_future(mongo_backup.run()),
         asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
-        #asyncio.ensure_future(warehouse_etl.run()),
+        #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
         #asyncio.ensure_future(github_loader.run()),
-        #asyncio.ensure_future(account_activity_etl.run()),
-        #asyncio.ensure_future(account_activity_churn_etl.run()),
-        #asyncio.ensure_future(account_activity_warehouse_etl.run()),
     ]
     await asyncio.wait(tasks)
 
