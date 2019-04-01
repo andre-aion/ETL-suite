@@ -38,6 +38,7 @@ class GithubLoader(Scraper):
         self.item_name = 'aion'
 
         self.day_data = {} # aggregate data over a day
+        self.url_load_failure = False
 
     # /////////////////////////////////////////////////////////////////////
     # ////////////          UTILS
@@ -90,93 +91,100 @@ class GithubLoader(Scraper):
         except Exception:
             logger.error('process item', exc_info=True)
 
-
     # ///////////////////    UTILS END       /////////////////////////////////////////////////
-    def decompress(self, response):
+    def decompress(self, response,url):
         try:
-            data = gzip.decompress(response.read())
-            data = data.decode('utf8').replace("'{", '{')
-            data = data.replace("}'", '}')
+            if not self.url_load_failure:
+                data = gzip.decompress(response.read())
+                data = data.decode('utf8').replace("'{", '{')
+                data = data.replace("}'", '}')
 
-            data = data.splitlines()
-            json_data = []
-            for item in data:
-                try:
-                    if item[0] == '{' and item[-1] == '}':
-                        json_data.append(json.loads(item))
-                except:
-                    logger.warning('string index out of range')
+                data = data.splitlines()
+                json_data = []
+                for item in data:
+                    try:
+                        if item[0] == '{' and item[-1] == '}':
+                            json_data.append(json.loads(item))
+                    except:
+                        logger.warning('string index out of range')
 
-            df = json_normalize(json_data)
-            del data
-            del json_data
-            gc.collect()
-            # Load the JSON to a Python list & dump it back out as formatted JSON
-            df = df[['repo.name', 'repo.url', 'type']]
-            logger.warning('flattened columns:%s', df.columns.tolist())
-            #logger.warning('df:%s', df.head(30))
-            return df
-        except Exception:
-            logger.error('decompress', exc_info=True)
+                df = json_normalize(json_data)
+                del data
+                del json_data
+                gc.collect()
+                # Load the JSON to a Python list & dump it back out as formatted JSON
+                df = df[['repo.name', 'repo.url', 'type']]
+                logger.warning('flattened columns:%s', df.columns.tolist())
+                #logger.warning('df:%s', df.head(30))
+                return df
+            return None
+        except:
+            logger.warning('cannot decompress %s',url)
 
     def filter_df(self, df):
         try:
             #logger.warning(self.cryptos_pattern)
-            if df is not None:
-                if len(df) > 0:
-                    DATEFORMAT_created_at = "%Y-%m-%dT%H:%M:%SZ"
-
-                    to_lower_lst = df.columns.tolist()
-                    for col in to_lower_lst:
-                        df[col].str.lower()
-                    df = df[(df['repo.name'].str.contains(self.cryptos_pattern)) |
-                            (df['repo.url'].str.contains(self.cryptos_pattern))]
-
+            # if the particular url failed to load, skip the filter
+            if not self.url_load_failure:
+                if df is not None:
                     if len(df) > 0:
-                        df = df[df.type.str.contains(self.events_pattern)]
+                        DATEFORMAT_created_at = "%Y-%m-%dT%H:%M:%SZ"
 
-                    logger.warning('FILTERING COMPLETE')
-                    gc.collect()
-                    return df
+                        to_lower_lst = df.columns.tolist()
+                        for col in to_lower_lst:
+                            df[col].str.lower()
+                        df = df[(df['repo.name'].str.contains(self.cryptos_pattern)) |
+                                (df['repo.url'].str.contains(self.cryptos_pattern))]
+
+                        if len(df) > 0:
+                            df = df[df.type.str.contains(self.events_pattern)]
+
+                        logger.warning('FILTERING COMPLETE')
+                        gc.collect()
+                        return df
+            return None
         except Exception:
             logger.error('filter df', exc_info=True)
 
     def log_occurrences(self, df, timestamp):
         try:
-            if df is not None:
-                if len(df) > 0:
-                    # make item
-                    self.get_checkpoint_dict()
-                    for item_name in self.items:
-                        item = {
-                            'timestamp': timestamp,
-                            'month':timestamp.month,
-                            'day':timestamp.day,
-                            'year':timestamp.year,
-                            'hour':timestamp.hour
-                        }
-                        # do not run loop if the offset timestamp is later than current timestamp
-                        for event in self.events:
-                            df_temp = df[(df.type.str.contains(event)) &
-                                         ((df['repo.name'].str.contains(item_name)) |
-                                          (df['repo.url'].str.contains(item_name)))]
-                            event_truncated = event[:-5]
-                            column_name = '{}_{}'.format(item_name, event_truncated.lower())
-                            if len(df_temp) > 0:
-                                item[column_name] = len(df_temp)
-                            else:
-                                item[column_name] = 0
-                            #logger.warning("coin:event=%s:%s",item_name,column_name)
-                        self.process_item(item,item_name)
 
-                    del df
-                    gc.collect()
+            # make item
+            for item_name in self.items:
+                item = {
+                    'timestamp': timestamp,
+                    'month':timestamp.month,
+                    'day':timestamp.day,
+                    'year':timestamp.year,
+                    'hour':timestamp.hour
+                }
 
+                for event in self.events:
+                    event_truncated = event[:-5]
+                    column_name = '{}_{}'.format(item_name, event_truncated.lower())
+
+                    # if the particular url failed to load, just fill the hour with zeros
+                    df_temp = []
+                    if not self.url_load_failure:
+                        df_temp = df[(df.type.str.contains(event)) &
+                                     ((df['repo.name'].str.contains(item_name)) |
+                                      (df['repo.url'].str.contains(item_name)))]
+                    if df_temp is not None:
+                        if len(df_temp) > 0:
+                            item[column_name] = len(df_temp)
+                        else:
+                            item[column_name] = 0
+                    #logger.warning("coin:event=%s:%s",item_name,column_name)
+                self.process_item(item,item_name)
+
+            gc.collect()
+            # turn off
         except Exception:
             logger.error('count occurrences', exc_info=True)
 
     def load_url(self, url):
         try:
+
             request = urllib.request.Request(
                 url,
                 headers={
@@ -184,9 +192,12 @@ class GithubLoader(Scraper):
                     "User-Agent": "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11",
                 })
             response = urllib.request.urlopen(request)
+            self.url_load_failure = False
             return response
         except Exception:
-            logger.error('read requests', exc_info=True)
+            self.url_load_failure = True
+            logger.warning('url load failed: %s', url)
+            return None
 
     # determine which hour to process
     def hour_to_process(self,offset):
@@ -202,7 +213,6 @@ class GithubLoader(Scraper):
                     return hour
             # if all items there for all hours
             return 24
-
 
         except Exception:
             logger.warning('decide start hour',exc_info=True)
@@ -236,39 +246,41 @@ class GithubLoader(Scraper):
             year = offset.year
             day = str(offset.day).zfill(2)
             hour_str = str(hour)
-            url = 'http://data.gharchive.org/{}-{}-{}-{}.json.gz'.format(year, month, day, hour_str)
+            url = 'https://data.gharchive.org/{}-{}-{}-{}.json.gz'.format(year, month, day, hour_str)
             logger.warning('URL: %s',url)
 
             return url, offset
         except Exception:
-            logger.warning('',exc_info=True)
+            logger.error('determine url',exc_info=True)
 
     def run_process(self, url):
         try:
             data = self.load_url(url)
-            df = self.decompress(data)
+            df = self.decompress(data,url)
             df = self.filter_df(df)
+
             del data
             gc.collect()
             return df
         except Exception:
-            logger.warning('run process',exc_info=True)
+            logger.error('run process', exc_info=True)
 
     def get_offset(self):
         try:
-            offset = self.get_value_from_mongo(table=self.table,column='timestamp')
+            offset = self.get_value_from_mongo(table=self.table, column='timestamp')
             return offset
         except Exception:
-            logger.error('get offset',exc_info=True)
+            logger.error('get offset', exc_info=True)
 
     async def update(self):
         try:
             offset = self.get_offset()
-            logger.warning('offset:%s',offset)
+            logger.warning('offset:%s', offset)
             # reset the date and processed hour tracker in redis if all items, all hours are don
             url, offset = self.determine_url(offset)
             df = self.run_process(url)
             self.log_occurrences(df, offset)
+
             del df
             gc.collect()
         except Exception:

@@ -40,20 +40,22 @@ github_loader = GithubLoader(cryptocurrencies)
 logger.warning(cryptocurrencies)
 
 table = 'account_ext_warehouse'
-
+'''
 account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
                                                  mysql_credentials='staging',
                                                     items=cryptocurrencies)
+'''
 
-reset_offset = {'start':'2018-06-21 00:00:00', 'end':'2018-06-26 00:00:00'}
+
+reset_offset = {'start':'2018-08-10 00:00:00', 'end':'2018-08-10 00:00:00'}
 
 async def run_etls():
     tasks = [
-        asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
+        #asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
         #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
-        #asyncio.ensure_future(github_loader.run()),
+        asyncio.ensure_future(github_loader.run()),
     ]
     await asyncio.wait(tasks)
 
