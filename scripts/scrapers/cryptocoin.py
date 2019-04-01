@@ -19,7 +19,7 @@ class Cryptocoin(Scraper):
     def __init__(self, items):
         Scraper.__init__(self, collection='external_daily')
         self.item_name = 'aion'
-        self.items = items
+        self.items = items.copy()
         self.items.sort()
         self.DATEFORMAT_coinmarket = "%b %d, %Y"
         self.volume = 'volume'

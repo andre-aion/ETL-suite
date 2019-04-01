@@ -48,6 +48,8 @@ class Scraper(Checkpoint):
                                         firefox_options=self.options)
         self.scraper = ''
         self.collection = collection
+        self.table = collection
+        self.items = []
 
     def process_item(self,item, item_name):
         try:
@@ -224,12 +226,12 @@ class Scraper(Checkpoint):
                         logger.warning('DATE ADJUSTED CAUSE YESTERDAY IS A WEEKEND')
                         timestamp = timestamp - timedelta(days=abs(timestamp.weekday() - 4))
 
-            result = self.get_date_data_from_mongo(timestamp)
             counter = 0
-            if result:
-                for res in result.keys():
-                    if res in self.items:
-                        counter += 1
+            for item in self.items:
+                #logger.warning('scraper:%s, self.items:%s', self.scraper_name, self.items)
+                if self.item_is_up_to_date(checkpoint_column=self.checkpoint_column,item_name=item):
+                    counter += 1
+                    logger.warning('items:%s',item)
 
             if counter >= len(self.items):
                 return True

@@ -18,7 +18,7 @@ class FinancialIndexes(Scraper):
 
     def __init__(self, items):
         Scraper.__init__(self,collection='external_daily')
-        self.items = items
+        self.items = items.copy()
         self.item_name = 'russell'
         self.close = 'close'
         self.volume = 'volume'

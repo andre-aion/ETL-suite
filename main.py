@@ -43,7 +43,7 @@ table = 'account_ext_warehouse'
 '''
 account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
                                                  mysql_credentials='staging',
-                                                    items=cryptocurrencies)
+                                                items=cryptocurrencies)
 '''
 
 
@@ -54,8 +54,8 @@ async def run_etls():
         #asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
         #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
-        #asyncio.ensure_future(cryptos_scraper.run()),
-        asyncio.ensure_future(github_loader.run()),
+        asyncio.ensure_future(cryptos_scraper.run()),
+        #asyncio.ensure_future(github_loader.run()),
     ]
     await asyncio.wait(tasks)
 

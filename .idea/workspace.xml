@@ -5,7 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/github/github_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github/github_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,17 +34,6 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="aion_analytics@my_sql.staging" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="aion_analytics@my_sql.staging" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="aion_analytics@my_sql.staging" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="aion_analytics: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -134,7 +125,7 @@
     <session id="1903770663">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="64" />
+          <entry key="project.closed" value="65" />
           <entry key="project.open.time.0" value="27" />
           <entry key="project.open.time.1" value="14" />
           <entry key="project.open.time.10" value="1" />
@@ -144,7 +135,7 @@
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="3" />
-          <entry key="project.open.time.17" value="2" />
+          <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.18" value="3" />
           <entry key="project.open.time.19" value="3" />
           <entry key="project.open.time.2" value="4" />
@@ -157,13 +148,13 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="79" />
+          <entry key="project.opened" value="80" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="280" />
-          <entry key="py" value="116436" />
+          <entry key="py" value="116745" />
           <entry key="sql" value="4105" />
           <entry key="txt" value="76" />
         </counts>
@@ -171,7 +162,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="356" />
-          <entry key="Python" value="116420" />
+          <entry key="Python" value="116729" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="4105" />
         </counts>
@@ -195,7 +186,7 @@
           <entry key="mongo@localhost/aion/external" value="99" />
           <entry key="mongo@localhost/aion/external_daily" value="18" />
           <entry key="mongo@localhost/aion/github" value="17" />
-          <entry key="py" value="657" />
+          <entry key="py" value="660" />
           <entry key="sql" value="129" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="12" />
@@ -209,7 +200,7 @@
           <entry key="Log" value="6" />
           <entry key="MONGO" value="134" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="657" />
+          <entry key="Python" value="660" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="128" />
         </counts>
@@ -221,8 +212,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+            <state relative-caret-position="272">
+              <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -230,14 +221,48 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="261" lean-forward="true" selection-start-line="261" selection-end-line="261" />
+            <state relative-caret-position="414">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="231" column="17" selection-start-line="231" selection-start-column="17" selection-end-line="231" selection-end-column="17" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1554133055953" expanded="true" signature="7048:7049" ph="..." />
+                <marker date="1554135909320" expanded="true" signature="3084:3366" ph="..." />
+                <marker date="1554135909320" expanded="true" signature="3360:3366" ph="..." />
+                <marker date="1554135909320" expanded="true" signature="3780:3793" ph="..." />
+                <marker date="1554135909320" expanded="true" signature="5462:6798" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4878">
+              <caret line="281" column="37" selection-start-line="281" selection-start-column="37" selection-end-line="281" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1554133225520" expanded="true" signature="7048:7049" ph="..." />
               </folding>
             </state>
           </provider>
@@ -359,8 +384,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_1.sql" />
         <option value="$PROJECT_DIR$/scripts/utils/myutils.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_2.sql" />
-        <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
-        <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_3.sql" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
@@ -368,7 +391,6 @@
         <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$PROJECT_DIR$/config/checkpoint.py" />
-        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
         <option value="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/__init__.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
@@ -376,8 +398,11 @@
         <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_5.sql" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
+        <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
+        <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
       </list>
     </option>
   </component>
@@ -405,6 +430,17 @@
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
               <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ETL-suite" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="scrapers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ETL-suite" type="b2602c69:ProjectViewProjectNode" />
@@ -520,7 +556,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1987" y="3" width="1575" height="1054" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19552337" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -536,7 +571,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.22369878" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.41860464" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20144686" side_tool="true" weight="0.41025642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -546,8 +581,8 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.18308292" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.14190318" />
+      <window_info anchor="right" id="Database" order="7" weight="0.18301514" />
+      <window_info anchor="right" id="Mongo Explorer" order="8" weight="0.14154048" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23497854" />
@@ -628,7 +663,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py</url>
-          <line>143</line>
+          <line>145</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -773,13 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/schema/aion_analytics/table/account_authoritative" />
     <entry file="file://$PROJECT_DIR$/config/mysql-clickhouse.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -796,13 +824,6 @@
       </provider>
     </entry>
     <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/account_ext_warehouse" />
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_4.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -817,20 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="95" column="1" lean-forward="true" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="174" column="28" lean-forward="true" selection-start-line="174" selection-end-line="175" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1553690628424" expanded="true" signature="3028:3310" ph="..." />
-            <marker date="1553690628424" expanded="true" signature="3304:3310" ph="..." />
-            <marker date="1553690628424" expanded="true" signature="3724:3737" ph="..." />
-            <marker date="1553690628424" expanded="true" signature="5406:6742" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -915,23 +922,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4878">
+          <caret line="281" column="37" selection-start-line="281" selection-start-column="37" selection-end-line="281" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1554133225520" expanded="true" signature="7048:7049" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+        <state relative-caret-position="272">
+          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="261" lean-forward="true" selection-start-line="261" selection-end-line="261" />
+        <state relative-caret-position="119">
+          <caret line="231" column="17" selection-start-line="231" selection-start-column="17" selection-end-line="231" selection-end-column="17" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1554133055953" expanded="true" signature="7048:7049" ph="..." />
+            <marker date="1554135909320" expanded="true" signature="3084:3366" ph="..." />
+            <marker date="1554135909320" expanded="true" signature="3360:3366" ph="..." />
+            <marker date="1554135909320" expanded="true" signature="3780:3793" ph="..." />
+            <marker date="1554135909320" expanded="true" signature="5462:6798" ph="..." />
           </folding>
         </state>
       </provider>

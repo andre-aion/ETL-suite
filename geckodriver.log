@@ -20753,3 +20753,734 @@ console.error: BroadcastService:
   Stack:
     remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
 
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 19251, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554133481990	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.UWgajeLVN1ub"
+*** You are running in headless mode.
+1554133482276	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133482276	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133482276	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133483736	Marionette	INFO	Listening on port 40139
+1554133483808	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554133484301	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.X7mUQQIh9kVX"
+*** You are running in headless mode.
+1554133484707	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133484707	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133484707	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133486326	Marionette	INFO	Listening on port 34693
+1554133486430	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554133486895	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.I8beIRvAvQME"
+*** You are running in headless mode.
+1554133487314	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133487314	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133487314	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133488920	Marionette	INFO	Listening on port 38023
+1554133489003	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 769: TypeError: document.getElementById(...) is null
+JavaScript error: https://s.go-mpulse.net/boomerang/X7FLY-5XYMD-3HLZC-GZTNC-MNH9C, line 11: SecurityError: The operation is insecure.
+
+(/usr/lib/firefox/firefox:20252): dconf-WARNING **: 11:45:01.280: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 6: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/713864198683614?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/includes/cookie_policy.js?05232018v1, line 106: SecurityError: The operation is insecure.
+JavaScript error: https://gum.criteo.com/syncframe?topUrl=www.nasdaq.com#{%22optout%22:{%22value%22:false,%22origin%22:0},%22uid%22:{%22origin%22:0},%22idfs%22:{%22origin%22:0},%22sid%22:{%22origin%22:0},%22origin%22:%22publishertag%22,%22version%22:65,%22lwid%22:{%22value%22:%22NA%22,%22origin%22:0},%22tld%22:%22www.nasdaq.com%22,%22topUrl%22:%22www.nasdaq.com%22}, line 9: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=287888548818530&correlator=3680356986253693&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061865%2C21062068%2C21063203&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=970x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554133509&dt=1554133509415&dlt=1554133504351&idt=4986&ea=0&frm=23&biw=1356&bih=694&isw=970&ish=250&oid=3&adk=2069754010&uci=4sohjmkbjfnb&ifi=1&ifk=3052132875&u_tz=-240&u_his=1&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1468715561.1554133509&ga_sid=1554133509&ga_hid=1951559847&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3051788423455493&correlator=630807997188118&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063203&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554133509&dt=1554133509673&dlt=1554133504378&idt=5216&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=600&oid=3&adk=557300083&uci=20lo5k74ewnj&ifi=1&ifk=2562789518&u_tz=-240&u_his=2&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=2015595091.1554133510&ga_sid=1554133510&ga_hid=1191988679&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2799674933681270&correlator=2663644217421834&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062068%2C21063095&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554133509&dt=1554133509732&dlt=1554133504370&idt=5200&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=600&oid=3&adk=557300083&uci=4d1np72nrmf&ifi=1&ifk=482736309&u_tz=-240&u_his=3&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1049720625.1554133510&ga_sid=1554133510&ga_hid=526612793&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3800755260122163&correlator=1590678361048541&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062818%2C21063158%2C21063424&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554133509&dt=1554133509790&dlt=1554133504406&idt=5216&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=250&oid=3&adk=1567906218&uci=d4ctxwfup6oi&ifi=1&ifk=774668116&u_tz=-240&u_his=4&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1770970508.1554133510&ga_sid=1554133510&ga_hid=1585672479&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2879198710409186&correlator=1948507122887827&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061743%2C21062420&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=160x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554133512&dt=1554133512165&dlt=1554133510458&idt=1652&ea=0&frm=23&biw=1356&bih=694&isw=160&ish=600&oid=3&adk=3396976947&uci=jjuwya9g9d8s&ifi=1&ifk=1521053408&u_tz=-240&u_his=5&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=614258830.1554133512&ga_sid=1554133512&ga_hid=1419246486&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+1554133512751	Marionette	INFO	Stopped listening on port 40139
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+[Parent 20078, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5F0029,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xA70006,name=PWebSocket::Msg_DeleteSelf) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+[Child 20252, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 726
+1554133514487	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.8CO6n2D8Q1LJ"
+*** You are running in headless mode.
+1554133514899	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133514900	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133514900	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133516541	Marionette	INFO	Listening on port 33183
+1554133516595	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 769: TypeError: document.getElementById(...) is null
+JavaScript error: https://s.go-mpulse.net/boomerang/X7FLY-5XYMD-3HLZC-GZTNC-MNH9C, line 11: SecurityError: The operation is insecure.
+
+(/usr/lib/firefox/firefox:21261): dconf-WARNING **: 11:45:24.063: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 6: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/713864198683614?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/includes/cookie_policy.js?05232018v1, line 106: SecurityError: The operation is insecure.
+JavaScript error: https://gum.criteo.com/syncframe?topUrl=www.nasdaq.com#{%22optout%22:{%22value%22:false,%22origin%22:0},%22uid%22:{%22origin%22:0},%22idfs%22:{%22origin%22:0},%22sid%22:{%22origin%22:0},%22origin%22:%22publishertag%22,%22version%22:65,%22lwid%22:{%22value%22:%22NA%22,%22origin%22:0},%22tld%22:%22www.nasdaq.com%22,%22topUrl%22:%22www.nasdaq.com%22}, line 9: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+1554133535165	Marionette	INFO	Stopped listening on port 33183
+[Parent 21084, Gecko_IOThread] WARNING: pipe error (127): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133537495	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.9KH17ehEjTSK"
+*** You are running in headless mode.
+1554133538042	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133538043	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133538043	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133540912	Marionette	INFO	Listening on port 36459
+1554133541030	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554133547631	Marionette	INFO	Stopped listening on port 34693
+[Parent 20367, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133548811	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.nWe3yYQ0OklX"
+*** You are running in headless mode.
+1554133549136	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133549137	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133549137	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133550641	Marionette	INFO	Listening on port 41715
+1554133550731	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=next&r=canary, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133577517	Marionette	INFO	Stopped listening on port 41715
+[Parent 21757, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133578739	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Z9zNBww5bCxn"
+*** You are running in headless mode.
+1554133579080	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133579080	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133579080	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133580601	Marionette	INFO	Listening on port 32927
+1554133580656	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133612072	Marionette	INFO	Stopped listening on port 32927
+[Parent 22080, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133613190	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.1JpqwHpsbfd9"
+*** You are running in headless mode.
+1554133613910	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133613911	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133613911	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133616005	Marionette	INFO	Listening on port 43071
+1554133616108	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133643807	Marionette	INFO	Stopped listening on port 43071
+[Parent 22390, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133645048	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.U6RVi6Slszxb"
+*** You are running in headless mode.
+1554133645557	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133645557	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133645558	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133647475	Marionette	INFO	Listening on port 33741
+1554133647557	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133680273	Marionette	INFO	Stopped listening on port 33741
+[Parent 22706, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133681685	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.DGdzD8QpErMD"
+*** You are running in headless mode.
+1554133682194	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133682195	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133682195	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133684166	Marionette	INFO	Listening on port 43663
+1554133684209	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133742331	Marionette	INFO	Stopped listening on port 43663
+[Parent 23065, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133743518	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.MHMmJoDc3jLQ"
+*** You are running in headless mode.
+1554133743898	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133743899	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133743899	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133746174	Marionette	INFO	Listening on port 41879
+1554133746231	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133775137	Marionette	INFO	Stopped listening on port 41879
+[Parent 23425, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+[Child 23597, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 726
+[Child 23597, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133776387	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.h2RJhyKOtWQQ"
+*** You are running in headless mode.
+1554133776717	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133776717	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133776717	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133778226	Marionette	INFO	Listening on port 35227
+1554133778304	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133807121	Marionette	INFO	Stopped listening on port 35227
+[Parent 23738, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+[Child 23900, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133808453	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.OpDJsc0r8exD"
+*** You are running in headless mode.
+1554133808770	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133808771	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133808771	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133810275	Marionette	INFO	Listening on port 39077
+1554133810362	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133859458	Marionette	INFO	Stopped listening on port 39077
+[Parent 24038, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133860725	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mjchUe1kDdu6"
+*** You are running in headless mode.
+1554133861046	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133861047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133861047	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133862520	Marionette	INFO	Listening on port 40399
+1554133862541	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133891289	Marionette	INFO	Stopped listening on port 40399
+[Parent 24364, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133892399	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.F4BAbpv29zkO"
+*** You are running in headless mode.
+1554133892742	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133892742	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133892742	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133894259	Marionette	INFO	Listening on port 42517
+1554133894307	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554133936545	Marionette	INFO	Stopped listening on port 42517
+[Parent 24671, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554133937669	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.WjDT4DfHXli6"
+*** You are running in headless mode.
+1554133937971	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554133937971	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554133937971	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554133939474	Marionette	INFO	Listening on port 32775
+1554133939581	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554134002129	Marionette	INFO	Stopped listening on port 32775
+[Parent 25003, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554134003255	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.6xK1wTy5U9n2"
+*** You are running in headless mode.
+1554134003558	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134003559	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134003559	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134005004	Marionette	INFO	Listening on port 33607
+1554134005070	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.45&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+[Child 25521, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+1554134053261	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.EOnXEHNL19G3"
+*** You are running in headless mode.
+1554134053489	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134053489	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134053489	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134054726	Marionette	INFO	Listening on port 37713
+1554134054769	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134055241	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.P8uwSNgraw75"
+*** You are running in headless mode.
+1554134055542	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134055542	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134055542	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134057122	Marionette	INFO	Listening on port 41375
+1554134057157	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134057676	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.eDFXekWzzacz"
+*** You are running in headless mode.
+1554134058100	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134058100	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134058100	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134059803	Marionette	INFO	Listening on port 34377
+1554134059891	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554134176244	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.pe2TrRHJRCPB"
+*** You are running in headless mode.
+1554134176478	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134176478	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134176478	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134177716	Marionette	INFO	Listening on port 33273
+1554134177756	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+1554134205864	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.hJ3jXsv76Bkm"
+*** You are running in headless mode.
+1554134206523	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134206524	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134206524	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134209409	Marionette	INFO	Listening on port 42597
+1554134209527	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134210052	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.BWfxcRRYBLPj"
+*** You are running in headless mode.
+1554134210484	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134210484	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134210484	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134212154	Marionette	INFO	Listening on port 46007
+1554134212166	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134212695	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Htug7fS29QAr"
+*** You are running in headless mode.
+1554134213069	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134213069	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134213070	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134214623	Marionette	INFO	Listening on port 39129
+1554134214703	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 27101, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554134389346	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.dIgf5UxXzzTy"
+*** You are running in headless mode.
+1554134389692	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134389692	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134389693	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134391212	Marionette	INFO	Listening on port 37717
+1554134391256	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134391711	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.QBw2hmHZxFOB"
+*** You are running in headless mode.
+1554134392079	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134392079	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134392079	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134393694	Marionette	INFO	Listening on port 45975
+1554134393728	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134394288	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.zSMFE6cDSoaw"
+*** You are running in headless mode.
+1554134394661	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134394662	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134394662	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134396295	Marionette	INFO	Listening on port 43829
+1554134396408	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+[Child 29464, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554134468284	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.hwREBq2tgman"
+*** You are running in headless mode.
+1554134468626	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134468626	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134468626	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134470157	Marionette	INFO	Listening on port 33399
+1554134470192	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134470817	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.M7zPUwNPAxhf"
+*** You are running in headless mode.
+1554134471209	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134471210	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134471210	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134472845	Marionette	INFO	Listening on port 44673
+1554134472924	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554134473403	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.D16tFW4STktp"
+*** You are running in headless mode.
+1554134473835	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554134473836	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554134473836	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554134475661	Marionette	INFO	Listening on port 43547
+1554134475727	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554135329496	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.CWbkdjR9xQbx"
+*** You are running in headless mode.
+1554135329734	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135329735	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135329735	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135330902	Marionette	INFO	Listening on port 44163
+1554135331027	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135331466	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.VNcl9ZseJdcO"
+*** You are running in headless mode.
+1554135331702	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135331702	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135331702	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135332879	Marionette	INFO	Listening on port 45593
+1554135332974	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135333463	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.MtXow3YBwOqt"
+*** You are running in headless mode.
+1554135333692	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135333692	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135333692	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135334974	Marionette	INFO	Listening on port 40577
+1554135335071	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Sandbox: Unexpected EOF, op 0 flags 00 path /usr/share/locale/en_US.UTF-8/LC_MESSAGES/libc.mo
+[Child 31871, Chrome_ChildThread] WARNING: pipe error (25): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+[Child 31871, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+1554135542113	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.oy5M8WemDQ2s"
+*** You are running in headless mode.
+1554135542476	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135542476	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135542476	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135544234	Marionette	INFO	Listening on port 34989
+1554135544323	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135544929	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.PUDRdmiVWgwA"
+*** You are running in headless mode.
+1554135545434	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135545435	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135545435	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135547198	Marionette	INFO	Listening on port 33193
+1554135547248	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135547711	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.M37nEkWVhEai"
+*** You are running in headless mode.
+1554135548164	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135548165	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135548165	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135549854	Marionette	INFO	Listening on port 36497
+1554135549927	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554135578910	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.NfOESUnzq2IB"
+*** You are running in headless mode.
+1554135579271	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135579272	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135579272	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135580897	Marionette	INFO	Listening on port 42153
+1554135580934	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135581433	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.isPna01NUGqk"
+*** You are running in headless mode.
+1554135581922	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135581922	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135581922	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135584126	Marionette	INFO	Listening on port 43949
+1554135584157	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135584684	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.z6tP7umw4vWb"
+*** You are running in headless mode.
+1554135585530	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135585531	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135585532	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135587489	Marionette	INFO	Listening on port 42551
+1554135587502	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+[Child 1894, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554135882939	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ui2O5eaO1uHS"
+*** You are running in headless mode.
+1554135883158	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135883158	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135883158	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135884143	Marionette	INFO	Listening on port 45941
+1554135884243	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135884731	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.opnXc59Rf1U2"
+*** You are running in headless mode.
+1554135884947	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135884948	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135884948	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135886012	Marionette	INFO	Listening on port 38791
+1554135886037	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554135886577	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.zoWSXDHEA7CF"
+*** You are running in headless mode.
+1554135886795	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554135886795	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554135886795	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554135887931	Marionette	INFO	Listening on port 37203
+1554135887981	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
