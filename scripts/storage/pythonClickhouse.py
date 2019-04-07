@@ -108,7 +108,7 @@ class PythonClickhouse:
 
         # cols is a dict, key is colname, type is col type
 
-    def construct_create_query(self, table, table_dict, columns):
+    def construct_create_query(self, table, table_dict, columns,order_by):
         count = 0
         try:
             qry = 'CREATE TABLE IF NOT EXISTS ' + self.db + '.' + table + ' ('
@@ -121,7 +121,7 @@ class PythonClickhouse:
                 qry += col + ' ' + table_dict[col]
                 #logger.warning("key:value - %s:%s",col,table_dict[col])
                 count += 1
-            qry += ") ENGINE = MergeTree() ORDER BY (block_timestamp)"
+            qry += ") ENGINE = MergeTree() ORDER BY ({})".format(order_by)
 
             #logger.warning('create table query:%s', qry)
             return qry
@@ -129,9 +129,9 @@ class PythonClickhouse:
             logger.error("Construct table query")
 
 
-    def create_table(self, table, table_dict, cols):
+    def create_table(self, table, table_dict, cols, order_by='block_timestamp'):
         try:
-            qry = self.construct_create_query(table, table_dict, cols)
+            qry = self.construct_create_query(table, table_dict, cols,order_by)
             self.client.execute(qry)
             logger.warning('{} SUCCESSFULLY CREATED:%s', table)
         except Exception:
@@ -144,27 +144,6 @@ class PythonClickhouse:
         logger.warning("%s deleted from clickhouse", item)
 
 
-    def save_pandas_df(self,df,messages,cols,table):
-        try:
-            logger.warning("INSIDE SAVE PANDAS DF")
-            #df.to_sql(table,self.ch,if_exists='append',index=False)
-            logger.warning("messages to insert:%s",messages)
-
-
-            if table == 'block_tx_warehouse':
-                messages = list(zip(df['block_number'],df['block_timestamp'],df['transaction_hash'],df['miner_address'],
-                df['total_difficulty'],df['difficulty'],
-                df['block_nrg_consumed'],df['nrg_limit'],df['num_transactions'],
-                df['block_size'],df['block_time'],df['approx_nrg_reward'],df['block_year'],df['block_month'],
-                df['block_day'],df['from_addr'],
-                df['to_addr'],df['value'],df['transaction_nrg_consumed'],df['nrg_price']))
-
-
-            self.insert(table,cols,messages)
-            logger.warning("AFTER SAVE PANDAS DF")
-
-        except Exception:
-            logger.error("Save df", exc_info=True)
 
     def delete_data(self,start_range, end_range,
                     table,col='block_timestamp',
@@ -175,8 +154,8 @@ class PythonClickhouse:
         if not isinstance(end_range, str):
             end_range = datetime.strftime(end_range,DATEFORMAT)
         try:
-            if col == 'block_timestamp':
-                qry = """ALTER TABLE {}.{} DELETE WHERE toDate({}) >= toDate('{}') and 
+            if col in ['block_timestamp','timestamp']:
+                qry = """ALTER TABLE {}.{} DELETE WHERE toDate({}) >= toDate('{}') AND 
                     toDate({}) <= toDate('{}')
                 """.format(db,table,col,start_range,col,end_range)
             else:
@@ -194,8 +173,7 @@ class PythonClickhouse:
 
     def insert_df(self,df,cols,table):
         try:
-            if table == 'account_external_warehouse':
-                cols = sorted(df.columns.tolist())
+            cols = sorted(df.columns.tolist())
             #logger.warning("columns in df to insert:%s",df.columns.tolist())
             #logger.warning("df to insert:%s",df.head())
             df = df[cols]  # arrange order of columns for
@@ -206,8 +184,9 @@ class PythonClickhouse:
 
     def upsert_df(self,df,cols,table,col='block_timestamp'):
         try:
-            #logger.warning(" df at start of upsert :%s",df.columns.tolist())
-            df = df.compute()
+            #logger.warning(" df at start of upsert :%s",df.columns.tolist())t
+            if table != 'crypto_daily':
+                df = df.compute()
             """
             - get min max of range to use as start and end of range
             - delete data
@@ -217,7 +196,7 @@ class PythonClickhouse:
             start_range = df[col].min()
             end_range = df[col].max()
             #logger.warning('upsert delete range: start:end %s:%s',start_range,end_range)
-            self.delete_data(start_range,end_range,table)
+            self.delete_data(start_range,end_range,table,col=col)
             self.insert_df(df,cols=cols,table=table)
 
         except Exception:

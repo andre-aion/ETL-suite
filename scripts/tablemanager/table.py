@@ -6,11 +6,11 @@ from scripts.utils.myutils import load_cryptos
 pc = PythonClickhouse('aion')
 logger = mylogger(__file__)
 
-def Table(table,table_alias,action):
+def Table(table,table_alias,action,order_by):
     try:
         cols = sorted(list(table_dict[table_alias].keys()))
         if action == 'create':
-            pc.create_table(table, table_dict[table_alias], cols)
+            pc.create_table(table, table_dict[table_alias], cols,order_by)
 
 
 

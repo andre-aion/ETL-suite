@@ -398,6 +398,25 @@ table_dict['account_ext_warehouse'] = {
     'hour':'UInt16',
 
 }
+
+table_dict['crypto_daily'] = {
+    'timestamp': 'Date',
+    'crypto':'String',
+    'watch': 'UInt64',
+    'fork': 'UInt64',
+    'issue': 'UInt64',
+    'release': 'UInt64',
+    'push': 'UInt64',
+    'close': 'Float64',
+    'high': 'Float64',
+    'low': 'Float64',
+    'market_cap': 'Float64',
+    'volume': 'Float64',
+    'sp_close': 'Float64',
+    'sp_volume':'Float64',
+    'russell_close':'Float64',
+    'russell_volume':'Float64'
+}
 ################################################################
 #            MODEL FUNCTION
 #################################################################

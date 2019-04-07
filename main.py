@@ -1,3 +1,4 @@
+from scripts.ETL.crypto_daily import CryptoDaily
 from scripts.utils.mylogger import mylogger
 import asyncio
 from scripts.scrapers.financial_indexes import FinancialIndexes
@@ -6,24 +7,19 @@ from scripts.github.github_loader import GithubLoader
 from scripts.ETL.account_ext_warehouse import AccountExternalWarehouse
 from scripts.utils.myutils import load_cryptos
 from scripts.storage.backup.mongo_backup import MongoBackup
-
-
 #from scripts.ETL.blocktxwarehouse import BlockTxWarehouse
+'''
+from scripts.tablemanager.table import Table
+table = 'crypto_daily'
+tb = Table(table,table,'create','timestamp')
+'''
 #warehouse_etl = BlockTxWarehouse('block_tx_warehouse')
 
 loop = asyncio.get_event_loop()
 
 logger = mylogger(__file__)
 
-"""
-#tb = Table(table,table,'create')
-account_activity_etl = AccountActivity('account_activity')
-#account_activity_etl.reset_offset('2018-07-01 01:00:00')
-"""
-#account_activity_warehouse_etl = AccountActivityWarehouse('account_activity_warehouse')
-
 # ETLS
-#tb = Table(table,table,'create')
 #warehouse_etl = BlockTxWarehouse('block_tx_warehouse')
 # backup
 mongo_backup = MongoBackup(['external_daily','github'])
@@ -32,29 +28,32 @@ mongo_backup = MongoBackup(['external_daily','github'])
 cryptocurrencies = load_cryptos()
 financial_indicies = ['russell','sp']
 
-indexes_scraper = FinancialIndexes(financial_indicies)
-cryptos_scraper = Cryptocoin(cryptocurrencies)
+#indexes_scraper = FinancialIndexes(financial_indicies)
+#cryptos_scraper = Cryptocoin(cryptocurrencies)
 github_loader = GithubLoader(cryptocurrencies)
 
 #cryptos_scraper.reset_offset('2018-04-24 00:00:00')
 logger.warning(cryptocurrencies)
 
 table = 'account_ext_warehouse'
-'''
+
 account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
-                                                 mysql_credentials='staging',
-                                                items=cryptocurrencies)
-'''
+                                                 mysql_credentials='localhost',
+                                                 items=cryptocurrencies)
 
 
-reset_offset = {'start':'2018-08-10 00:00:00', 'end':'2018-08-10 00:00:00'}
+crytpo_daily = CryptoDaily(table='crypto_daily',
+                           items=cryptocurrencies)
+reset_offset = {'start':'2018-04-24 00:00:00', 'end':'2019-04-03 00:00:00'}
 
 async def run_etls():
     tasks = [
-        #asyncio.ensure_future(account_ext_warehouse.run(reset_offset)),
-        #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(indexes_scraper.run()),
-        asyncio.ensure_future(cryptos_scraper.run()),
+        #asyncio.ensure_future(cryptos_scraper.run()),
+        #asyncio.ensure_future(mongo_backup.run()),
+        #asyncio.ensure_future(account_ext_warehouse.run(None)),
+        asyncio.ensure_future(crytpo_daily.run(reset_offset)),
+
         #asyncio.ensure_future(github_loader.run()),
     ]
     await asyncio.wait(tasks)

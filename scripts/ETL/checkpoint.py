@@ -141,10 +141,10 @@ class Checkpoint:
         except Exception:
             logger.error("make warehouse", exc_info=True)
 
-    def save_df(self, df):
+    def save_df(self,df,columns,table,timestamp_col):
         try:
 
-            self.cl.upsert_df(df,self.columns,self.table)
+            self.cl.upsert_df(df,columns,table,timestamp_col)
             # logger.warning("DF with offset %s SAVED TO CLICKHOUSE,dict save to REDIS:%s",
             # self.checkpoint_dict['offset'],
             # self.checkpoint_dict['timestamp'])

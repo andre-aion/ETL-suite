@@ -176,7 +176,7 @@ class BlockTxWarehouse(Checkpoint):
                         if len(df_warehouse) > 0:
                             # save warehouse to clickhouse
                             self.update_checkpoint_dict(end_datetime)
-                            self.save_df(df_warehouse)
+                            self.save_df(df_warehouse,columns=self.columns,table=self.table)
 
         except Exception:
             logger.error("update warehouse", exc_info=True)

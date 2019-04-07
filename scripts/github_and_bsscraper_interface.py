@@ -127,7 +127,7 @@ class Scraper(Checkpoint):
             if 'daily' in self.table:
                 offset = datetime.combine(offset.date(),datetime.min.time())
 
-            logger.warning('%s offset from mongo:%s', item_name, offset)
+            #logger.warning('%s offset from mongo:%s', item_name, offset)
             return offset
         except Exception:
             logger.error("get item offset", exc_info=True)
@@ -188,7 +188,7 @@ class Scraper(Checkpoint):
                 logger.warning('%s daily offset:yesterday=%s:%s',item_name,offset,yesterday-timedelta(days=1))
                 self.scrape_period = 'daily'
             else:
-                logger.warning('%s history offset:yesterday=%s:%s',item_name,offset,yesterday)
+                #logger.warning('%s history offset:yesterday=%s:%s',item_name,offset,yesterday)
                 self.scrape_period = 'history'
             return False
         except Exception:

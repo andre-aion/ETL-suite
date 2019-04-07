@@ -1,6 +1,7 @@
 import asyncio
 import gc
 from datetime import datetime, timedelta, date, time
+from pprint import pprint
 from statistics import mean
 
 from pandas.io.json import json_normalize
@@ -24,21 +25,68 @@ import numpy as np
 logger = mylogger(__file__)
 # create clickhouse table
 
-class AccountExternalWarehouse(Checkpoint):
-    def __init__(self, table,mysql_credentials,items):
+def set_vars(cryptos):
+    try:
+        groupby_dct = {
+            'index': {},
+            'github': {}
+        }
+        github_cols = ['watch', 'fork', 'issue', 'release', 'push']
+        index_cols = ['close', 'high', 'low', 'market_cap', 'volume']
+        idvars = {
+            'index' :[],
+            'github':[]
+        }
+        vars_dict = {
+            'github': {
+                'watch': [],
+                'fork': [],
+                'issue': [],
+                'release': [],
+                'push': [],
+            },
+            'index':{
+                'close': [],
+                'high': [],
+                'low': [],
+                'market_cap': [],
+                'volume': []
+            }
+        }
+        for crypto in cryptos:
+            if crypto == 'bitcoin-cash':
+                crypto = 'bitcoin_cash'
+            for col in github_cols:
+                key = crypto + '_' + col
+                vars_dict['github'][col].append(key)
+                idvars['github'].append(key)
+                groupby_dct['github'][key] = 'sum'
+            for col in index_cols:
+                key = crypto + '_' + col
+                vars_dict['index'][col].append(key)
+                idvars['index'].append(key)
+                groupby_dct['index'][key] = 'sum'
+        return groupby_dct, vars_dict, idvars
+    except Exception:
+        logger.error('set groupby dict', exc_info=True)
+
+def get_coin_name(x,length):
+    return x[:-length]
+
+
+class CryptoDaily(Checkpoint):
+    def __init__(self, table,items):
         Checkpoint.__init__(self, table)
         self.is_up_to_date_window = 24  # hours to sleep to give reorg time to happen
         self.window = 24  # hours
         self.dct = checkpoint_dict[table]
         self.checkpoint_column = 'timestamp'
-        self.my = PythonMysql(mysql_credentials)
-        self.mysql_credentials = mysql_credentials
+        self.checkpoint_key = table
         self.initial_date = datetime.strptime("2018-04-25 00:00:00",self.DATEFORMAT)
         self.columns = sorted(list(self.dct.keys()))
         # construction
         # external columns to load
         self.table = table
-        self.table1 = 'account_authoritative'
         self.table2 = 'external_daily'
         self.table3 = 'github'
         self.offset = self.initial_date
@@ -50,6 +98,8 @@ class AccountExternalWarehouse(Checkpoint):
         self.daily_cryto = {
 
         }
+        self.groupby_dict, self.vars_dict, self.idvars = set_vars(self.items)
+        self.idvars['index'].append('timestamp') # ensure that timestamp remains in the melting operations
 
     def am_i_up_to_date(self, offset_update=None):
         try:
@@ -66,10 +116,6 @@ class AccountExternalWarehouse(Checkpoint):
             logger.warning('my max date:%s',self.offset)
             if self.offset < yesterday:
                 table = {
-                    self.table1 : {
-                        'storage': 'mysql',
-                        'db':'aion_analytics'
-                    },
                     'external_daily': {
                         'storage': 'mongo',
                         'db':'aion'
@@ -81,16 +127,6 @@ class AccountExternalWarehouse(Checkpoint):
                 }
                 # get max timestamp from
                 dates = []
-                if self.mysql_credentials == 'staging':
-                    res1,max_date1= self.is_up_to_date(
-                        table=self.table1,timestamp=yesterday,
-                        storage_medium='mysql',window_hours=self.window,db='aion_analytics')
-                    #logger.warning('res, max_date1=%s,%s', res1, max_date1)
-                    if res1:
-                        dates.append(yesterday)
-                    else:
-                        dates.append(max_date1)
-
                 res2,max_date2 = self.is_up_to_date(
                         table=self.table2,timestamp=yesterday,
                         storage_medium='mongo',window_hours=self.window,db='aion')
@@ -104,9 +140,7 @@ class AccountExternalWarehouse(Checkpoint):
                 res3, max_date3 = self.is_up_to_date(
                     table=self.table3, timestamp=yesterday,
                     storage_medium='mongo', window_hours=self.window, db='aion')
-                logger.warning('res3, max_date3=%s,%s',res3,max_date3)
 
-                #logger.warning('feeder tables max dates=%s',dates)
                 # compare our max timestamp to the minimum of the max dates of the tables
                 if self.offset < min(dates):
                     return False
@@ -178,38 +212,6 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('adjust labels',exc_info=True)
 
-
-    def make_table(self,df):
-        try:
-            dct = table_dict[self.table].copy()
-            for value in df.columns.tolist():
-                if self.string_contains(self.price_labels,value):
-                    dct[value] = 'Float64'
-                elif 'timestamp' in value:
-                    dct[value] = 'Datetime'
-                elif self.string_contains(self.github_labels,value):
-                    dct[value] = 'UInt64'
-                else:
-                    pass
-
-            cols = sorted(list(dct.keys()))
-            x = len(table_dict[self.table].keys())
-            logger.warning('LENGTH OF DICT FROM CONFIG = %s',x)
-            if (len(list(df.columns))) == len(list(dct.keys())):
-                logger.warning("COLUMNS MATCHED")
-
-                self.cl.create_table(self.table, dct, cols,order_by='block_timestamp')
-                self.columns = sorted(list(df.columns))
-            else:
-                logger.warning('length df=%s',len(list(df.columns)))
-                logger.warning('length dict=%s',len(list(dct.keys())))
-                logger.warning('df=%s',list(df.columns))
-                logger.warning("COLUMNS NOT MATCHED-%s",list(set(list(df.columns)) - set(list(dct.keys()))))
-
-        except Exception:
-            logger.error('make table',exc_info=True)
-
-
     def string_contains(self,lst,string):
         for item in lst:
             if item in string:
@@ -231,52 +233,6 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('',exc_info=True)
 
-    def initialize_table(self):
-        try:
-            timestamp = self.initial_date
-            df1 = self.load_account_data(timestamp)
-            cols = []
-
-            cols1 = ['release', 'push', 'watch', 'fork', 'issue',
-                     'open', 'low', 'market_cap', 'high', 'volume', 'close']
-            for item in self.items:
-                for col in cols1:
-                    item = item.replace('.', '_')
-                    item = item.replace('-', '_')
-                    item = item.replace('0x', 'Ox')
-                    cols.append(item + '_' + col)
-            dct = {
-                'timestamp': [timestamp] * 24,
-                'year': [timestamp.year] * 24,
-                'month': [timestamp.month] * 24,
-                'day': [timestamp.day] * 24,
-                'hour': list(range(0, 24)),
-            }
-            cols.append('sp_close')
-            cols.append('sp_volume')
-            cols.append('russell_close')
-            cols.append('russell_volume')
-            for col in cols:
-                dct[col] = np.zeros(24).tolist()
-
-            # '''''''''
-            df = pd.DataFrame(data=dct)
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
-            df = self.type_to_int(df)
-            df2 = dd.from_pandas(df, npartitions=1)
-
-            df = df1.merge(df2, on=['year', 'month', 'day', 'hour'], how='inner')
-            self.make_table(df)
-        except:
-            logger.error('table', exc_info=True)
-
-    ''' 
-    def reset_offset(self, timestamp):
-        try:
-            return datetime.strptime(timestamp, self.DATEFORMAT)
-        except Exception:
-            logger.error('reset offset :%s', exc_info=True)
-    '''
 
     # //////////////////////////////////////////////////////////////
 
@@ -316,57 +272,6 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('load external data', exc_info=True)
 
-    def load_account_data(self,start):
-        try:
-            end = start + timedelta(days=1)
-            qry = """select * from {}.{} where block_timestamp >= '{}' and block_timestamp 
-                < '{}' """.format(self.my.schema,self.table1,start,end)
-            # logger.warning("qry:%s",qry)
-            df = pd.read_sql(qry, self.my.connection)
-            if df is not None:
-                if len(df) > 0:
-                    df = df.drop(['id','big_decimal_balance', 'nonce', 'transaction_hash',
-                                  'block_number_of_first_event', 'block_number','token_addr',
-                                  'contract_creator'], axis=1)
-                    # tack on timestamp column from timestamp column
-                    df = dd.from_pandas(df, npartitions=10)
-                    #logger.warning('length of df account authoritative :%s',list(df.columns))
-                    #logger.warning('df account authoritative :%s',df.head(10))
-
-                    return df
-            return None
-        except Exception:
-            logger.error('load account data', exc_info=True)
-
-    def make_warehouse(self, df1,df2,table):
-        try:
-            '''
-            if table == self.table2:
-                logger.warning('df1:%s',df1[['year','month','day']].head(10))
-                logger.warning('df2:%s',df2[['year','month','day']].head(10))
-            '''
-            if df1 is not None and df2 is not None:
-                if len(df1) > 0 and len(df2) > 0:
-                    if table == self.table2:
-                        df = df1.merge(df2,on=['year','month','day'],how='inner')
-                    elif table == self.table3:
-                        if 'timestamp' in df1.columns.tolist():
-                            df1 = df1.drop('timestamp',axis=1)
-                        df = df1.merge(df2,on=['year','month','day','hour'],how='inner')
-
-                    del df1
-                    del df2
-                    gc.collect()
-
-                    if table in [self.table3,self.table2]:
-                        #logger.warning('after merge:%s',df.head(10))
-                        pass
-                    return df
-            return None
-
-        except Exception:
-            logger.error('make warehouse', exc_info=True)
-
     def make_empty_dataframe(self, timestamp):
         try:
             cols = []
@@ -398,11 +303,110 @@ class AccountExternalWarehouse(Checkpoint):
         except Exception:
             logger.error('make empty dataframe',exc_info=True)
 
+
+    def melt_df(self, df, table, dct, offset):
+        try:
+            df = df.compute()
+            df.reset_index()
+            if table == 'github':
+                temp_dct = {
+                    'watch': [],
+                    'fork': [],
+                    'issue': [],
+                    'release': [],
+                    'push': [],
+                    'timestamp':[],
+                    'crypto':[]
+
+                }
+            else:
+                temp_dct = {
+                    'close': [],
+                    'high': [],
+                    'low': [],
+                    'market_cap': [],
+                    'volume': [],
+                    'sp_volume':[],
+                    'sp_close':[],
+                    'russell_volume':[],
+                    'russell_close':[],
+                    'crypto':[]
+                }
+            if table == 'github':  # date for each coin
+                temp_dct['timestamp'] = [datetime(offset.year, offset.month, offset.day, 0, 0, 0)] * len(self.items)
+
+            # loop through items
+            counter = 0
+            for key, values in dct.items():
+                for col in values:
+                    # label for each coin, only run once
+                    if counter == 0:
+                        key_len = len(key) + 1
+                        temp_dct['crypto'].append(get_coin_name(col,key_len))
+                        if table == 'external_daily':  # russell and sp for each coin
+                            for item in ['russell_close', 'russell_volume', 'sp_close', 'sp_volume']:
+                                try:
+                                    tmp = df[[item]]
+                                    val = tmp.values[0]
+                                except:
+                                    val = [0]
+                                temp_dct[item].append(val[0])
+                    # get value from dataframe
+                    try:
+                        tmp = df[[col]]
+                        val = tmp.values[0]
+                    except:
+                        val = [0]
+                    temp_dct[key].append(val[0])
+                counter += 1
+            # convert to dataframe
+            df = pd.DataFrame.from_dict(temp_dct)
+            #logger.warning('%s df after melt:%s',table,df)
+            #df = dd.from_pandas(df,npartitions=5)
+            return df
+        except Exception:
+            logger.error('melt coins', exc_info=True)
+
+    def make_crypto_df_long(self, df, table, offset):
+        try:
+            dct = self.vars_dict['index']
+            if table == 'github':
+                agg_dct = self.groupby_dict['github']
+                dct = self.vars_dict['github']
+                df = df.drop('hour',axis=1) # the hour column is not required
+                # do a daily aggregate for each coin
+                df = df.groupby(['year','month','day']).agg(agg_dct)
+                #logger.warning('post groupby to remove hour:%s',df.head(10))
+
+            df = self.melt_df(df,table,dct,offset)
+
+            #logger.warning("df length:%s",len(df))
+            return df
+        except Exception:
+            logger.error('make daily long df', exc_info=True)
+
+    def save_crypto_df_long(self,df1,df2,offset):
+        try:
+            # first join the frames
+            df1 = df1.merge(df2, on=['crypto'], how='inner')
+            #logger.warning("df after merge:%s",df1.head(20))
+            self.save_df(df1,columns=list(df1.columns),table='crypto_daily',timestamp_col='timestamp')
+            if self.offset_update is not None:
+                self.update_checkpoint_dict(offset)
+                self.save_checkpoint()
+            del df1, df2
+
+        except Exception:
+            logger.error('save crypto',exc_info=True)
+
+
     async def update(self):
         try:
 
             yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
             offset = self.offset
+            if isinstance(offset,date):
+                offset = datetime.combine(offset, datetime.min.time())
             offset = datetime.combine(offset.date(), datetime.min.time())
 
             if offset < yesterday:
@@ -410,21 +414,16 @@ class AccountExternalWarehouse(Checkpoint):
                 logger.warning('offset:%s', offset)
 
                 # set the timestamp for the daily crypto load
-                df1 = self.load_account_data(offset)
                 df2 = self.load_external_data(offset,self.table2)
+                df_long2 = self.make_crypto_df_long(df2,self.table2,offset) # make the long dataframe
                 #logger.warning('df2:%s',df2.head(10))
-                df = self.make_warehouse(df1,df2,self.table2)
                 df3 = self.load_external_data(offset, self.table3)
+                df_long3 = self.make_crypto_df_long(df3,self.table3,offset) # make the long dataframe
 
-                df = self.make_warehouse(df,df3,self.table3)
-                # logger.warning('df after warehouse:%s',df.head(10))
-                self.columns = list(df.columns)
-                self.save_df(df,columns=self.columns,table=self.table,timestamp_col='block_timestamp')
+                # save the long version of the df
+                self.save_crypto_df_long(df_long2,df_long3,offset)
 
-                if self.offset_update is not None:
-                    self.update_checkpoint_dict(offset)
-                    self.save_checkpoint()
-                del df2, df3
+                del df2, df3, df_long2, df_long3
                 gc.collect()
         except Exception:
             logger.error('update',exc_info=True)

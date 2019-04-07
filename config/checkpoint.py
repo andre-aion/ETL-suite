@@ -94,3 +94,13 @@ checkpoint_dict[table] ={
     'start':None,
     'end':None
 }
+
+table = 'crypto_daily'
+checkpoint_dict[table] ={
+    'table' : table,
+    'column':'timestamp',
+    'offset':None,
+    'timestamp' : None,
+    'start':None,
+    'end':None
+}
