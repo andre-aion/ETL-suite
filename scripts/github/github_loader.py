@@ -27,7 +27,7 @@ class GithubLoader(Scraper):
         self.table = self.collection
 
         # checkpointing
-        self.checkpoint_column = 'timestamp'
+        self.checkpoint_column = 'fork'
         self.checkpoint_append = '_fork'
         self.checkpoint_key = 'github'
         self.key_params = 'checkpoint:' + self.checkpoint_key
@@ -91,15 +91,39 @@ class GithubLoader(Scraper):
         except Exception:
             logger.error('process item', exc_info=True)
 
-    def item_is_up_to_date(self, checkpoint_column, item_name, timestamp):
+    def item_is_up_to_date(self, item_name, timestamp):
         try:
-            offset = self.get_item_offset(checkpoint_column,item_name)
-            if offset > timestamp:
+            # nested item name for mongo (if necessary)
+            offset = self.get_item_offset(item_name)
+            if offset >= timestamp:
                 logger.warning('%s up to timestamp offset:yesterday=%s:%s',item_name,offset,timestamp)
                 return True
             return False
         except Exception:
             logger.error("item is_up_to_date", exc_info=True)
+
+        # check if all coins under inspection have been loaded up to yesterday
+
+    def is_up_to_date(self):
+        try:
+            # compare to the last hour in yesterday (hour 23), to ensure that that has been loaded
+            yesterday =datetime.today().date() - timedelta(days=1)
+            timestamp = datetime(yesterday.year,yesterday.month,yesterday.day,23,0,0)
+
+            counter = 0
+            for item in self.items:
+                # logger.warning('scraper:%s, self.items:%s', self.scraper_name, self.items)
+                item_name = item + '.' + item + '_' + self.checkpoint_column
+                if self.item_is_up_to_date(item_name=item_name,timestamp=timestamp):
+                    counter += 1
+                    logger.warning('items:%s', item)
+
+            if counter >= len(self.items):
+                return True
+            return False
+
+        except Exception:
+            logger.error("is_up_to_date", exc_info=True)
 
     # ///////////////////    UTILS END       /////////////////////////////////////////////////
     def decompress(self, response,url):
@@ -285,7 +309,7 @@ class GithubLoader(Scraper):
     async def update(self):
         try:
             offset = self.get_offset()
-            logger.warning('offset:%s', offset)
+            logger.warning('last hour processessed:%s', offset)
             # reset the date and processed hour tracker in redis if all items, all hours are don
             url, offset = self.determine_url(offset)
             df = self.run_process(url)

@@ -43,7 +43,8 @@ class Cryptocoin(Scraper):
     async def update(self):
         try:
             for self.item_name in self.items:
-                if self.item_is_up_to_date(self.checkpoint_column,self.item_name):
+                item_name = self.item_name+'.'+self.checkpoint_column
+                if self.item_is_up_to_date(item_name):
                     logger.warning('%s financial index is up to date',self.item_name)
                 else:
                     yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)

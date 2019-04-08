@@ -108,9 +108,9 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error('update period', exc_info=True)
 
-    def get_item_offset(self, checkpoint_column, item_name, min_max='MAX'):
+    def get_item_offset(self, item_name, min_max='MAX'):
         try:
-            nested_field = self.item_name+"."+checkpoint_column
+            nested_field = item_name
             if min_max == 'MAX':
                 result = self.pym.db[self.table].find(
                     {nested_field: {'$exists': True}}).sort('timestamp', -1).limit(1)
@@ -171,9 +171,9 @@ class Scraper(Checkpoint):
         except Exception:
             logger.error('item in mongo', exc_info=True)
 
-    def item_is_up_to_date(self, checkpoint_column, item_name):
+    def item_is_up_to_date(self, item_name):
         try:
-            offset = self.get_item_offset(checkpoint_column,item_name)
+            offset = self.get_item_offset(item_name)
             yesterday =  datetime.combine(datetime.today().date(),datetime.min.time()) - timedelta(days=1)
             if self.scraper_name == 'financial indexes':
                 # if yesterday is a weekend day, adjust to friday
@@ -215,21 +215,18 @@ class Scraper(Checkpoint):
     # check if all coins under inspection have been loaded up to yesterday
     def is_up_to_date(self):
         try:
-            if self.scraper_name == 'github':
-                timestamp = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(hours=self.window)
-            else:
-                timestamp = datetime.now() - timedelta(hours=self.window)
-                timestamp = datetime(timestamp.year,timestamp.month, timestamp.day,timestamp.hour,0,0)
-                if self.scraper_name == 'financial indexes':
-                    # if yesterday is a weekend day, adjust to friday
-                    if timestamp.weekday() in [5, 6]:
-                        logger.warning('DATE ADJUSTED CAUSE YESTERDAY IS A WEEKEND')
-                        timestamp = timestamp - timedelta(days=abs(timestamp.weekday() - 4))
+            timestamp = datetime.now() - timedelta(hours=self.window)
+            timestamp = datetime(timestamp.year,timestamp.month, timestamp.day,timestamp.hour,0,0)
+            if self.scraper_name == 'financial indexes':
+                # if yesterday is a weekend day, adjust to friday
+                if timestamp.weekday() in [5, 6]:
+                    logger.warning('DATE ADJUSTED CAUSE YESTERDAY IS A WEEKEND')
+                    timestamp = timestamp - timedelta(days=abs(timestamp.weekday() - 4))
 
             counter = 0
             for item in self.items:
                 #logger.warning('scraper:%s, self.items:%s', self.scraper_name, self.items)
-                if self.item_is_up_to_date(checkpoint_column=self.checkpoint_column,item_name=item,timestamp=timestamp):
+                if self.item_is_up_to_date(item_name=item):
                     counter += 1
                     logger.warning('items:%s',item)
 
