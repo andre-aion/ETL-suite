@@ -160,13 +160,11 @@ class AccountExternalWarehouse(Checkpoint):
                         val = tmp[1]
                         val = val.replace('.', '_')
                         val = val.replace('-', '_')
-                        val = val.replace('0x_', 'Ox_')
                         self.rename_dct[value] = val
                     else:
                         val = value
                         val = val.replace('.', '_')
                         val = val.replace('-', '_')
-                        val = val.replace('0x_', 'Ox_')
                         self.rename_dct[value] = val
                 except:
                     #logger.warning("%s is ok!",value)
@@ -243,7 +241,6 @@ class AccountExternalWarehouse(Checkpoint):
                 for col in cols1:
                     item = item.replace('.', '_')
                     item = item.replace('-', '_')
-                    item = item.replace('0x', 'Ox')
                     cols.append(item + '_' + col)
             dct = {
                 'timestamp': [timestamp] * 24,
@@ -287,17 +284,10 @@ class AccountExternalWarehouse(Checkpoint):
             df = json_normalize(list(self.pym.db[table].find({
                 'timestamp':{'$gte':start, '$lt':end}
             })))
-            to_drop = ['0x_release','0x_push','0x_watch','0x_fork','0x_issue',
-                        '0x_open','0x_low','0x_market_cap','0x_high','0x_volume','0x_close',
-                        'Ox_release', 'Ox_push', 'Ox_watch', 'Ox_fork', 'Ox_issue',
-                        'Ox_open', 'Ox_low', 'Ox_market_cap', 'Ox_high', 'Ox_volume', 'Ox_close'
-                       ]
+
             if df is not None:
                 if len(df) > 0:
                     df = df.drop(['_id'],axis=1)
-                    for col in to_drop:
-                        if col in df.columns:
-                            df = df.drop(col, axis=1)
                     if table == self.table2:
                         if 'hour' in df.columns.tolist():
                             df = df.drop('hour',axis=1)
@@ -308,6 +298,8 @@ class AccountExternalWarehouse(Checkpoint):
 
                     df1 = dd.from_pandas(df1, npartitions=1)
                     return df1
+
+            logger.warning
 
             # make empty dataframe since github is not yet uploaded
             df1 = self.make_empty_dataframe(start)
@@ -376,7 +368,6 @@ class AccountExternalWarehouse(Checkpoint):
                 for col in cols1:
                     item = item.replace('.', '_')
                     item = item.replace('-', '_')
-                    item = item.replace('0x','Ox')
                     cols.append(item+'_'+col)
             dct = {
                 'year': [timestamp.year] * 24,

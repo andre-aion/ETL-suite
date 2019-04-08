@@ -91,6 +91,16 @@ class GithubLoader(Scraper):
         except Exception:
             logger.error('process item', exc_info=True)
 
+    def item_is_up_to_date(self, checkpoint_column, item_name, timestamp):
+        try:
+            offset = self.get_item_offset(checkpoint_column,item_name)
+            if offset > timestamp:
+                logger.warning('%s up to timestamp offset:yesterday=%s:%s',item_name,offset,timestamp)
+                return True
+            return False
+        except Exception:
+            logger.error("item is_up_to_date", exc_info=True)
+
     # ///////////////////    UTILS END       /////////////////////////////////////////////////
     def decompress(self, response,url):
         try:

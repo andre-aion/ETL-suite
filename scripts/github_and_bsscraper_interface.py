@@ -215,7 +215,7 @@ class Scraper(Checkpoint):
     # check if all coins under inspection have been loaded up to yesterday
     def is_up_to_date(self):
         try:
-            if self.scraper_name != 'github':
+            if self.scraper_name == 'github':
                 timestamp = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(hours=self.window)
             else:
                 timestamp = datetime.now() - timedelta(hours=self.window)
@@ -229,7 +229,7 @@ class Scraper(Checkpoint):
             counter = 0
             for item in self.items:
                 #logger.warning('scraper:%s, self.items:%s', self.scraper_name, self.items)
-                if self.item_is_up_to_date(checkpoint_column=self.checkpoint_column,item_name=item):
+                if self.item_is_up_to_date(checkpoint_column=self.checkpoint_column,item_name=item,timestamp=timestamp):
                     counter += 1
                     logger.warning('items:%s',item)
 
