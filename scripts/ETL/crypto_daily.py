@@ -114,7 +114,10 @@ class CryptoDaily(Checkpoint):
 
             # first check if the ETL table is up to timestamp
             logger.warning('my max date:%s',self.offset)
-            if self.offset < yesterday:
+            offset = self.offset
+            if isinstance(self.offset,date):
+                offset= datetime.combine(self.offset,datetime.min.time())
+            if offset < yesterday:
                 table = {
                     'external_daily': {
                         'storage': 'mongo',
@@ -142,7 +145,7 @@ class CryptoDaily(Checkpoint):
                     storage_medium='mongo', window_hours=self.window, db='aion')
 
                 # compare our max timestamp to the minimum of the max dates of the tables
-                if self.offset < min(dates):
+                if offset < min(dates):
                     return False
                 else:
                     logger.warning('max min(timestamp) in construction table(s) =%s', min(dates))
@@ -154,7 +157,7 @@ class CryptoDaily(Checkpoint):
     def is_up_to_date(self,table,timestamp,storage_medium,window_hours,db):
         try:
             if storage_medium == 'mysql':
-                construct_max = self.get_value_from_mysql(table,column='block_timestamp',
+                construct_max = self.get_value_from_mysql(table,column='timestamp',
                                                     min_max='MAX',db=db)
 
             elif storage_medium == 'clickhouse':
@@ -173,10 +176,12 @@ class CryptoDaily(Checkpoint):
             if isinstance(construct_max,str):
                 construct_max = datetime.strptime(construct_max, self.DATEFORMAT)
                 construct_max = construct_max.date()
+            if isinstance(construct_max, date):
+                construct_max = datetime.combine(construct_max, datetime.min.time())
 
             #logger.warning('self.table:%s',self.table)
             #logger.warning("timestamp:construct max=%s:%s",timestamp,construct_max)
-            if construct_max >= timestamp:
+            if construct_max.date() >= timestamp.date():
                 # logger.warning("CHECKPOINT:UP TO DATE")
                 return False, construct_max
             # logger.warning("NETWORK ACTIVITY CHECKPOINT:NOT UP TO DATE")
