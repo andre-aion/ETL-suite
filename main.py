@@ -50,11 +50,11 @@ async def run_etls():
     tasks = [
         #asyncio.ensure_future(indexes_scraper.run()),
         #asyncio.ensure_future(cryptos_scraper.run()),
+        #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(mongo_backup.run()),
         asyncio.ensure_future(account_ext_warehouse.run(None)),
         asyncio.ensure_future(crytpo_daily.run(None)),
 
-        #asyncio.ensure_future(github_loader.run()),
     ]
     await asyncio.wait(tasks)
 

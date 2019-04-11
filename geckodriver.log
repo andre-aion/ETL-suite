@@ -39882,3 +39882,1522 @@ console.error: BroadcastService:
   Stack:
     remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
 
+1554908713816	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.HgibWOpdkF08"
+*** You are running in headless mode.
+1554908714109	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554908714109	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554908714109	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554908715422	Marionette	INFO	Listening on port 37545
+1554908715539	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554908715975	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Ejk0eLSxbUVP"
+*** You are running in headless mode.
+1554908716330	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554908716331	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554908716331	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554908717746	Marionette	INFO	Listening on port 46583
+1554908717790	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554908718235	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.qdMApaNS744I"
+*** You are running in headless mode.
+1554908718585	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554908718586	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554908718586	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554908720079	Marionette	INFO	Listening on port 34923
+1554908720142	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+1554984161971	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.fbI0ewajzZjo"
+*** You are running in headless mode.
+1554984162467	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984162467	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984162467	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984164052	Marionette	INFO	Listening on port 45733
+1554984164079	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554984164556	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.JpdRSIew8Z11"
+*** You are running in headless mode.
+1554984164959	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984164959	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984164959	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984166564	Marionette	INFO	Listening on port 36963
+1554984166663	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554984167145	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Oh7bR83PZ7Pn"
+*** You are running in headless mode.
+1554984167564	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984167564	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984167564	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984169229	Marionette	INFO	Listening on port 46847
+1554984169258	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://s.go-mpulse.net/boomerang/X7FLY-5XYMD-3HLZC-GZTNC-MNH9C, line 11: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 769: TypeError: document.getElementById(...) is null
+
+(/usr/lib/firefox/firefox:22990): dconf-WARNING **: 08:03:01.516: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://www.nasdaq.com/symbol/iwv/historical, line 6: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/713864198683614?v=2.8.47&r=c2, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/includes/cookie_policy.js?05232018v1, line 106: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://gum.criteo.com/syncframe?topUrl=www.nasdaq.com#{%22optout%22:{%22value%22:false,%22origin%22:0},%22uid%22:{%22origin%22:0},%22idfs%22:{%22origin%22:0},%22sid%22:{%22origin%22:0},%22origin%22:%22publishertag%22,%22version%22:65,%22lwid%22:{%22value%22:%22NA%22,%22origin%22:0},%22tld%22:%22www.nasdaq.com%22,%22topUrl%22:%22www.nasdaq.com%22}, line 9: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=287516534710611&correlator=3264417831804831&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061865%2C21063196%2C21063348%2C53887176&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=728x90&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984193&dt=1554984193475&dlt=1554984187147&idt=6010&ea=0&frm=23&biw=1356&bih=694&isw=728&ish=90&oid=3&adk=1115054233&uci=4y6xrl785dhd&ifi=1&ifk=806712270&u_tz=-240&u_his=1&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1320168385.1554984193&ga_sid=1554984193&ga_hid=439203638&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3015234449143527&correlator=1496969254084406&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063159%2C21063196%2C21063334%2C21063347%2C21063424&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984193&dt=1554984193618&dlt=1554984187109&idt=6439&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=600&oid=3&adk=557300083&uci=nfa3kqrl5k1i&ifi=1&ifk=482736309&u_tz=-240&u_his=2&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1621259864.1554984194&ga_sid=1554984194&ga_hid=1884474895&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=1264935593082135&correlator=607486515351280&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062833%2C21063196%2C21063347%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984193&dt=1554984193670&dlt=1554984187156&idt=6036&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=250&oid=3&adk=1567906218&uci=30itl8tmzdh2&ifi=1&ifk=774668116&u_tz=-240&u_his=3&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=107368912.1554984194&ga_sid=1554984194&ga_hid=1435842134&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3918122919985197&correlator=3530386636922461&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061743%2C21063196%2C21063203%2C21063347%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=970x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984193&dt=1554984193761&dlt=1554984187085&idt=6436&ea=0&frm=23&biw=1356&bih=694&isw=970&ish=250&oid=3&adk=2069754010&uci=jz9n5eectc9g&ifi=1&ifk=3052132875&u_tz=-240&u_his=4&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=846476584.1554984194&ga_sid=1554984194&ga_hid=595816530&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3669296760391818&correlator=3443140525606643&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063247%2C21062454%2C21063196%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984193&dt=1554984193818&dlt=1554984187121&idt=6314&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=600&oid=3&adk=557300083&uci=l3t8xlkd6fr&ifi=1&ifk=2562789518&u_tz=-240&u_his=5&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1388057032.1554984194&ga_sid=1554984194&ga_hid=1981233174&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3005815247345561&correlator=2921888054542971&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063247%2C21062887%2C21063196%2C21063347&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=160x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984195&dt=1554984195939&dlt=1554984194771&idt=1115&ea=0&frm=23&biw=1356&bih=694&isw=160&ish=600&oid=3&adk=3396976947&uci=tfptsp2udvn5&ifi=1&ifk=1521053408&u_tz=-240&u_his=6&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fiwv%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=796631728.1554984196&ga_sid=1554984196&ga_hid=685595566&fws=2, line 1: TypeError: googletag.impl is undefined
+1554984262087	Marionette	INFO	Stopped listening on port 45733
+[Parent 22814, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+[Child 22990, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+1554984263263	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.NOKReAj3LwbW"
+*** You are running in headless mode.
+1554984263551	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984263552	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984263552	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984264976	Marionette	INFO	Listening on port 33033
+1554984265073	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 769: TypeError: document.getElementById(...) is null
+
+(/usr/lib/firefox/firefox:23959): dconf-WARNING **: 08:04:31.726: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+JavaScript error: https://s.go-mpulse.net/boomerang/X7FLY-5XYMD-3HLZC-GZTNC-MNH9C, line 11: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/713864198683614?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/symbol/sp/historical, line 6: SecurityError: The operation is insecure.
+JavaScript error: https://www.nasdaq.com/includes/cookie_policy.js?05232018v1, line 106: SecurityError: The operation is insecure.
+1554984277178	Marionette	INFO	Stopped listening on port 36963
+[Parent 23098, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+JavaScript error: https://gum.criteo.com/syncframe?topUrl=www.nasdaq.com#{%22optout%22:{%22value%22:false,%22origin%22:0},%22uid%22:{%22origin%22:0},%22idfs%22:{%22origin%22:0},%22sid%22:{%22origin%22:0},%22origin%22:%22publishertag%22,%22version%22:65,%22lwid%22:{%22value%22:%22NA%22,%22origin%22:0},%22tld%22:%22www.nasdaq.com%22,%22topUrl%22:%22www.nasdaq.com%22}, line 9: SecurityError: The operation is insecure.
+1554984278077	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Yvt9Ix5roJHX"
+*** You are running in headless mode.
+1554984278298	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984278298	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984278298	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984279489	Marionette	INFO	Listening on port 42465
+1554984279583	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2193753593479121&correlator=4304088950958403&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062068%2C21063016%2C21063347%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=970x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984283&dt=1554984283890&dlt=1554984278885&idt=4876&ea=0&frm=23&biw=1356&bih=694&isw=970&ish=250&oid=3&adk=2069754010&uci=76rajilgteml&ifi=1&ifk=2291971297&u_tz=-240&u_his=1&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=350894039.1554984284&ga_sid=1554984284&ga_hid=1942943217&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=381145010436044&correlator=4476462571251116&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062068%2C21063334%2C21063347%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984284&dt=1554984284136&dlt=1554984278951&idt=5145&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=250&oid=3&adk=1567906218&uci=vlpnvhj0e81o&ifi=1&ifk=2713414178&u_tz=-240&u_his=2&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1246305591.1554984284&ga_sid=1554984284&ga_hid=573902530&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=2432091816654028&correlator=3212850965767160&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21062725%2C21063347%2C21063348&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x600&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984284&dt=1554984284263&dlt=1554984278918&idt=5250&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=600&oid=3&adk=557300083&uci=j13ka8v5bo9c&ifi=1&ifk=2869068332&u_tz=-240&u_his=3&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=2087469053.1554984284&ga_sid=1554984284&ga_hid=87672891&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=3551004091366195&correlator=3595634199962132&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21061507%2C21062414%2C21063347&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984284&dt=1554984284317&dlt=1554984278907&idt=5282&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=250&oid=3&adk=1567906218&uci=yw440qb0cshw&ifi=1&ifk=1391995430&u_tz=-240&u_his=4&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=21&icsg=5593736&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=1417195162.1554984284&ga_sid=1554984284&ga_hid=1059118133&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&pvsid=4355361905223925&correlator=1503418031126649&output=json_html&callback=googletag.impl.pubads.setPassbackAdContents&impl=s&adsid=NT&eid=21063386%2C370204055&vrg=2019032901&guci=2.2.0.0.2.2.0.0&plat=1%3A1081352%2C2%3A1081352%2C8%3A32776&sc=1&sfv=1-0-32&iu=%2F3244%2Fpassback_33across.nasdaq.com&sz=300x250&eri=2&cdm=nasdaq.com&bc=13&lmt=1554984285&dt=1554984285723&dlt=1554984284760&idt=858&ea=0&frm=23&biw=1356&bih=694&isw=300&ish=250&oid=3&adk=1567906218&uci=wfbg15waf4rx&ifi=1&ifk=3962787242&u_tz=-240&u_his=5&u_h=768&u_w=1366&u_ah=768&u_aw=1366&u_cd=24&u_sd=1&flash=0&nhd=1&url=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&top=https%3A%2F%2Fwww.nasdaq.com%2Fsymbol%2Fsp%2Fhistorical&dssz=18&icsg=88712&mso=32&std=2&vis=1&scr_x=0&scr_y=0&ga_vid=370724733.1554984286&ga_sid=1554984286&ga_hid=800422540&fws=2, line 1: TypeError: googletag.impl is undefined
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+1554984348702	Marionette	INFO	Stopped listening on port 33033
+JavaScript error: https://pr.realvu.net/flip/2/c=E420_f=site_si=952, line 2: SecurityError: The operation is insecure.
+[Parent 23787, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+JavaScript error: resource://gre/modules/WebProgressChild.jsm, line 61: TypeError: this.mm.content is null
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5F0029,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0xA70006,name=PWebSocket::Msg_DeleteSelf) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+1554984349823	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.HqyB77735WUZ"
+*** You are running in headless mode.
+1554984350193	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984350194	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984350194	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984351700	Marionette	INFO	Listening on port 39031
+1554984351734	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554984352022	Marionette	INFO	Stopped listening on port 42465
+[Parent 24109, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984353164	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.QYyvU5ozJbSq"
+*** You are running in headless mode.
+1554984353448	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984353449	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984353449	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984354848	Marionette	INFO	Listening on port 36605
+1554984354884	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984427047	Marionette	INFO	Stopped listening on port 36605
+[Parent 24768, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984428428	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.7kNPznPFdbXr"
+*** You are running in headless mode.
+1554984429000	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984429001	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984429001	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984430689	Marionette	INFO	Listening on port 36811
+1554984430746	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984527620	Marionette	INFO	Stopped listening on port 36811
+[Parent 25149, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984529297	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.fiADDeL4WevQ"
+*** You are running in headless mode.
+1554984529843	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984529844	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984529844	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984532072	Marionette	INFO	Listening on port 41065
+1554984532120	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984614465	Marionette	INFO	Stopped listening on port 41065
+[Parent 25568, Gecko_IOThread] WARNING: pipe error (66): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984615686	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.E2YFxPcfhe6X"
+*** You are running in headless mode.
+1554984616182	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984616182	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984616183	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984618203	Marionette	INFO	Listening on port 42553
+1554984618309	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984708366	Marionette	INFO	Stopped listening on port 42553
+[Parent 25962, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984709978	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.qtIeeSG97Biq"
+*** You are running in headless mode.
+1554984710493	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984710494	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984710494	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984713243	Marionette	INFO	Listening on port 32787
+1554984713440	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984821360	Marionette	INFO	Stopped listening on port 32787
+[Parent 26317, Gecko_IOThread] WARNING: pipe error (66): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+[Child 26485, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 726
+[Child 26485, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984823375	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.86CDZhDtSnCt"
+*** You are running in headless mode.
+1554984823816	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984823817	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984823817	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984825501	Marionette	INFO	Listening on port 39235
+1554984825583	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554984937155	Marionette	INFO	Stopped listening on port 39235
+[Parent 26665, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554984938689	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.bDuQ4AdfRsU6"
+*** You are running in headless mode.
+1554984938997	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554984938998	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554984938998	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554984940591	Marionette	INFO	Listening on port 46299
+1554984940601	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985059090	Marionette	INFO	Stopped listening on port 46299
+[Parent 27089, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+[Child 27257, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 726
+1554985060265	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.U2n8PcbkOpmP"
+*** You are running in headless mode.
+1554985060613	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985060613	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985060613	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985062078	Marionette	INFO	Listening on port 39053
+1554985062171	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985182690	Marionette	INFO	Stopped listening on port 39053
+[Parent 27488, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985183407	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.z6N0XRWFIVLw"
+*** You are running in headless mode.
+1554985183728	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985183728	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985183728	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985185231	Marionette	INFO	Listening on port 41719
+1554985185313	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985291915	Marionette	INFO	Stopped listening on port 41719
+[Parent 27885, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985293093	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.rCED8ZcBCAJr"
+*** You are running in headless mode.
+1554985293395	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985293396	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985293396	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985294839	Marionette	INFO	Listening on port 37557
+1554985294906	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985392057	Marionette	INFO	Stopped listening on port 37557
+[Parent 28362, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985393071	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SCXT7quddbGh"
+*** You are running in headless mode.
+1554985393424	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985393425	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985393425	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985395179	Marionette	INFO	Listening on port 41535
+1554985395284	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985501071	Marionette	INFO	Stopped listening on port 41535
+[Parent 28692, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985502197	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.GDU59VWTcxOs"
+*** You are running in headless mode.
+1554985502598	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985502599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985502599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985504132	Marionette	INFO	Listening on port 34129
+1554985504216	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985617285	Marionette	INFO	Stopped listening on port 34129
+[Parent 29035, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985618593	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Qq0BZykmWHq4"
+*** You are running in headless mode.
+1554985618993	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985618994	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985618994	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985620649	Marionette	INFO	Listening on port 39519
+1554985620715	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985744360	Marionette	INFO	Stopped listening on port 39519
+[Parent 29392, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985745094	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.vqr69Fo3RvzL"
+*** You are running in headless mode.
+1554985745395	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985745396	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985745396	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985746813	Marionette	INFO	Listening on port 40719
+1554985746932	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985859764	Marionette	INFO	Stopped listening on port 40719
+[Parent 29730, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985860816	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.zkQOPIaV515a"
+*** You are running in headless mode.
+1554985861107	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985861107	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985861108	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985862520	Marionette	INFO	Listening on port 34501
+1554985862529	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554985963597	Marionette	INFO	Stopped listening on port 34501
+[Parent 30093, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554985964711	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.EWJ4pe2DuO7F"
+*** You are running in headless mode.
+1554985964982	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554985964983	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554985964983	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554985966296	Marionette	INFO	Listening on port 35765
+1554985966326	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986073183	Marionette	INFO	Stopped listening on port 35765
+[Parent 30423, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986074328	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.jusVptfyX7cV"
+*** You are running in headless mode.
+1554986074611	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986074612	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986074612	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986076032	Marionette	INFO	Listening on port 37677
+1554986076134	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=next&r=canary, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986179744	Marionette	INFO	Stopped listening on port 37677
+[Parent 30802, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986180798	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.add28oKEa6X1"
+*** You are running in headless mode.
+1554986181155	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986181156	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986181156	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986182744	Marionette	INFO	Listening on port 44191
+1554986182807	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986281786	Marionette	INFO	Stopped listening on port 44191
+[Parent 31255, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986282890	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.dHiQOS9TYcE9"
+*** You are running in headless mode.
+1554986283163	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986283163	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986283163	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986284586	Marionette	INFO	Listening on port 42333
+1554986284608	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986383827	Marionette	INFO	Stopped listening on port 42333
+[Parent 31702, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986384868	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.5K3WwxkILGSi"
+*** You are running in headless mode.
+1554986385174	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986385175	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986385175	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986386593	Marionette	INFO	Listening on port 38409
+1554986386681	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986479733	Marionette	INFO	Stopped listening on port 38409
+[Parent 32047, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986480806	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.N2LwO1yfrkW6"
+*** You are running in headless mode.
+1554986481094	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986481094	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986481094	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986482530	Marionette	INFO	Listening on port 34397
+1554986482615	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986572595	Marionette	INFO	Stopped listening on port 34397
+[Parent 32423, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986573869	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.7efGlvngncZY"
+*** You are running in headless mode.
+1554986574292	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986574292	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986574292	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986576253	Marionette	INFO	Listening on port 44087
+1554986576280	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986648812	Marionette	INFO	Stopped listening on port 44087
+[Parent 369, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986650396	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.pxb5Nub2Awqy"
+*** You are running in headless mode.
+1554986650683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986650683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986650683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986652131	Marionette	INFO	Listening on port 40813
+1554986652212	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986665978	Marionette	INFO	Stopped listening on port 40813
+[Parent 730, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986666918	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.VzpamOxpxqYs"
+*** You are running in headless mode.
+1554986667136	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986667137	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986667137	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986668236	Marionette	INFO	Listening on port 35863
+1554986668332	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986680091	Marionette	INFO	Stopped listening on port 35863
+[Parent 1053, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986681001	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.m1wjAjMOL6b8"
+*** You are running in headless mode.
+1554986681232	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986681232	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986681232	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986682405	Marionette	INFO	Listening on port 39459
+1554986682516	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986697254	Marionette	INFO	Stopped listening on port 39459
+[Parent 1377, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986698162	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mUjzKQzN4PAJ"
+*** You are running in headless mode.
+1554986698378	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986698379	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986698379	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986699455	Marionette	INFO	Listening on port 43013
+1554986699469	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986718527	Marionette	INFO	Stopped listening on port 43013
+[Parent 1709, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986719459	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.XTtYuqwhklP4"
+*** You are running in headless mode.
+1554986719682	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986719683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986719683	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986720847	Marionette	INFO	Listening on port 34609
+1554986720869	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986737478	Marionette	INFO	Stopped listening on port 34609
+[Parent 2065, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986738375	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.6JVe6Tu7iaiE"
+*** You are running in headless mode.
+1554986738597	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986738597	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986738597	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986739764	Marionette	INFO	Listening on port 43335
+1554986739786	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986757761	Marionette	INFO	Stopped listening on port 43335
+[Parent 2405, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986758714	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.5hiWRk25G7EM"
+*** You are running in headless mode.
+1554986758943	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986758943	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986758943	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986759998	Marionette	INFO	Listening on port 36489
+1554986760023	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986772256	Marionette	INFO	Stopped listening on port 36489
+[Parent 2881, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986773412	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.g4WmZjTm5P9i"
+*** You are running in headless mode.
+1554986773635	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986773635	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986773635	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986774819	Marionette	INFO	Listening on port 44165
+1554986774947	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986794461	Marionette	INFO	Stopped listening on port 44165
+[Parent 3332, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986795360	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Qh3IKR0gBM6Y"
+*** You are running in headless mode.
+1554986795587	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986795587	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986795587	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986796697	Marionette	INFO	Listening on port 41925
+1554986796765	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+1554986818572	Marionette	INFO	Stopped listening on port 41925
+[Parent 3732, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986819498	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.uuaUwG7ke81u"
+*** You are running in headless mode.
+1554986819720	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986819721	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986819721	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986820898	Marionette	INFO	Listening on port 43099
+1554986820904	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986836739	Marionette	INFO	Stopped listening on port 43099
+[Parent 4048, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+1554986837629	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.a8rs63lqFDjq"
+*** You are running in headless mode.
+1554986837848	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986837848	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986837848	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986839012	Marionette	INFO	Listening on port 33285
+1554986839039	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986852750	Marionette	INFO	Stopped listening on port 33285
+[Parent 4447, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986853688	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.0XWFdt7rvYDI"
+*** You are running in headless mode.
+1554986853904	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986853904	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986853904	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986855003	Marionette	INFO	Listening on port 38565
+1554986855101	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986869630	Marionette	INFO	Stopped listening on port 38565
+[Parent 5080, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BB,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+[Child 5291, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986870514	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.mNKvEBVpNUV2"
+*** You are running in headless mode.
+1554986870739	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986870739	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986870739	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986871867	Marionette	INFO	Listening on port 34105
+1554986871925	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986886522	Marionette	INFO	Stopped listening on port 34105
+[Parent 5450, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986887445	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.g9oUWXF4Hw7J"
+*** You are running in headless mode.
+1554986887666	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986887666	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986887666	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986888774	Marionette	INFO	Listening on port 43867
+1554986888852	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986903677	Marionette	INFO	Stopped listening on port 43867
+[Parent 6058, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986904645	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.3BlIfzePjKZq"
+*** You are running in headless mode.
+1554986904870	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986904870	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986904870	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986905984	Marionette	INFO	Listening on port 38889
+1554986906049	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986923304	Marionette	INFO	Stopped listening on port 38889
+[Parent 6445, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986924224	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.sVv9Ia7ZldDD"
+*** You are running in headless mode.
+1554986924462	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986924463	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986924463	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986925659	Marionette	INFO	Listening on port 34317
+1554986925729	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986938854	Marionette	INFO	Stopped listening on port 34317
+[Parent 6770, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986939890	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.jgvXheuUkQe2"
+*** You are running in headless mode.
+1554986940140	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986940141	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986940141	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986941523	Marionette	INFO	Listening on port 43583
+1554986941600	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986958627	Marionette	INFO	Stopped listening on port 43583
+[Parent 7095, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986959661	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Ymi7crAb7TXl"
+*** You are running in headless mode.
+1554986959884	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986959884	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986959884	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986961110	Marionette	INFO	Listening on port 40533
+1554986961166	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://connect.facebook.net/signals/config/474395762967718?v=2.8.47&r=stable, line 24: SecurityError: The operation is insecure.
+JavaScript error: https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae12f3c2c2a1335, line 2: TypeError: can't convert undefined to object
+1554986974588	Marionette	INFO	Stopped listening on port 40533
+[Parent 7403, Gecko_IOThread] WARNING: pipe error (65): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+1554986975532	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.rrcpc28sFUfb"
+*** You are running in headless mode.
+1554986975750	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554986975751	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554986975751	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554986976946	Marionette	INFO	Listening on port 44847
+1554986977042	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 7914, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-QFhmDU/firefox-66.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 357
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1554987683216	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.WA4d5PBz0cF5"
+*** You are running in headless mode.
+1554987683430	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554987683430	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554987683430	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554987684604	Marionette	INFO	Listening on port 42881
+1554987684625	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554987685144	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ip9eYgLVnWGw"
+*** You are running in headless mode.
+1554987685363	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554987685363	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554987685363	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554987686529	Marionette	INFO	Listening on port 43765
+1554987686558	Marionette	WARN	TLS certificate errors will be ignored for this session
+1554987687041	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.yyNmXTMmdTAa"
+*** You are running in headless mode.
+1554987687276	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1554987687277	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1554987687277	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1554987688744	Marionette	INFO	Listening on port 42701
+1554987688789	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:190:13
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
