@@ -144,7 +144,10 @@ class CryptoDaily(Checkpoint):
                     table=self.table3, timestamp=yesterday,
                     storage_medium='mongo', window_hours=self.window, db='aion')
 
-                # compare our max timestamp to the minimum of the max dates of the tables
+                """
+                    - compare our max timestamp to the minimum of the max dates of the tables
+
+                """
                 if offset < min(dates):
                     return False
                 else:
@@ -433,35 +436,6 @@ class CryptoDaily(Checkpoint):
         except Exception:
             logger.error('update',exc_info=True)
 
-    def reset_offset(self,offset_update):
-        try:
-            key = self.key_params
-            # get it from redis
-            self.checkpoint_dict = self.redis.load([], '', '', key=key, item_type='checkpoint')
-            if self.checkpoint_dict is not None:  # reset currently in progress
-                # make a new checkpoint_dct if necessary
-                if self.checkpoint_dict['start'] is not None:
-                    if self.checkpoint_dict['start'] == offset_update['start']:
-                        if self.checkpoint_dict['end'] == offset_update['end']:
-                            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
-                            end = datetime.strptime(self.checkpoint_dict['end'], self.DATEFORMAT)
-                            if offset >= end:  # stop reset proceedure
-                                offset = self.get_value_from_clickhouse(self.table)
-                                offset_update = None
-                                logger.warning('OFFSET RESET FINISHED')
-                                logger.warning(" %s CHECKPOINT dictionary (re)set|retrieved and saved:%s", self.table,
-                                               self.checkpoint_dict)
-                            return offset, offset_update
-            self.checkpoint_dict = self.dct
-            self.checkpoint_dict['start'] = offset_update['start']
-            self.checkpoint_dict['end'] = offset_update['end']
-            self.checkpoint_dict['offset'] = offset_update['start']
-            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
-            logger.warning('OFFSET RESET BEGUN')
-            return offset,offset_update
-
-        except Exception:
-            logger.error('reset offset',exc_info=True)
 
     async def run(self,offset_update):
         #self.initialize_table()

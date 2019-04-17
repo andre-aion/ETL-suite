@@ -1,3 +1,4 @@
+
 import asyncio
 from datetime import datetime, timedelta
 
@@ -9,13 +10,12 @@ from bs4 import BeautifulSoup
 from config.checkpoint import checkpoint_dict
 from scripts.utils.mylogger import mylogger
 from scripts.storage.pythonMongo import PythonMongo
-from scripts.github_and_bsscraper_interface import Scraper
+from scripts.scraper_interface import Scraper
 
 
 logger = mylogger(__file__)
 
 class Cryptocoin(Scraper):
-    pym = PythonMongo('aion')
     def __init__(self, items):
         Scraper.__init__(self, collection='external_daily')
         self.item_name = 'aion'

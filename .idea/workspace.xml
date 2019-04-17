@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/indicators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/scrapy.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/scrapy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/checkpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ETL/crypto_daily.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ETL/crypto_daily.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/github/github_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/github/github_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scraper_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +26,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ETL_suite$analytics.coverage" NAME="analytics Coverage Results" MODIFIED="1550858164927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/ETL_suite$ETL_suite.coverage" NAME="ETL-suite Coverage Results" MODIFIED="1553025664839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/ETL_suite$ETL_suite.coverage" NAME="ETL-suite Coverage Results" MODIFIED="1555420623887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -133,7 +145,7 @@
     <session id="1903770663">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="74" />
+          <entry key="project.closed" value="81" />
           <entry key="project.open.time.0" value="27" />
           <entry key="project.open.time.1" value="17" />
           <entry key="project.open.time.10" value="1" />
@@ -141,37 +153,39 @@
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.16" value="3" />
-          <entry key="project.open.time.17" value="4" />
+          <entry key="project.open.time.15" value="3" />
+          <entry key="project.open.time.16" value="4" />
+          <entry key="project.open.time.17" value="5" />
           <entry key="project.open.time.18" value="3" />
-          <entry key="project.open.time.19" value="3" />
+          <entry key="project.open.time.19" value="4" />
           <entry key="project.open.time.2" value="6" />
-          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="4" />
+          <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="90" />
+          <entry key="project.opened" value="98" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="294" />
-          <entry key="py" value="127183" />
+          <entry key="dummy" value="304" />
+          <entry key="py" value="131426" />
           <entry key="sql" value="4105" />
           <entry key="txt" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="370" />
-          <entry key="Python" value="127167" />
+          <entry key="PLAIN_TEXT" value="380" />
+          <entry key="Python" value="131410" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="4105" />
         </counts>
@@ -188,15 +202,16 @@
           <entry key="account_external_warehouse" value="9" />
           <entry key="account_value_churn" value="7" />
           <entry key="block_tx_warehouse" value="2" />
-          <entry key="crypto_daily" value="8" />
+          <entry key="crypto_daily" value="9" />
           <entry key="csv" value="3" />
-          <entry key="ipynb" value="1" />
+          <entry key="ipynb" value="2" />
           <entry key="json" value="2" />
           <entry key="log" value="13" />
+          <entry key="mongo@localhost/aion/country_daily" value="2" />
           <entry key="mongo@localhost/aion/external" value="99" />
-          <entry key="mongo@localhost/aion/external_daily" value="29" />
+          <entry key="mongo@localhost/aion/external_daily" value="33" />
           <entry key="mongo@localhost/aion/github" value="25" />
-          <entry key="py" value="722" />
+          <entry key="py" value="761" />
           <entry key="sql" value="129" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="12" />
@@ -205,13 +220,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSV" value="2" />
-          <entry key="Database Element" value="119" />
-          <entry key="IPNB" value="1" />
+          <entry key="Database Element" value="120" />
+          <entry key="IPNB" value="2" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="6" />
-          <entry key="MONGO" value="153" />
+          <entry key="MONGO" value="159" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="722" />
+          <entry key="Python" value="761" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="128" />
         </counts>
@@ -219,20 +234,74 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.55686694">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="108">
+                  <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+                  <folding>
+                    <element signature="e#0#48#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="262">
+                  <caret line="122" selection-start-line="122" selection-end-line="122" />
+                  <folding>
+                    <element signature="e#1#15#0" expanded="true" />
+                    <marker date="1555536845449" expanded="true" signature="2685:2691" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/scraper_interface.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="78">
+                  <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scripts/ETL/crypto_daily.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2534">
+                  <caret line="419" column="34" selection-start-line="419" selection-start-column="11" selection-end-line="420" selection-end-column="49" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="194">
+                  <caret line="124" column="51" selection-start-line="124" selection-start-column="51" selection-end-line="124" selection-end-column="51" />
+                  <folding>
+                    <element signature="e#0#46#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -244,7 +313,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.</find>
       <find>'aion</find>
       <find>aion</find>
       <find>coin</find>
@@ -274,6 +342,7 @@
       <find>'</find>
       <find>[]</find>
       <find>0</find>
+      <find>*%</find>
     </findStrings>
     <replaceStrings>
       <replace>),</replace>
@@ -318,11 +387,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scrapers/scrapy/aioncoin_spider.py" />
-        <option value="$PROJECT_DIR$/scrapers/scrapy/runner.py" />
-        <option value="$PROJECT_DIR$/instructions/scrapy.txt" />
-        <option value="$PROJECT_DIR$/scrapers/beautiful_soup/interface.py" />
-        <option value="$PROJECT_DIR$/scrapers/beautiful_soup/financial_indicies.py" />
         <option value="$PROJECT_DIR$/scrapers/beautiful_soup/scraper.py" />
         <option value="$PROJECT_DIR$/scrapers/beautiful_soup/cryptocoin.py" />
         <option value="$PROJECT_DIR$/scrapers/beautiful_soup/runner.py" />
@@ -338,7 +402,6 @@
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/bs_scraper_interface.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_transactions.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_warehouse.py" />
-        <option value="$PROJECT_DIR$/notebooks/test.ipynb" />
         <option value="$PROJECT_DIR$/scripts/tablemanager/Table.py" />
         <option value="$PROJECT_DIR$/scripts/github/githubrunner_old.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/beautiful_soup/github_and_bsscraper_interface.py" />
@@ -352,22 +415,28 @@
         <option value="$PROJECT_DIR$/scripts/storage/pythonMysql.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_4.sql" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_external_warehouse.py" />
-        <option value="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/__init__.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_5.sql" />
         <option value="$PROJECT_DIR$/scripts/tablemanager/table.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py" />
-        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
-        <option value="$PROJECT_DIR$/config/checkpoint.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
         <option value="$PROJECT_DIR$/config/df_construct_config.py" />
         <option value="$PROJECT_DIR$/scripts/storage/pythonClickhouse.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py" />
         <option value="$PROJECT_DIR$/scripts/scrapers/financial_indexes.py" />
-        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
-        <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
         <option value="$PROJECT_DIR$/scripts/github/github_loader.py" />
+        <option value="$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py" />
+        <option value="$PROJECT_DIR$/config/scrapy.py" />
+        <option value="$PROJECT_DIR$/scripts/scrapers/country_indicators.py" />
+        <option value="$PROJECT_DIR$/notebooks/test.ipynb" />
+        <option value="$PROJECT_DIR$/config/checkpoint.py" />
+        <option value="$PROJECT_DIR$/config/indicators.py" />
+        <option value="$PROJECT_DIR$/scripts/scrapers/cryptocoin.py" />
+        <option value="$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py" />
+        <option value="$PROJECT_DIR$/scripts/scraper_interface.py" />
+        <option value="$PROJECT_DIR$/scripts/ETL/checkpoint.py" />
         <option value="$PROJECT_DIR$/scripts/ETL/crypto_daily.py" />
+        <option value="$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -378,11 +447,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="50" />
-    <option name="width" value="1657" />
-    <option name="height" value="935" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="2021" />
+    <option name="y" value="84" />
+    <option name="width" value="1376" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -549,9 +618,10 @@
     <option name="totallyTimeSpent" value="22356000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="50" width="1657" height="935" extended-state="0" />
+    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19675203" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17918456" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -565,7 +635,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.5216837" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.38131043" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20144686" side_tool="true" weight="0.41025642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -575,8 +645,8 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32999444" />
       <window_info anchor="right" x="0" y="0" width="430" height="882" id="Documentation" order="6" side_tool="true" weight="0.3155259" />
-      <window_info anchor="right" id="Database" order="7" weight="0.2621035" />
-      <window_info anchor="right" id="Mongo Explorer" order="8" visible="true" weight="0.15240474" />
+      <window_info anchor="right" id="Mongo Explorer" order="7" weight="0.17060086" />
+      <window_info anchor="right" id="Database" order="8" weight="0.2607296" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20868114" />
@@ -654,56 +724,14 @@
           <url>file://$PROJECT_DIR$/scripts/ETL/account_ext_warehouse.py</url>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py</url>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" selection-start-line="31" selection-end-line="31" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/1914451122/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="4748" column="8" selection-start-line="4748" selection-start-column="8" selection-end-line="4748" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_transactions.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMongo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notebooks/test.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/account_activity_warehouse_todelete.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/github/githubrunner_old.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/beautiful_soup/__init__.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandas/io/json/normalize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandas/core/reshape/merge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="832" selection-start-line="832" selection-end-line="832" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/dask/dataframe/core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -785,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a8496f6-c6fc-4c45-95ab-ed8d9aebf8f0/console_5.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -816,46 +837,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/cryptos.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="165" column="43" selection-start-line="165" selection-start-column="43" selection-end-line="165" selection-end-column="43" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMysql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1100">
           <caret line="56" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="32" column="25" selection-start-line="32" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="105" column="1" selection-start-line="105" selection-start-column="1" selection-end-line="105" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="414" column="26" selection-start-line="414" selection-start-column="26" selection-end-line="414" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -880,52 +870,181 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
+    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+        <state relative-caret-position="1890">
+          <caret line="115" column="45" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github_and_bsscraper_interface.py">
+    <entry file="file://$PROJECT_DIR$/config/df_construct_config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-609">
-          <caret line="173" column="8" selection-start-line="173" selection-start-column="8" selection-end-line="173" selection-end-column="8" />
+        <state relative-caret-position="138">
+          <caret line="414" column="26" selection-start-line="414" selection-start-column="26" selection-end-line="414" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/scrapy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/blocktxwarehouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="184" column="12" lean-forward="true" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/backup/mongo_backup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-222">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notebooks/test.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/checkpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/storage/pythonMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/financial_indexes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        <state>
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/github/github_loader.py">
+    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pymongo/mongo_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="115" column="45" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+        <state relative-caret-position="-34">
+          <caret line="569" selection-start-line="569" selection-end-line="569" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/selenium/webdriver/firefox/webdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/cryptocoin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/indicators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0f1c6e87-17d4-4926-b9eb-32efd88b3ada/schema/aion/table/crypto_daily">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scraper_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1554766294020" expanded="true" signature="8460:8461" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/ETL/crypto_daily.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="183" column="55" selection-start-line="183" selection-start-column="55" selection-end-line="183" selection-end-column="55" />
+        <state relative-caret-position="2534">
+          <caret line="419" column="34" selection-start-line="419" selection-start-column="11" selection-end-line="420" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/ETL/checkpoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="124" column="51" selection-start-line="124" selection-start-column="51" selection-end-line="124" selection-end-column="51" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
+          <folding>
+            <element signature="e#1#15#0" expanded="true" />
+            <marker date="1555536845449" expanded="true" signature="2685:2691" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+        <state relative-caret-position="108">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>

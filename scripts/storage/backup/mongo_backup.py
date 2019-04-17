@@ -16,7 +16,7 @@ class MongoBackup:
     
     # configs:
     interval_m = 5
-    outputs_dir = '/home/andre/amdatt/data_science/data/'
+    outputs_dir = '/home/andre/Dropbox/amdatt/amdatt/database/backups/'
     
     host = "localhost"  # if host is your local machine leave it NA
     port = "27017"  # if mongo is on default port (37017) leave in NA

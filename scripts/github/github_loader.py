@@ -5,7 +5,7 @@ import gzip
 import urllib
 
 from config.checkpoint import checkpoint_dict
-from scripts.github_and_bsscraper_interface import Scraper
+from scripts.scraper_interface import Scraper
 from scripts.utils.mylogger import mylogger
 from pandas.io.json import json_normalize
 from datetime import datetime, timedelta

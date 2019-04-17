@@ -49,3 +49,4 @@ scrapy_settings = {
     'LOG_LEVEL':'INFO',
 }
 
+

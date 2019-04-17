@@ -32,10 +32,7 @@ class Checkpoint:
         self.checkpoint_column = 'block_timestamp'
         self.checkpoint_key = table
         self.checkpoint_dict = None
-        if self.table != 'external_daily':
-            self.dct = checkpoint_dict[self.checkpoint_key]
-        else:
-            self.dct = None
+
         self.key_params = 'checkpoint:' + self.checkpoint_key
 
     def int_to_date(self, x):
@@ -115,19 +112,35 @@ class Checkpoint:
         except Exception:
             logger.error('get offset', exc_info=True)
 
-    def reset_offset(self, reset_value):
+    def reset_offset(self,offset_update):
         try:
-            self.get_checkpoint_dict()
-            if isinstance(reset_value, datetime) or isinstance(reset_value, date):
-                reset_value = datetime.strftime(reset_value, self.DATEFORMAT)
-            self.checkpoint_dict['offset'] = reset_value
-            self.checkpoint_dict['timestamp'] = datetime.now().strftime(self.DATEFORMAT)
-            if 'items_updated' in self.checkpoint_dict.keys():
-                self.checkpoint_dict['items_updated'] = []
-            self.save_checkpoint()
-            logger.warning("CHECKPOINT reset:%s", self.checkpoint_dict)
+            key = self.key_params
+            # get it from redis
+            self.checkpoint_dict = self.redis.load([], '', '', key=key, item_type='checkpoint')
+            if self.checkpoint_dict is not None:  # reset currently in progress
+                # make a new checkpoint_dct if necessary
+                if self.checkpoint_dict['start'] is not None:
+                    if self.checkpoint_dict['start'] == offset_update['start']:
+                        if self.checkpoint_dict['end'] == offset_update['end']:
+                            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
+                            end = datetime.strptime(self.checkpoint_dict['end'], self.DATEFORMAT)
+                            if offset >= end:  # stop reset proceedure
+                                offset = self.get_value_from_clickhouse(self.table)
+                                offset_update = None
+                                logger.warning('OFFSET RESET FINISHED')
+                                logger.warning(" %s CHECKPOINT dictionary (re)set|retrieved and saved:%s", self.table,
+                                               self.checkpoint_dict)
+                            return offset, offset_update
+            self.checkpoint_dict = self.dct
+            self.checkpoint_dict['start'] = offset_update['start']
+            self.checkpoint_dict['end'] = offset_update['end']
+            self.checkpoint_dict['offset'] = offset_update['start']
+            offset = datetime.strptime(self.checkpoint_dict['offset'], self.DATEFORMAT)
+            logger.warning('OFFSET RESET BEGUN')
+            return offset,offset_update
+
         except Exception:
-            logger.error('reset checkpoint :%s', exc_info=True)
+            logger.error('reset offset',exc_info=True)
 
     def update_checkpoint_dict(self, offset):
         try:

@@ -3,17 +3,17 @@ from scripts.utils.mylogger import mylogger
 import asyncio
 from scripts.scrapers.financial_indexes import FinancialIndexes
 from scripts.scrapers.cryptocoin import Cryptocoin
+from scripts.scrapers.country_economic_indicators import CountryEconomicIndicators
 from scripts.github.github_loader import GithubLoader
 from scripts.ETL.account_ext_warehouse import AccountExternalWarehouse
 from scripts.utils.myutils import load_cryptos
 from scripts.storage.backup.mongo_backup import MongoBackup
-#from scripts.ETL.blocktxwarehouse import BlockTxWarehouse
+
 '''
 from scripts.tablemanager.table import Table
 table = 'crypto_daily'
 tb = Table(table,table,'create','timestamp')
 '''
-#warehouse_etl = BlockTxWarehouse('block_tx_warehouse')
 
 loop = asyncio.get_event_loop()
 
@@ -31,6 +31,7 @@ financial_indicies = ['russell','sp']
 indexes_scraper = FinancialIndexes(financial_indicies)
 cryptos_scraper = Cryptocoin(cryptocurrencies)
 github_loader = GithubLoader(cryptocurrencies)
+economic_indicators = CountryEconomicIndicators()
 
 #cryptos_scraper.reset_offset('2018-04-24 00:00:00')
 logger.warning(cryptocurrencies)
@@ -41,10 +42,9 @@ account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
                                                  mysql_credentials='staging',
                                                  items=cryptocurrencies)
 
-
 crytpo_daily = CryptoDaily(table='crypto_daily',
                            items=cryptocurrencies)
-reset_offset = {'start':'2019-04-06 00:00:00', 'end':'2019-04-08 00:00:00'}
+reset_offset = {'start':'2018-04-23 00:00:00', 'end':'2019-04-17 00:00:00'}
 
 async def run_etls():
     tasks = [
@@ -52,9 +52,9 @@ async def run_etls():
         #asyncio.ensure_future(cryptos_scraper.run()),
         #asyncio.ensure_future(github_loader.run()),
         #asyncio.ensure_future(mongo_backup.run()),
-        asyncio.ensure_future(account_ext_warehouse.run(None)),
-        asyncio.ensure_future(crytpo_daily.run(None)),
-
+        #asyncio.ensure_future(account_ext_warehouse.run(None)),
+        #asyncio.ensure_future(crytpo_daily.run(None)),
+        #asyncio.ensure_future(economic_indicators.run(reset_offset)),
     ]
     await asyncio.wait(tasks)
 

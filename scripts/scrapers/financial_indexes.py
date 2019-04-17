@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 from config.checkpoint import checkpoint_dict
 from scripts.utils.mylogger import mylogger
-from scripts.github_and_bsscraper_interface import Scraper
+from scripts.scraper_interface import Scraper
 
 logger = mylogger(__file__)
 
