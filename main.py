@@ -42,9 +42,10 @@ account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
                                                  mysql_credentials='staging',
                                                  items=cryptocurrencies)
 
+
 crytpo_daily = CryptoDaily(table='crypto_daily',
                            items=cryptocurrencies)
-reset_offset = {'start':'2018-04-23 00:00:00', 'end':'2019-04-17 00:00:00'}
+reset_offset = {'start':'2018-03-23 00:00:00', 'end':'2019-05-17 00:00:00'}
 
 async def run_etls():
     tasks = [
@@ -54,7 +55,7 @@ async def run_etls():
         #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(account_ext_warehouse.run(None)),
         #asyncio.ensure_future(crytpo_daily.run(None)),
-        #asyncio.ensure_future(economic_indicators.run(reset_offset)),
+        asyncio.ensure_future(economic_indicators.run(None)),
     ]
     await asyncio.wait(tasks)
 

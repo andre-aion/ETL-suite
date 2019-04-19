@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, date, time
 from pprint import pprint
 from statistics import mean
 
+from dateutil.relativedelta import relativedelta
 from pandas.io.json import json_normalize
 from tornado import gen
 from tornado.gen import coroutine
@@ -101,11 +102,17 @@ class CryptoDaily(Checkpoint):
         self.groupby_dict, self.vars_dict, self.idvars = set_vars(self.items)
         self.idvars['index'].append('timestamp') # ensure that timestamp remains in the melting operations
 
+        self.reference_date = None
+        
+        
     def am_i_up_to_date(self, offset_update=None):
         try:
 
             today = datetime.combine(datetime.today().date(), datetime.min.time())
-            yesterday = today - timedelta(days=1)
+            if self.update_period == 'monthly':
+                self.reference_date = today - relativedelta(months=1)
+            elif self.update_period == 'daily':
+                self.reference_date = today - timedelta(days=1)
             self.offset_update = offset_update
             if offset_update is not None:
                 self.offset, self.offset_update = self.reset_offset(offset_update)
@@ -117,7 +124,7 @@ class CryptoDaily(Checkpoint):
             offset = self.offset
             if isinstance(self.offset,date):
                 offset= datetime.combine(self.offset,datetime.min.time())
-            if offset < yesterday:
+            if offset < self.reference_date:
                 table = {
                     'external_daily': {
                         'storage': 'mongo',
@@ -131,19 +138,22 @@ class CryptoDaily(Checkpoint):
                 # get max timestamp from
                 dates = []
                 res2,max_date2 = self.is_up_to_date(
-                        table=self.table2,timestamp=yesterday,
+                        table=self.table2,timestamp=self.reference_date,
                         storage_medium='mongo',window_hours=self.window,db='aion')
                 if res2:
-                    dates.append(yesterday)
+                    dates.append(self.reference_date)
                 else:
                     dates.append(max_date2)
 
                 #logger.warning('res2, max_date2=%s,%s',res2,max_date2)
 
                 res3, max_date3 = self.is_up_to_date(
-                    table=self.table3, timestamp=yesterday,
+                    table=self.table3, timestamp=self.reference_date,
                     storage_medium='mongo', window_hours=self.window, db='aion')
-
+                if res3:
+                    dates.append(self.reference_date)
+                else:
+                    dates.append(max_date3)
                 """
                     - compare our max timestamp to the minimum of the max dates of the tables
 
@@ -411,13 +421,12 @@ class CryptoDaily(Checkpoint):
     async def update(self):
         try:
 
-            yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
             offset = self.offset
             if isinstance(offset,date):
                 offset = datetime.combine(offset, datetime.min.time())
             offset = datetime.combine(offset.date(), datetime.min.time())
 
-            if offset < yesterday:
+            if offset < self.reference_date:
                 offset = offset+timedelta(days=1)
                 logger.warning('offset:%s', offset)
 

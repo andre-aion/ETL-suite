@@ -19,6 +19,8 @@ class Checkpoint:
         self.my = PythonMysql('localhost')
         self.DATEFORMAT = "%Y-%m-%d %H:%M:%S"
         self.window = 3 # hours
+        self.update_period = 'daily'
+
         self.is_up_to_date_window = self.window + 2 # hours
         self.table = table
         self.initial_date = datetime.strptime("2018-04-24 00:00:00",self.DATEFORMAT)
@@ -206,7 +208,7 @@ class Checkpoint:
             if result.count() > 0:
                 for res in result:
                     #logger.warning('%s value from mongo %s:%s', min_max, table.upper(), res['timestamp'])
-                    return res['timestamp']
+                    return res[column]
             else:
                 return self.initial_date
         except Exception:

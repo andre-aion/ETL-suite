@@ -1,6 +1,8 @@
 
 import asyncio
 from datetime import datetime, timedelta, date
+from dateutil.relativedelta import relativedelta
+
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,14 +20,15 @@ logger = mylogger(__file__)
 
 class CountryEconomicIndicators(Scraper):
     def __init__(self):
-        Scraper.__init__(self, collection='country_daily')
+        Scraper.__init__(self, collection='country_indexes')
         self.item_name = 'united_states'
         self.window = 24
+        self.update_period = 'monthly'
+
         self.countries = country_indicators['countries']
         self.indicators = country_indicators['scrape_cols']
         self.url = 'https://tradingeconomics.com'
         # checkpointing
-        #self.table = 'country_economic_indicators'
         self.key_params = 'checkpoint:'+self.checkpoint_key
         cols = sorted(list(self.indicators.keys()))
         self.checkpoint_column = cols[0]
@@ -34,6 +37,9 @@ class CountryEconomicIndicators(Scraper):
         self.dct = checkpoint_dict[self.scraper_name]
         self.offset = self.initial_date
         self.country = 'barbados'
+        self.reference_date = None
+        self.initial_date = datetime.strptime("2018-03-1 00:00:00",self.DATEFORMAT)
+
 
     def fix_country_names(self,countries):
         countries_fixed = []
@@ -45,22 +51,25 @@ class CountryEconomicIndicators(Scraper):
         try:
 
             today = datetime.combine(datetime.today().date(), datetime.min.time())
-            yesterday = today - timedelta(days=1)
+            if self.update_period == 'monthly':
+                today = datetime(today.year, today.month+1, 1, 0, 0, 0)  # get first day of month
+                self.reference_date = today - relativedelta(months=1)
+            elif self.update_period == 'daily':
+                self.reference_date = today - timedelta(days=1)
+
             self.offset_update = offset_update
             if offset_update is not None:
                 self.offset, self.offset_update = self.reset_offset(offset_update)
             else:
-                self.offset = self.get_value_from_clickhouse(self.table)
+                self.offset = self.get_value_from_mongo(self.table)
 
             # first check if the ETL table is up to timestamp
             logger.warning('my max date:%s',self.offset)
             offset = self.offset
             if isinstance(self.offset,date):
                 offset = datetime.combine(self.offset,datetime.min.time())
-            stop_date = yesterday
-            if self.offset_update is not None:
-                stop_date = datetime.strptime(self.offset_update['end'], self.DATEFORMAT)
-            if offset < stop_date:
+
+            if offset < self.reference_date:
                 return False
             else:
                 return True
@@ -70,42 +79,38 @@ class CountryEconomicIndicators(Scraper):
 
     async def update(self):
         try:
-            yesterday = datetime.combine(datetime.today().date(), datetime.min.time()) - timedelta(days=1)
+
             offset = self.offset
-            stop_date = yesterday
-            if self.offset_update is not None:
-                stop_date = datetime.strptime(self.offset_update['end'],self.DATEFORMAT)
+            if offset < self.reference_date:
+                offset = datetime(offset.year, offset.month,1,0,0,0)
+                offset = offset + relativedelta(months=1)
+                url = self.url
+                # launch url
+                self.driver.implicitly_wait(30)
+                logger.warning('url loaded:%s',url)
 
-            logger.warning('offset:%s',offset)
-            url = self.url
-            # launch url
-            self.driver.implicitly_wait(30)
-            logger.warning('url loaded:%s',url)
+                self.driver.get(url)
+                await asyncio.sleep(10)
+                # click on the box to expose all the countries
+                script = "__doPostBack('ctl00$ContentPlaceHolder1$defaultUC1$CurrencyMatrixAllCountries1$LinkButton1','')"
+                self.driver.execute_script(script)
+                await asyncio.sleep(2)
 
-            self.driver.get(url)
-            await asyncio.sleep(10)
-            # click on the box to expose all the countries
-            script = "__doPostBack('ctl00$ContentPlaceHolder1$defaultUC1$CurrencyMatrixAllCountries1$LinkButton1','')"
-            self.driver.execute_script(script)
-            await asyncio.sleep(2)
+                # get soup
+                table_id ="ctl00_ContentPlaceHolder1_defaultUC1_CurrencyMatrixAllCountries1_GridView1"
+                soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                table = soup.find('table', attrs={'id':table_id})
+                # parse table and write to database
+                count = 0
+                rows = table.find('tbody').findAll('tr')
+                # save for each date
 
-            # get soup
-            table_id ="ctl00_ContentPlaceHolder1_defaultUC1_CurrencyMatrixAllCountries1_GridView1"
-            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-            table = soup.find('table', attrs={'id':table_id})
-            # parse table and write to database
-            count = 0
-            rows = table.find('tbody').findAll('tr')
-            # save for each date
-            tmp_offset = offset
-            while tmp_offset < stop_date:
-                tmp_offset = tmp_offset + timedelta(days=1)
                 for row in rows:
                     if count == 0: # skip table headers
                         count += 1
                     else:
                         item = {
-                            'timestamp':tmp_offset
+                            'timestamp' : offset
                         }
                         for a in row.findAll('a',href=True):
                             if a.text:
@@ -128,11 +133,18 @@ class CountryEconomicIndicators(Scraper):
                                     item[colname] = x
 
                             self.process_item(item, item_name=item_name) # save
-                print('economic data loaded for %s',tmp_offset)
+                logger.warning('economic data loaded for %s',offset)
+
                 # update checkpoint
-                self.update_checkpoint_dict(tmp_offset)
-                self.save_checkpoint()
-                tmp_offset, self.offset_update = self.reset_offset(self.offset_update)
+                if self.offset_update is not None:
+                    self.update_checkpoint_dict(offset)
+                    self.save_checkpoint()
+
+                self.driver.close() # close currently open browsers
+                # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS
+                self.update_proxy()
+
+
 
 
         except Exception:
