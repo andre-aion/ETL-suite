@@ -322,3 +322,15 @@ def load_cryptos():
 
     except Exception:
         logger.error('load cryptos', exc_info=True)
+
+def load_cryptos_dict():
+    try:
+        filepath = make_filepath('../../data/cryptos.csv')
+        df = pd.read_csv(filepath)
+        cryptos = df['Name'].str.lower().tolist()
+        symbol = df['Symbol'].str.lower().tolist()
+        dct = dict(zip(cryptos,symbol))
+        return dct
+
+    except Exception:
+        logger.error('load cryptos', exc_info=True)

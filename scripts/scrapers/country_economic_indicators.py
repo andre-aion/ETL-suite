@@ -19,6 +19,7 @@ from scripts.scraper_interface import Scraper
 logger = mylogger(__file__)
 
 class CountryEconomicIndicators(Scraper):
+
     def __init__(self):
         Scraper.__init__(self, collection='country_indexes')
         self.item_name = 'united_states'
@@ -96,7 +97,7 @@ class CountryEconomicIndicators(Scraper):
                 self.driver.execute_script(script)
                 await asyncio.sleep(2)
 
-                # get soup
+                # --------------------- get soup
                 table_id ="ctl00_ContentPlaceHolder1_defaultUC1_CurrencyMatrixAllCountries1_GridView1"
                 soup = BeautifulSoup(self.driver.page_source, 'html.parser')
                 table = soup.find('table', attrs={'id':table_id})

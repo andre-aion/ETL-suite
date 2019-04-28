@@ -6,10 +6,8 @@ from scripts.utils.mylogger import mylogger
 from scripts.storage.pythonMongo import PythonMongo
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from scripts.ETL.checkpoint import Checkpoint
-from datetime import datetime, date, timedelta
-from scripts.scrapers.utils import get_random_scraper_data
-from config.checkpoint import checkpoint_dict
-
+from datetime import datetime, timedelta
+from scripts.utils.scraper_utils import get_random_scraper_data
 
 logger = mylogger(__file__)
 WEBDRIVER_PATH='/usr/local/bin/chromedriver'

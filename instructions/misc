@@ -1,0 +1,2 @@
+# generate conda environment
+conda env export > analytics.yml
