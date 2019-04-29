@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2a3e5b-619e-4e96-bcad-7c383071f576" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/analytics.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/instructions/misc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/scrapers/reddit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/scrapers/twitter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/scrapers/twitter2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scraper_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scraper_interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/country_economic_indicators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/runner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scrapers/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/scraper_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils/myutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/myutils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scrapers/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scrapers/twitter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +166,7 @@
         <counts>
           <entry key="dummy" value="325" />
           <entry key="misc" value="35" />
-          <entry key="py" value="141484" />
+          <entry key="py" value="141595" />
           <entry key="sql" value="4105" />
           <entry key="txt" value="76" />
         </counts>
@@ -186,7 +174,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="436" />
-          <entry key="Python" value="141468" />
+          <entry key="Python" value="141579" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="4105" />
         </counts>
@@ -214,7 +202,7 @@
           <entry key="mongo@localhost/aion/external" value="99" />
           <entry key="mongo@localhost/aion/external_daily" value="33" />
           <entry key="mongo@localhost/aion/github" value="25" />
-          <entry key="py" value="808" />
+          <entry key="py" value="809" />
           <entry key="sql" value="129" />
           <entry key="transaction" value="1" />
           <entry key="txt" value="12" />
@@ -229,7 +217,7 @@
           <entry key="Log" value="6" />
           <entry key="MONGO" value="160" />
           <entry key="PLAIN_TEXT" value="21" />
-          <entry key="Python" value="808" />
+          <entry key="Python" value="809" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="128" />
         </counts>
@@ -253,11 +241,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/scrapers/twitter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="233" column="49" selection-start-line="233" selection-start-column="49" selection-end-line="233" selection-end-column="49" />
+            <state relative-caret-position="-1437">
+              <caret line="236" column="68" selection-start-line="236" selection-start-column="68" selection-end-line="236" selection-end-column="68" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1556494272679" expanded="true" signature="10123:10870" ph="..." />
+                <marker date="1556496205884" expanded="true" signature="10075:10822" ph="..." />
               </folding>
             </state>
           </provider>
@@ -658,7 +646,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32887402" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32887402" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.65324676" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.79855317" visible="true" weight="0.5207792" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.38131043" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.20144686" side_tool="true" weight="0.41025642" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -755,13 +743,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/site-packages/pandahouse/http.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f1c6e87-17d4-4926-b9eb-32efd88b3ada/console_69.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1072,13 +1053,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/analytics/lib/python3.6/statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scrapers/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="233" column="49" selection-start-line="233" selection-start-column="49" selection-end-line="233" selection-end-column="49" />
+        <state relative-caret-position="-1437">
+          <caret line="236" column="68" selection-start-line="236" selection-start-column="68" selection-end-line="236" selection-end-column="68" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1556494272679" expanded="true" signature="10123:10870" ph="..." />
+            <marker date="1556496205884" expanded="true" signature="10075:10822" ph="..." />
           </folding>
         </state>
       </provider>

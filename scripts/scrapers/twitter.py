@@ -4,6 +4,8 @@ import sys
 import csv
 import datetime
 from datetime import datetime,date, timedelta
+from statistics import mean
+
 import tweepy
 from dateutil.relativedelta import relativedelta
 
@@ -125,6 +127,36 @@ class TwitterLoader(Scraper):
         except Exception:
             logger.error('am i up to timestamp', exc_info=True)
 
+    def process_item(self,items_to_save, item_name):
+        try:
+            for idx, item in enumerate(items_to_save['timestamp']):
+                if isinstance(item,str):
+                    item = datetime.strptime(item, self.DATEFORMAT)
+                #logger.warning('item before save:%s',item)
+                for col in list(items_to_save.keys()):
+                    #logger.warning('col:%s', col)
+                    if col != 'timestamp':
+                        if col in ['month','day','year','hour']:
+                            nested_search = col
+                        else:
+                            nested_search = item_name+'.'+col
+                        #logger.warning('timestamp:%s',item)
+                        #logger.warning('%s:%s:', nested_search,items_to_save[col][idx])
+
+                        self.pym.db[self.collection].update_one(
+                        {'timestamp': items_to_save['timestamp'][idx]},
+                            {'$set':
+                                 {
+                                   nested_search:items_to_save[col][idx]
+                                 }
+                            },
+                            upsert=True)
+
+
+            #logger.warning("%s item added to MongoDB database!",format(self.item_name))
+        except Exception:
+            logger.error('process item', exc_info=True)
+
     def int_to_datetime(self, timestamp):
         try:
             if isinstance(timestamp,str):
@@ -151,7 +183,7 @@ class TwitterLoader(Scraper):
 
     def sentiment_analyzer_scores(self,sentence,tweets_dict):
         try:
-            logger.warning('text being analyzed:%s', sentence)
+            #logger.warning('text being analyzed:%s', sentence)
             score = analyser.polarity_scores(sentence)
         except Exception:
             score = {
@@ -171,7 +203,6 @@ class TwitterLoader(Scraper):
             #logger.warning('div:%s',div)
             try:
                 tmp = div['data-mentions'].split(' ')
-                logger.warning('data mentions:%s',tmp)
                 tmp_len = len(tmp)
             except Exception:
                 tmp_len = 0
@@ -180,7 +211,7 @@ class TwitterLoader(Scraper):
 
             # text
             p = li.find('p',attrs={'class':'js-tweet-text'})
-            logger.warning('tweet text:%s', p.text)
+            #logger.warning('tweet text:%s', p.text)
             
             score = self.sentiment_analyzer_scores(p.text,tweets_dict)
             tweets_dict['twitter_positive'].append(score['pos'])
@@ -229,32 +260,33 @@ class TwitterLoader(Scraper):
                 'twitter_emojis_compound': [],
                 'twitter_emojis_count':[]
             }
-            try:
-                emojis = p.find('img', attrs={'class': 'Emoji'})
-                logger.warning('emojis:%s',emojis)
-                if emojis is not None:
-                    for emoji in emojis:
-                        logger.warning('emoji:%s',emoji)
-                        logger.warning(emoji)
-                        score = self.sentiment_analyzer_scores(emoji['title'],temp_dict)
-                        temp_dict['twitter_emojis_positive'].append(score['pos'])
-                        temp_dict['twitter_emojis_negative'].append(score['neg'])
-                        temp_dict['twitter_emojis_neutral'].append(score['neu'])
-                        temp_dict['twitter_emojis_compound'].append(score['compound'])
+            emojis = p.find_all('img', attrs={'class': 'Emoji'})
+            logger.warning('emojis:%s',emojis)
+            if len(emojis) > 0:
+                for emoji in emojis:
+                    logger.warning('LINE 235, emoji:%s',emoji['title'])
+                    score = self.sentiment_analyzer_scores(emoji['title'],temp_dict)
+                    temp_dict['twitter_emojis_positive'].append(score['pos'])
+                    temp_dict['twitter_emojis_negative'].append(score['neg'])
+                    temp_dict['twitter_emojis_neutral'].append(score['neu'])
+                    temp_dict['twitter_emojis_compound'].append(score['compound'])
 
-                    for key in temp_dict.keys():
-                        if key != 'twitter_emojis_count':
-                            tweets_dict[key].append(round(temp_dict[key].mean(),3))
-                        else:
-                            tweets_dict[key].append(len(emojis))
-                else:
-                    logger.warning('Else: NO EMOJIS')
-                    for key in temp_dict.keys():
-                        tweets_dict[key].append(0)
+                for key in temp_dict.keys():
+                    if key != 'twitter_emojis_count':
+                        tweets_dict[key].append(round(mean(temp_dict[key]),3))
+                    else:
+                        tweets_dict[key].append(len(emojis))
+                logger.warning('emoji temp dict:%s', temp_dict)
+            else:
+                logger.warning('Else: NO EMOJIS')
+                for key in temp_dict.keys():
+                    tweets_dict[key].append(0)
+            '''
             except Exception:
                 logger.warning('Exception: NO EMOJIS')
                 for key in temp_dict.keys():
                     tweets_dict[key].append(0)
+            '''
 
             return tweets_dict
 
@@ -290,7 +322,7 @@ class TwitterLoader(Scraper):
                     # CHECK EACH ITEM
                     offset = self.get_item_offset("FOR TWEETS PER HOUR")
 
-                    url = self.url.format(self.item_name)
+                    url = self.url.format('aion_network')
                     # launch url
                     self.driver.implicitly_wait(30)
                     logger.warning('url loaded:%s', url)
@@ -323,11 +355,10 @@ class TwitterLoader(Scraper):
                     df = pd.DataFrame.from_dict(tweets_dict)
                     df = df.groupby(['timestamp']).agg(self.tweets_dict_groupby)
                     df = df.reset_index()
-                    logger.warning('df:%s',df.head(30))
-                    #self.process_item(tweets_dict, self.item_name)
-
-
+                    item_to_save = df.to_dict('list')
+                    #logger.warning('item to save:%s',item_to_save)
                     # CHECKPOINT AND SAVE
+                    self.process_item(item_to_save,self.item_name)
 
                     # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS
                     self.driver.close()  # close currently open browsers
