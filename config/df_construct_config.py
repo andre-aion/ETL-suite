@@ -433,3 +433,64 @@ self.new_activity_lst = df.apply(create_address_transaction,
                                  axis=1,meta=('address_lst','O'))
 '''
 
+
+#################################################################
+#                   SOCIAL MEDIA HELPERS
+################################################################
+rename_dict = {}
+rename_dict['twitter'] = {
+    'aelf': 'aelfblockchain',
+    'aion': 'aion_network',
+    'ark': 'arkecosystem',
+    'bitcoin-cash':'bitcoincash',
+    'bitcoin_cash':'bitcoincash',
+    'dash':'dashpay',
+    'decred':'decredproject',
+    'digibyte':'digibytecoin',
+    'eos':'block_one_',
+    'golem':'golemproject',
+    'icon':'helloiconworld',
+    'iota':'IOTA_crypto',
+    'kucoin':'kucoincom',
+    'lisk':'liskhq',
+    'maker':'makerdao',
+    'nem':'nemofficial',
+    'neo':'neo_blockchain',
+    'omisego':'omise_go',
+    'ontology':'ontologynetwork',
+    'pivx':'_pivx',
+    'qtum':'qtumofficial',
+    'siacoin':'siatechhq',
+    'steem':'steemit',
+    'stella':'StellarOrg',
+    'theta':'theta_network',
+    'tron':'tronfoundation',
+    'wanchain': 'wanchain_org',
+    'waves':'wavesplatform',
+    'zcash':'zcashco',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

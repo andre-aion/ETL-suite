@@ -30,16 +30,16 @@ def set_vars(cryptos):
     try:
         groupby_dct = {
             'index': {},
-            'github': {}
+            'external_hourly': {}
         }
         github_cols = ['watch', 'fork', 'issue', 'release', 'push']
         index_cols = ['close', 'high', 'low', 'market_cap', 'volume']
         idvars = {
             'index' :[],
-            'github':[]
+            'external_hourly':[]
         }
         vars_dict = {
-            'github': {
+            'external_hourly': {
                 'watch': [],
                 'fork': [],
                 'issue': [],
@@ -59,9 +59,9 @@ def set_vars(cryptos):
                 crypto = 'bitcoin_cash'
             for col in github_cols:
                 key = crypto + '_' + col
-                vars_dict['github'][col].append(key)
-                idvars['github'].append(key)
-                groupby_dct['github'][key] = 'sum'
+                vars_dict['external_hourly'][col].append(key)
+                idvars['external_hourly'].append(key)
+                groupby_dct['external_hourly'][key] = 'sum'
             for col in index_cols:
                 key = crypto + '_' + col
                 vars_dict['index'][col].append(key)
@@ -89,7 +89,7 @@ class CryptoDaily(Checkpoint):
         # external columns to load
         self.table = table
         self.table2 = 'external_daily'
-        self.table3 = 'github'
+        self.table3 = 'external_hourly'
         self.offset = self.initial_date
         self.rename_dct = {}
         self.coin_price_cols = []
@@ -130,7 +130,7 @@ class CryptoDaily(Checkpoint):
                         'storage': 'mongo',
                         'db':'aion'
                     },
-                    'github':{
+                    'external_hourly':{
                         'storage': 'mongo',
                         'db': 'aion'
                     }
@@ -326,7 +326,7 @@ class CryptoDaily(Checkpoint):
         try:
             df = df.compute()
             df.reset_index()
-            if table == 'github':
+            if table == 'external_hourly':
                 temp_dct = {
                     'watch': [],
                     'fork': [],
@@ -350,7 +350,7 @@ class CryptoDaily(Checkpoint):
                     'russell_close':[],
                     'crypto':[]
                 }
-            if table == 'github':  # date for each coin
+            if table == 'external_hourly':  # date for each coin
                 temp_dct['timestamp'] = [datetime(offset.year, offset.month, offset.day, 0, 0, 0)] * len(self.items)
 
             # loop through items
@@ -388,9 +388,9 @@ class CryptoDaily(Checkpoint):
     def make_crypto_df_long(self, df, table, offset):
         try:
             dct = self.vars_dict['index']
-            if table == 'github':
-                agg_dct = self.groupby_dict['github']
-                dct = self.vars_dict['github']
+            if table == 'external_hourly':
+                agg_dct = self.groupby_dict['external_hourly']
+                dct = self.vars_dict['external_hourly']
                 df = df.drop('hour',axis=1) # the hour column is not required
                 # do a daily aggregate for each coin
                 df = df.groupby(['year','month','day']).agg(agg_dct)

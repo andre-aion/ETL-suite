@@ -53,18 +53,18 @@ class Cryptocoin(Scraper):
                     url = 'https://coinmarketcap.com/currencies/{}/historical-data/'\
                         .format(self.item_name)
                     # launch url
-                    self.driver.implicitly_wait(30)
-                    self.driver.get(url)
+                    self.driver['firefox'].implicitly_wait(30)
+                    self.driver['firefox'].get(url)
                     logger.warning('url loaded:%s',url)
                     await asyncio.sleep(6)
                     if self.scrape_period == 'history':
                         # click on the dropdown list to expose it
-                        dropdown = self.driver.find_element_by_id('reportrange')
-                        self.driver.execute_script("arguments[0].click();", dropdown)
+                        dropdown = self.driver['firefox'].find_element_by_id('reportrange')
+                        self.driver['firefox'].execute_script("arguments[0].click();", dropdown)
                         await asyncio.sleep(2)
 
                         # click on the exposed link
-                        wait = WebDriverWait(self.driver, 3)
+                        wait = WebDriverWait(self.driver['firefox'], 3)
                         link = wait.until(visibility_of_element_located(
                             (By.CSS_SELECTOR, '.ranges li:nth-child(6)')))
                         print('LINK:',link)
@@ -73,7 +73,7 @@ class Cryptocoin(Scraper):
                         await asyncio.sleep(6)
 
                     # get soup
-                    soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                    soup = BeautifulSoup(self.driver['firefox'].page_source, 'html.parser')
                     table = soup.find('table', attrs={'class':'table'})
                     # parse table and write to database
                     count = 0
@@ -110,7 +110,7 @@ class Cryptocoin(Scraper):
                             if count >= 1:
                                 break
                         count += 1
-                    self.driver.close() # close currently open browsers
+                    self.driver['firefox'].close() # close currently open browsers
                     # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS
                     self.update_proxy()
 

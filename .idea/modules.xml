@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ETL-suite.iml" filepath="$PROJECT_DIR$/.idea/ETL-suite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/mysql_clickhouse_streamer.iml" filepath="$PROJECT_DIR$/.idea/mysql_clickhouse_streamer.iml" />
     </modules>
   </component>
 </project>

@@ -87,19 +87,19 @@ class CountryEconomicIndicators(Scraper):
                 offset = offset + relativedelta(months=1)
                 url = self.url
                 # launch url
-                self.driver.implicitly_wait(30)
+                self.driver['firefox'].implicitly_wait(30)
                 logger.warning('url loaded:%s',url)
 
-                self.driver.get(url)
+                self.driver['firefox'].get(url)
                 await asyncio.sleep(10)
                 # click on the box to expose all the countries
                 script = "__doPostBack('ctl00$ContentPlaceHolder1$defaultUC1$CurrencyMatrixAllCountries1$LinkButton1','')"
-                self.driver.execute_script(script)
+                self.driver['firefox'].execute_script(script)
                 await asyncio.sleep(2)
 
                 # --------------------- get soup
                 table_id ="ctl00_ContentPlaceHolder1_defaultUC1_CurrencyMatrixAllCountries1_GridView1"
-                soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                soup = BeautifulSoup(self.driver['firefox'].page_source, 'html.parser')
                 table = soup.find('table', attrs={'id':table_id})
                 # parse table and write to database
                 count = 0
@@ -141,7 +141,7 @@ class CountryEconomicIndicators(Scraper):
                     self.update_checkpoint_dict(offset)
                     self.save_checkpoint()
 
-                self.driver.close() # close currently open browsers
+                self.driver['firefox'].close() # close currently open browsers
                 # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS
                 self.update_proxy()
 

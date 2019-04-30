@@ -47,18 +47,18 @@ class FinancialIndexes(Scraper):
                     url = 'https://www.nasdaq.com/symbol/{}/historical'\
                         .format(self.coin_abbr[self.item_name])
                     # launch url
-                    self.driver.implicitly_wait(10)
-                    self.driver.get(url)
+                    self.driver['firefox'].implicitly_wait(10)
+                    self.driver['firefox'].get(url)
                     await asyncio.sleep(5)
                     if self.scrape_period == 'history':
                         # click on the dropdown list to expose it
-                        dropdown = self.driver.find_element_by_id('ddlTimeFrame')
+                        dropdown = self.driver['firefox'].find_element_by_id('ddlTimeFrame')
                         logger.warning('DROPDOWN:%s', dropdown)
-                        self.driver.execute_script("arguments[0].click();", dropdown)
+                        self.driver['firefox'].execute_script("arguments[0].click();", dropdown)
                         await asyncio.sleep(3)
 
                         # click on the exposed link
-                        link = self.driver.find_element_by_xpath("//select[@id='ddlTimeFrame']/option[@value='2y']")
+                        link = self.driver['firefox'].find_element_by_xpath("//select[@id='ddlTimeFrame']/option[@value='2y']")
                         logger.warning('LINK:%s', link)
 
                         link.click()
@@ -66,7 +66,7 @@ class FinancialIndexes(Scraper):
 
                     count = 0
                     # get soup
-                    soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+                    soup = BeautifulSoup(self.driver['firefox'].page_source, 'html.parser')
                     div = soup.find('div', attrs={'id': 'quotes_content_left_pnlAJAX'})
                     rows = div.find('tbody').findAll('tr')
 
@@ -92,7 +92,7 @@ class FinancialIndexes(Scraper):
                         count += 1
 
                     logger.warning('%s SCRAPER %s COMPLETED:', self.item_name.upper(), self.scrape_period)
-                    self.driver.close() # close currently open browsers
+                    self.driver['firefox'].close() # close currently open browsers
                     # PAUSE THE LOADER, SWITCH THE USER AGENT, SWITCH THE IP ADDRESS
                     self.update_proxy()
 

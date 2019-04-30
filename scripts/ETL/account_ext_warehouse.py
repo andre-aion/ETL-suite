@@ -40,7 +40,7 @@ class AccountExternalWarehouse(Checkpoint):
         self.table = table
         self.table1 = 'account_authoritative'
         self.table2 = 'external_daily'
-        self.table3 = 'github'
+        self.table3 = 'external_hourly'
         self.offset = self.initial_date
         self.rename_dct = {}
         self.coin_price_cols = []
@@ -74,7 +74,7 @@ class AccountExternalWarehouse(Checkpoint):
                         'storage': 'mongo',
                         'db':'aion'
                     },
-                    'github':{
+                    'external_hourly':{
                         'storage': 'mongo',
                         'db': 'aion'
                     }
@@ -298,8 +298,6 @@ class AccountExternalWarehouse(Checkpoint):
 
                     df1 = dd.from_pandas(df1, npartitions=1)
                     return df1
-
-            logger.warning
 
             # make empty dataframe since github is not yet uploaded
             df1 = self.make_empty_dataframe(start)

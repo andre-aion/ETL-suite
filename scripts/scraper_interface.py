@@ -36,14 +36,25 @@ class Scraper(Checkpoint):
         self.pym = PythonMongo('aion')
 
         # create a new firefox session
-        self.options = webdriver.FirefoxOptions()
-        self.options.add_argument('-headless')
+        self.options = {
+            'firefox' : webdriver.FirefoxOptions(),
+            'chrome' : webdriver.ChromeOptions()
+        }
+        self.options['firefox'].add_argument('-headless')
         self.firefox_profile = webdriver.FirefoxProfile()
         self.firefox_profile.set_preference('permissions.default.image', 2)
         self.firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', False)
         self.firefox_profile.set_preference("network.cookie.cookieBehavior", 2)
-        self.driver = webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
-                                        firefox_options=self.options)
+
+        self.options['chrome'].add_argument('--ignore-certificate-errors')
+        self.options['chrome'].add_argument("--test-type")
+        self.options['chrome'].add_argument("--headless")
+        self.driver = {
+            'firefox' : webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
+                                        firefox_options=self.options['firefox']),
+            'chrome' :webdriver.Chrome(chrome_options=self.options['chrome'])
+        }
+
         self.scraper = ''
         self.collection = collection
         self.table = collection
@@ -101,8 +112,12 @@ class Scraper(Checkpoint):
                 'sslProxy': data['proxy'],
                 'noProxy': ''  # set this value as desired
             })
-            self.driver = webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
-                                            firefox_options=self.options)
+            self.driver = {
+                'firefox': webdriver.Firefox(proxy=self.proxy, firefox_profile=self.firefox_profile,
+                                             firefox_options=self.options['firefox']),
+                'chrome': webdriver.Chrome(chrome_options=self.options['chrome'])
+            }
+
         except Exception:
             logger.error('update period', exc_info=True)
 

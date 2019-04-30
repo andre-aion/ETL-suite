@@ -21,9 +21,8 @@ loop = asyncio.get_event_loop()
 logger = mylogger(__file__)
 
 # ETLS
-#warehouse_etl = BlockTxWarehouse('block_tx_warehouse')
 # backup
-mongo_backup = MongoBackup(['external_daily','github'])
+mongo_backup = MongoBackup(['external_daily','github','country_indexes'])
 
 # scrapers
 cryptocurrencies = load_cryptos()
@@ -34,27 +33,25 @@ indexes_scraper = FinancialIndexes(financial_indicies)
 cryptos_scraper = Cryptocoin(cryptocurrencies)
 github_loader = GithubLoader(cryptocurrencies)
 economic_indicators = CountryEconomicIndicators()
+
 twitter_loader = TwitterLoader(cryptocurrencies_dct)
-
 logger.warning(cryptocurrencies)
-
 table = 'account_ext_warehouse'
-
+'''
 account_ext_warehouse = AccountExternalWarehouse(table='account_ext_warehouse',
                                                  mysql_credentials='staging',
                                                  items=cryptocurrencies)
-
-
+'''
 crytpo_daily = CryptoDaily(table='crypto_daily',
                            items=cryptocurrencies)
 reset_offset = {'start':'2019-04-24 00:00:00', 'end':'2019-04-25 00:00:00'}
 
 async def run_etls():
     tasks = [
-        #asyncio.ensure_future(indexes_scraper.run()),
-        #asyncio.ensure_future(cryptos_scraper.run()),
-        #asyncio.ensure_future(github_loader.run()),
-        asyncio.ensure_future(twitter_loader.run(None)),
+        asyncio.ensure_future(indexes_scraper.run()),
+        asyncio.ensure_future(cryptos_scraper.run()),
+        asyncio.ensure_future(github_loader.run()),
+        #asyncio.ensure_future(twitter_loader.run(None)),
         #asyncio.ensure_future(mongo_backup.run()),
         #asyncio.ensure_future(account_ext_warehouse.run(None)),
         #asyncio.ensure_future(crytpo_daily.run(None)),

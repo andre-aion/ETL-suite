@@ -8,6 +8,7 @@ logger = mylogger(__file__)
 
 def get_proxies():
     url = 'https://free-proxy-list.net/'
+    logger.warning('proxy url:%s',url)
     response = requests.get(url)
     parser = fromstring(response.text)
     proxies = set()
@@ -26,6 +27,7 @@ def get_random_scraper_data():
     proxies = get_proxies()
     if len(proxies) == 0:
         data['proxy'] = '65.48.185.213'
+        data['proxy'] = '104.2000.110.155'
     else:
 
         data['proxy'] = random.choice(proxies)

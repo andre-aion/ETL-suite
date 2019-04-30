@@ -107,7 +107,7 @@ checkpoint_dict[table] ={
 
 table = 'country_economic_indicators'
 checkpoint_dict[table] ={
-    'table' : table,
+    'table' : 'country_indexes',
     'column':'timestamp',
     'offset':None,
     'timestamp' : None,
@@ -117,9 +117,10 @@ checkpoint_dict[table] ={
 
 table = 'twitterscraper'
 checkpoint_dict[table] ={
-    'table' : table,
-    'column':'timestamp',
-    'offset':None,
+    'table' : 'github',
+    'column':'twitter_mentions',
+    'offset_min':None,
+    'offset_max':None,
     'timestamp' : None,
     'start':None,
     'end':None
